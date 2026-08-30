@@ -8,6 +8,7 @@ import httpx
 
 from .asr_fix import fix_asr
 from .config import settings
+from .parse_md import split_bullet, stamp_md_link
 
 SKIP_PATTERNS = [
     r"^good (morning|afternoon|evening)",
@@ -178,7 +179,7 @@ def bullets_to_markdown(
         lines.append("")
     lines += ["## Timestamped notes", ""]
     for b in bullets:
-        lines.append(f"- `{b['t']}` {b['text']}")
+        lines.append(f"- {stamp_md_link(video_id, b['t'])} {b['text']}")
     lines.append("")
     return "\n".join(lines)
 
@@ -186,7 +187,7 @@ def bullets_to_markdown(
 def parse_markdown_bullets(md: str) -> list[dict[str, str]]:
     bullets: list[dict[str, str]] = []
     for line in md.splitlines():
-        m = re.match(r"^-\s+`([^`]+)`\s+(.+)$", line.strip())
-        if m:
-            bullets.append({"t": m.group(1), "text": m.group(2), "start": 0})
+        got = split_bullet(line)
+        if got:
+            bullets.append({"t": got[0], "text": got[1], "start": 0})
     return bullets

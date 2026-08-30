@@ -268,9 +268,9 @@ def patch_markdown_with_dual(video_id: str, md: str, *, model: str = "small") ->
     """Write 真正摘要（中文） + 時間軸內容(ZH) + Timeline content (EN ASR)."""
     built = build_dual_confirmed_rows(video_id, model=model)
     rows = built["rows"]
-    digest_lines = build_zh_digest(rows)
-    content_lines = [content_zh_line(r) for r in rows]
-    content_en_lines = [content_en_line(r) for r in rows]
+    digest_lines = build_zh_digest(rows, video_id=video_id)
+    content_lines = [content_zh_line(r, video_id=video_id) for r in rows]
+    content_en_lines = [content_en_line(r, video_id=video_id) for r in rows]
     if not content_lines:
         content_lines = ["- （字幕／ASR 未搵到 ticker）"]
         content_en_lines = ["- （no tickers）"]

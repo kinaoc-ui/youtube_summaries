@@ -6,6 +6,7 @@ from typing import Any
 
 from .asr_fix import fix_asr
 from .speech_audit import NEEDLES
+from .parse_md import stamp_md_link
 from .storage import save_summary
 from .summarize import summarize_chunks_offline
 from .transcript import format_ts
@@ -494,13 +495,13 @@ def build_speech_markdown(
     if gaps:
         gap_txt = "；".join(f"{a}–{b}（缺~{m}分）" for a, b, m in gaps[:6])
         exec_lines.append(
-            f"- `00:00` **字幕缺口** | — | Whisper 大段空白 | {gap_txt}。"
+            f"- {stamp_md_link(video_id, '00:00')} **字幕缺口** | — | Whisper 大段空白 | {gap_txt}。"
             "只根據有語音段落寫 ticker；畫面核對之後可補。"
         )
     joined = " ".join(fix_asr(str(s.get("text") or "")) for s in snippets).lower()
     if "cyber" in joined:
         exec_lines.append(
-            "- `17:18` **大方向** | Cyber long 太早／Software 撐住 | 等 gap／flush 先買 | "
+            f"- {stamp_md_link(video_id, '17:18')} **大方向** | Cyber long 太早／Software 撐住 | 等 gap／flush 先買 | "
             "標題主題；唔好喺 hourly EMA 追買 cyber"
         )
     for h in hits:
@@ -511,10 +512,10 @@ def build_speech_markdown(
             else ("Semis" if tick == "SEMIS" else ("Quantum" if tick.upper() == "QUANTUM" else tick))
         )
         exec_lines.append(
-            f"- `{h['t']}` **{label}** | {h['side']} | {h['suggestion']} | {h['reason']}"
+            f"- {stamp_md_link(video_id, h['t'])} **{label}** | {h['side']} | {h['suggestion']} | {h['reason']}"
         )
 
-    en_notes = [f"- `{b['t']}` {b['text']}" for b in bullets]
+    en_notes = [f"- {stamp_md_link(video_id, b['t'])} {b['text']}" for b in bullets]
     zh_notes = list(en_notes)
 
     parts = [

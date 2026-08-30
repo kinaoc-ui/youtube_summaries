@@ -7,6 +7,7 @@ import time
 from pathlib import Path
 from typing import Any
 
+from .parse_md import stamp_md_link
 from .speech_zh import translate_speech_zh
 
 # #region agent log
@@ -219,7 +220,7 @@ def _session_lede(groups: list[tuple[str, str, str]]) -> str:
     return "；".join(parts) + "。"
 
 
-def build_zh_digest(rows: list[dict[str, Any]]) -> list[str]:
+def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]:
     """Grouped Chinese digest: 實際操作 + 做多/做空/減倉/觀望. No meta/mute lines."""
     by_label: dict[str, list[dict[str, Any]]] = {}
     for r in rows:
@@ -269,12 +270,14 @@ def build_zh_digest(rows: list[dict[str, Any]]) -> list[str]:
             },
         )
         # #endregion
+        tlink = stamp_md_link(video_id, str(pick.get("t") or "")) if video_id else ""
+        tbit = f" {tlink}" if tlink else ""
         if tags:
             actions.append(
-                f"- **實際操作｜{label}** — {'；'.join(tags)}（{_bucket_title(bucket)}）"
+                f"- **實際操作｜{label}**{tbit} — {'；'.join(tags)}（{_bucket_title(bucket)}）"
             )
 
-        line = f"- **{_bucket_title(bucket)}｜{label}** — {reason}"
+        line = f"- **{_bucket_title(bucket)}｜{label}**{tbit} — {reason}"
         buckets[bucket].append(line)
         groups.append((label, bucket, reason))
 
@@ -383,11 +386,17 @@ def _source_en(r: dict[str, Any]) -> str:
     return "dual ASR" if r.get("confidence") == "dual" else "WhisperX"
 
 
-def content_zh_line(r: dict[str, Any]) -> str:
+def _stamp(r: dict[str, Any], video_id: str) -> str:
+    t = str(r.get("t") or "")
+    return stamp_md_link(video_id, t) if video_id else f"`{t}`"
+
+
+def content_zh_line(r: dict[str, Any], video_id: str = "") -> str:
     """Timeline content — faithful Chinese of the quote English (CC or ASR)."""
+    stamp = _stamp(r, video_id)
     if r.get("confidence") == "gap":
         return (
-            f"- `{r['t']}` **字幕缺口** | — | 咪 mute／無語音 | "
+            f"- {stamp} **字幕缺口** | — | 咪 mute／無語音 | "
             f"{r.get('reason') or '兩邊 ASR 近乎空白'}"
         )
     conf = _source_zh(r)
@@ -397,14 +406,15 @@ def content_zh_line(r: dict[str, Any]) -> str:
     if len(blob) < 12:
         blob = (blob + " " + str(r.get("reason") or "")).strip()
     say = translate_speech_zh(blob)
-    return f"- `{r['t']}` **{label}** | {side} | {conf} | {say}"
+    return f"- {stamp} **{label}** | {side} | {conf} | {say}"
 
 
-def content_en_line(r: dict[str, Any]) -> str:
+def content_en_line(r: dict[str, Any], video_id: str = "") -> str:
     """Same timeline rows as ZH, but with raw ASR English (no paraphrase)."""
+    stamp = _stamp(r, video_id)
     if r.get("confidence") == "gap":
         return (
-            f"- `{r['t']}` **Mute gap** | — | mic muted / no speech | "
+            f"- {stamp} **Mute gap** | — | mic muted / no speech | "
             f"{r.get('reason') or 'both ASR streams nearly empty'}"
         )
     conf = _source_en(r)
@@ -417,4 +427,4 @@ def content_en_line(r: dict[str, Any]) -> str:
     en = re.sub(r"\s+", " ", blob).strip()
     if len(en) > 320:
         en = en[:317] + "…"
-    return f"- `{r['t']}` **{label}** | {side} | {conf} | {en}"
+    return f"- {stamp} **{label}** | {side} | {conf} | {en}"
