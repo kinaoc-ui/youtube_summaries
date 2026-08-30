@@ -29,6 +29,11 @@ data/whisper_jobs/
 debug-*.log
 *.log
 
+# Scratch / temp captures
+_a.txt
+_tmp_*.jpg
+_tmp_*.png
+
 # OS
 .DS_Store
 Thumbs.db
