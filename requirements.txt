@@ -1,0 +1,14 @@
+youtube-transcript-api>=1.2.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic-settings>=2.0.0
+httpx>=0.27.0
+python-multipart>=0.0.9
+yt-dlp>=2024.1.0
+pillow>=10.0.0
+# opencv-python-headless 4.12.x needs numpy>=2,<2.3 (avoid 2.4+)
+numpy>=2.0,<2.3
+rapidocr-onnxruntime>=1.3.0
+faster-whisper>=1.0.0
+# WhisperX: pip install git+https://github.com/m-bain/whisperX.git
+# (optional) deepgram-sdk>=3.0.0

@@ -1,0 +1,36 @@
+# Secrets / env
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.Python
+
+# Large local media & ASR caches — never push
+data/video/
+data/audio/
+data/transcripts/
+data/frames/
+data/asr_compare/
+data/asr_compare_jobs/
+data/whisper_jobs/
+data/vision_jobs/
+data/pending/
+data/whisper_jobs/
+
+# Keep summaries + state
+!data/summaries/
+!data/summaries/**
+!data/martin_state.json
+
+# Local logs / debug
+.local/
+.cursor/
+debug-*.log
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

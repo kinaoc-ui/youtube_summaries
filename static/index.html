@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Local TubeonAI</title>
+  <link rel="stylesheet" href="/static/style.css?v=13" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">▶</div>
+        <div>
+          <h1>Local TubeonAI</h1>
+          <p class="muted">字幕＋畫面截圖 → 時間戳重點</p>
+        </div>
+      </div>
+
+      <label class="field">
+        <span>YouTube URL</span>
+        <input id="url" type="text" placeholder="https://www.youtube.com/watch?v=…" value="https://www.youtube.com/watch?v=5ACCeRUiR2k" />
+      </label>
+
+      <label class="field">
+        <span>Title（自動用片名／日期）</span>
+        <input id="title" type="text" placeholder="Analyze 後會自動填片名" value="" readonly />
+      </label>
+
+      <label class="field">
+        <span>Summarizer（邊個幫你總結）</span>
+        <select id="provider">
+          <option value="cursor-agent" selected>Auto（字幕→總結＋對比＋畫面）</option>
+          <option value="offline">Cached / offline extract</option>
+          <option value="ollama">Ollama（本地 LLM）</option>
+          <option value="openai">OpenAI-compatible API</option>
+        </select>
+      </label>
+      <p class="help">Analyze 會<strong>自動</strong>：總結 → 語音閘 → 畫面截圖 → faster-whisper↔WhisperX↔畫面對比。唔使再喺 Chat 叫「請總結」。</p>
+
+      <label class="check">
+        <input id="force" type="checkbox" />
+        <span>Force re-fetch / re-summarize</span>
+      </label>
+      <p class="help">唔勾 = 顯示最新摘要，但仍會補跑未完成嘅畫面／ASR 對比。勾 Force 先重跑字幕／總結。</p>
+
+      <button id="analyzeBtn" class="primary">Analyze</button>
+      <p id="status" class="status muted"></p>
+      <p id="hint" class="hint hidden"></p>
+      <div id="auditBox" class="audit-box hidden"></div>
+      <div id="compareBox" class="compare-box hidden"></div>
+
+      <div class="section-head">Saved</div>
+      <div id="savedList" class="saved-list"></div>
+    </aside>
+
+    <main class="main">
+      <header class="top">
+        <div>
+          <h2 id="resultTitle">Select or analyze a video</h2>
+          <a id="resultLink" class="muted link" href="#" target="_blank" rel="noreferrer"></a>
+        </div>
+        <div class="actions">
+          <div class="lang-toggle" role="group" aria-label="Language">
+            <button id="langZh" class="ghost active" type="button">中文</button>
+            <button id="langEn" class="ghost" type="button">English</button>
+          </div>
+          <button id="visionBtn" class="ghost hidden" disabled title="暫時關閉">畫面核對</button>
+          <button id="copyBtn" class="ghost" disabled>Copy MD</button>
+          <button id="downloadBtn" class="ghost" disabled>Download .md</button>
+        </div>
+      </header>
+
+      <section id="execBox" class="exec hidden"></section>
+
+      <section class="timeline-wrap">
+        <div id="timeline" class="timeline">
+          <div class="empty">Paste a YouTube link and hit Analyze — or open a saved summary.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js?v=27"></script>
+</body>
+</html>
