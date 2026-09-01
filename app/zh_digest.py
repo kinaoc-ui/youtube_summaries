@@ -406,6 +406,8 @@ def content_zh_line(r: dict[str, Any], video_id: str = "") -> str:
     if len(blob) < 12:
         blob = (blob + " " + str(r.get("reason") or "")).strip()
     say = translate_speech_zh(blob)
+    if len(say) > 420:
+        say = say[:417] + "…"
     return f"- {stamp} **{label}** | {side} | {conf} | {say}"
 
 
@@ -425,6 +427,6 @@ def content_en_line(r: dict[str, Any], video_id: str = "") -> str:
         blob = (blob + " " + str(r.get("reason") or "")).strip()
     # Keep spoken English; trim only runaway length
     en = re.sub(r"\s+", " ", blob).strip()
-    if len(en) > 320:
-        en = en[:317] + "…"
+    if len(en) > 520:
+        en = en[:517] + "…"
     return f"- {stamp} **{label}** | {side} | {conf} | {en}"

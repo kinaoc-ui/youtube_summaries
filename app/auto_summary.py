@@ -188,6 +188,116 @@ def _window(snippets: list[dict[str, Any]], center: float, before: float = 40.0,
     return re.sub(r"\s+", " ", " ".join(parts)).strip()
 
 
+def _caption_overlap_join(acc: str, nxt: str) -> str:
+    """Stitch overlapping YouTube auto-captions without repeating the same words."""
+    a = re.sub(r"\s+", " ", acc or "").strip()
+    b = re.sub(r"\s+", " ", nxt or "").strip()
+    if not a:
+        return b
+    if not b:
+        return a
+    if b.lower() in a.lower():
+        return a
+    if a.lower() in b.lower():
+        return b
+    aw, bw = a.split(), b.split()
+    best = 0
+    for n in range(min(len(aw), len(bw), 16), 0, -1):
+        if [w.lower() for w in aw[-n:]] == [w.lower() for w in bw[:n]]:
+            best = n
+            break
+    if best:
+        return (a + " " + " ".join(bw[best:])).strip()
+    return (a + " " + b).strip()
+
+
+_SENT_END = re.compile(r"[.!?](?=\s+[A-Z]|$)")
+
+
+def _snip_end(row: dict[str, Any]) -> float:
+    dur = float(row.get("duration") or 0)
+    if dur <= 0:
+        dur = max(1.2, len(str(row.get("text") or "").split()) * 0.35)
+    return float(row["start"]) + dur
+
+
+def _clip_to_thought(text: str, tick: str) -> str:
+    """Keep the sentence that names this ticker, not a caption fragment."""
+    names = _WORD_ALIASES.get(tick.upper()) or (tick.lower(),)
+    loc = None
+    for n in sorted(names, key=len, reverse=True):
+        if len(n) < 2:
+            continue
+        m = re.search(rf"\b{re.escape(n)}\b", text, re.I)
+        if m and (loc is None or m.start() < loc[0]):
+            loc = (m.start(), m.end())
+    if loc is None:
+        return text.strip()
+    starts = [0] + [m.end() for m in _SENT_END.finditer(text)]
+    sent_start = 0
+    for s in starts:
+        if s <= loc[0]:
+            sent_start = s
+        else:
+            break
+    tail = text[loc[1] :]
+    end_rel = None
+    for m in _SENT_END.finditer(tail):
+        end_rel = m.end()
+        break
+    chunk = text[sent_start : (loc[1] + end_rel) if end_rel is not None else len(text)]
+    return re.sub(r"\s+", " ", chunk).strip(" ,")
+
+
+def _complete_quote(
+    snippets: list[dict[str, Any]],
+    center: float,
+    tick: str,
+    *,
+    before: float = 12.0,
+    after: float = 24.0,
+) -> str:
+    """One spoken thought around the ticker, not a single caption fragment."""
+    rows = sorted(
+        (
+            {
+                "start": float(s.get("start") or 0),
+                "duration": float(s.get("duration") or 0),
+                "text": fix_asr(str(s.get("text") or "")).strip(),
+            }
+            for s in snippets
+        ),
+        key=lambda x: x["start"],
+    )
+    rows = [r for r in rows if r["text"]]
+    if not rows:
+        return ""
+    idx = min(range(len(rows)), key=lambda i: abs(rows[i]["start"] - center))
+    lo = idx
+    while lo > 0:
+        gap = rows[lo]["start"] - _snip_end(rows[lo - 1])
+        if gap > 3.2 or rows[lo - 1]["start"] < center - before:
+            break
+        lo -= 1
+    hi = idx
+    while hi + 1 < len(rows):
+        nxt = rows[hi + 1]
+        gap = nxt["start"] - _snip_end(rows[hi])
+        if gap > 2.4 or nxt["start"] > center + after:
+            break
+        hi += 1
+    stitched = ""
+    for r in rows[lo : hi + 1]:
+        stitched = _caption_overlap_join(stitched, r["text"])
+    stitched = re.sub(r"\s+", " ", stitched).strip()
+    stitched = re.sub(r"(?:SpaceX \(SPCX\)(?: \(SPCX\))?\s*){2,}", "SpaceX (SPCX) ", stitched)
+    stitched = re.sub(r"\(SPCX\)(?:\s*\(SPCX\))+", "(SPCX)", stitched)
+    stitched = _clip_to_thought(stitched, tick)
+    if len(stitched) > 720:
+        stitched = stitched[:717] + "…"
+    return stitched
+
+
 def _prefer_whisperx_snippets(
     video_id: str, snippets: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
@@ -215,7 +325,7 @@ def _prefer_whisperx_snippets(
 
 # New name after these stays on the previous ticker (SpaceX gap-down ≠ Quantum).
 _TOPIC_SHIFT = re.compile(
-    r"(?=\s+(?:and also maybe|and maybe the|speaking of(?: the)?)\b)",
+    r"(?=\s+(?:and also maybe|or maybe and also|and maybe the|speaking of(?: the)?)\b)",
     re.I,
 )
 _WORD_ALIASES = {
@@ -223,6 +333,11 @@ _WORD_ALIASES = {
     "QUANTUM": ("quantum", "quantums"),
     "SEMIS": ("semi", "semis", "sammy", "sambies"),
     "SOFTWARE": ("software",),
+    "QQQ": ("qqq", "cues", "qes", "qs"),
+    "SPY": ("spy", "spies"),
+    "SKHY": ("hynix", "skhy"),
+    "SPCX": ("spcx", "spacex"),
+    "TSLA": ("tsla", "tesla"),
 }
 # Unlabeled follow-up must still be talking about the last named name.
 _CONTINUE_SEC = 35.0
@@ -355,28 +470,29 @@ def _new_hit(
     except Exception:
         pass
     # #endregion
-    para = piece
+    quote = _complete_quote(snippets, use_start, tick) or piece
+    para = quote
     blow = blob.lower()
-    plow = piece.lower()
+    plow = (quote or piece).lower()
     if side == "Short" and (
         "not very confident" in blow or "aggressive on the short" in blow
     ):
         if "not very confident" not in plow:
-            para = piece + " I'm not very confident on getting too aggressive on the short side."
+            para = quote + " I'm not very confident on getting too aggressive on the short side."
     if "reclaim" in plow and "not consider buying" in blow:
-        para = piece + " Probably not consider buying it today but it will be a good stock to track."
+        para = quote + " Probably not consider buying it today but it will be a good stock to track."
         side = "Watch"
     if tick.upper() in {"FTNT", "PANW"} and "tried too many times" in blow:
         if "tried too many times" not in plow:
-            para = piece + " I tried too many times on them."
+            para = quote + " I tried too many times on them."
     return {
         "t": format_ts(use_start),
         "start": use_start,
         "ticker": tick,
         "side": side,
         "suggestion": "見語音窗" if side == "Watch" else side,
-        "reason": para[:140] + ("…" if len(para) > 140 else ""),
-        "text": para[:480],
+        "reason": para[:180] + ("…" if len(para) > 180 else ""),
+        "text": para[:720],
     }
 
 
