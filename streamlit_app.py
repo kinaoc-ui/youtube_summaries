@@ -16,6 +16,8 @@ OUT_DIR = ROOT / "outputs"
 SIDE_COLORS = {
     "long": ("#14532d", "#86efac", "做多"),
     "short": ("#7f1d1d", "#fca5a5", "做空"),
+    "watch_short": ("#7f1d1d", "#fca5a5", "觀望偏空"),
+    "watch_long": ("#14532d", "#86efac", "觀望偏多"),
     "watch": ("#1e3a5f", "#93c5fd", "觀望"),
     "trim": ("#713f12", "#fde047", "減倉"),
     "action": ("#3f3f46", "#e4e4e7", "實際操作"),
@@ -88,12 +90,20 @@ def _side_key(raw: str) -> str:
     t = (raw or "").strip().lower()
     if "字幕缺口" in raw or "mute" in t or raw.strip() in {"—", "-", ""}:
         return "mute"
+    if "觀望偏空" in raw or "Watch／偏空" in raw or "Watch/偏空" in raw:
+        return "watch_short"
+    if "觀望偏多" in raw or "Watch／偏多" in raw or "Watch/偏多" in raw:
+        return "watch_long"
     if "trim" in t or "減倉" in raw or "實際操作" in raw:
         return "trim" if "實際" not in raw else "action"
-    if "short" in t or "做空" in raw or "偏空" in raw:
+    if "short" in t or "做空" in raw:
         return "short"
-    if "long" in t or "做多" in raw or "偏多" in raw:
+    if "long" in t or "做多" in raw:
         return "long"
+    if "偏空" in raw:
+        return "watch_short"
+    if "偏多" in raw:
+        return "watch_long"
     return "watch"
 
 
@@ -276,6 +286,8 @@ def main() -> None:
         ("action", "實際操作"),
         ("long", "做多"),
         ("short", "做空"),
+        ("watch_short", "觀望偏空"),
+        ("watch_long", "觀望偏多"),
         ("trim", "減倉"),
         ("watch", "觀望"),
     ]

@@ -63,9 +63,6 @@ SIDE_LONG = re.compile(
     r"\b(?:get(?:ting)?|go(?:ing)?|went)\s+long\b|"
     r"\btoo early on .{0,30}longs?\b|"
     r"\b(?:cyber|cypress)\s+longs?\b|"
-    r"\blooks?\s+strong\b|"
-    r"\bshowing good strength\b|"
-    r"\bit looks pretty good\b|"
     r"\bdecent spot to(?:\s+to)?\s+buy\b|"
     r"\bbuy(?:ing)?\s+(?:the\s+)?(?:dip|pullback)\b"
     r")",
@@ -82,6 +79,45 @@ SIDE_TRIM = re.compile(
     r")\b",
     re.I,
 )
+
+
+def _watch_lean(blob: str) -> str:
+    """Not in a trade, but chart talk still has a long/short bias."""
+    b = blob or ""
+    bear = bool(
+        re.search(
+            r"closing weak|closed? (?:fairly )?weak|getting rejected|rejected at|"
+            r"\brejection\b|gapping down|gap(?:ping)? down|short entry|"
+            r"wanted to short|like to short|would also like to short|"
+            r"\bshorted\b|shorting |"
+            r"weakness|slowdown|not going to participate.{0,24}long|"
+            r"extended from the daily|hanging around",
+            b,
+            re.I,
+        )
+    )
+    bull = bool(
+        re.search(
+            r"looks? pretty strong|looks? strong|relative strength|"
+            r"showing (?:good |relative )?strength|pushing into|"
+            r"breaking out|stick into the|find .{0,24}strength|"
+            r"doing pretty well|bouncing (?:higher|back)",
+            b,
+            re.I,
+        )
+    )
+    if re.search(
+        r"wanted to short|like to short|would also like to short|short entry|"
+        r"more aggressive short",
+        b,
+        re.I,
+    ):
+        return "Watch／偏空"
+    if bear and not bull:
+        return "Watch／偏空"
+    if bull and not bear:
+        return "Watch／偏多"
+    return "Watch"
 
 
 def _infer_side(blob: str, ticker: str | None = None) -> str:
@@ -132,24 +168,25 @@ def _infer_side(blob: str, ticker: str | None = None) -> str:
         )
         explicit = bool(
             re.search(
-                r"\bi'?m shorting|\bi shorted\b|shorting after|getting short|"
-                r"flip(?:ping)?\s+short|semi-?shorts?|focused on .{0,24}short|"
-                r"shortable|good short|\bshorts?\b",
+                r"\bi'?m shorting|\bi shorted\b|\bi am short\b|\bgot short\b|\bwent short\b|"
+                r"getting short|flip(?:ping)?\s+short",
                 b,
                 re.I,
             )
         )
         if negated and not explicit:
             pass
+        elif explicit:
+            return "Short"
         elif tick and tick not in {"SEMIS", "SOFTWARE", "QQQ", "SPY", "QUANTUM", "SPCX"}:
             if re.search(
                 rf"(?:short|shortable).{{0,40}}\b{re.escape(tick)}\b|\b{re.escape(tick)}\b.{{0,40}}(?:short|shortable)",
                 b,
                 re.I,
             ):
-                return "Short"
+                return _watch_lean(b)
         else:
-            return "Short"
+            return _watch_lean(b)
     # SMTC reclaim — don't give Long to CRWV just because same sentence
     if tick == "SMTC" and re.search(r"reclaiming", b, re.I):
         if re.search(r"not consider buying|probably not consider buying", b, re.I):
@@ -175,8 +212,8 @@ def _infer_side(blob: str, ticker: str | None = None) -> str:
         elif not re.search(r"re-?enter", b, re.I) or tick in {"FTNT", "PANW", ""}:
             return "Long"
     if re.search(r"stopp(?:ed|ing)\s+me\s+out|got stopped", b, re.I):
-        return "Watch"
-    return "Watch"
+        return _watch_lean(b)
+    return _watch_lean(b)
 
 
 def _window(snippets: list[dict[str, Any]], center: float, before: float = 40.0, after: float = 90.0) -> str:
@@ -420,21 +457,24 @@ def _new_hit(
     snippets: list[dict[str, Any]],
 ) -> dict[str, Any]:
     blob = _window(snippets, use_start, before=20.0, after=25.0)
-    # Side from THIS quote first. Nearby window must not turn Watch→Short via other names' shortable.
-    side = _infer_side(piece, tick)
+    quote = _complete_quote(snippets, use_start, tick) or piece
+    # Side from the full spoken thought, not a caption fragment.
+    side = _infer_side(quote, tick)
     if side == "Watch":
-        wide = _infer_side(f"{piece} {blob}".strip(), tick)
-        piece_has_short = bool(
+        wide = _infer_side(f"{quote} {blob}".strip(), tick)
+        quote_has_short = bool(
             re.search(
                 r"shortable|shorting|shorted|\bshorts?\b|semi-?short|good short|"
                 r"flip(?:ping)?\s+short|focused on .{0,24}short",
-                piece,
+                quote,
                 re.I,
             )
         )
         if wide in {"Long", "Trim／平倉"}:
             side = wide
-        elif wide.startswith("Short") and piece_has_short:
+        elif wide.startswith("Short") and quote_has_short:
+            side = wide
+        elif wide.startswith("Watch"):
             side = wide
         # else keep Watch — reject foreign shortable pollution
     # #region agent log
@@ -470,7 +510,6 @@ def _new_hit(
     except Exception:
         pass
     # #endregion
-    quote = _complete_quote(snippets, use_start, tick) or piece
     para = quote
     blow = blob.lower()
     plow = (quote or piece).lower()

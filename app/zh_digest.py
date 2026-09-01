@@ -54,20 +54,30 @@ _ACTION_PATTERNS: list[tuple[re.Pattern[str], str]] = [
 
 def _side_zh(side: str) -> str:
     s = str(side or "")
+    if "Watch／偏空" in s or "Watch/偏空" in s:
+        return "觀望偏空"
+    if "Watch／偏多" in s or "Watch/偏多" in s:
+        return "觀望偏多"
     if "shortable" in s.lower() or "Short（考慮）" in s:
-        return "考慮短"
-    if re.search(r"\bshort\b|做空|偏空", s, re.I):
+        return "觀望偏空"
+    if re.search(r"\bshort\b|做空", s, re.I) and "Watch" not in s:
         return "偏空／短"
     if "Trim" in s or "平倉" in s:
         return "考慮減／平"
-    if re.search(r"\blong\b|偏多", s, re.I):
+    if re.search(r"\blong\b|偏多／長", s, re.I) and "Watch" not in s:
         return "偏多／長"
+    if "偏空" in s:
+        return "觀望偏空"
+    if "偏多" in s:
+        return "觀望偏多"
     return "觀望"
 
 
 def _bucket(side_zh: str) -> str:
     if "減" in side_zh or "平" in side_zh:
         return "trim"
+    if "觀望" in side_zh:
+        return "watch"
     if "短" in side_zh or "空" in side_zh:
         return "short"
     if "多" in side_zh or "長" in side_zh:
@@ -119,8 +129,21 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
             low,
         )
     )
-    if "qs" in low or "q's" in low or "qz" in low:
-        bits.append("Qs 弱／拒 daily 9&21")
+    if re.search(r"\bi am short\b|\bi'?m short\b", low):
+        bits.append("已做空")
+    if re.search(r"pushing into", low):
+        bits.append("頂緊均線")
+        bits.append("收市偏弱")
+    if re.search(r"reject", low):
+        bits.append("被 reject")
+    if re.search(r"gapping down|gap(?:ping)? down", low):
+        bits.append("gap down")
+    if re.search(r"looks? pretty strong|looks? strong", low):
+        bits.append("睇落強")
+    if re.search(r"wanted to short|like to short|short entry", low):
+        bits.append("想／考慮短")
+    if re.search(r"relative strength|showing .{0,12}strength", low):
+        bits.append("相對強勢")
     if wait_gap:
         bits.append("等 gap down／早市 flush 先買 dips")
     elif got_gap:
@@ -200,22 +223,29 @@ def _side_arc(rs: list[dict[str, Any]]) -> str | None:
     return "→".join(names.get(s, s) for s in seq)
 
 
-def _session_lede(groups: list[tuple[str, str, str]]) -> str:
+def _session_lede(groups: list[tuple[str, str, str, str]]) -> str:
     """Overview must match the buckets below — no hardcoded other-day template."""
     by_b: dict[str, list[str]] = {"long": [], "short": [], "trim": [], "watch": []}
-    for label, bucket, _reason in groups:
+    lean_short: list[str] = []
+    lean_long: list[str] = []
+    for label, bucket, _reason, side_zh in groups:
         by_b.setdefault(bucket, []).append(label)
+        if bucket == "watch" and side_zh == "觀望偏空":
+            lean_short.append(label)
+        if bucket == "watch" and side_zh == "觀望偏多":
+            lean_long.append(label)
     parts: list[str] = []
     if by_b["short"]:
-        parts.append("做空／偏空：" + "、".join(by_b["short"][:6]))
+        parts.append("做空：" + "、".join(by_b["short"][:6]))
+    if lean_short:
+        parts.append("觀望偏空：" + "、".join(lean_short[:6]))
     if by_b["long"]:
-        parts.append("做多／偏多：" + "、".join(by_b["long"][:6]))
+        parts.append("做多：" + "、".join(by_b["long"][:6]))
+    if lean_long:
+        parts.append("觀望偏多：" + "、".join(lean_long[:6]))
     if by_b["trim"]:
         parts.append("減／平：" + "、".join(by_b["trim"][:4]))
-    watch_theme = [x for x in by_b["watch"] if x.lower() in {"software", "cyber", "quantum", "semis"}]
-    if watch_theme and not by_b["long"] and not by_b["short"]:
-        parts.append("觀望：" + "、".join(watch_theme[:5]))
-    elif not parts:
+    if not parts:
         parts.append("今日以觀望為主")
     return "；".join(parts) + "。"
 
@@ -233,7 +263,7 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
 
     buckets: dict[str, list[str]] = {"long": [], "short": [], "trim": [], "watch": []}
     actions: list[str] = []
-    groups: list[tuple[str, str, str]] = []
+    groups: list[tuple[str, str, str, str]] = []
 
     for label, rs in by_label.items():
         rs = sorted(rs, key=lambda x: float(x.get("start") or 0))
@@ -244,7 +274,7 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
             if _bucket(_side_zh(str(x.get("side") or ""))) != "watch":
                 pick = x
         side = _side_zh(str(pick.get("side") or ""))
-        reason = _merge_reasons(label, rs)
+        reason = _merge_reasons(label, [pick])
         arc = _side_arc(rs)
         if arc and label.lower() in {"semis", "software", "cyber"}:
             reason = f"{arc}；{reason}" if reason else arc
@@ -277,9 +307,9 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
                 f"- **實際操作｜{label}**{tbit} — {'；'.join(tags)}（{_bucket_title(bucket)}）"
             )
 
-        line = f"- **{_bucket_title(bucket)}｜{label}**{tbit} — {reason}"
+        line = f"- **{_bucket_title(bucket, side)}｜{label}**{tbit} — {reason}"
         buckets[bucket].append(line)
-        groups.append((label, bucket, reason))
+        groups.append((label, bucket, reason, side))
 
     lede = _session_lede(groups)
     lines: list[str] = [
@@ -299,7 +329,7 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
         lines.append("- （未有足夠雙 ASR 內容可寫摘要）")
     # #region agent log
     bugs: list[dict[str, Any]] = []
-    for label, bucket, reason in groups:
+    for label, bucket, reason, _sz in groups:
         rlow = (reason or "").lower()
         if bucket == "short" and re.search(r"強勢|偏多|做多", reason or ""):
             bugs.append({"kind": "H1_short_vs_bull", "label": label, "bucket": bucket, "reason": reason})
@@ -326,11 +356,11 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
                     "texts": texts,
                 },
             )
-    lede_short = re.findall(r"做空／偏空：([^；。]+)", lede)
-    lede_long = re.findall(r"做多／偏多：([^；。]+)", lede)
+    lede_short = re.findall(r"做空：([^；。]+)", lede)
+    lede_long = re.findall(r"做多：([^；。]+)", lede)
     short_set = {x.strip() for part in lede_short for x in part.split("、") if x.strip()}
     long_set = {x.strip() for part in lede_long for x in part.split("、") if x.strip()}
-    for lab, b, _r in groups:
+    for lab, b, _r, _sz in groups:
         if lab in short_set and b != "short":
             bugs.append({"kind": "H1_lede_mismatch", "label": lab, "bucket": b, "lede": "short"})
         if lab in long_set and b != "long":
@@ -341,7 +371,7 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
         "digest_scan",
         {
             "lede": lede,
-            "groups": [{"label": a, "bucket": b, "reason": c} for a, b, c in groups],
+            "groups": [{"label": a, "bucket": b, "reason": c, "side": d} for a, b, c, d in groups],
             "bugs": bugs,
             "bug_count": len(bugs),
         },
@@ -350,7 +380,9 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
     return lines
 
 
-def _bucket_title(key: str) -> str:
+def _bucket_title(key: str, side_zh: str = "") -> str:
+    if key == "watch" and side_zh in {"觀望偏空", "觀望偏多"}:
+        return side_zh
     return {
         "long": "做多",
         "short": "做空",
@@ -400,7 +432,7 @@ def content_zh_line(r: dict[str, Any], video_id: str = "") -> str:
             f"{r.get('reason') or '兩邊 ASR 近乎空白'}"
         )
     conf = _source_zh(r)
-    side = r.get("side") or "Watch"
+    side = _side_zh(str(r.get("side") or "Watch"))
     label = str(r.get("label") or "?")
     blob = str(r.get("text") or "").strip()
     if len(blob) < 12:

@@ -7,7 +7,36 @@ import re
 # Longest-first. Only render meaning that is in the English.
 # Chinese is written as \\u escapes so the source stays ASCII-safe.
 _PHRASE_RAW: list[tuple[str, str]] = [
-    (r"i'?m not very confident on getting too aggressive on the short side", "\u6211\u77ed\u5009\u5514\u4fc2\u597d\u6709\u4fe1\u5fc3\uff0c\u5514\u6562\u592a\u9032\u53d6"),
+    (r"and the qes and spy are also closing weak", "QQQ 同 SPY 都收市偏弱"),
+    (r"cues is getting rejected at this unfilled gap that we got a few days ago", "QQQ 喺幾日前未填嘅 gap 被 reject"),
+    (r"i would also like to short tesla, but i just can'?t because i i i got no buying power left after shorting intel and", "我都想短 Tesla，但係 short 咗 Intel 之後冇晒 buying power"),
+    (r"let'?s see whether i will get stopped out on sndk or um sk hynix", "睇下 SNDK／SK Hynix 會唔會 stop 我出嚟"),
+    (r"axti right here could be a like a more aggressive short entry because it'?s ringing into both the previous swing lows as the and the 60 minute 9 ema but it is very extended from the daily ema", "AXTI 可以做進取啲嘅短倉入場，因為撞住前低同 60 分鐘 9 EMA，但係已經離 daily EMA 好遠"),
+    (r"so far we get a rejection uh on the cues at the hourly 9 declining 9 ema and also this spy is gapping down and", "目前 QQQ 喺 hourly 9（跌緊嘅 9 EMA）被 reject，SPY 都 gap down"),
+    (r"at the hourly 9 declining 9 ema and also this spy is gapping down and", "hourly 9 跌緊，SPY 都 gap down"),
+    (r"wanted to short seemingly strong stocks like spacex \(spcx\) and dell", "想短睇落強嘅股票，例如 SpaceX（SPCX）同 Dell"),
+    (r"i am short sndk", "我短緊 SNDK"),
+    (r"asts looks pretty strong", "ASTS 睇落幾強"),
+    (r"tesla is pushing into the weekly 9 and also a daily 50 again", "Tesla 頂緊 weekly 9，daily 50 又嚟多次"),
+    (r"and also showing relative strength\.? uh in the semi sector as well", "semi 板塊都有相對強勢"),
+    (r"let'?s see whether the overall market can gives find some strength in in the software sector", "睇下大市可唔可以喺 software 板塊搵到強勢"),
+    (r"got no buying power left", "冇剩 buying power"),
+    (r"i would also like to short", "我都想短"),
+    (r"more aggressive short entry", "進取啲嘅短倉入場"),
+    (r"are also closing weak", "都收市偏弱"),
+    (r"closing weak", "收市偏弱"),
+    (r"getting rejected", "被 reject"),
+    (r"unfilled gap", "未填 gap"),
+    (r"gapping down", "gap down"),
+    (r"looks pretty strong", "睇落幾強"),
+    (r"relative strength", "相對強勢"),
+    (r"wanted to short", "想短"),
+    (r"pushing into the weekly 9", "頂緊 weekly 9"),
+    (r"a few days ago", "幾日前"),
+    (r"so far", "目前"),
+    (r"i'?m not going to participate for the longs", "long 邊我唔會參與"),
+    (r"i'?m short sndk", "我短緊 SNDK"),
+    (r"i am considering(?: like)? to flipping short on", "\u6211\u800c\u5bb6\u8003\u616e\u8f49\u77ed"),
     (r"not looking very encouraging", "\u7747\u843d\u5514\u9f13\u52f5"),
     (r"it closed fairly weak yesterday", "\u5c0b\u65e5\u6536\u5e02\u5e7e\u5f31"),
     (r"found resistance at the daily 9 and 21", "\u649e\u5230 daily 9 \u540c 21 \u963b\u529b"),
@@ -330,53 +359,19 @@ def _prep_en(text: str) -> str:
 
 
 def translate_speech_zh(text: str) -> str:
-    """Faithful Chinese of the spoken English excerpt -- no keyword-guess conclusions."""
+    """Phrase-level Cantonese. Leftover English stays English — no word salad."""
     raw = str(text or "").strip()
     if not raw:
         return ""
     if _mostly_zh(raw):
         return raw
     s = _prep_en(raw)
-    held: list[str] = []
-
-    def _hold(m: re.Match[str], zh: str) -> str:
-        out = m.expand(zh) if "\\1" in zh or re.search(r"\\\d", zh) else zh
-        held.append(out)
-        return f"[[{len(held) - 1}]]"
-
     for pat, zh in _PHRASES:
-        s = pat.sub(lambda m, z=zh: _hold(m, z), s)
-
-    bits: list[str] = []
-    for tok in re.findall(r"\[\[\d+\]\]|[A-Za-z']+|\d+(?:\.\d+)?|[()/,]|[\u4e00-\u9fff]+", s):
-        if tok.startswith("[["):
-            bits.append(held[int(tok[2:-2])])
-            continue
-        if re.fullmatch(r"[\u4e00-\u9fff]+", tok):
-            bits.append(tok)
-            continue
-        if re.fullmatch(r"\d+(?:\.\d+)?", tok) or tok in {"(", ")", "/", ","}:
-            bits.append(tok)
-            continue
-        w = _WORDS.get(tok.lower())
-        if w is not None:
-            if w:
-                bits.append(w)
-            continue
-        bits.append(tok)
-
-    out = " ".join(bits)
-    out = re.sub(r"\s+", " ", out)
-    out = re.sub(r"\s+([\u3001\u3002\uFF0C\uFF0F])", r"\1", out)
-    out = re.sub(r"\(\s*", "\uff08", out)
-    out = re.sub(r"\s*\)", "\uff09", out)
-    out = re.sub(r"\s*,\s*", "\uff0c", out)
-    out = re.sub(r"(?:SpaceX\uff08SPCX\uff09\s*){2,}", "SpaceX\uff08SPCX\uff09", out)
-    out = re.sub(r"\s+", " ", out).strip(" \uff0c\u3001")
-    out = re.sub(r"(?<=[\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])", "", out)
-    out = re.sub(r"(?<=[\u4e00-\u9fff])\s+(?=[\uff0c\u3001\u3002])", "", out)
-    out = re.sub(r"\s{2,}", " ", out)
-    out = re.sub(r"\uff0c{2,}", "\uff0c", out)
-    if out and not re.search(r"[\u4e00-\u9fff]", out):
-        out = "\u4f62\u8b1b\uff1a" + out
-    return out
+        s = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, s)
+    s = re.sub(r"\b(?:uh+|um+|yeah|you know)\b", " ", s, flags=re.I)
+    s = re.sub(r"\s+,", ",", s)
+    s = re.sub(r"\s+", " ", s).strip(" ,")
+    s = re.sub(r"(?:SpaceX \(SPCX\)\s*){2,}", "SpaceX (SPCX) ", s)
+    if s and not re.search(r"[\u4e00-\u9fff]", s):
+        return s
+    return s
