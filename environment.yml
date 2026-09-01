@@ -1,0 +1,9 @@
+# Streamlit Cloud uses this instead of the heavy local requirements.txt
+name: martin-summaries
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - streamlit>=1.32.0
