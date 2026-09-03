@@ -189,8 +189,30 @@ def list_summaries() -> list[Summary]:
     if not OUT_DIR.is_dir():
         return []
     loaded = [load_summary(p) for p in OUT_DIR.glob("*.md")]
-    loaded.sort(key=lambda s: s.path.stat().st_mtime, reverse=True)
+    loaded.sort(key=_episode_sort_key, reverse=True)
     return loaded
+
+
+_MON = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def _episode_sort_key(s: Summary) -> tuple:
+    """Newest episode first — do not use file mtime (Streamlit Cloud clone is same time)."""
+    title = s.title or s.path.stem
+    m = re.search(
+        r"(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+(\d{4})",
+        title,
+        re.I,
+    )
+    ep = re.search(r"\bEP\s*(\d+)", title, re.I)
+    epn = int(ep.group(1)) if ep else 0
+    if m:
+        mon = _MON.get(m.group(2)[:3].lower(), 0)
+        return (int(m.group(3)), mon, int(m.group(1)), epn)
+    return (0, 0, 0, epn)
 
 
 def _badge(key: str, label: str) -> str:
@@ -244,8 +266,12 @@ def main() -> None:
         return
 
     by_id = {s.video_id: s for s in summaries}
-    q = st.query_params.get("v", summaries[0].video_id)
-    default_id = q if q in by_id else summaries[0].video_id
+    latest_id = summaries[0].video_id
+    q = st.query_params.get("v")
+    default_id = q if q in by_id else latest_id
+    if not q:
+        st.query_params["v"] = latest_id
+        default_id = latest_id
     labels = {s.video_id: s.title for s in summaries}
     ids = [s.video_id for s in summaries]
 

@@ -359,6 +359,7 @@ def _prep_en(text: str) -> str:
     s = re.sub(r"\bcofee web\b|\bcoffee web\b", "CRWV", s, flags=re.I)
     s = re.sub(r"\bcybernims\b", "cyber names", s, flags=re.I)
     s = re.sub(r"\bqc\b", "Qs", s, flags=re.I)
+    s = re.sub(r"\b(?:uh+|um+|yeah|you know)\b", " ", s, flags=re.I)
     s = re.sub(r"\bthe the\b", "the", s, flags=re.I)
     s = re.sub(r"\bfrom from(?: the)? from\b", "from", s, flags=re.I)
     s = re.sub(r"\bto to\b", "to", s, flags=re.I)
@@ -367,20 +368,57 @@ def _prep_en(text: str) -> str:
     return re.sub(r"\s+", " ", s).strip(" .,;:")
 
 
+_ZH_CACHE: dict[str, str] = {}
+
+
+def _http_zh(en: str) -> str | None:
+    """Google gtx zh-TW — used only at digest build time, not on Streamlit Cloud."""
+    en = (en or "").strip()
+    if len(en) < 8:
+        return None
+    try:
+        import json
+        import urllib.parse
+        import urllib.request
+
+        qs = urllib.parse.urlencode(
+            {"client": "gtx", "sl": "en", "tl": "zh-TW", "dt": "t", "q": en[:480]}
+        )
+        req = urllib.request.Request(
+            "https://translate.googleapis.com/translate_a/single?" + qs,
+            headers={"User-Agent": "Mozilla/5.0"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+        parts = [x[0] for x in (data[0] or []) if x and x[0]]
+        out = "".join(parts).strip()
+        return out or None
+    except Exception:
+        return None
+
+
 def translate_speech_zh(text: str) -> str:
-    """Phrase-level Cantonese. Leftover English stays English — no word salad."""
+    """Cantonese/zh of the spoken English. Never word-salad leftovers."""
     raw = str(text or "").strip()
     if not raw:
         return ""
     if _mostly_zh(raw):
         return raw
+    key = re.sub(r"\s+", " ", raw).lower()
+    if key in _ZH_CACHE:
+        return _ZH_CACHE[key]
     s = _prep_en(raw)
     for pat, zh in _PHRASES:
         s = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, s)
     s = re.sub(r"\b(?:uh+|um+|yeah|you know)\b", " ", s, flags=re.I)
-    s = re.sub(r"\s+,", ",", s)
     s = re.sub(r"\s+", " ", s).strip(" ,")
     s = re.sub(r"(?:SpaceX \(SPCX\)\s*){2,}", "SpaceX (SPCX) ", s)
-    if s and not re.search(r"[\u4e00-\u9fff]", s):
-        return s
+    letters = len(re.findall(r"[A-Za-z]", s))
+    zh_n = len(re.findall(r"[\u4e00-\u9fff]", s))
+    if letters >= 18 and letters > zh_n:
+        got = _http_zh(_prep_en(raw))
+        if got:
+            got = re.sub(r"的(?=[\u4e00-\u9fff])", "嘅", got)
+            s = got
+    _ZH_CACHE[key] = s
     return s
