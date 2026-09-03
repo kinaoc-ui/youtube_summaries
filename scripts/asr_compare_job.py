@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import subprocess
 import sys
 import traceback
 from pathlib import Path
@@ -153,6 +154,18 @@ def run(video_id: str, *, model: str | None = None, run_whisperx: bool = True) -
             timing_snapped=prog.extra.get("timing_snapped"),
         )
         print("OK", video_id, report.get("summary"), "patch", patch.get("hint"))
+        try:
+            subprocess.run(
+                [
+                    sys.executable,
+                    str(ROOT / "scripts" / "push_summaries_git.py"),
+                    f"ASR patch {video_id}",
+                ],
+                cwd=str(ROOT),
+                check=False,
+            )
+        except Exception as push_err:
+            print("WARN git push skipped:", push_err)
     except Exception as e:
         prog.extra["error"] = str(e)
         prog.set_phase("error", lo=0, hi=0, expect_sec=1, detail=str(e)[:160])

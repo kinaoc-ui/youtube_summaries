@@ -5,129 +5,88 @@
 - **Source:** auto-summary（Whisper／字幕 + ASR 修正；語音閘）
 - **Transcript source:** captions
 
-## 重點摘要（中文）
+## 真正摘要（中文）
 
-- [06:28](https://www.youtube.com/watch?v=SaofxooZc8Q&t=388s) **SNDK** | Watch | 見語音窗 | both sides if we if we're going to see a bounce and I think I'm going to short um D RM and SNDK today probably.
-- [09:58](https://www.youtube.com/watch?v=SaofxooZc8Q&t=598s) **SPY** | Watch | 見語音窗 | SPY and IWM is bouncing into the hourly night.
-- [11:55](https://www.youtube.com/watch?v=SaofxooZc8Q&t=715s) **SNDK** | Short | Short | I shorted MU uh instead of SNDK that mainly because MU was weaker yesterday compared to SNDK.
-- [12:36](https://www.youtube.com/watch?v=SaofxooZc8Q&t=756s) **MU** | Watch／偏空 | Watch／偏空 | And I think MU is the really good examples.
-- [15:20](https://www.youtube.com/watch?v=SaofxooZc8Q&t=920s) **TSLA** | Watch | 見語音窗 | Unfortunately, Tesla stops me out at the open.
-- [17:25](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1045s) **SNDK** | Watch／偏空 | Watch／偏空 | too, but uh I think I'm just going to stick with it. uh the DRAM and maybe SNDK, but I think I'm going to look at uh Tesla too
-- [17:28](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1048s) **TSLA** | Watch／偏空 | Watch／偏空 | I think I'm just going to stick with it. uh the DRAM and maybe SNDK, but I think I'm going to look at uh Tesla too
-- [17:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1076s) **QQQ** | Watch／偏空 | Watch／偏空 | Hopefully I There could there could be a bounce uh at least a a shortterm bounce on the cues.
-- [21:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1287s) **TSLA** | Watch | 見語音窗 | Tesla is so weak.
-- [25:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1548s) **QQQ** | Watch | 見語音窗 | It looks like we're getting a some rebound on the cues and also the memory names.
-- [26:04](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1564s) **TSLA** | Watch | 見語音窗 | Oh, the tag names but just not Tesla.
-- [28:10](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1690s) **TSLA** | Watch | 見語音窗 | and Tesla and SNDK's charts are lagging.
-- [28:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1692s) **SNDK** | Watch | 見語音窗 | and Tesla and SNDK's charts are lagging.
-- [35:46](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2146s) **SNDK** | Watch | 見語音窗 | I love to short SNDK too, but I but I ran off buying power again.
-- [41:25](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2485s) **SPY** | Watch／偏空 | Watch／偏空 | At the same time, SPY is still hanging around at the around the 9 EMA, hourly 9 which is to me not a very good thing. resistance of this n h…
-- [42:26](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2546s) **TSLA** | Watch | 見語音窗 | Tesla bounce a little bit.
-- [46:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2808s) **RDDT** | Watch | 見語音窗 | Reddit is pretty strong today.
-- [48:51](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2931s) **SNDK** | Watch | 見語音窗 | Oh, I really wish I can I can get more buying power to short this SNDK.
-- [51:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3087s) **SNDK** | Watch／偏空 | Watch／偏空 | Um I think especially on SNDK this one because shorting here is definitely very aggressive.
-- [54:47](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3287s) **SPY** | Watch | 見語音窗 | Let's see if we can get a bounce into the 60-minut 9 and the spy maybe can reach this 21 and the 150 on the 60 minute too.
-- [55:57](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3357s) **SPCX** | Watch | 見語音窗 | And finally the breakdown on SpaceX (SPCX) for so long.
-- [1:00:00](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3600s) **TSLA** | Watch | 見語音窗 | ready for the stops on Tesla.
-- [1:03:11](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3791s) **TSLA** | Watch | 見語音窗 | Hopefully Tesla can go a little bit higher.
-- [1:04:45](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3885s) **TSLA** | Watch | 見語音窗 | like I I can't short Tesla because I after I took a loss.
-- [1:28:42](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5322s) **QQQ** | Watch | 見語音窗 | So like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown fr…
-- [1:35:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5712s) **RDDT** | Watch／偏空 | Watch／偏空 | um trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know.
-- [1:41:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6093s) **SNDK** | Watch | 見語音窗 | Man, if I can short the Tesla and the SNTK2. I just I should should have been a little bit more patient.
-- [1:42:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6152s) **TSLA** | Watch／偏空 | Watch／偏空 | and you can see like in in hindsight where where does the Tesla found resistance and starting to to roll over Maybe this anchor VWAP, maybe this hourly EMAs rejection.
-- [1:45:31](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6331s) **TSLA** | Watch | 見語音窗 | I mean, I I I already got enough buying power for the for Tesla and SNDK.
-- [1:45:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6332s) **SNDK** | Watch | 見語音窗 | I mean, I I I already got enough buying power for the for Tesla and SNDK.
+撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
 
-## Timestamped notes (EN)
+- **今日總覽** — 做空：SNDK；觀望偏空：MU、RDDT。
+- **實際操作｜SNDK** [11:55](https://www.youtube.com/watch?v=SaofxooZc8Q&t=715s) — 已做空（做空）
+- **做空｜SNDK** [11:55](https://www.youtube.com/watch?v=SaofxooZc8Q&t=715s) — 偏空／短
+- **觀望｜SPY** [54:47](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3287s) — 觀望
+- **觀望偏空｜MU** [12:36](https://www.youtube.com/watch?v=SaofxooZc8Q&t=756s) — 觀望偏空
+- **觀望｜TSLA** [1:45:31](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6331s) — 觀望
+- **觀望｜QQQ** [1:28:42](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5322s) — 觀望
+- **觀望偏空｜RDDT** [1:35:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5712s) — 觀望偏空
+- **觀望｜SPCX** [55:57](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3357s) — 觀望
 
-- [00:22](https://www.youtube.com/watch?v=SaofxooZc8Q&t=22s) Wat. Hey. Hey. Heat. Heat. Heat. Heat. Heat. Heat. N.
-- [05:54](https://www.youtube.com/watch?v=SaofxooZc8Q&t=354s) Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today.
-- [07:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=447s) far from being like super super oversold. Like we got a wide candles pairing with a gap down that we saw like in late July like down 15% in four sections.
-- [08:58](https://www.youtube.com/watch?v=SaofxooZc8Q&t=538s) We haven't got a I would say like a prolonged downtrend in in years for some for some times.
-- [11:43](https://www.youtube.com/watch?v=SaofxooZc8Q&t=703s) And yesterday I I shorted MU uh instead of SNDK that mainly because MU was weaker yesterday compared to SNDK.
-- [13:14](https://www.youtube.com/watch?v=SaofxooZc8Q&t=794s) proves otherwise.
-- [15:18](https://www.youtube.com/watch?v=SaofxooZc8Q&t=918s) Unfortunately Tesla stops me out at the open.
-- [17:13](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1033s) I personally think Dow could be a short too, but uh I think I'm just going to stick with it.
-- [18:46](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1126s) Really trying to go down from here.
-- [21:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1287s) Tesla is so weak. He didn't get even a a one minute bounce.
-- [25:43](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1543s) It looks like we're getting a some rebound on the cues and also the memory names.
-- [28:09](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1689s) and Tesla and SNDK's charts are are lagging.
-- [34:19](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2059s) Wow, this is a very strong selling. I love to short SNDK too, but I but I ran off buying power again.
-- [36:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2193s) But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute.
-- [38:05](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2285s) with a huge size, but I I I can't do it with half size even with half size. So that's it is what it is.
-- [39:36](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2376s) So the stop will be around 1%. Maybe this five minute candle high. I mean this is very volatile so but uh yeah but I'm still going to take it.
-- [41:22](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2482s) At the same time SPY is still hanging around at the around the 9 EMA, hourly 9 EMA, which is to me not a very good thing.
-- [46:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2808s) Reddit is pretty strong today.
-- [48:45](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2925s) I really wish I can I can get more buying power to short this SNDK. Especially like I took a few losses before today like by getting too early.
-- [50:47](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3047s) Do you ever quotequote juggle position size um i.e. closing or partial current positions to free up buying power to initiate new positions?
-- [54:18](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3258s) most stocks right now are are just bouncing into the resistance like um I don't see any like substantial changes in the in the market.
-- [55:53](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3353s) And finally the breakdown on SpaceX (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday.
-- [59:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3596s) ready for the stops on Tesla.
-- [1:03:09](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3789s) Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please.
-- [1:04:44](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3884s) I after I took a loss. After to after I took a loss I I I then become I got no buying power for this one.
-- [1:08:29](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4109s) very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing.
-- [1:13:17](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4397s) I'm like um I'm like a man with with a broken leg that trying to trying to trying to shoot a penalty kick.
-- [1:22:39](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4959s) I think that's that will be all the trading for today. I I don't even have the the buying power for the SQQ.
-- [1:25:11](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5111s) Do you still journal? I I don't like do the the writings. In the earlier days I I do like the daily writings like um most of them are like the premarket kids.
-- [1:27:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5253s) Quick question on your buying pullback intraday entries. When you say one minute breakout of the previous bar in the first five minutes, how do you pick which…
-- [1:29:03](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5343s) uh breakdown from the previous five minute candle too. And actually this bar also counts as the the breakdown from the previous five minute candle too.
-- [1:30:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5448s) What do you think of ES short? It didn't quite reach the 21 EMA, but I triggered short on the extension.
-- [1:32:21](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5541s) and like if if like um get the follow through to the downside and maybe close close near uh near the low of the day, it the the 21 EMA would also like um like…
-- [1:34:24](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5664s) Reddit ripped high today. Do you think there may be a big VCPish pattern in the late stage here?
-- [1:35:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5756s) habits or tips was journal crucial to profitability? I don't find any trading stats are useful to me.
-- [1:37:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5847s) clarity in your mind like and also like the take the responsibility of of um of the mistakes that you made.
-- [1:38:57](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5937s) and trying to improve them one by one or like gradually. And I think the habits or tips to me I I really think like journaling my entries or exits and seeing…
-- [1:40:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6032s) to to really take um learn from your pain or like Well, maybe they take a detailed look from your from your wounds or from your scars like I but I think…
-- [1:42:02](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6122s) so my entries was was was down here. So probably why I'm getting stopped out because it's to me it will be a little bit extended from the uh extended to the…
-- [1:45:15](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6315s) and the medals are coming back and they're going too fast. I I I already got enough buying power for the for Tesla and SNDK.
-- [1:47:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6452s) I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good trade.
-- [1:49:07](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6547s) but one thing I did that that I I think I don't quite like is like the the nine is still like um well above the 21.
-- [1:50:38](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6638s) that that is that is great.
-- [1:53:04](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6784s) I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one.
+## 時間軸內容
 
-## 時間軸重點（中文）
+時間 | 股票 | Long/Short | 建議 | 語音中文翻譯
 
-- [00:22](https://www.youtube.com/watch?v=SaofxooZc8Q&t=22s) Wat. Hey. Hey. Heat. Heat. Heat. Heat. Heat. Heat. N.
-- [05:54](https://www.youtube.com/watch?v=SaofxooZc8Q&t=354s) Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today.
-- [07:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=447s) far from being like super super oversold. Like we got a wide candles pairing with a gap down that we saw like in late July like down 15% in four sections.
-- [08:58](https://www.youtube.com/watch?v=SaofxooZc8Q&t=538s) We haven't got a I would say like a prolonged downtrend in in years for some for some times.
-- [11:43](https://www.youtube.com/watch?v=SaofxooZc8Q&t=703s) And yesterday I I shorted MU uh instead of SNDK that mainly because MU was weaker yesterday compared to SNDK.
-- [13:14](https://www.youtube.com/watch?v=SaofxooZc8Q&t=794s) proves otherwise.
-- [15:18](https://www.youtube.com/watch?v=SaofxooZc8Q&t=918s) Unfortunately Tesla stops me out at the open.
-- [17:13](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1033s) I personally think Dow could be a short too, but uh I think I'm just going to stick with it.
-- [18:46](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1126s) Really trying to go down from here.
-- [21:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1287s) Tesla is so weak. He didn't get even a a one minute bounce.
-- [25:43](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1543s) It looks like we're getting a some rebound on the cues and also the memory names.
-- [28:09](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1689s) and Tesla and SNDK's charts are are lagging.
-- [34:19](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2059s) Wow, this is a very strong selling. I love to short SNDK too, but I but I ran off buying power again.
-- [36:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2193s) But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute.
-- [38:05](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2285s) with a huge size, but I I I can't do it with half size even with half size. So that's it is what it is.
-- [39:36](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2376s) So the stop will be around 1%. Maybe this five minute candle high. I mean this is very volatile so but uh yeah but I'm still going to take it.
-- [41:22](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2482s) At the same time SPY is still hanging around at the around the 9 EMA, hourly 9 EMA, which is to me not a very good thing.
-- [46:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2808s) Reddit is pretty strong today.
-- [48:45](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2925s) I really wish I can I can get more buying power to short this SNDK. Especially like I took a few losses before today like by getting too early.
-- [50:47](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3047s) Do you ever quotequote juggle position size um i.e. closing or partial current positions to free up buying power to initiate new positions?
-- [54:18](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3258s) most stocks right now are are just bouncing into the resistance like um I don't see any like substantial changes in the in the market.
-- [55:53](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3353s) And finally the breakdown on SpaceX (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday.
-- [59:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3596s) ready for the stops on Tesla.
-- [1:03:09](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3789s) Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please.
-- [1:04:44](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3884s) I after I took a loss. After to after I took a loss I I I then become I got no buying power for this one.
-- [1:08:29](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4109s) very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing.
-- [1:13:17](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4397s) I'm like um I'm like a man with with a broken leg that trying to trying to trying to shoot a penalty kick.
-- [1:22:39](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4959s) I think that's that will be all the trading for today. I I don't even have the the buying power for the SQQ.
-- [1:25:11](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5111s) Do you still journal? I I don't like do the the writings. In the earlier days I I do like the daily writings like um most of them are like the premarket kids.
-- [1:27:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5253s) Quick question on your buying pullback intraday entries. When you say one minute breakout of the previous bar in the first five minutes, how do you pick which…
-- [1:29:03](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5343s) uh breakdown from the previous five minute candle too. And actually this bar also counts as the the breakdown from the previous five minute candle too.
-- [1:30:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5448s) What do you think of ES short? It didn't quite reach the 21 EMA, but I triggered short on the extension.
-- [1:32:21](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5541s) and like if if like um get the follow through to the downside and maybe close close near uh near the low of the day, it the the 21 EMA would also like um like…
-- [1:34:24](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5664s) Reddit ripped high today. Do you think there may be a big VCPish pattern in the late stage here?
-- [1:35:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5756s) habits or tips was journal crucial to profitability? I don't find any trading stats are useful to me.
-- [1:37:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5847s) clarity in your mind like and also like the take the responsibility of of um of the mistakes that you made.
-- [1:38:57](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5937s) and trying to improve them one by one or like gradually. And I think the habits or tips to me I I really think like journaling my entries or exits and seeing…
-- [1:40:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6032s) to to really take um learn from your pain or like Well, maybe they take a detailed look from your from your wounds or from your scars like I but I think…
-- [1:42:02](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6122s) so my entries was was was down here. So probably why I'm getting stopped out because it's to me it will be a little bit extended from the uh extended to the…
-- [1:45:15](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6315s) and the medals are coming back and they're going too fast. I I I already got enough buying power for the for Tesla and SNDK.
-- [1:47:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6452s) I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good trade.
-- [1:49:07](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6547s) but one thing I did that that I I think I don't quite like is like the the nine is still like um well above the 21.
-- [1:50:38](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6638s) that that is that is great.
-- [1:53:04](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6784s) I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one.
+- [06:28](https://www.youtube.com/watch?v=SaofxooZc8Q&t=388s) **SNDK** | 觀望 | YouTube字幕＋雙ASR核對 | both sides if we if we're going to see a bounce and 我今日會短 D RM and SNDK today probably
+- [09:58](https://www.youtube.com/watch?v=SaofxooZc8Q&t=598s) **SPY** | 觀望 | YouTube字幕＋雙ASR核對 | SPY and IWM is bouncing into the hourly night
+- [11:55](https://www.youtube.com/watch?v=SaofxooZc8Q&t=715s) **SNDK** | 偏空／短 | YouTube字幕＋雙ASR核對 | I shorted MU instead of SNDK that mainly because MU was weaker yesterday compared to SNDK
+- [12:36](https://www.youtube.com/watch?v=SaofxooZc8Q&t=756s) **MU** | 觀望偏空 | YouTube字幕＋雙ASR核對 | And I think MU is the really good examples
+- [15:20](https://www.youtube.com/watch?v=SaofxooZc8Q&t=920s) **TSLA** | 觀望 | YouTube字幕＋雙ASR核對 | Unfortunately, Tesla 開市 stop 我出嚟
+- [17:25](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1045s) **SNDK** | 觀望偏空 | YouTube字幕＋faster | too, but I think I'm just going to stick with it. the DRAM and maybe SNDK, but I think I'm going to look at Tesla too
+- [17:28](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1048s) **TSLA** | 觀望偏空 | YouTube字幕＋faster | I think I'm just going to stick with it. the DRAM and maybe SNDK, but I think I'm going to look at Tesla too
+- [17:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1076s) **QQQ** | 觀望偏空 | YouTube字幕 | Hopefully I There could there could be a bounce at least a a shortterm bounce on the cues
+- [21:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1287s) **TSLA** | 觀望 | YouTube字幕＋雙ASR核對 | Tesla 好弱
+- [25:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1548s) **QQQ** | 觀望 | YouTube字幕 | It looks like we're getting a some rebound on the cues and also the memory names
+- [26:04](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1564s) **TSLA** | 觀望 | YouTube字幕＋雙ASR核對 | Oh, the tag names but just not Tesla
+- [28:10](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1690s) **TSLA** | 觀望 | YouTube字幕 | and Tesla and SNDK's charts are lagging
+- [28:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1692s) **SNDK** | 觀望 | YouTube字幕＋WhisperX | and Tesla and SNDK's charts are lagging
+- [35:46](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2146s) **SNDK** | 觀望 | YouTube字幕＋WhisperX | 我都想短 SNDK，但係又冇晒 buying power
+- [41:25](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2485s) **SPY** | 觀望偏空 | YouTube字幕＋雙ASR核對 | 同一時間, SPY is still hanging around at the around the 9 EMA, hourly 9 which is to me not a very good thing. resistance of this n hourly 9 EMA
+- [42:26](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2546s) **TSLA** | 觀望 | YouTube字幕 | Tesla bounce a little bit
+- [46:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2808s) **RDDT** | 觀望 | YouTube字幕＋WhisperX | Reddit 今日幾強
+- [48:51](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2931s) **SNDK** | 觀望 | YouTube字幕＋雙ASR核對 | Oh, I really wish I can I can get more buying power to short this SNDK
+- [51:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3087s) **SNDK** | 觀望偏空 | YouTube字幕＋faster | I think especially on SNDK this one because 呢度短好進取
+- [54:47](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3287s) **SPY** | 觀望 | YouTube字幕＋雙ASR核對 | Let's see if we can get a bounce into the 60-minut 9 and the spy maybe can reach this 21 and the 150 on the 60 minute too
+- [55:57](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3357s) **SPCX** | 觀望 | YouTube字幕＋雙ASR核對 | And finally SpaceX（SPCX）破位 for so long
+- [1:00:00](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3600s) **TSLA** | 觀望 | YouTube字幕＋WhisperX | ready for the stops on Tesla
+- [1:03:11](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3791s) **TSLA** | 觀望 | YouTube字幕＋WhisperX | Hopefully Tesla can go a little bit higher
+- [1:04:45](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3885s) **TSLA** | 觀望 | YouTube字幕＋WhisperX | like I I can't short Tesla because I after I took a loss
+- [1:13:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4413s) **字幕缺口** | — | 咪 mute／無語音 | 1:13:33–1:22:39 約 9 分鐘：字幕同語音都近乎空白（疑似咪 mute／冇講嘢）
+- [1:28:42](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5322s) **QQQ** | 觀望 | YouTube字幕＋雙ASR核對 | So like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe
+- [1:35:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5712s) **RDDT** | 觀望偏空 | YouTube字幕＋雙ASR核對 | trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know
+- [1:41:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6093s) **SNDK** | 觀望 | YouTube字幕 | Man, if I can short the Tesla and the SNTK2. I just I should should have been a little bit more patient
+- [1:42:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6152s) **TSLA** | 觀望偏空 | YouTube字幕＋雙ASR核對 | and you can see like in in hindsight where where does the Tesla found resistance and starting to roll over Maybe this anchor VWAP, maybe this hourly EMAs rejection
+- [1:45:31](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6331s) **TSLA** | 觀望 | YouTube字幕＋雙ASR核對 | I mean, I I I already got enough buying power for the for Tesla and SNDK
+- [1:45:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6332s) **SNDK** | 觀望 | YouTube字幕＋faster | I mean, I I I already got enough buying power for the for Tesla and SNDK
+
+## Timeline content (EN)
+
+Time | Ticker | Long/Short | Source | YouTube CC English (original)
+
+- [06:28](https://www.youtube.com/watch?v=SaofxooZc8Q&t=388s) **SNDK** | Watch | YouTube CC + dual ASR | both sides if we if we're going to see a bounce and I think I'm going to short um D RM and SNDK today probably.
+- [09:58](https://www.youtube.com/watch?v=SaofxooZc8Q&t=598s) **SPY** | Watch | YouTube CC + dual ASR | SPY and IWM is bouncing into the hourly night.
+- [11:55](https://www.youtube.com/watch?v=SaofxooZc8Q&t=715s) **SNDK** | Short | YouTube CC + dual ASR | I shorted MU uh instead of SNDK that mainly because MU was weaker yesterday compared to SNDK.
+- [12:36](https://www.youtube.com/watch?v=SaofxooZc8Q&t=756s) **MU** | Watch／偏空 | YouTube CC + dual ASR | And I think MU is the really good examples.
+- [15:20](https://www.youtube.com/watch?v=SaofxooZc8Q&t=920s) **TSLA** | Watch | YouTube CC + dual ASR | Unfortunately, Tesla stops me out at the open.
+- [17:25](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1045s) **SNDK** | Watch／偏空 | YouTube CC + faster-whisper | too, but uh I think I'm just going to stick with it. uh the DRAM and maybe SNDK, but I think I'm going to look at uh Tesla too
+- [17:28](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1048s) **TSLA** | Watch／偏空 | YouTube CC + faster-whisper | I think I'm just going to stick with it. uh the DRAM and maybe SNDK, but I think I'm going to look at uh Tesla too
+- [17:56](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1076s) **QQQ** | Watch／偏空 | YouTube CC | Hopefully I There could there could be a bounce uh at least a a shortterm bounce on the cues.
+- [21:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1287s) **TSLA** | Watch | YouTube CC + dual ASR | Tesla is so weak.
+- [25:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1548s) **QQQ** | Watch | YouTube CC | It looks like we're getting a some rebound on the cues and also the memory names.
+- [26:04](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1564s) **TSLA** | Watch | YouTube CC + dual ASR | Oh, the tag names but just not Tesla.
+- [28:10](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1690s) **TSLA** | Watch | YouTube CC | and Tesla and SNDK's charts are lagging.
+- [28:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=1692s) **SNDK** | Watch | YouTube CC + WhisperX | and Tesla and SNDK's charts are lagging.
+- [35:46](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2146s) **SNDK** | Watch | YouTube CC + WhisperX | I love to short SNDK too, but I but I ran off buying power again.
+- [41:25](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2485s) **SPY** | Watch／偏空 | YouTube CC + dual ASR | At the same time, SPY is still hanging around at the around the 9 EMA, hourly 9 which is to me not a very good thing. resistance of this n hourly 9 EMA
+- [42:26](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2546s) **TSLA** | Watch | YouTube CC | Tesla bounce a little bit.
+- [46:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2808s) **RDDT** | Watch | YouTube CC + WhisperX | Reddit is pretty strong today.
+- [48:51](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2931s) **SNDK** | Watch | YouTube CC + dual ASR | Oh, I really wish I can I can get more buying power to short this SNDK.
+- [51:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3087s) **SNDK** | Watch／偏空 | YouTube CC + faster-whisper | Um I think especially on SNDK this one because shorting here is definitely very aggressive.
+- [54:47](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3287s) **SPY** | Watch | YouTube CC + dual ASR | Let's see if we can get a bounce into the 60-minut 9 and the spy maybe can reach this 21 and the 150 on the 60 minute too.
+- [55:57](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3357s) **SPCX** | Watch | YouTube CC + dual ASR | And finally the breakdown on SpaceX (SPCX) for so long.
+- [1:00:00](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3600s) **TSLA** | Watch | YouTube CC + WhisperX | ready for the stops on Tesla.
+- [1:03:11](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3791s) **TSLA** | Watch | YouTube CC + WhisperX | Hopefully Tesla can go a little bit higher.
+- [1:04:45](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3885s) **TSLA** | Watch | YouTube CC + WhisperX | like I I can't short Tesla because I after I took a loss.
+- [1:13:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=4413s) **Mute gap** | — | mic muted / no speech | 1:13:33–1:22:39 約 9 分鐘：字幕同語音都近乎空白（疑似咪 mute／冇講嘢）
+- [1:28:42](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5322s) **QQQ** | Watch | YouTube CC + dual ASR | So like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe.
+- [1:35:12](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5712s) **RDDT** | Watch／偏空 | YouTube CC + dual ASR | um trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know.
+- [1:41:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6093s) **SNDK** | Watch | YouTube CC | Man, if I can short the Tesla and the SNTK2. I just I should should have been a little bit more patient.
+- [1:42:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6152s) **TSLA** | Watch／偏空 | YouTube CC + dual ASR | and you can see like in in hindsight where where does the Tesla found resistance and starting to to roll over Maybe this anchor VWAP, maybe this hourly EMAs rejection.
+- [1:45:31](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6331s) **TSLA** | Watch | YouTube CC + dual ASR | I mean, I I I already got enough buying power for the for Tesla and SNDK.
+- [1:45:32](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6332s) **SNDK** | Watch | YouTube CC + faster-whisper | I mean, I I I already got enough buying power for the for Tesla and SNDK.

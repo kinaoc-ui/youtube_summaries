@@ -704,6 +704,12 @@ def build_and_save_summary(
     md = build_speech_markdown(
         video_id, title=title, source=source, snippets=snippets, chunks=chunks
     )
+    try:
+        from .dual_asr_build import patch_markdown_with_dual
+
+        md, _built = patch_markdown_with_dual(video_id, md)
+    except Exception:
+        pass
     save_summary(
         video_id,
         md,

@@ -7,7 +7,16 @@ import re
 # Longest-first. Only render meaning that is in the English.
 # Chinese is written as \\u escapes so the source stays ASCII-safe.
 _PHRASE_RAW: list[tuple[str, str]] = [
-    (r"and the qes and spy are also closing weak", "QQQ 同 SPY 都收市偏弱"),
+    (r"i shorted (\w+) instead of (\w+)", "我短咗 \\1 而唔係 \\2"),
+    (r"i think i'?m going to short", "我今日會短"),
+    (r"tesla stops me out at the open", "Tesla 開市 stop 我出嚟"),
+    (r"tesla is so weak", "Tesla 好弱"),
+    (r"i love to short (\w+) too, but i but i ran off buying power again", "我都想短 \\1，但係又冇晒 buying power"),
+    (r"ran off buying power", "冇晒 buying power"),
+    (r"reddit is pretty strong today", "Reddit 今日幾強"),
+    (r"the breakdown on spacex \(spcx\)", "SpaceX（SPCX）破位"),
+    (r"shorting here is definitely very aggressive", "呢度短好進取"),
+    (r"i'?m going to short", "我會短"),
     (r"cues is getting rejected at this unfilled gap that we got a few days ago", "QQQ 喺幾日前未填嘅 gap 被 reject"),
     (r"i would also like to short tesla, but i just can'?t because i i i got no buying power left after shorting intel and", "我都想短 Tesla，但係 short 咗 Intel 之後冇晒 buying power"),
     (r"let'?s see whether i will get stopped out on sndk or um sk hynix", "睇下 SNDK／SK Hynix 會唔會 stop 我出嚟"),
