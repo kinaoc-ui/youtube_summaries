@@ -1,0 +1,28 @@
+{
+  "video_id": "ghIBr65FY_I",
+  "markdown_path": "C:\\Users\\kinao\\OneDrive\\桌面\\stock\\youtube\\data\\summaries\\ghIBr65FY_I.md",
+  "title": "EP94 | 4 Sep 2026",
+  "exec_zh": [
+    {
+      "t": "",
+      "text": "今日總覽 — 今日以觀望為主。",
+      "start": "0"
+    },
+    {
+      "t": "",
+      "text": "（未有足夠雙 ASR 內容可寫摘要）",
+      "start": "0"
+    }
+  ],
+  "bullets_en": [],
+  "bullets_zh": [],
+  "bullets": [],
+  "speech_audit": {
+    "suspect_count": 0,
+    "ok_count": 0,
+    "suspects": []
+  },
+  "provider": "auto-summary",
+  "chunk_count": 23,
+  "source": "whisper-small"
+}
