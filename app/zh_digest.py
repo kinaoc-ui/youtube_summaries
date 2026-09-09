@@ -479,7 +479,7 @@ def content_zh_line(r: dict[str, Any], video_id: str = "") -> str:
         say = say[:277] + "…"
     if len(en) > 320:
         en = en[:317] + "…"
-    return f"- {stamp} **{label}** | {side} | {conf} | {say} ‖ {en}"
+    return f"- {stamp} **{label}** | {side} | {conf} | {en} ‖ {say}"
 
 
 def content_en_line(r: dict[str, Any], video_id: str = "") -> str:

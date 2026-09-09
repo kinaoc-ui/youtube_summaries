@@ -22,21 +22,21 @@
 
 ## 時間軸內容
 
-時間 | 股票 | Long/Short | 建議 | 中文＋英文原文
+時間 | 股票 | Long/Short | 建議 | 英文原文＋中文翻譯
 
-- [04:03](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=243s) **Semis** | 觀望／watch | YouTube字幕＋雙ASR核對 | mainly driven by the semis again ‖ mainly driven by the semis again.
-- [04:32](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=272s) **Quantum** | 觀望偏空／lean short | YouTube字幕＋WhisperX | the quantum the 收市偏弱 ‖ yeah the quantum the closing weak
-- [04:45](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=285s) **TSLA** | 觀望／watch | YouTube字幕＋WhisperX | also watching like Tesla also on the ‖ also watching like Tesla also on the
-- [04:46](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=286s) **ASTS** | 觀望／watch | YouTube字幕 | short side. ASTS is also looking ‖ short side. ASTS is also looking
-- [04:52](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=292s) **ORCL** | 觀望／watch | YouTube字幕＋WhisperX | and this oracle is back under the 921 ‖ and this oracle is back under the 921
-- [05:08](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=308s) **FIG** | 觀望／watch | YouTube字幕＋雙ASR核對 | watching today will be like this FIG ‖ watching today will be like this FIG
+- [04:03](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=243s) **Semis** | 觀望／watch | YouTube字幕＋雙ASR核對 | mainly driven by the semis again. ‖ 再次主要由semis驅動
+- [04:32](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=272s) **Quantum** | 觀望偏空／lean short | YouTube字幕＋WhisperX | yeah the quantum the closing weak ‖ quantum 收盤弱勢
+- [04:45](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=285s) **TSLA** | 觀望／watch | YouTube字幕＋WhisperX | also watching like Tesla also on the ‖ 也像 Tesla 一樣觀看
+- [04:46](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=286s) **ASTS** | 觀望／watch | YouTube字幕 | short side. ASTS is also looking ‖ 短邊。 ASTS也在尋找
+- [04:52](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=292s) **ORCL** | 觀望／watch | YouTube字幕＋WhisperX | and this oracle is back under the 921 ‖ 這個神諭又回到了 921
+- [05:08](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=308s) **FIG** | 觀望／watch | YouTube字幕＋雙ASR核對 | watching today will be like this FIG ‖ 今天看會是這樣嘅圖
 - [05:58](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=358s) **Semis** | 觀望／watch | YouTube字幕＋雙ASR核對 | semis semis semis semis ‖ semis semis semis semis
-- [06:20](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=380s) **Quantum** | 觀望／watch | YouTube字幕＋WhisperX | the quantum maybe nuclear theme etc ‖ the quantum maybe nuclear theme etc.
-- [13:10](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=790s) **ASTS** | 觀望／watch | YouTube字幕＋WhisperX | This ASTS can I think it can go like ‖ This ASTS can I think it can go like
-- [1:05:05](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=3905s) **Cyber** | 觀望／watch | YouTube字幕＋雙ASR核對 | looks like the cyber ‖ Yeah, looks like the cyber
-- [1:08:08](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=4088s) **Cyber** | 觀望／watch | YouTube字幕＋WhisperX | thesis on PNW if they think cyber mainly based on the weekly nine ‖ thesis on PNW if they think cyber mainly based on the weekly nine
-- [1:09:49](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=4189s) **IGV** | 觀望／watch | YouTube字幕＋雙ASR核對 | the IGV the IGV ‖ the IGV the IGV
-- [1:42:58](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=6178s) **SPCX** | 觀望／watch | YouTube字幕＋雙ASR核對 | personally I think SpaceX (SPCX) (SPCX) can go like ‖ personally I think SpaceX (SPCX) (SPCX) can go like
+- [06:20](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=380s) **Quantum** | 觀望／watch | YouTube字幕＋WhisperX | the quantum maybe nuclear theme etc. ‖ quantum 可能是核子主題等
+- [13:10](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=790s) **ASTS** | 觀望／watch | YouTube字幕＋WhisperX | This ASTS can I think it can go like ‖ 這個 ASTS 我想它可以像
+- [1:05:05](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=3905s) **Cyber** | 觀望／watch | YouTube字幕＋雙ASR核對 | Yeah, looks like the cyber ‖ 看起來像網絡
+- [1:08:08](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=4088s) **Cyber** | 觀望／watch | YouTube字幕＋WhisperX | thesis on PNW if they think cyber mainly based on the weekly nine ‖ PNW 嘅論文，如果他們認為網路主要基於每週九
+- [1:09:49](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=4189s) **IGV** | 觀望／watch | YouTube字幕＋雙ASR核對 | the IGV the IGV ‖ IGV IGV
+- [1:42:58](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=6178s) **SPCX** | 觀望／watch | YouTube字幕＋雙ASR核對 | personally I think SpaceX (SPCX) (SPCX) can go like ‖ 我個人認為SPCX（SPCX）可以像
 
 ## Timeline content (EN)
 

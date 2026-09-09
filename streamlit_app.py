@@ -86,6 +86,22 @@ def _yt(video_id: str, stamp: str = "") -> str:
     return url
 
 
+def _split_en_zh(quote: str) -> tuple[str, str]:
+    q = (quote or "").strip()
+    if "‖" not in q:
+        zh = len(re.findall(r"[\u4e00-\u9fff]", q))
+        en = len(re.findall(r"[A-Za-z]", q))
+        return (q, "") if en >= zh else ("", q)
+    a, b = (p.strip() for p in q.split("‖", 1))
+    zh_a = len(re.findall(r"[\u4e00-\u9fff]", a))
+    zh_b = len(re.findall(r"[\u4e00-\u9fff]", b))
+    if zh_b > zh_a:
+        return a, b
+    if zh_a > zh_b:
+        return b, a
+    return a, b
+
+
 def _side_key(raw: str) -> str:
     t = (raw or "").strip().lower()
     if "字幕缺口" in raw or "mute" in t or raw.strip() in {"—", "-", ""}:
@@ -301,7 +317,7 @@ def main() -> None:
     with top_l:
         st.link_button("開 YouTube", s.youtube, use_container_width=True)
     with top_r:
-        st.caption("時間軸中英一齊")
+        st.caption("先英文原文，再中文")
 
     overview = next((it for it in s.digest_items if it.key == "overview"), None)
     st.markdown('<div class="sec-h">真正摘要</div>', unsafe_allow_html=True)
@@ -338,23 +354,21 @@ def main() -> None:
 
     en_by = {(r.stamp, r.ticker): r.quote for r in s.rows_en}
     rows = s.rows_zh or s.rows_en
-    st.markdown('<div class="sec-h">時間軸（中＋英）</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sec-h">時間軸（英→中）</div>', unsafe_allow_html=True)
     st.caption("撳時間 → YouTube 跳去該秒")
     show_mute = st.toggle("顯示字幕缺口", value=False)
     for row in rows:
         if not show_mute and row.side_key == "mute":
             continue
         badge = _badge(row.side_key, row.side)
-        zh_q, en_q = row.quote, ""
-        if "‖" in row.quote:
-            zh_q, en_q = (p.strip() for p in row.quote.split("‖", 1))
-        elif s.rows_zh and s.rows_en:
+        en_q, zh_q = _split_en_zh(row.quote)
+        if not en_q and s.rows_en:
             en_q = en_by.get((row.stamp, row.ticker), "")
-            if en_q == zh_q:
-                en_q = ""
-        quote_html = f'<div class="quote">{html.escape(zh_q)}</div>'
+        quote_html = ""
         if en_q:
-            quote_html += f'<div class="muted">{html.escape(en_q)}</div>'
+            quote_html += f'<div class="quote">{html.escape(en_q)}</div>'
+        if zh_q and zh_q != en_q:
+            quote_html += f'<div class="muted">{html.escape(zh_q)}</div>'
         _card(
             f'<a class="t" href="{html.escape(row.url)}" target="_blank" rel="noreferrer">'
             f"{html.escape(row.stamp)}</a> "

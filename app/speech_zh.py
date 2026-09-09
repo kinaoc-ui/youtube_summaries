@@ -390,6 +390,72 @@ def _prep_en(text: str) -> str:
 
 _ZH_CACHE: dict[str, str] = {}
 
+# Lock trading words so Google won't turn spy→間諜, semi→半決賽, quantum→量子.
+_LOCKS: list[tuple[str, str]] = [
+    (r"SpaceX \(SPCX\)", "ZZSPCXZZ"),
+    (r"\bSPCX\b", "ZZSPCXZZ"),
+    (r"\bQQQ\b|\bQs\b|\bcues?\b", "ZZQQQZZ"),
+    (r"\bSPY\b|\bspy\b", "ZZSPYZZ"),
+    (r"\bIWM\b", "ZZIWMZZ"),
+    (r"\bsemis?\b", "ZZSEMISZZ"),
+    (r"\bquantum'?s?\b", "ZZQUANTUMZZ"),
+    (r"\bsoftwares?\b", "ZZSOFTZZ"),
+    (r"\bmemories\b", "ZZMEMZZ"),
+    (r"\bmemory\b", "ZZMEMZZ"),
+    (r"\bEMA\b", "ZZEMAZZ"),
+    (r"\bVWAP\b", "ZZVWAPZZ"),
+    (r"\bNVDA\b|\bNvidia\b", "ZZNVDAZZ"),
+    (r"\bTSLA\b|\bTesla\b", "ZZTSLAZZ"),
+    (r"\bPATH\b", "ZZPATHZZ"),
+    (r"\bSNDK\b", "ZZSNDKZZ"),
+    (r"\bCRCL\b", "ZZCRCLZZ"),
+    (r"\bASTS\b", "ZZASTSZZ"),
+    (r"\bMU\b", "ZZMUZZ"),
+    (r"\bIGV\b", "ZZIGVZZ"),
+    (r"\bONDS\b", "ZZONDSZZ"),
+    (r"\bCRWV\b", "ZZCRWVZZ"),
+    (r"\bSMCI\b", "ZZSMCIZZ"),
+]
+
+
+def _lock_en(en: str) -> str:
+    s = en
+    for pat, tok in _LOCKS:
+        s = re.sub(pat, tok, s, flags=re.I)
+    return s
+
+
+_UNLOCK = {
+    "ZZSPCXZZ": "SPCX",
+    "ZZQQQZZ": "QQQ",
+    "ZZSPYZZ": "SPY",
+    "ZZIWMZZ": "IWM",
+    "ZZSEMISZZ": "semis",
+    "ZZQUANTUMZZ": "quantum",
+    "ZZSOFTZZ": "software",
+    "ZZMEMZZ": "memory",
+    "ZZEMAZZ": "EMA",
+    "ZZVWAPZZ": "VWAP",
+    "ZZNVDAZZ": "NVDA",
+    "ZZTSLAZZ": "Tesla",
+    "ZZPATHZZ": "PATH",
+    "ZZSNDKZZ": "SNDK",
+    "ZZCRCLZZ": "CRCL",
+    "ZZASTSZZ": "ASTS",
+    "ZZMUZZ": "MU",
+    "ZZIGVZZ": "IGV",
+    "ZZONDSZZ": "ONDS",
+    "ZZCRWVZZ": "CRWV",
+    "ZZSMCIZZ": "SMCI",
+}
+
+
+def _unlock_zh(zh: str) -> str:
+    s = zh or ""
+    for tok, word in _UNLOCK.items():
+        s = s.replace(tok, word)
+    return s
+
 
 def _http_zh(en: str) -> str | None:
     """Google gtx zh-TW — used only at digest build time, not on Streamlit Cloud."""
@@ -418,7 +484,7 @@ def _http_zh(en: str) -> str | None:
 
 
 def translate_speech_zh(text: str) -> str:
-    """Cantonese/zh of the spoken English. Never word-salad leftovers."""
+    """Chinese of the spoken English. Full sentence — never leftover-English mash."""
     raw = str(text or "").strip()
     if not raw:
         return ""
@@ -427,13 +493,23 @@ def translate_speech_zh(text: str) -> str:
     key = re.sub(r"\s+", " ", raw).lower()
     if key in _ZH_CACHE:
         return _ZH_CACHE[key]
-    s = _prep_en(raw)
+    prepped = _prep_en(raw)
+    phrased = prepped
     for pat, zh in _PHRASES:
-        s = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, s)
-    s = re.sub(r"\b(?:uh+|um+|yeah|you know)\b", " ", s, flags=re.I)
-    s = re.sub(r"\s+", " ", s).strip(" ,")
-    s = re.sub(r"(?:SpaceX \(SPCX\)\s*){2,}", "SpaceX (SPCX) ", s)
-    # Do not Google-translate leftovers — it turns spy/semi/quantum into 間諜/半決賽/量子.
-    s = re.sub(r"\s+", " ", s).strip(" ,")
-    _ZH_CACHE[key] = s
-    return s
+        phrased = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, phrased)
+    phrased = re.sub(r"\s+", " ", phrased).strip(" ,")
+    letters = len(re.findall(r"[A-Za-z]", phrased))
+    zh_n = len(re.findall(r"[\u4e00-\u9fff]", phrased))
+    en_words = len(re.findall(r"\b[A-Za-z]{3,}\b", phrased))
+    if zh_n >= 6 and en_words <= 4:
+        _ZH_CACHE[key] = phrased
+        return phrased
+    locked = _lock_en(prepped)
+    got = _http_zh(locked)
+    if got:
+        got = _unlock_zh(got)
+        got = re.sub(r"的(?=[\u4e00-\u9fff])", "嘅", got)
+        _ZH_CACHE[key] = got
+        return got
+    _ZH_CACHE[key] = phrased
+    return phrased

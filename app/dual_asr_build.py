@@ -321,7 +321,7 @@ def _replace_digest_sections(
                     out.append("")
                     out.append("## 時間軸內容")
                     out.append("")
-                    out.append("時間 | 股票 | Long/Short | 建議 | 中文＋英文原文")
+                    out.append("時間 | 股票 | Long/Short | 建議 | 英文原文＋中文翻譯")
                     out.append("")
                     out.extend(content_lines)
                     out.append("")

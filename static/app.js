@@ -373,7 +373,7 @@ function tickerTableHtml(items, videoId) {
         })
         .join("")}</ul>`
     : "";
-  const reasonHead = "中文＋英文原文";
+  const reasonHead = "英文原文＋中文翻譯";
   const tableHtml = rows.length
     ? `<div class="ticker-wrap"><table class="ticker-table">
         <thead><tr><th>${lang === "en" ? "Time" : "時間"}</th><th>${lang === "en" ? "Ticker" : "股票"}</th><th>Long/Short</th><th>${lang === "en" ? "Source" : "建議"}</th><th>${reasonHead}</th></tr></thead>
@@ -390,10 +390,16 @@ function tickerTableHtml(items, videoId) {
             // strip leftover English dump if old md still has ｜原文：
             const reason = String(r.reason || "").replace(/\s*｜原文：[\s\S]*$/, "").trim();
             const parts = reason.split("‖").map((p) => p.trim()).filter(Boolean);
-            const reasonHtml =
-              parts.length > 1
-                ? `<div>${escapeHtml(parts[0])}</div><div class="muted">${escapeHtml(parts.slice(1).join(" "))}</div>`
-                : escapeHtml(reason);
+            let enPart = parts[0] || reason;
+            let zhPart = parts[1] || "";
+            const zhCount = (s) => (s.match(/[\u4e00-\u9fff]/g) || []).length;
+            if (parts.length > 1 && zhCount(parts[0]) > zhCount(parts[1])) {
+              enPart = parts[1];
+              zhPart = parts[0];
+            }
+            const reasonHtml = zhPart
+              ? `<div>${escapeHtml(enPart)}</div><div class="muted">${escapeHtml(zhPart)}</div>`
+              : escapeHtml(enPart);
             return `<tr${idAttr} data-ticker="${escapeHtml(key)}">
               <td>${chip}</td>
               <td class="tk">${escapeHtml(r.ticker)}</td>
