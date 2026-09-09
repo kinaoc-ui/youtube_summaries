@@ -9,11 +9,16 @@ BULLET_RE = re.compile(
     r"^-\s+(?:`([^`]+)`|\[(\d{1,2}:\d{2}(?::\d{2})?)\]\([^)]+\))\s+(.+)$"
 )
 _BARE_STAMP_LINE = re.compile(r"^(\s*-\s+)`(\d{1,2}:\d{2}(?::\d{2})?)`")
+_KIND = (
+    r"(?:做多(?:／long)?|做空(?:／short)?|減倉(?:／trim)?|"
+    r"觀望偏空(?:／lean short)?|觀望偏多(?:／lean long)?|"
+    r"觀望(?:／watch)?|實際操作)"
+)
 _DIGEST_STAMP_STRIP = re.compile(
-    r"^(-\s+\*\*(?:做多|做空|減倉|觀望偏空|觀望偏多|觀望|實際操作)｜[^*]+\*\*)\s+\[[^\]]+\]\([^)]+\)(\s+[—–-]\s+.*)$"
+    rf"^(-\s+\*\*{_KIND}｜[^*]+\*\*)\s+\[[^\]]+\]\([^)]+\)(\s+[—–-]\s+.*)$"
 )
 _DIGEST_HEAD = re.compile(
-    r"^(-\s+\*\*(?:做多|做空|減倉|觀望偏空|觀望偏多|觀望|實際操作)｜([^*]+)\*\*)"
+    rf"^(-\s+\*\*{_KIND}｜([^*]+)\*\*)"
     r"(?!\s+\[)"
     r"(\s+[—–-]\s+.*)$"
 )
@@ -80,7 +85,9 @@ def linkify_markdown(video_id: str, md: str) -> str:
             continue
         cells = [c.strip() for c in rest.split("|")]
         side = cells[1] if len(cells) > 1 else ""
-        actionable = bool(re.search(r"\b(Long|Short|Trim)\b|減倉|平倉|做空|做多", side, re.I))
+        actionable = bool(
+            re.search(r"\b(Long|Short|Trim)\b|減倉|平倉|做空|做多|lean short|lean long", side, re.I)
+        )
         if label not in pick or actionable:
             pick[label] = t
 

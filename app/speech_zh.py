@@ -152,6 +152,26 @@ _PHRASE_RAW: list[tuple[str, str]] = [
     (r"now they are", "\u800c\u5bb6\u4f62\u54cb"),
     (r"seems like the semi is", "semis \u597d\u4f3c"),
     (r"yeah,? i mean", ""),
+    (r"wow,? quantum are stopping me out at the open", "哇，quantum 開市 stop 我出嚟"),
+    (r"stopping me out at the open", "開市 stop 我出嚟"),
+    (r"path is not finding support so far", "PATH 到而家未搵到支持"),
+    (r"not finding support so far", "到而家未搵到支持"),
+    (r"software are getting a little bit(?: little bit)? weak today", "software 今日有少少弱"),
+    (r"getting a little bit(?: little bit)? weak on the softwares", "software 有少少弱"),
+    (r"getting a little bit(?: little bit)? weak today", "今日有少少弱"),
+    (
+        r"like if the quantums are getting rejected today and then goes lower that will be very unfortunate",
+        "如果 quantum 今日被 reject 然後向下，會好唔好彩",
+    ),
+    (r"you think spacex \(spcx\) is a is the good position to short today\??", "你覺得 SPCX 今日係咪好嘅短倉位？"),
+    (r"is (?:a is )?the good position to short today\??", "今日係咪好嘅短倉位？"),
+    (r"it looks like semi is still it'?s really strong today", "semis 今日睇落仍然好強"),
+    (r"still it'?s really strong today", "今日仍然好強"),
+    (r"we found some strength in semis", "semis 有啲強勢"),
+    (r"also finding some resistance on semis", "semis 都撞到阻力"),
+    (r"finding some resistance on semis", "semis 撞到阻力"),
+    (r"a lot of rejection today", "今日好多 rejection"),
+    (r"pulling back into the support area", "回測支持區"),
 ]
 
 
@@ -413,12 +433,7 @@ def translate_speech_zh(text: str) -> str:
     s = re.sub(r"\b(?:uh+|um+|yeah|you know)\b", " ", s, flags=re.I)
     s = re.sub(r"\s+", " ", s).strip(" ,")
     s = re.sub(r"(?:SpaceX \(SPCX\)\s*){2,}", "SpaceX (SPCX) ", s)
-    letters = len(re.findall(r"[A-Za-z]", s))
-    zh_n = len(re.findall(r"[\u4e00-\u9fff]", s))
-    if letters >= 18 and letters > zh_n:
-        got = _http_zh(_prep_en(raw))
-        if got:
-            got = re.sub(r"的(?=[\u4e00-\u9fff])", "嘅", got)
-            s = got
+    # Do not Google-translate leftovers — it turns spy/semi/quantum into 間諜/半決賽/量子.
+    s = re.sub(r"\s+", " ", s).strip(" ,")
     _ZH_CACHE[key] = s
     return s

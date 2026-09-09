@@ -316,8 +316,10 @@ function parseExecRow(text) {
 function sideClass(side) {
   const s = String(side || "");
   if (/唔短|唔好短|不短|唔 long|skip/i.test(s)) return "side-watch";
+  if (/觀望偏空|lean short|Watch[／/]偏空/.test(s)) return "side-short";
+  if (/觀望偏多|lean long|Watch[／/]偏多/.test(s)) return "side-long";
   if (/\bshort\b/i.test(s) || /做空|偏空/.test(s)) return "side-short";
-  if (/trim|賣強|賣部分|已賣/.test(s)) return "side-trim";
+  if (/trim|賣強|賣部分|已賣|減倉/.test(s)) return "side-trim";
   if (/\blong\b/i.test(s) && !/失手/.test(s)) return "side-long";
   return "side-watch";
 }
@@ -371,7 +373,7 @@ function tickerTableHtml(items, videoId) {
         })
         .join("")}</ul>`
     : "";
-  const reasonHead = lang === "en" ? "ASR English (original)" : "語音中文翻譯";
+  const reasonHead = "中文＋英文原文";
   const tableHtml = rows.length
     ? `<div class="ticker-wrap"><table class="ticker-table">
         <thead><tr><th>${lang === "en" ? "Time" : "時間"}</th><th>${lang === "en" ? "Ticker" : "股票"}</th><th>Long/Short</th><th>${lang === "en" ? "Source" : "建議"}</th><th>${reasonHead}</th></tr></thead>
@@ -387,12 +389,17 @@ function tickerTableHtml(items, videoId) {
                 : `<span class="muted">—</span>`;
             // strip leftover English dump if old md still has ｜原文：
             const reason = String(r.reason || "").replace(/\s*｜原文：[\s\S]*$/, "").trim();
+            const parts = reason.split("‖").map((p) => p.trim()).filter(Boolean);
+            const reasonHtml =
+              parts.length > 1
+                ? `<div>${escapeHtml(parts[0])}</div><div class="muted">${escapeHtml(parts.slice(1).join(" "))}</div>`
+                : escapeHtml(reason);
             return `<tr${idAttr} data-ticker="${escapeHtml(key)}">
               <td>${chip}</td>
               <td class="tk">${escapeHtml(r.ticker)}</td>
               <td><span class="side ${sideClass(r.side)}">${escapeHtml(r.side)}</span></td>
               <td>${escapeHtml(r.suggestion)}</td>
-              <td>${escapeHtml(reason)}</td>
+              <td>${reasonHtml}</td>
             </tr>`;
           })
           .join("")}</tbody>
@@ -412,7 +419,7 @@ function renderExec(items, videoId) {
     return;
   }
   const looksDigest = items.some((x) =>
-    /^(今日總覽|實際操作｜|做多｜|做空｜|減倉｜|觀望｜)/.test(String(x.text || "").replace(/\*\*/g, ""))
+    /^(今日總覽|實際操作｜|做多|做空|減倉|觀望)/.test(String(x.text || "").replace(/\*\*/g, ""))
   );
   if (looksDigest) {
     const meta = [];

@@ -268,14 +268,25 @@ def patch_markdown_with_dual(video_id: str, md: str, *, model: str = "small") ->
     """Write 真正摘要（中文） + 時間軸內容(ZH) + Timeline content (EN ASR)."""
     built = build_dual_confirmed_rows(video_id, model=model)
     rows = built["rows"]
+    text = _replace_digest_sections(
+        md, video_id, rows, cc_mode=built.get("quote_source") == "cc"
+    )
+    return text, built
+
+
+def _replace_digest_sections(
+    md: str,
+    video_id: str,
+    rows: list[dict[str, Any]],
+    *,
+    cc_mode: bool = True,
+) -> str:
     digest_lines = build_zh_digest(rows, video_id=video_id)
     content_lines = [content_zh_line(r, video_id=video_id) for r in rows]
     content_en_lines = [content_en_line(r, video_id=video_id) for r in rows]
     if not content_lines:
         content_lines = ["- （字幕／ASR 未搵到 ticker）"]
         content_en_lines = ["- （no tickers）"]
-
-    cc_mode = built.get("quote_source") == "cc"
     en_head = (
         "Time | Ticker | Long/Short | Source | YouTube CC English (original)"
         if cc_mode
@@ -310,7 +321,7 @@ def patch_markdown_with_dual(video_id: str, md: str, *, model: str = "small") ->
                     out.append("")
                     out.append("## 時間軸內容")
                     out.append("")
-                    out.append("時間 | 股票 | Long/Short | 建議 | 語音中文翻譯")
+                    out.append("時間 | 股票 | Long/Short | 建議 | 中文＋英文原文")
                     out.append("")
                     out.extend(content_lines)
                     out.append("")
@@ -342,7 +353,64 @@ def patch_markdown_with_dual(video_id: str, md: str, *, model: str = "small") ->
         out.append("## Timeline content (EN)")
         out.append("")
         out.extend(content_en_lines)
+    return re.sub(r"\n### 已刪[^\n]*\n(?:- `[^\n]*\n)*", "\n", "\n".join(out))
 
-    text = "\n".join(out)
-    text = re.sub(r"\n### 已刪[^\n]*\n(?:- `[^\n]*\n)*", "\n", text)
-    return text, built
+
+def rebuild_markdown_from_en_timeline(video_id: str, md: str) -> str:
+    """Re-tag sides + bilingual timeline from existing EN quotes (no ASR rerun)."""
+    from .parse_md import split_bullet, time_to_seconds
+
+    body = ""
+    grab = False
+    for line in md.splitlines():
+        if line.startswith("## Timeline content"):
+            grab = True
+            continue
+        if grab and line.startswith("## "):
+            break
+        if grab:
+            body += line + "\n"
+    rows: list[dict[str, Any]] = []
+    tick_map = {
+        "Semis": "SEMIS",
+        "Software": "SOFTWARE",
+        "Quantum": "QUANTUM",
+        "Cyber": "CYBER",
+    }
+    for line in body.splitlines():
+        got = split_bullet(line)
+        if not got:
+            continue
+        t, rest = got
+        cells = [c.strip() for c in rest.split("|")]
+        if len(cells) < 2:
+            continue
+        label = re.sub(r"\*\*", "", cells[0]).strip()
+        if label in {"Mute gap", "字幕缺口"}:
+            continue
+        quote = cells[-1] if len(cells) >= 3 else ""
+        src = cells[2] if len(cells) >= 4 else cells[1] if len(cells) >= 2 else ""
+        tick = tick_map.get(label, label.upper())
+        side = _infer_side(quote, tick)
+        src_l = src.lower()
+        conf = "captions"
+        if "dual" in src_l:
+            conf = "dual"
+        elif "faster" in src_l:
+            conf = "faster"
+        elif "whisper" in src_l:
+            conf = "whisperx"
+        rows.append(
+            {
+                "t": t,
+                "start": float(time_to_seconds(t) or 0),
+                "ticker": tick,
+                "label": label,
+                "side": side,
+                "text": quote,
+                "reason": quote[:180],
+                "confidence": conf,
+                "quote_source": "cc" if ("cc" in src_l or "字幕" in src) else "asr",
+            }
+        )
+    return _replace_digest_sections(md, video_id, rows, cc_mode=True)

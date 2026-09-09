@@ -14,12 +14,12 @@ ROOT = Path(__file__).resolve().parent
 OUT_DIR = ROOT / "outputs"
 
 SIDE_COLORS = {
-    "long": ("#14532d", "#86efac", "做多"),
-    "short": ("#7f1d1d", "#fca5a5", "做空"),
-    "watch_short": ("#7f1d1d", "#fca5a5", "觀望偏空"),
-    "watch_long": ("#14532d", "#86efac", "觀望偏多"),
-    "watch": ("#1e3a5f", "#93c5fd", "觀望"),
-    "trim": ("#713f12", "#fde047", "減倉"),
+    "long": ("#14532d", "#86efac", "做多／long"),
+    "short": ("#7f1d1d", "#fca5a5", "做空／short"),
+    "watch_short": ("#7f1d1d", "#fca5a5", "觀望偏空／lean short"),
+    "watch_long": ("#14532d", "#86efac", "觀望偏多／lean long"),
+    "watch": ("#1e3a5f", "#93c5fd", "觀望／watch"),
+    "trim": ("#713f12", "#fde047", "減倉／trim"),
     "action": ("#3f3f46", "#e4e4e7", "實際操作"),
     "mute": ("#27272a", "#a1a1aa", "字幕缺口"),
 }
@@ -90,9 +90,9 @@ def _side_key(raw: str) -> str:
     t = (raw or "").strip().lower()
     if "字幕缺口" in raw or "mute" in t or raw.strip() in {"—", "-", ""}:
         return "mute"
-    if "觀望偏空" in raw or "Watch／偏空" in raw or "Watch/偏空" in raw:
+    if "觀望偏空" in raw or "Watch／偏空" in raw or "Watch/偏空" in raw or "lean short" in t:
         return "watch_short"
-    if "觀望偏多" in raw or "Watch／偏多" in raw or "Watch/偏多" in raw:
+    if "觀望偏多" in raw or "Watch／偏多" in raw or "Watch/偏多" in raw or "lean long" in t:
         return "watch_long"
     if "trim" in t or "減倉" in raw or "實際操作" in raw:
         return "trim" if "實際" not in raw else "action"
@@ -148,7 +148,7 @@ def _parse_rows(block: str, video_id: str) -> list[Row]:
                 stamp=stamp,
                 ticker=ticker,
                 side=side,
-                side_key=_side_key(side + ticker),
+                side_key=_side_key(side + " " + ticker),
                 quote=quote,
                 url=url,
             )
@@ -301,7 +301,7 @@ def main() -> None:
     with top_l:
         st.link_button("開 YouTube", s.youtube, use_container_width=True)
     with top_r:
-        lang = st.radio("語言", ["中文", "EN"], horizontal=True, label_visibility="collapsed")
+        st.caption("時間軸中英一齊")
 
     overview = next((it for it in s.digest_items if it.key == "overview"), None)
     st.markdown('<div class="sec-h">真正摘要</div>', unsafe_allow_html=True)
@@ -310,12 +310,12 @@ def main() -> None:
 
     groups = [
         ("action", "實際操作"),
-        ("long", "做多"),
-        ("short", "做空"),
-        ("watch_short", "觀望偏空"),
-        ("watch_long", "觀望偏多"),
-        ("trim", "減倉"),
-        ("watch", "觀望"),
+        ("long", "做多／long"),
+        ("short", "做空／short"),
+        ("watch_short", "觀望偏空／lean short"),
+        ("watch_long", "觀望偏多／lean long"),
+        ("trim", "減倉／trim"),
+        ("watch", "觀望／watch"),
     ]
     for key, title in groups:
         chunk = [it for it in s.digest_items if it.key == key]
@@ -336,19 +336,30 @@ def main() -> None:
                 "digest-card",
             )
 
-    rows = s.rows_en if lang == "EN" and s.rows_en else (s.rows_zh or s.rows_en)
-    st.markdown('<div class="sec-h">時間軸</div>', unsafe_allow_html=True)
+    en_by = {(r.stamp, r.ticker): r.quote for r in s.rows_en}
+    rows = s.rows_zh or s.rows_en
+    st.markdown('<div class="sec-h">時間軸（中＋英）</div>', unsafe_allow_html=True)
     st.caption("撳時間 → YouTube 跳去該秒")
     show_mute = st.toggle("顯示字幕缺口", value=False)
     for row in rows:
         if not show_mute and row.side_key == "mute":
             continue
         badge = _badge(row.side_key, row.side)
+        zh_q, en_q = row.quote, ""
+        if "‖" in row.quote:
+            zh_q, en_q = (p.strip() for p in row.quote.split("‖", 1))
+        elif s.rows_zh and s.rows_en:
+            en_q = en_by.get((row.stamp, row.ticker), "")
+            if en_q == zh_q:
+                en_q = ""
+        quote_html = f'<div class="quote">{html.escape(zh_q)}</div>'
+        if en_q:
+            quote_html += f'<div class="muted">{html.escape(en_q)}</div>'
         _card(
             f'<a class="t" href="{html.escape(row.url)}" target="_blank" rel="noreferrer">'
             f"{html.escape(row.stamp)}</a> "
             f"<b>{html.escape(row.ticker)}</b> {badge}"
-            f'<div class="quote">{html.escape(row.quote)}</div>'
+            f"{quote_html}"
         )
 
     if not s.digest_items and not rows:

@@ -84,35 +84,46 @@ SIDE_TRIM = re.compile(
 def _watch_lean(blob: str) -> str:
     """Not in a trade, but chart talk still has a long/short bias."""
     b = blob or ""
+    if re.search(
+        r"wanted to short|like to short|would also like to short|short entry|"
+        r"more aggressive short|good (?:position|spot) to short|"
+        r"(?:position|spot) to short|consider(?:ing)? .{0,24}short",
+        b,
+        re.I,
+    ):
+        return "Watch／偏空"
+    # "if they go lower that would be unfortunate" = wants them up
+    if re.search(r"unfortunate", b, re.I) and re.search(
+        r"lower|reject|goes down", b, re.I
+    ):
+        return "Watch／偏多"
     bear = bool(
         re.search(
             r"closing weak|closed? (?:fairly )?weak|getting rejected|rejected at|"
-            r"\brejection\b|gapping down|gap(?:ping)? down|short entry|"
-            r"wanted to short|like to short|would also like to short|"
+            r"\brejection\b|gapping down|gap(?:ping)? down|"
             r"\bshorted\b|shorting |"
             r"weakness|slowdown|not going to participate.{0,24}long|"
-            r"extended from the daily|hanging around",
+            r"extended from the daily|hanging around|"
+            r"not finding support|finding (?:some )?resistance|"
+            r"(?:a )?little bit(?: little bit)? weak|getting .{0,20}weak|"
+            r"goes lower|going lower|follow through to the downside|"
+            r"pulling back",
             b,
             re.I,
         )
     )
     bull = bool(
         re.search(
-            r"looks? pretty strong|looks? strong|relative strength|"
-            r"showing (?:good |relative )?strength|pushing into|"
+            r"looks? (?:pretty |really |still )?(?:pretty |really )?strong|"
+            r"still .{0,20}(?:really )?strong|really strong|pretty strong|"
+            r"found (?:some )?strength|some strength in|"
+            r"relative strength|showing (?:good |relative )?strength|pushing into|"
             r"breaking out|stick into the|find .{0,24}strength|"
-            r"doing pretty well|bouncing (?:higher|back)",
+            r"doing pretty well|bouncing (?:higher|back)|optimistic",
             b,
             re.I,
         )
     )
-    if re.search(
-        r"wanted to short|like to short|would also like to short|short entry|"
-        r"more aggressive short",
-        b,
-        re.I,
-    ):
-        return "Watch／偏空"
     if bear and not bull:
         return "Watch／偏空"
     if bull and not bear:
@@ -544,6 +555,8 @@ def _mention_score(piece: str, tick: str, side: str) -> int:
     if re.search(r"shortable|good short|flipping short|re-?enter|too early", p, re.I):
         n += 4
     if side and side != "Watch":
+        n += 2
+    if side.startswith("Watch／"):
         n += 2
     return n
 

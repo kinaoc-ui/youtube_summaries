@@ -5,288 +5,228 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 觀望偏空：Semis、Software；觀望偏多：SMCI。",
+      "text": "今日總覽 — 觀望偏空：SPY、Semis、Software；觀望偏多：SMCI。",
       "start": "0"
     },
     {
       "t": "06:15",
-      "text": "觀望｜SPY — 觀望",
+      "text": "觀望偏空／lean short｜SPY — 觀望偏空",
       "start": "0"
     },
     {
       "t": "07:18",
-      "text": "觀望｜WDC — 破位／轉強；反彈／回測",
+      "text": "觀望／watch｜WDC — 破位／轉強；反彈／回測",
       "start": "0"
     },
     {
       "t": "21:51",
-      "text": "觀望｜PATH — 觀望",
+      "text": "觀望／watch｜PATH — 企穩 21 EMA",
       "start": "0"
     },
     {
       "t": "1:58:04",
-      "text": "觀望偏空｜Semis — 觀望偏空",
+      "text": "觀望偏空／lean short｜Semis — 睇落仍然強；有少少弱",
       "start": "0"
     },
     {
       "t": "1:45:05",
-      "text": "觀望偏空｜Software — gap down；software gap 填缺口可關注",
+      "text": "觀望偏空／lean short｜Software — 睇落仍然強；有少少弱；gap down；software gap 填缺口可關注",
       "start": "0"
     },
     {
       "t": "23:06",
-      "text": "觀望偏多｜SMCI — 破位／轉強",
+      "text": "觀望偏多／lean long｜SMCI — 破位／轉強",
       "start": "0"
     },
     {
       "t": "1:36:48",
-      "text": "觀望｜AXTI — 觀望",
+      "text": "觀望／watch｜AXTI — 觀望",
       "start": "0"
     }
   ],
   "bullets_en": [
     {
       "t": "06:15",
-      "text": "**SPY** | Watch | dual ASR | But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit",
+      "text": "**SPY** | 觀望偏空／lean short | dual ASR | But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit",
       "start": "0"
     },
     {
       "t": "07:18",
-      "text": "**WDC** | Watch | dual ASR | But at the same time, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout.",
+      "text": "**WDC** | 觀望／watch | dual ASR | But at the same time, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout.",
       "start": "0"
     },
     {
       "t": "08:03",
-      "text": "**PATH** | Watch | dual ASR | And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150.",
+      "text": "**PATH** | 觀望／watch | dual ASR | And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150.",
       "start": "0"
     },
     {
       "t": "09:40",
-      "text": "**Semis** | Watch | dual ASR | And this semi ETF is again gapping up into the declining nine.",
+      "text": "**Semis** | 觀望／watch | dual ASR | And this semi ETF is again gapping up into the declining nine.",
       "start": "0"
     },
     {
       "t": "14:37",
-      "text": "**Semis** | Watch | WhisperX | Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher.",
+      "text": "**Semis** | 觀望／watch | WhisperX | Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher.",
       "start": "0"
     },
     {
       "t": "18:58",
-      "text": "**Semis** | Watch | dual ASR | pretty strong action so far on the semis.",
+      "text": "**Semis** | 觀望偏多／lean long | dual ASR | pretty strong action so far on the semis.",
       "start": "0"
     },
     {
       "t": "19:00",
-      "text": "**Software** | Watch | dual ASR | pretty strong action so far on the semis. Softwares are a little bit weaker. The semis is actually",
+      "text": "**Software** | 觀望／watch | dual ASR | pretty strong action so far on the semis. Softwares are a little bit weaker. The semis is actually",
       "start": "0"
     },
     {
       "t": "21:51",
-      "text": "**PATH** | Watch | WhisperX | What path is already like heading into the 50 EMA?",
+      "text": "**PATH** | 觀望／watch | WhisperX | What path is already like heading into the 50 EMA?",
       "start": "0"
     },
     {
       "t": "23:06",
-      "text": "**SMCI** | Watch／偏多 | dual ASR | SMCI is breaking out.",
-      "start": "0"
-    },
-    {
-      "t": "37:57",
-      "text": "**Mute gap** | — | mic muted / no speech | 37:57–1:18:04 約 40 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
-      "start": "0"
-    },
-    {
-      "t": "1:19:13",
-      "text": "**Mute gap** | — | mic muted / no speech | 1:19:13–1:28:18 約 9 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "text": "**SMCI** | 觀望偏多／lean long | dual ASR | SMCI is breaking out.",
       "start": "0"
     },
     {
       "t": "1:36:48",
-      "text": "**AXTI** | Watch | dual ASR | For shots like AXTI, if it runs up like this and go against you to cover.",
+      "text": "**AXTI** | 觀望／watch | dual ASR | For shots like AXTI, if it runs up like this and go against you to cover.",
       "start": "0"
     },
     {
       "t": "1:45:05",
-      "text": "**Software** | Watch／偏空 | WhisperX | I mean not only Palantir but like the whole software sector as a whole right after a huge gap up and we got a huge gap down and before this gap up we also got like a two consecutive gap downs and before this gap down and we have a huge gap up last week so we got a lot of volatility here and",
-      "start": "0"
-    },
-    {
-      "t": "1:45:54",
-      "text": "**Mute gap** | — | mic muted / no speech | 1:45:54–1:57:31 約 12 分鐘：兩邊 ASR 都冇正常語音",
+      "text": "**Software** | 觀望偏空／lean short | WhisperX | I mean not only Palantir but like the whole software sector as a whole right after a huge gap up and we got a huge gap down and before this gap up we also got like a two consecutive gap downs and before this gap down and we have a huge gap up last week so we got a lot of volatility here and",
       "start": "0"
     },
     {
       "t": "1:58:04",
-      "text": "**Semis** | Watch／偏空 | dual ASR | Yeah, especially on the semis But we're not getting much sign of weakness on this bounce so maybe",
-      "start": "0"
-    },
-    {
-      "t": "1:58:58",
-      "text": "**Mute gap** | — | mic muted / no speech | 1:58:58–2:11:02 約 12 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | Yeah, especially on the semis But we're not getting much sign of weakness on this bounce so maybe",
       "start": "0"
     }
   ],
   "bullets_zh": [
     {
       "t": "06:15",
-      "text": "**SPY** | 觀望 | 雙ASR確認 | 但現在，就像發布後一樣，間諜嘅聲音降低了一點，而 Russo 則讓我有點不舒服",
+      "text": "**SPY** | 觀望偏空／lean short | 雙ASR確認 | But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit ‖ But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit",
       "start": "0"
     },
     {
       "t": "07:18",
-      "text": "**WDC** | 觀望 | 雙ASR確認 | 但同時，西部數據嘅實力卻弱得多。現在，他們正在反彈進入阻力位，而更強大嘅名字似乎正在突破",
+      "text": "**WDC** | 觀望／watch | 雙ASR確認 | But 同一時間, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout ‖ But at the same time, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout.",
       "start": "0"
     },
     {
       "t": "08:03",
-      "text": "**PATH** | 觀望 | 雙ASR確認 | 我計劃在 21 EMA 以及之前嘅波動高點回調買入，但現在已經跌破支撐位，進入周線 150 點",
+      "text": "**PATH** | 觀望／watch | 雙ASR確認 | And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150 ‖ And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150.",
       "start": "0"
     },
     {
       "t": "09:40",
-      "text": "**Semis** | 觀望 | 雙ASR確認 | 這隻半ETF再次跳空進入下跌九",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | And this semi ETF is again gapping up into the declining nine ‖ And this semi ETF is again gapping up into the declining nine.",
       "start": "0"
     },
     {
       "t": "14:37",
-      "text": "**Semis** | 觀望 | WhisperX | 看起來 Riptodes 越來越高，Semis 越來越高，記憶體名稱越來越高",
+      "text": "**Semis** | 觀望／watch | WhisperX | Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher ‖ Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher.",
       "start": "0"
     },
     {
       "t": "18:58",
-      "text": "**Semis** | 觀望 | 雙ASR確認 | 到目前為止準決賽表現相當強勁",
+      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | pretty strong action 目前 on the semis ‖ pretty strong action so far on the semis.",
       "start": "0"
     },
     {
       "t": "19:00",
-      "text": "**Software** | 觀望 | 雙ASR確認 | 到目前為止，準決賽嘅表現相當強勁。軟體有點弱。半決賽實際上是",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | pretty strong action 目前 on the semis. Softwares are a little bit weaker. The semis is actually ‖ pretty strong action so far on the semis. Softwares are a little bit weaker. The semis is actually",
       "start": "0"
     },
     {
       "t": "21:51",
-      "text": "**PATH** | 觀望 | WhisperX | 進入 50 EMA 嘅路徑是什麼？",
+      "text": "**PATH** | 觀望／watch | WhisperX | What path is already like heading into the 50 EMA? ‖ What path is already like heading into the 50 EMA?",
       "start": "0"
     },
     {
       "t": "23:06",
-      "text": "**SMCI** | 觀望偏多 | 雙ASR確認 | SMCI is breaking out",
-      "start": "0"
-    },
-    {
-      "t": "37:57",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 37:57–1:18:04 約 40 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
-      "start": "0"
-    },
-    {
-      "t": "1:19:13",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:19:13–1:28:18 約 9 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "text": "**SMCI** | 觀望偏多／lean long | 雙ASR確認 | SMCI is breaking out ‖ SMCI is breaking out.",
       "start": "0"
     },
     {
       "t": "1:36:48",
-      "text": "**AXTI** | 觀望 | 雙ASR確認 | 對於像 AXTI 這樣嘅投籃，如果它像這樣跑起來並且不利於你掩護",
+      "text": "**AXTI** | 觀望／watch | 雙ASR確認 | For shots like AXTI, if it runs up like this and go against you to cover ‖ For shots like AXTI, if it runs up like this and go against you to cover.",
       "start": "0"
     },
     {
       "t": "1:45:05",
-      "text": "**Software** | 觀望偏空 | WhisperX | 我嘅意思不僅是Palantir，而且就像整個軟體產業一樣，在巨大嘅上漲差距之後，我們出現了巨大嘅下跌差距，在這個上漲差距之前，我們也經歷了連續兩次嘅下跌差距，在這個差距下跌之前，我們上週出現了巨大嘅上漲差距，所以我們這裡有很大嘅波動性，",
-      "start": "0"
-    },
-    {
-      "t": "1:45:54",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:45:54–1:57:31 約 12 分鐘：兩邊 ASR 都冇正常語音",
+      "text": "**Software** | 觀望偏空／lean short | WhisperX | I mean not only Palantir but like the whole software sector 整體 right after a huge gap up and we got a huge gap down and before this gap up we also got like a two consecutive gap downs and before this gap down and we have a huge gap up last week so we got a lot of volatility he… ‖ I mean not only Palantir but like the whole software sector as a whole right after a huge gap up and we got a huge gap down and before this gap up we also got like a two consecutive gap downs and before this gap down and we have a huge gap up last week so we got a lot of volatility here and",
       "start": "0"
     },
     {
       "t": "1:58:04",
-      "text": "**Semis** | 觀望偏空 | 雙ASR確認 | 特別是在半決賽中但是我們在這次反彈中沒有看到太多疲軟嘅跡象，所以也許",
-      "start": "0"
-    },
-    {
-      "t": "1:58:58",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:58:58–2:11:02 約 12 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | especially on the semis But we're not getting much sign of weakness on this bounce so maybe ‖ Yeah, especially on the semis But we're not getting much sign of weakness on this bounce so maybe",
       "start": "0"
     }
   ],
   "bullets": [
     {
       "t": "06:15",
-      "text": "**SPY** | 觀望 | 雙ASR確認 | 但現在，就像發布後一樣，間諜嘅聲音降低了一點，而 Russo 則讓我有點不舒服",
+      "text": "**SPY** | 觀望偏空／lean short | 雙ASR確認 | But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit ‖ But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit",
       "start": "0"
     },
     {
       "t": "07:18",
-      "text": "**WDC** | 觀望 | 雙ASR確認 | 但同時，西部數據嘅實力卻弱得多。現在，他們正在反彈進入阻力位，而更強大嘅名字似乎正在突破",
+      "text": "**WDC** | 觀望／watch | 雙ASR確認 | But 同一時間, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout ‖ But at the same time, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout.",
       "start": "0"
     },
     {
       "t": "08:03",
-      "text": "**PATH** | 觀望 | 雙ASR確認 | 我計劃在 21 EMA 以及之前嘅波動高點回調買入，但現在已經跌破支撐位，進入周線 150 點",
+      "text": "**PATH** | 觀望／watch | 雙ASR確認 | And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150 ‖ And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150.",
       "start": "0"
     },
     {
       "t": "09:40",
-      "text": "**Semis** | 觀望 | 雙ASR確認 | 這隻半ETF再次跳空進入下跌九",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | And this semi ETF is again gapping up into the declining nine ‖ And this semi ETF is again gapping up into the declining nine.",
       "start": "0"
     },
     {
       "t": "14:37",
-      "text": "**Semis** | 觀望 | WhisperX | 看起來 Riptodes 越來越高，Semis 越來越高，記憶體名稱越來越高",
+      "text": "**Semis** | 觀望／watch | WhisperX | Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher ‖ Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher.",
       "start": "0"
     },
     {
       "t": "18:58",
-      "text": "**Semis** | 觀望 | 雙ASR確認 | 到目前為止準決賽表現相當強勁",
+      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | pretty strong action 目前 on the semis ‖ pretty strong action so far on the semis.",
       "start": "0"
     },
     {
       "t": "19:00",
-      "text": "**Software** | 觀望 | 雙ASR確認 | 到目前為止，準決賽嘅表現相當強勁。軟體有點弱。半決賽實際上是",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | pretty strong action 目前 on the semis. Softwares are a little bit weaker. The semis is actually ‖ pretty strong action so far on the semis. Softwares are a little bit weaker. The semis is actually",
       "start": "0"
     },
     {
       "t": "21:51",
-      "text": "**PATH** | 觀望 | WhisperX | 進入 50 EMA 嘅路徑是什麼？",
+      "text": "**PATH** | 觀望／watch | WhisperX | What path is already like heading into the 50 EMA? ‖ What path is already like heading into the 50 EMA?",
       "start": "0"
     },
     {
       "t": "23:06",
-      "text": "**SMCI** | 觀望偏多 | 雙ASR確認 | SMCI is breaking out",
-      "start": "0"
-    },
-    {
-      "t": "37:57",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 37:57–1:18:04 約 40 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
-      "start": "0"
-    },
-    {
-      "t": "1:19:13",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:19:13–1:28:18 約 9 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "text": "**SMCI** | 觀望偏多／lean long | 雙ASR確認 | SMCI is breaking out ‖ SMCI is breaking out.",
       "start": "0"
     },
     {
       "t": "1:36:48",
-      "text": "**AXTI** | 觀望 | 雙ASR確認 | 對於像 AXTI 這樣嘅投籃，如果它像這樣跑起來並且不利於你掩護",
+      "text": "**AXTI** | 觀望／watch | 雙ASR確認 | For shots like AXTI, if it runs up like this and go against you to cover ‖ For shots like AXTI, if it runs up like this and go against you to cover.",
       "start": "0"
     },
     {
       "t": "1:45:05",
-      "text": "**Software** | 觀望偏空 | WhisperX | 我嘅意思不僅是Palantir，而且就像整個軟體產業一樣，在巨大嘅上漲差距之後，我們出現了巨大嘅下跌差距，在這個上漲差距之前，我們也經歷了連續兩次嘅下跌差距，在這個差距下跌之前，我們上週出現了巨大嘅上漲差距，所以我們這裡有很大嘅波動性，",
-      "start": "0"
-    },
-    {
-      "t": "1:45:54",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:45:54–1:57:31 約 12 分鐘：兩邊 ASR 都冇正常語音",
+      "text": "**Software** | 觀望偏空／lean short | WhisperX | I mean not only Palantir but like the whole software sector 整體 right after a huge gap up and we got a huge gap down and before this gap up we also got like a two consecutive gap downs and before this gap down and we have a huge gap up last week so we got a lot of volatility he… ‖ I mean not only Palantir but like the whole software sector as a whole right after a huge gap up and we got a huge gap down and before this gap up we also got like a two consecutive gap downs and before this gap down and we have a huge gap up last week so we got a lot of volatility here and",
       "start": "0"
     },
     {
       "t": "1:58:04",
-      "text": "**Semis** | 觀望偏空 | 雙ASR確認 | 特別是在半決賽中但是我們在這次反彈中沒有看到太多疲軟嘅跡象，所以也許",
-      "start": "0"
-    },
-    {
-      "t": "1:58:58",
-      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:58:58–2:11:02 約 12 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | especially on the semis But we're not getting much sign of weakness on this bounce so maybe ‖ Yeah, especially on the semis But we're not getting much sign of weakness on this bounce so maybe",
       "start": "0"
     }
   ],
@@ -294,13 +234,5 @@
     "suspect_count": 0,
     "ok_count": 6,
     "suspects": []
-  },
-  "provider": "reconcile+dual-asr",
-  "reconcile": {
-    "dual_count": 9,
-    "wx_only_count": 3,
-    "faster_only_count": 33,
-    "hint": "雙ASR確認 9 行＋WhisperX獨有 3 行（faster獨有 33 已唔入主表）",
-    "asof": 1788900602
   }
 }

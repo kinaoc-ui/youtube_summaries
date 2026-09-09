@@ -176,6 +176,18 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
         bits.append("強燭收復 9&21")
     if "follow through" in low or "downside" in low:
         bits.append("或跟空／向下")
+    if re.search(r"really strong|still .{0,16}strong|pretty strong|some strength", low):
+        bits.append("睇落仍然強")
+    if re.search(r"little bit.{0,12}weak|getting .{0,16}weak", low):
+        bits.append("有少少弱")
+    if "not finding support" in low:
+        bits.append("未搵到支持")
+    if "finding" in low and "resistance" in low:
+        bits.append("撞阻力")
+    if re.search(r"good (?:position|spot) to short|position to short", low):
+        bits.append("問／考慮短")
+    if "unfortunate" in low and re.search(r"lower|reject", low):
+        bits.append("唔想見向下")
     if "not very confident" in low or "aggressive" in low:
         bits.append("短倉唔敢太進取")
     if "re-entering" in low or "reentering" in low:
@@ -230,9 +242,9 @@ def _session_lede(groups: list[tuple[str, str, str, str]]) -> str:
     lean_long: list[str] = []
     for label, bucket, _reason, side_zh in groups:
         by_b.setdefault(bucket, []).append(label)
-        if bucket == "watch" and side_zh == "觀望偏空":
+        if bucket == "watch" and "偏空" in (side_zh or ""):
             lean_short.append(label)
-        if bucket == "watch" and side_zh == "觀望偏多":
+        if bucket == "watch" and "偏多" in (side_zh or ""):
             lean_long.append(label)
     parts: list[str] = []
     if by_b["short"]:
@@ -273,8 +285,17 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
         for x in rs:
             if _bucket(_side_zh(str(x.get("side") or ""))) != "watch":
                 pick = x
+        if _bucket(_side_zh(str(pick.get("side") or ""))) == "watch":
+            for x in reversed(rs):
+                blob = str(x.get("text") or "")
+                if len(re.findall(r"[A-Za-z\u4e00-\u9fff]", blob)) < 24 and len(rs) > 1:
+                    continue
+                sz = _side_zh(str(x.get("side") or ""))
+                if "偏空" in sz or "偏多" in sz:
+                    pick = x
+                    break
         side = _side_zh(str(pick.get("side") or ""))
-        reason = _merge_reasons(label, [pick])
+        reason = _merge_reasons(label, rs)
         arc = _side_arc(rs)
         if arc and label.lower() in {"semis", "software", "cyber"}:
             reason = f"{arc}；{reason}" if reason else arc
@@ -380,15 +401,30 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
     return lines
 
 
+def _side_badge(side_zh: str) -> str:
+    s = side_zh or ""
+    if "觀望偏空" in s or (s.startswith("觀望") and "偏空" in s):
+        return "觀望偏空／lean short"
+    if "觀望偏多" in s or (s.startswith("觀望") and "偏多" in s):
+        return "觀望偏多／lean long"
+    if "減" in s or "平" in s:
+        return "減倉／trim"
+    if "空" in s or "短" in s:
+        return "做空／short"
+    if "多" in s or "長" in s:
+        return "做多／long"
+    return "觀望／watch"
+
+
 def _bucket_title(key: str, side_zh: str = "") -> str:
-    if key == "watch" and side_zh in {"觀望偏空", "觀望偏多"}:
-        return side_zh
+    if key == "watch" and ("偏空" in (side_zh or "") or "偏多" in (side_zh or "")):
+        return _side_badge(side_zh)
     return {
-        "long": "做多",
-        "short": "做空",
-        "trim": "減倉",
-        "watch": "觀望",
-    }.get(key, "觀望")
+        "long": "做多／long",
+        "short": "做空／short",
+        "trim": "減倉／trim",
+        "watch": "觀望／watch",
+    }.get(key, "觀望／watch")
 
 
 def _speech_zh(label: str, side: str, text: str) -> str:
@@ -432,15 +468,18 @@ def content_zh_line(r: dict[str, Any], video_id: str = "") -> str:
             f"{r.get('reason') or '兩邊 ASR 近乎空白'}"
         )
     conf = _source_zh(r)
-    side = _side_zh(str(r.get("side") or "Watch"))
+    side = _side_badge(_side_zh(str(r.get("side") or "Watch")))
     label = str(r.get("label") or "?")
     blob = str(r.get("text") or "").strip()
     if len(blob) < 12:
         blob = (blob + " " + str(r.get("reason") or "")).strip()
+    en = re.sub(r"\s+", " ", blob).strip()
     say = translate_speech_zh(blob)
-    if len(say) > 420:
-        say = say[:417] + "…"
-    return f"- {stamp} **{label}** | {side} | {conf} | {say}"
+    if len(say) > 280:
+        say = say[:277] + "…"
+    if len(en) > 320:
+        en = en[:317] + "…"
+    return f"- {stamp} **{label}** | {side} | {conf} | {say} ‖ {en}"
 
 
 def content_en_line(r: dict[str, Any], video_id: str = "") -> str:
@@ -452,7 +491,8 @@ def content_en_line(r: dict[str, Any], video_id: str = "") -> str:
             f"{r.get('reason') or 'both ASR streams nearly empty'}"
         )
     conf = _source_en(r)
-    side = r.get("side") or "Watch"
+    raw_side = str(r.get("side") or "Watch")
+    side = _side_badge(_side_zh(raw_side))
     label = str(r.get("label") or "?")
     blob = str(r.get("text") or "").strip()
     if len(blob) < 12:
