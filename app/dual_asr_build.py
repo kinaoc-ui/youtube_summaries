@@ -110,8 +110,10 @@ def _rows_from_captions(
     a: list[dict[str, Any]],
     b: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """YouTube CC = quote + timeline; faster-whisper / WhisperX only verify tickers."""
-    hc = _hits_from(cc)
+    """YouTube CC = full speech timeline (TubeonAI-style), not ticker-only clips."""
+    from .auto_summary import speech_paragraph_rows
+
+    paras = speech_paragraph_rows(cc)
     ha = _hits_from(a) if a else []
     hb = _hits_from(b) if b else []
     dual: list[dict[str, Any]] = []
@@ -119,13 +121,16 @@ def _rows_from_captions(
     faster_only: list[dict[str, Any]] = []
     cc_only: list[dict[str, Any]] = []
     out: list[dict[str, Any]] = []
-    for h in hc:
+    for h in paras:
         tick = str(h.get("ticker") or "").upper()
         if tick in SKIP:
             continue
-        wx = _nearby(h, hb)
-        fw = _nearby(h, ha)
-        if wx and fw:
+        wx = _nearby(h, hb) if tick not in {"SESSION", "SILVER", "JPM", "KIOXIA", "SAMSUNG"} else None
+        fw = _nearby(h, ha) if tick not in {"SESSION", "SILVER", "JPM", "KIOXIA", "SAMSUNG"} else None
+        if tick == "SESSION":
+            conf = "captions"
+            cc_only.append({**h})
+        elif wx and fw:
             conf = "dual"
             dual.append({**h})
         elif wx:
@@ -141,12 +146,8 @@ def _rows_from_captions(
             **h,
             "confidence": conf,
             "quote_source": "cc",
-            "label": _label(tick),
+            "label": h.get("label") or _label(tick),
         }
-        if any(
-            abs(o["start"] - row["start"]) < 90 and o["ticker"].upper() == tick for o in out
-        ):
-            continue
         out.append(row)
 
     gaps = find_mute_gaps(a, b, min_gap_sec=480.0, primary=cc)
@@ -252,16 +253,17 @@ def build_dual_confirmed_rows(video_id: str, *, model: str = "small") -> dict[st
 
 
 def _label(tick: str) -> str:
-    u = tick.upper()
-    if u == "CYBER":
-        return "Cyber"
-    if u == "SEMIS":
-        return "Semis"
-    if u == "SOFTWARE":
-        return "Software"
-    if u == "QUANTUM":
-        return "Quantum"
-    return tick if tick != "QUANTUM" else "Quantum"
+    u = (tick or "").upper()
+    return {
+        "CYBER": "Cyber",
+        "SEMIS": "Semis",
+        "SOFTWARE": "Software",
+        "QUANTUM": "Quantum",
+        "SESSION": "Session",
+        "SILVER": "Silver",
+        "SAMSUNG": "Samsung",
+        "KIOXIA": "Kioxia",
+    }.get(u, tick if u != "QUANTUM" else "Quantum")
 
 
 def patch_markdown_with_dual(video_id: str, md: str, *, model: str = "small") -> tuple[str, dict[str, Any]]:

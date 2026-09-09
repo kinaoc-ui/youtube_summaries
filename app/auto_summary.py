@@ -52,6 +52,17 @@ EXTRA_ALIASES: list[tuple[str, str]] = [
     (r"\bsammy'?s\b", "SEMIS"),
     (r"\bsambies\b", "SEMIS"),
     (r"\bsemis?\b", "SEMIS"),
+    (r"\bsamm(?:y|ies)'?s?\b", "SEMIS"),
+    (r"\bsk\s*heinix\b", "SKHY"),
+    (r"\bheinix\b", "SKHY"),
+    (r"\bkiosia\b|\bkyosia\b|\bkioxia\b", "KIOXIA"),
+    (r"\bsamsung\b", "Samsung"),
+    (r"\bjp\s*morgan\b|\bjpmorgan\b", "JPM"),
+    (r"\birn\b", "IREN"),
+    (r"\bests\b", "ASTS"),
+    (r"\briptos\b", "RGTI"),
+    (r"\bsoftares\b", "SOFTWARE"),
+    (r"\bsilver\b", "SILVER"),
 ]
 
 SIDE_SHORT = re.compile(
@@ -257,6 +268,98 @@ def _caption_overlap_join(acc: str, nxt: str) -> str:
     if best:
         return (a + " " + " ".join(bw[best:])).strip()
     return (a + " " + b).strip()
+
+
+_MUSIC_LINE = re.compile(
+    r"^(\[music\]|\>\>|heat\.?|hey|feel\.?|i feel really me\.?)$",
+    re.I,
+)
+
+
+def speech_paragraphs(
+    snippets: list[dict[str, Any]],
+    *,
+    target_sec: float = 50.0,
+    max_chars: int = 420,
+) -> list[tuple[float, str]]:
+    """TubeonAI-style blocks: stitch CC into spoken thoughts, skip intro music."""
+    paras: list[tuple[float, str]] = []
+    buf = ""
+    start: float | None = None
+    last_end = 0.0
+    for s in snippets:
+        raw = str(s.get("text") or "").replace("\n", " ").strip()
+        if _MUSIC_LINE.match(raw) or raw.lower() in {"heat. heat.", "[music] [music]"}:
+            continue
+        text = re.sub(r"\[music\]|\>\>", " ", raw, flags=re.I)
+        text = fix_asr(re.sub(r"\s+", " ", text).strip(" ,"))
+        if len(text) < 10:
+            continue
+        st = float(s.get("start") or 0)
+        dur = float(s.get("duration") or 0) or max(1.2, len(text.split()) * 0.35)
+        en = st + dur
+        if start is None:
+            start, last_end, buf = st, en, text
+            continue
+        gap = st - last_end
+        new_ticks = {t.upper() for t in _tickers_in_text(text)}
+        old_ticks = {t.upper() for t in _tickers_in_text(buf)} if buf else set()
+        topic_shift = bool(new_ticks and old_ticks and new_ticks.isdisjoint(old_ticks))
+        if (
+            gap > 3.8
+            or topic_shift
+            or (en - start) > target_sec
+            or len(buf) + 1 + len(text) > max_chars
+        ):
+            if len(buf) >= 48:
+                paras.append((start, buf))
+            start, last_end, buf = st, en, text
+        else:
+            buf = _caption_overlap_join(buf, text)
+            last_end = en
+    if start is not None and len(buf) >= 48:
+        paras.append((start, buf))
+    return paras
+
+
+def speech_paragraph_rows(snippets: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Timeline rows from full speech, not ticker-only clips."""
+    rows: list[dict[str, Any]] = []
+    for start, text in speech_paragraphs(snippets):
+        found = _tickers_in_text(text)
+        tick = found[0] if found else "SESSION"
+        side = _infer_side(text, None if tick == "SESSION" else tick)
+        if tick == "SESSION":
+            side = "Watch"
+        rows.append(
+            {
+                "t": format_ts(start),
+                "start": start,
+                "ticker": tick,
+                "label": (
+                    "Session"
+                    if tick == "SESSION"
+                    else (
+                        "Cyber"
+                        if tick == "CYBER"
+                        else (
+                            "Semis"
+                            if tick == "SEMIS"
+                            else (
+                                "Quantum"
+                                if tick.upper() == "QUANTUM"
+                                else ("Software" if tick == "SOFTWARE" else tick)
+                            )
+                        )
+                    )
+                ),
+                "side": side,
+                "suggestion": "見語音" if str(side).startswith("Watch") else side,
+                "reason": text[:180] + ("…" if len(text) > 180 else ""),
+                "text": text[:900],
+            }
+        )
+    return rows
 
 
 _SENT_END = re.compile(r"[.!?](?=\s+[A-Z]|$)")

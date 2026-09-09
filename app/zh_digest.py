@@ -269,7 +269,7 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
         if r.get("confidence") == "gap":
             continue
         label = str(r.get("label") or r.get("ticker") or "?").strip()
-        if not label or label == "字幕缺口":
+        if not label or label in {"字幕缺口", "Session", "Mute gap"}:
             continue
         by_label.setdefault(label, []).append(r)
 
@@ -333,6 +333,17 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
         groups.append((label, bucket, reason, side))
 
     lede = _session_lede(groups)
+    sit = any(
+        re.search(
+            r"sit out|no trades|not going to (?:do any )?trade|rest day|chill day|"
+            r"can'?t make any trades|not doing any trades",
+            str(r.get("text") or ""),
+            re.I,
+        )
+        for r in rows
+    )
+    if sit:
+        lede = "今日坐出／唔交易；" + lede
     lines: list[str] = [
         f"- **今日總覽** — {lede}",
     ]
@@ -475,10 +486,10 @@ def content_zh_line(r: dict[str, Any], video_id: str = "") -> str:
         blob = (blob + " " + str(r.get("reason") or "")).strip()
     en = re.sub(r"\s+", " ", blob).strip()
     say = translate_speech_zh(blob)
-    if len(say) > 280:
-        say = say[:277] + "…"
-    if len(en) > 320:
-        en = en[:317] + "…"
+    if len(say) > 420:
+        say = say[:417] + "…"
+    if len(en) > 560:
+        en = en[:557] + "…"
     return f"- {stamp} **{label}** | {side} | {conf} | {en} ‖ {say}"
 
 
