@@ -7,6 +7,26 @@ import re
 # Longest-first. Only render meaning that is in the English.
 # Chinese is written as \\u escapes so the source stays ASCII-safe.
 _PHRASE_RAW: list[tuple[str, str]] = [
+    (
+        r"and then the semi this semi short i think i took the (?:exit|exti) short first\.?\s*this is the rally into the anchor v from the swing high\.?\s*i think the all[\s-]?time high the[.\s]*and also this recent swing high as well",
+        "\u7136\u5f8c\u4fc2 semis\uff0c\u5462\u624b semis \u7a7a\u5009\uff0c\u6211\u60f3\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a\u3002\u5462\u500b\u4fc2\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP\u3002\u6211\u89ba\u5f97\u4fc2\u6b77\u53f2\u9ad8\u4f4d\u3002\u540c\u57cb\u6700\u8fd1\u5462\u500b swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09\u90fd\u4fc2",
+    ),
+    (r"i think i took the (?:exit|exti) short first", "\u6211\u60f3\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
+    (r"i took the (?:exit|exti) short first", "\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
+    (r"took the (?:exit|exti) short", "\u5e73\u5497\u7a7a\u5009"),
+    (r"the rally into the anchor v from the swing high", "\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP"),
+    (r"rally into the anchor v from the swing high", "\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP"),
+    (r"this semi shorts?", "\u5462\u624b semis \u7a7a\u5009"),
+    (r"the semi shorts?", "semis \u7a7a\u5009"),
+    (r"semi shorts?", "semis \u7a7a\u5009"),
+    (r"(?:exit|exti) short", "\u5e73\u5497\u7a7a\u5009"),
+    (r"anchored vwap|anchor(?:ed)? vwap|\bavwap\b|anchor v\b", "anchored VWAP"),
+    (r"swing highs?(?!\uff08)", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09"),
+    (r"all[\s-]?time highs?", "\u6b77\u53f2\u9ad8\u4f4d"),
+    (r"\bath\b", "\u6b77\u53f2\u9ad8\u4f4d"),
+    (r"rally(?:ing)? into", "\u53cd\u5f48\u53bb\u5230"),
+    (r"take profits?", "\u6e1b\u5009"),
+    (r"flip(?:ping)? short", "\u8f49\u7a7a"),
     (r"i shorted (\w+) instead of (\w+)", "我短咗 \\1 而唔係 \\2"),
     (r"i think i'?m going to short", "我今日會短"),
     (r"tesla stops me out at the open", "Tesla 開市 stop 我出嚟"),
@@ -45,7 +65,7 @@ _PHRASE_RAW: list[tuple[str, str]] = [
     (r"so far", "目前"),
     (r"i'?m not going to participate for the longs", "long 邊我唔會參與"),
     (r"i'?m short sndk", "我短緊 SNDK"),
-    (r"i am considering(?: like)? to flipping short on", "\u6211\u800c\u5bb6\u8003\u616e\u8f49\u77ed"),
+    (r"i am considering(?: like)? to flipping short on", "\u6211\u800c\u5bb6\u8003\u616e\u8f49\u7a7a"),
     (r"not looking very encouraging", "\u7747\u843d\u5514\u9f13\u52f5"),
     (r"it closed fairly weak yesterday", "\u5c0b\u65e5\u6536\u5e02\u5e7e\u5f31"),
     (r"found resistance at the daily 9 and 21", "\u649e\u5230 daily 9 \u540c 21 \u963b\u529b"),
@@ -102,9 +122,9 @@ _PHRASE_RAW: list[tuple[str, str]] = [
     (r"early morning flush", "\u65e9\u5e02 flush"),
     (r"buy the dip", "\u8cb7 dip"),
     (r"a decent spot to(?: to)? buy", "\u4e00\u500b\u53ef\u4ee5\u8cb7\u5605\u4f4d"),
-    (r"i am considering(?: like)? to flipping short on", "\u6211\u800c\u5bb6\u8003\u616e\u8f49\u77ed"),
-    (r"considering(?: like)? to flipping short", "\u8003\u616e\u8f49\u77ed"),
-    (r"flipping short", "\u8f49\u77ed"),
+    (r"i am considering(?: like)? to flipping short on", "\u6211\u800c\u5bb6\u8003\u616e\u8f49\u7a7a"),
+    (r"considering(?: like)? to flipping short", "\u8003\u616e\u8f49\u7a7a"),
+    (r"flipping short", "\u8f49\u7a7a"),
     (r"yesterday also close(?: like)? fairly weak", "\u5c0b\u65e5\u6536\u5e02\u90fd\u5e7e\u5f31"),
     (r"(?:the )?quantum'?s looking a little bit shortable today", "quantum \u4eca\u65e5\u7747\u843d\u6709\u5572 shortable"),
     (r"looking a little bit shortable today", "\u4eca\u65e5\u7747\u843d\u6709\u5572 shortable"),
@@ -186,6 +206,66 @@ def _compile_phrases() -> list[tuple[re.Pattern[str], str]]:
 
 
 _PHRASES = _compile_phrases()
+
+# Trading glossary — applied to EVERY sentence. Google gtx is banned for this
+# domain (short→短片, spy→間諜, shortened→縮短). Unknown words stay English.
+_GLOSSARY_RAW: list[tuple[str, str]] = [
+    (r"took the exit short first", "\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
+    (r"took the exit short", "\u5e73\u5497\u7a7a\u5009"),
+    (r"exit shorts?", "\u5e73\u7a7a"),
+    (r"flip(?:ping)? short", "\u8f49\u7a7a"),
+    (r"this semis? shorts?", "\u5462\u624b semis \u7a7a\u5009"),
+    (r"semis? shorts?", "semis \u7a7a\u5009"),
+    (r"on the short side", "\u7a7a\u5009\u5462\u908a"),
+    (r"on the long side", "\u591a\u5009\u5462\u908a"),
+    (r"precious metal shorts?", "\u8cb4\u91d1\u5c6c \u7a7a\u5009"),
+    (r"my shorts", "\u6211\u5e7e\u624b\u7a7a"),
+    (r"\bshorting\b", "\u505a\u7a7a"),
+    (r"\bshorted it\b", "\u505a\u7a7a\u5497\u4f62"),
+    (r"\bshorted\b", "\u505a\u7a7a\u5497"),
+    (r"\bshortable\b", "\u53ef\u4ee5\u505a\u7a7a"),
+    (r"(?<![A-Za-z-])shorts(?![A-Za-z-])", "\u7a7a\u5009"),
+    (r"(?<![A-Za-z-])short(?![A-Za-z-])", "\u7a7a\u5009"),
+    (r"(?<![A-Za-z-])longs(?![A-Za-z-])", "\u591a\u5009"),
+    (r"(?<![A-Za-z-])long(?![A-Za-z-])(?!\s+(?:upper|wick|time|enough|way|as)\b)", "\u505a\u591a"),
+    (r"anchored vwap|anchor(?:ed)? vwap|\bavwap\b|anchored VWAP", "anchored VWAP"),
+    (r"swing highs?", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09"),
+    (r"swing lows?", "swing low\uff08\u6ce2\u6bb5\u4f4e\u4f4d\uff09"),
+    (r"all[\s-]?time highs?", "\u6b77\u53f2\u9ad8\u4f4d"),
+    (r"\baths?\b", "\u6b77\u53f2\u9ad8\u4f4d"),
+    (r"rally(?:ing)? into", "\u53cd\u5f48\u53bb\u5230"),
+    (r"bounce(?:ing)? into", "\u5f48\u53bb\u5230"),
+    (r"pulling back into", "\u56de\u6e2c\u53bb\u5230"),
+    (r"\bpullbacks?\b", "\u56de\u8abf"),
+    (r"\brejections?\b", "reject"),
+    (r"getting rejected", "\u88ab reject"),
+    (r"stopped me out", "stop \u6211\u51fa\u569f"),
+    (r"stopp(?:ed|ing) out", "\u88ab stop \u51fa"),
+    (r"gap(?:ping)? down", "gap down"),
+    (r"gap(?:ping)? up", "gap up"),
+    (r"\bbreakdowns?\b", "\u7834\u4f4d\u5411\u4e0b"),
+    (r"\bbreakouts?\b", "\u7834\u4f4d"),
+    (r"undercut and rally", "undercut and rally"),
+    (r"pin bars?", "pin bar"),
+    (r"buying power", "buying power"),
+    (r"moving averages?", "\u5747\u7dda"),
+    (r"\bhourly\b", "hourly"),
+    (r"\bweekly\b", "weekly"),
+    (r"\bdaily\b", "daily"),
+    (r"relative strength", "\u76f8\u5c0d\u5f37\u52e2"),
+    (r"follow through", "\u8ddf\u8e64"),
+    (r"\bweakness\b", "\u5f31\u52e2"),
+    (r"\bstrength\b", "\u5f37\u52e2"),
+]
+
+
+def _compile_glossary() -> list[tuple[re.Pattern[str], str]]:
+    items = [(re.compile(p, re.I), z) for p, z in _GLOSSARY_RAW]
+    items.sort(key=lambda x: len(x[0].pattern), reverse=True)
+    return items
+
+
+_GLOSSARY = _compile_glossary()
 
 _WORDS: dict[str, str] = {
     "especially": "\u5c24\u5176",
@@ -309,10 +389,13 @@ _WORDS: dict[str, str] = {
     "times": "\u6b21",
     "early": "\u65e9",
     "too": "\u592a",
-    "long": "long",
-    "longs": "long",
-    "short": "\u77ed",
-    "shortable": "shortable",
+    "long": "\u505a\u591a",
+    "longs": "\u9577\u5009",
+    "short": "\u505a\u7a7a",
+    "shorts": "\u77ed\u5009",
+    "shorting": "\u505a\u7a7a",
+    "shorted": "\u505a\u7a7a\u5497",
+    "shortable": "\u53ef\u505a\u7a7a",
     "buy": "\u8cb7",
     "buying": "\u8cb7",
     "dip": "dip",
@@ -374,6 +457,16 @@ def _mostly_zh(text: str) -> bool:
 
 def _prep_en(text: str) -> str:
     s = str(text or "").strip()
+    s = re.sub(r"\bexti\b", "exit", s, flags=re.I)
+    s = re.sub(r"\bshortened it\b", "shorted it", s, flags=re.I)
+    s = re.sub(r"\bshortened\b", "shorted", s, flags=re.I)
+    s = re.sub(
+        r"\b(?:anchor(?:ed)? field(?: web)?|angle field web|anchor field)\b",
+        "anchored VWAP",
+        s,
+        flags=re.I,
+    )
+    s = re.sub(r"\banchor v\b", "anchored VWAP", s, flags=re.I)
     s = re.sub(r"\bthen field gap\b", "unfilled gap", s, flags=re.I)
     s = re.sub(r"\b21nm\b", "21 EMA", s, flags=re.I)
     s = re.sub(r"\bcofee web\b|\bcoffee web\b", "CRWV", s, flags=re.I)
@@ -390,8 +483,35 @@ def _prep_en(text: str) -> str:
 
 _ZH_CACHE: dict[str, str] = {}
 
-# Lock trading words so Google won't turn spy→間諜, semi→半決賽, quantum→量子.
+# Lock trading jargon FIRST so Google cannot turn short→短片 / shorts→短褲.
+# Tickers after that: spy≠間諜, semi≠半決賽, quantum≠量子.
 _LOCKS: list[tuple[str, str]] = [
+    (r"took the (?:exit|exti) short first", "ZZTOOKEXITZZ"),
+    (r"(?:exit|exti)\s+short", "ZZEXITSHORTZZ"),
+    (r"flip(?:ping)?\s+short", "ZZFLIPSHORTZZ"),
+    (r"this\s+semis?\s+shorts?", "ZZTHISSEMISHORTZZ"),
+    (r"semis?\s+shorts?", "ZZSEMISHORTZZ"),
+    (r"anchored\s+VWAPs?", "ZZAVWAPZZ"),
+    (r"anchor(?:ed)?\s+VWAPs?", "ZZAVWAPZZ"),
+    (r"\bAVWAP\b", "ZZAVWAPZZ"),
+    (r"\banchor(?:ed)?\s+V\b", "ZZAVWAPZZ"),
+    (r"swing\s+highs?", "ZZSWINGHIZZ"),
+    (r"swing\s+lows?", "ZZSWINGLOZZ"),
+    (r"all[\s-]?time\s+highs?", "ZZATHZZ"),
+    (r"\bATHs?\b", "ZZATHZZ"),
+    (r"rally(?:ing)?\s+into", "ZZRALLYINZZ"),
+    (r"take\s+profits?", "ZZTRIMZZ"),
+    (r"\btrimm?(?:ing|ed|s)?\b", "ZZTRIMZZ"),
+    (r"\bshorting\b", "ZZSHORTINGZZ"),
+    (r"\bshorted\b", "ZZSHORTEDZZ"),
+    (r"\bshortable\b", "ZZSHORTABLEZZ"),
+    (r"(?<![A-Za-z-])shorts(?![A-Za-z-])", "ZZSHORTSPOSZZ"),
+    (r"(?<![A-Za-z-])short(?![A-Za-z-])", "ZZSHORTZZ"),
+    (r"(?<![A-Za-z-])longs(?![A-Za-z-])", "ZZLONGSPOSZZ"),
+    (
+        r"(?<![A-Za-z-])long(?![A-Za-z-])(?!\s+(?:upper|wick|time|enough|way|as)\b)",
+        "ZZLONGZZ",
+    ),
     (r"SpaceX \(SPCX\)", "ZZSPCXZZ"),
     (r"\bSPCX\b", "ZZSPCXZZ"),
     (r"\bQQQ\b|\bQs\b|\bcues?\b", "ZZQQQZZ"),
@@ -415,6 +535,8 @@ _LOCKS: list[tuple[str, str]] = [
     (r"\bONDS\b", "ZZONDSZZ"),
     (r"\bCRWV\b", "ZZCRWVZZ"),
     (r"\bSMCI\b", "ZZSMCIZZ"),
+    (r"\bAXTI\b", "ZZAXTIZZ"),
+    (r"\bARM\b", "ZZARMZZ"),
 ]
 
 
@@ -426,6 +548,24 @@ def _lock_en(en: str) -> str:
 
 
 _UNLOCK = {
+    "ZZTOOKEXITZZ": "\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a",
+    "ZZEXITSHORTZZ": "\u5e73\u5497\u7a7a\u5009",
+    "ZZFLIPSHORTZZ": "\u8f49\u7a7a",
+    "ZZTHISSEMISHORTZZ": "\u5462\u624b semis \u7a7a\u5009",
+    "ZZSEMISHORTZZ": "semis \u7a7a\u5009",
+    "ZZAVWAPZZ": "anchored VWAP",
+    "ZZSWINGHIZZ": "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09",
+    "ZZSWINGLOZZ": "swing low\uff08\u6ce2\u6bb5\u4f4e\u4f4d\uff09",
+    "ZZATHZZ": "\u6b77\u53f2\u9ad8\u4f4d",
+    "ZZRALLYINZZ": "\u53cd\u5f48\u53bb\u5230",
+    "ZZTRIMZZ": "\u6e1b\u5009",
+    "ZZSHORTINGZZ": "\u505a\u7a7a",
+    "ZZSHORTEDZZ": "\u505a\u7a7a\u5497",
+    "ZZSHORTABLEZZ": "\u53ef\u505a\u7a7a",
+    "ZZSHORTSPOSZZ": "\u77ed\u5009",
+    "ZZSHORTZZ": "\u7a7a\u5009",
+    "ZZLONGSPOSZZ": "\u9577\u5009",
+    "ZZLONGZZ": "\u505a\u591a",
     "ZZSPCXZZ": "SPCX",
     "ZZQQQZZ": "QQQ",
     "ZZSPYZZ": "SPY",
@@ -447,6 +587,8 @@ _UNLOCK = {
     "ZZONDSZZ": "ONDS",
     "ZZCRWVZZ": "CRWV",
     "ZZSMCIZZ": "SMCI",
+    "ZZAXTIZZ": "AXTI",
+    "ZZARMZZ": "ARM",
 }
 
 
@@ -454,6 +596,26 @@ def _unlock_zh(zh: str) -> str:
     s = zh or ""
     for tok, word in _UNLOCK.items():
         s = s.replace(tok, word)
+    return s
+
+
+def _sanitize_zh(zh: str) -> str:
+    """Last-resort: Google still sometimes says 短片/短褲 even near locked tokens."""
+    s = zh or ""
+    s = s.replace("\u77ed\u7247", "\u7a7a\u5009")
+    s = s.replace("\u7e2e\u77ed\u4e86\u5b83", "\u505a\u7a7a\u5497\u4f62")
+    s = s.replace("\u7e2e\u77ed\u4e86", "\u505a\u7a7a\u5497")
+    s = s.replace("\u7e2e\u77ed", "\u505a\u7a7a")
+    s = s.replace("\u77ed\u8932", "\u77ed\u5009")
+    s = re.sub(r"\u62cd\u4e86\s*", "", s)
+    s = re.sub(r"\u62cd\u651d\s*", "", s)
+    s = s.replace("\u9328\u5b9aV", "anchored VWAP")
+    s = s.replace("\u9328\u5b9a V", "anchored VWAP")
+    s = s.replace("\u9418\u5b9aV", "anchored VWAP")
+    s = s.replace("\u9418\u5b9a V", "anchored VWAP")
+    s = s.replace("\u64fa\u52d5\u9ad8\u9ede", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09")
+    s = s.replace("\u6ce2\u52d5\u9ad8\u9ede", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09")
+    s = s.replace("\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09", "\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09")
     return s
 
 
@@ -484,32 +646,21 @@ def _http_zh(en: str) -> str | None:
 
 
 def translate_speech_zh(text: str) -> str:
-    """Chinese of the spoken English. Full sentence — never leftover-English mash."""
+    """Trading Cantonese of spoken English. Never Google — it turns short into 短片."""
     raw = str(text or "").strip()
     if not raw:
         return ""
     if _mostly_zh(raw):
-        return raw
+        return _sanitize_zh(raw)
     key = re.sub(r"\s+", " ", raw).lower()
     if key in _ZH_CACHE:
         return _ZH_CACHE[key]
-    prepped = _prep_en(raw)
-    phrased = prepped
+    s = _prep_en(raw)
     for pat, zh in _PHRASES:
-        phrased = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, phrased)
-    phrased = re.sub(r"\s+", " ", phrased).strip(" ,")
-    letters = len(re.findall(r"[A-Za-z]", phrased))
-    zh_n = len(re.findall(r"[\u4e00-\u9fff]", phrased))
-    en_words = len(re.findall(r"\b[A-Za-z]{3,}\b", phrased))
-    if zh_n >= 6 and en_words <= 4:
-        _ZH_CACHE[key] = phrased
-        return phrased
-    locked = _lock_en(prepped)
-    got = _http_zh(locked)
-    if got:
-        got = _unlock_zh(got)
-        got = re.sub(r"的(?=[\u4e00-\u9fff])", "嘅", got)
-        _ZH_CACHE[key] = got
-        return got
-    _ZH_CACHE[key] = phrased
-    return phrased
+        s = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, s)
+    for pat, zh in _GLOSSARY:
+        s = pat.sub(zh, s)
+    s = re.sub(r"\s+", " ", s).strip(" ,")
+    s = _sanitize_zh(s)
+    _ZH_CACHE[key] = s
+    return s
