@@ -8,14 +8,14 @@ import re
 # Chinese is written as \\u escapes so the source stays ASCII-safe.
 _PHRASE_RAW: list[tuple[str, str]] = [
     (
-        r"and then the semi this semi short i think i took the (?:exit|exti) short first\.?\s*this is the rally into the anchor v from the swing high\.?\s*i think the all[\s-]?time high the[.\s]*and also this recent swing high as well",
+        r"and then the semi this semi short i think i took the (?:exit|exti) short first\.?\s*this is the rally into the (?:anchor v|anchored vwap) from the swing high\.?\s*i think the all[\s-]?time high the[.\s]*and also this recent swing high as well",
         "\u7136\u5f8c\u4fc2 semis\uff0c\u5462\u624b semis \u7a7a\u5009\uff0c\u6211\u60f3\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a\u3002\u5462\u500b\u4fc2\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP\u3002\u6211\u89ba\u5f97\u4fc2\u6b77\u53f2\u9ad8\u4f4d\u3002\u540c\u57cb\u6700\u8fd1\u5462\u500b swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09\u90fd\u4fc2",
     ),
     (r"i think i took the (?:exit|exti) short first", "\u6211\u60f3\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
     (r"i took the (?:exit|exti) short first", "\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
     (r"took the (?:exit|exti) short", "\u5e73\u5497\u7a7a\u5009"),
-    (r"the rally into the anchor v from the swing high", "\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP"),
-    (r"rally into the anchor v from the swing high", "\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP"),
+    (r"the rally into the (?:anchor v|anchored vwap) from the swing high", "\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP"),
+    (r"rally into the (?:anchor v|anchored vwap) from the swing high", "\u7531 swing high \u53cd\u5f48\u53bb\u5230 anchored VWAP"),
     (r"this semi shorts?", "\u5462\u624b semis \u7a7a\u5009"),
     (r"the semi shorts?", "semis \u7a7a\u5009"),
     (r"semi shorts?", "semis \u7a7a\u5009"),
@@ -210,9 +210,9 @@ _PHRASES = _compile_phrases()
 # Trading glossary — applied to EVERY sentence. Google gtx is banned for this
 # domain (short→短片, spy→間諜, shortened→縮短). Unknown words stay English.
 _GLOSSARY_RAW: list[tuple[str, str]] = [
-    (r"took the exit short first", "\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
-    (r"took the exit short", "\u5e73\u5497\u7a7a\u5009"),
-    (r"exit shorts?", "\u5e73\u7a7a"),
+    (r"took the (?:exit|exti) short first", "\u6211\u5148\u5e73\u5497\u5462\u624b\u7a7a"),
+    (r"took the (?:exit|exti) short", "\u5e73\u5497\u7a7a\u5009"),
+    (r"(?:exit|exti) shorts?", "\u5e73\u7a7a"),
     (r"flip(?:ping)? short", "\u8f49\u7a7a"),
     (r"this semis? shorts?", "\u5462\u624b semis \u7a7a\u5009"),
     (r"semis? shorts?", "semis \u7a7a\u5009"),
@@ -229,8 +229,8 @@ _GLOSSARY_RAW: list[tuple[str, str]] = [
     (r"(?<![A-Za-z-])longs(?![A-Za-z-])", "\u591a\u5009"),
     (r"(?<![A-Za-z-])long(?![A-Za-z-])(?!\s+(?:upper|wick|time|enough|way|as)\b)", "\u505a\u591a"),
     (r"anchored vwap|anchor(?:ed)? vwap|\bavwap\b|anchored VWAP", "anchored VWAP"),
-    (r"swing highs?", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09"),
-    (r"swing lows?", "swing low\uff08\u6ce2\u6bb5\u4f4e\u4f4d\uff09"),
+    (r"swing highs?(?!\uff08)", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09"),
+    (r"swing lows?(?!\uff08)", "swing low\uff08\u6ce2\u6bb5\u4f4e\u4f4d\uff09"),
     (r"all[\s-]?time highs?", "\u6b77\u53f2\u9ad8\u4f4d"),
     (r"\baths?\b", "\u6b77\u53f2\u9ad8\u4f4d"),
     (r"rally(?:ing)? into", "\u53cd\u5f48\u53bb\u5230"),
@@ -658,8 +658,12 @@ def translate_speech_zh(text: str) -> str:
     s = _prep_en(raw)
     for pat, zh in _PHRASES:
         s = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, s)
-    for pat, zh in _GLOSSARY:
-        s = pat.sub(zh, s)
+    zh_n = len(re.findall(r"[\u4e00-\u9fff]", s))
+    en_words = len(re.findall(r"\b[A-Za-z]{3,}\b", s))
+    # Full-sentence phrase hits already Chinese — skip glossary rematch (swing high doubling).
+    if not ((zh_n >= 6 and en_words <= 4) or (zh_n >= 12 and zh_n >= en_words * 2)):
+        for pat, zh in _GLOSSARY:
+            s = pat.sub(zh, s)
     s = re.sub(r"\s+", " ", s).strip(" ,")
     s = _sanitize_zh(s)
     _ZH_CACHE[key] = s

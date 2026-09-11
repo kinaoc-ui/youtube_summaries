@@ -5,27 +5,22 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 做空：SILVER、Semis、SPY；觀望偏多：ARM。",
+      "text": "今日總覽 — 今日坐出／唔交易；觀望偏空：SILVER、SPY；觀望偏多：ARM。",
       "start": "0"
     },
     {
       "t": "11:32",
-      "text": "實際操作｜SILVER — 之前止蝕離場（做空／short）",
+      "text": "實際操作｜SILVER — 之前止蝕離場（觀望／watch）",
       "start": "0"
     },
     {
       "t": "11:32",
-      "text": "做空／short｜SILVER — 之前止蝕／試多次",
+      "text": "觀望偏空／lean short｜SILVER — 之前止蝕／試多次",
       "start": "0"
     },
     {
-      "t": "41:47",
-      "text": "做空／short｜Semis — 偏空／短→觀望；已做空；企穩 21 EMA",
-      "start": "0"
-    },
-    {
-      "t": "1:03:37",
-      "text": "做空／short｜SPY — 已做空；落 hourly 50",
+      "t": "1:04:30",
+      "text": "觀望／watch｜Semis — 企穩 21 EMA",
       "start": "0"
     },
     {
@@ -36,6 +31,11 @@
     {
       "t": "54:41",
       "text": "觀望／watch｜Quantum — 觀望",
+      "start": "0"
+    },
+    {
+      "t": "1:05:41",
+      "text": "觀望偏空／lean short｜SPY — 落 hourly 50",
       "start": "0"
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "t": "11:32",
-      "text": "**SILVER** | 做空／short | YouTube CC | I I've also shorted like the silver yesterday, but I got stopped out like barely. I got stopped out on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of um entries that I can get posit.",
+      "text": "**SILVER** | 觀望偏空／lean short | YouTube CC | I I've also shorted like the silver yesterday, but I got stopped out like barely. I got stopped out on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of um entries that I can get posit.",
       "start": "0"
     },
     {
@@ -202,7 +202,7 @@
     },
     {
       "t": "41:47",
-      "text": "**Semis** | 做空／short | YouTube CC + dual ASR | And then the semi this semi short I think I took the exti short first. This is the rally into the anchor V from the swing high. I think the alltime high the Yeah. And also this recent swing high as well",
+      "text": "**Semis** | 觀望／watch | YouTube CC + dual ASR | And then the semi this semi short I think I took the exti short first. This is the rally into the anchor V from the swing high. I think the alltime high the Yeah. And also this recent swing high as well",
       "start": "0"
     },
     {
@@ -257,7 +257,7 @@
     },
     {
       "t": "49:15",
-      "text": "**Session** | 做空／short | YouTube CC | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I think maybe the sec this this one should be the second. I think I I've also shorted it on uh this five minute candle breakdown as but I got stopped out uh when it because it gradually um grinds it back and uh even take out the",
+      "text": "**Session** | 觀望偏空／lean short | YouTube CC | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I think maybe the sec this this one should be the second. I think I I've also shorted it on uh this five minute candle breakdown as but I got stopped out uh when it because it gradually um grinds it back and uh even take out the",
       "start": "0"
     },
     {
@@ -342,7 +342,7 @@
     },
     {
       "t": "1:03:37",
-      "text": "**SPY** | 做空／short | YouTube CC | I think I I took the shorts on uh on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot at the same time. So I missed the first entry and then uh we got a bounce after the this flush uh which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down.",
+      "text": "**SPY** | 觀望／watch | YouTube CC | I think I I took the shorts on uh on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot at the same time. So I missed the first entry and then uh we got a bounce after the this flush uh which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down.",
       "start": "0"
     },
     {
@@ -449,7 +449,7 @@
     },
     {
       "t": "11:32",
-      "text": "**SILVER** | 做空／short | YouTube字幕 | I I've also shorted like the silver yesterday, but I got stopped out like barely. I got stopped out on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of um entries that I can get posit. ‖ I I've also 做空咗 like the silver yesterday, but I got 被 stop 出 like barely. I got 被 stop 出 on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of entries that I can get posit",
+      "text": "**SILVER** | 觀望偏空／lean short | YouTube字幕 | I I've also shorted like the silver yesterday, but I got stopped out like barely. I got stopped out on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of um entries that I can get posit. ‖ I I've also 做空咗 like the silver yesterday, but I got 被 stop 出 like barely. I got 被 stop 出 on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of entries that I can get posit",
       "start": "0"
     },
     {
@@ -574,7 +574,7 @@
     },
     {
       "t": "41:47",
-      "text": "**Semis** | 做空／short | YouTube字幕＋雙ASR核對 | And then the semi this semi short I think I took the exti short first. This is the rally into the anchor V from the swing high. I think the alltime high the Yeah. And also this recent swing high as well ‖ And then the semi 呢手 semis 空倉 我想我先平咗呢手空. This is the 反彈去到 the anchored VWAP from the swing high（波段高位）. I think the 歷史高位 the . And also this recent swing high（波段高位） as well",
+      "text": "**Semis** | 觀望／watch | YouTube字幕＋雙ASR核對 | And then the semi this semi short I think I took the exti short first. This is the rally into the anchor V from the swing high. I think the alltime high the Yeah. And also this recent swing high as well ‖ 然後係 semis，呢手 semis 空倉，我想我先平咗呢手空。呢個係由 swing high（波段高位） 反彈去到 anchored VWAP。我覺得係歷史高位。同埋最近呢個 swing high（波段高位）都係",
       "start": "0"
     },
     {
@@ -629,7 +629,7 @@
     },
     {
       "t": "49:15",
-      "text": "**Session** | 做空／short | YouTube字幕 | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I think maybe the sec this this one should be the second. I think I I've also shorted it on uh this five minute candle breakdown as but I got stopped out uh when it because it gradually um grinds it back and uh even take out the ‖ How many try do you did you do yesterday before this trade I nailed it on the first trade. , I think I'm also like I think maybe the sec this this one should be the second. I think I I've also 做空咗佢 on this five minute candle 破位向下 as but I got 被 stop 出 when it because it gradually grinds it back and even take out the",
+      "text": "**Session** | 觀望偏空／lean short | YouTube字幕 | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I think maybe the sec this this one should be the second. I think I I've also shorted it on uh this five minute candle breakdown as but I got stopped out uh when it because it gradually um grinds it back and uh even take out the ‖ How many try do you did you do yesterday before this trade I nailed it on the first trade. , I think I'm also like I think maybe the sec this this one should be the second. I think I I've also 做空咗佢 on this five minute candle 破位向下 as but I got 被 stop 出 when it because it gradually grinds it back and even take out the",
       "start": "0"
     },
     {
@@ -714,7 +714,7 @@
     },
     {
       "t": "1:03:37",
-      "text": "**SPY** | 做空／short | YouTube字幕 | I think I I took the shorts on uh on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot at the same time. So I missed the first entry and then uh we got a bounce after the this flush uh which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down. ‖ I think I I took the 空倉 on on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot 同一時間. So I missed the first entry and then we got a bounce after the this flush which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down",
+      "text": "**SPY** | 觀望／watch | YouTube字幕 | I think I I took the shorts on uh on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot at the same time. So I missed the first entry and then uh we got a bounce after the this flush uh which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down. ‖ I think I I took the 空倉 on on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot 同一時間. So I missed the first entry and then we got a bounce after the this flush which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down",
       "start": "0"
     },
     {
@@ -821,7 +821,7 @@
     },
     {
       "t": "11:32",
-      "text": "**SILVER** | 做空／short | YouTube字幕 | I I've also shorted like the silver yesterday, but I got stopped out like barely. I got stopped out on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of um entries that I can get posit. ‖ I I've also 做空咗 like the silver yesterday, but I got 被 stop 出 like barely. I got 被 stop 出 on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of entries that I can get posit",
+      "text": "**SILVER** | 觀望偏空／lean short | YouTube字幕 | I I've also shorted like the silver yesterday, but I got stopped out like barely. I got stopped out on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of um entries that I can get posit. ‖ I I've also 做空咗 like the silver yesterday, but I got 被 stop 出 like barely. I got 被 stop 出 on this and today is down 4% I think. it is what it is and I I think it's if we can get a decent downtrend then there will be plenty of entries that I can get posit",
       "start": "0"
     },
     {
@@ -946,7 +946,7 @@
     },
     {
       "t": "41:47",
-      "text": "**Semis** | 做空／short | YouTube字幕＋雙ASR核對 | And then the semi this semi short I think I took the exti short first. This is the rally into the anchor V from the swing high. I think the alltime high the Yeah. And also this recent swing high as well ‖ And then the semi 呢手 semis 空倉 我想我先平咗呢手空. This is the 反彈去到 the anchored VWAP from the swing high（波段高位）. I think the 歷史高位 the . And also this recent swing high（波段高位） as well",
+      "text": "**Semis** | 觀望／watch | YouTube字幕＋雙ASR核對 | And then the semi this semi short I think I took the exti short first. This is the rally into the anchor V from the swing high. I think the alltime high the Yeah. And also this recent swing high as well ‖ 然後係 semis，呢手 semis 空倉，我想我先平咗呢手空。呢個係由 swing high（波段高位） 反彈去到 anchored VWAP。我覺得係歷史高位。同埋最近呢個 swing high（波段高位）都係",
       "start": "0"
     },
     {
@@ -1001,7 +1001,7 @@
     },
     {
       "t": "49:15",
-      "text": "**Session** | 做空／short | YouTube字幕 | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I think maybe the sec this this one should be the second. I think I I've also shorted it on uh this five minute candle breakdown as but I got stopped out uh when it because it gradually um grinds it back and uh even take out the ‖ How many try do you did you do yesterday before this trade I nailed it on the first trade. , I think I'm also like I think maybe the sec this this one should be the second. I think I I've also 做空咗佢 on this five minute candle 破位向下 as but I got 被 stop 出 when it because it gradually grinds it back and even take out the",
+      "text": "**Session** | 觀望偏空／lean short | YouTube字幕 | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I think maybe the sec this this one should be the second. I think I I've also shorted it on uh this five minute candle breakdown as but I got stopped out uh when it because it gradually um grinds it back and uh even take out the ‖ How many try do you did you do yesterday before this trade I nailed it on the first trade. , I think I'm also like I think maybe the sec this this one should be the second. I think I I've also 做空咗佢 on this five minute candle 破位向下 as but I got 被 stop 出 when it because it gradually grinds it back and even take out the",
       "start": "0"
     },
     {
@@ -1086,7 +1086,7 @@
     },
     {
       "t": "1:03:37",
-      "text": "**SPY** | 做空／short | YouTube字幕 | I think I I took the shorts on uh on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot at the same time. So I missed the first entry and then uh we got a bounce after the this flush uh which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down. ‖ I think I I took the 空倉 on on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot 同一時間. So I missed the first entry and then we got a bounce after the this flush which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down",
+      "text": "**SPY** | 觀望／watch | YouTube字幕 | I think I I took the shorts on uh on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot at the same time. So I missed the first entry and then uh we got a bounce after the this flush uh which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down. ‖ I think I I took the 空倉 on on this bounce like this. I think I because I kind of missed the entry on this reversal. and I'm like entering two too many shot 同一時間. So I missed the first entry and then we got a bounce after the this flush which like close closes below the 50 the hourly 50 and the spy and the Russell are like breaking down",
       "start": "0"
     },
     {
@@ -1580,7 +1580,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 做空／short | YouTube字幕 | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like um I t"
+        "text": "**Session** | 觀望偏空／lean short | YouTube字幕 | How many try do you did you do yesterday before this trade I nailed it on the first trade. Um, I think I'm also like"
       },
       {
         "t": "50:02",
