@@ -192,6 +192,7 @@ _PHRASE_RAW: list[tuple[str, str]] = [
     (r"finding some resistance on semis", "semis 撞到阻力"),
     (r"a lot of rejection today", "今日好多 rejection"),
     (r"pulling back into the support area", "回測支持區"),
+    (r"above 9 and 21", "喺 9 同 21 之上"),
 ]
 
 
@@ -467,6 +468,27 @@ def _prep_en(text: str) -> str:
         flags=re.I,
     )
     s = re.sub(r"\banchor v\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(
+        r"\b(?:angel|angle|ankle)\s+(?:fill|field|view)\s+up\b",
+        "anchored VWAP",
+        s,
+        flags=re.I,
+    )
+    s = re.sub(
+        r"\bend(?:\s+of|\s+to)?(?:\s+the)?\s+(?:web|fee\s+web|view\s+up)\b",
+        "anchored VWAP",
+        s,
+        flags=re.I,
+    )
+    s = re.sub(r"\bend[\s-]+to[\s-]+(?:fee|view)\s+(?:web|up)\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\binterview up\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\bNGV(?:WAP|F)\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\bencovy wap\b|\buncovy wap\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\b9gma\b", "9 EMA", s, flags=re.I)
+    s = re.sub(r"\bopening range height\b", "opening range high", s, flags=re.I)
+    s = re.sub(r"\b(silver|quantum|semis?)\s+shots?\b", r"\1 short", s, flags=re.I)
+    s = re.sub(r"\bclose(?:ing)? the ([A-Z]{2,5})\b", r"cover \1", s)
+    s = re.sub(r"\b16-minute candle\b", "60-minute candle", s, flags=re.I)
     s = re.sub(r"\bthen field gap\b", "unfilled gap", s, flags=re.I)
     s = re.sub(r"\b21nm\b", "21 EMA", s, flags=re.I)
     s = re.sub(r"\bcofee web\b|\bcoffee web\b", "CRWV", s, flags=re.I)
@@ -537,6 +559,9 @@ _LOCKS: list[tuple[str, str]] = [
     (r"\bSMCI\b", "ZZSMCIZZ"),
     (r"\bAXTI\b", "ZZAXTIZZ"),
     (r"\bARM\b", "ZZARMZZ"),
+    (r"Western Digital", "ZZWDCZZ"),
+    (r"\bWDC\b", "ZZWDCZZ"),
+    (r"\bFIG\b", "ZZFIGZZ"),
 ]
 
 
@@ -589,13 +614,15 @@ _UNLOCK = {
     "ZZSMCIZZ": "SMCI",
     "ZZAXTIZZ": "AXTI",
     "ZZARMZZ": "ARM",
+    "ZZWDCZZ": "WDC",
+    "ZZFIGZZ": "FIG",
 }
 
 
 def _unlock_zh(zh: str) -> str:
     s = zh or ""
-    for tok, word in _UNLOCK.items():
-        s = s.replace(tok, word)
+    for tok, word in sorted(_UNLOCK.items(), key=lambda x: -len(x[0])):
+        s = re.sub(re.escape(tok), word, s, flags=re.I)
     return s
 
 
@@ -616,6 +643,24 @@ def _sanitize_zh(zh: str) -> str:
     s = s.replace("\u64fa\u52d5\u9ad8\u9ede", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09")
     s = s.replace("\u6ce2\u52d5\u9ad8\u9ede", "swing high\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09")
     s = s.replace("\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09", "\uff08\u6ce2\u6bb5\u9ad8\u4f4d\uff09")
+    s = s.replace("\u9593\u8adc", "SPY")
+    s = s.replace("\u95dc\u8adc", "SPY")
+    s = s.replace("\u534a\u6e96\u6c7a\u8cfd", "semis")
+    s = s.replace("\u534a\u6c7a\u8cfd", "semis")
+    s = re.sub(
+        r"\u95dc\u9589\s*(AXTI|ARM|SPCX|FIG|WDC|SNDK|ASTS)",
+        lambda m: "\u5e73\u6389 " + m.group(1),
+        s,
+    )
+    s = re.sub(
+        r"\u5173\u95ed\s*(AXTI|ARM|SPCX|FIG|WDC|SNDK|ASTS)",
+        lambda m: "\u5e73\u6389 " + m.group(1),
+        s,
+    )
+    s = s.replace("\u689d\u76ee", "\u5165\u5834")
+    s = s.replace("\u5047\u5192", "\u5047\u7a81\u7834")
+    s = s.replace("\u5de8\u5927\u7684\u524a\u6e1b", "\u5927 cut")
+    s = s.replace("\u5fae\u5c0f\u7684\u524a\u6e1b", "\u5c0f cut")
     return s
 
 
@@ -646,7 +691,7 @@ def _http_zh(en: str) -> str | None:
 
 
 def translate_speech_zh(text: str) -> str:
-    """Trading Cantonese of spoken English. Never Google — it turns short into 短片."""
+    """Chinese of spoken English. Lock trading jargon, then translate leftover English."""
     raw = str(text or "").strip()
     if not raw:
         return ""
@@ -660,11 +705,29 @@ def translate_speech_zh(text: str) -> str:
         s = pat.sub(lambda m, z=zh: m.expand(z) if re.search(r"\\\d", z) else z, s)
     zh_n = len(re.findall(r"[\u4e00-\u9fff]", s))
     en_words = len(re.findall(r"\b[A-Za-z]{3,}\b", s))
-    # Full-sentence phrase hits already Chinese — skip glossary rematch (swing high doubling).
-    if not ((zh_n >= 6 and en_words <= 4) or (zh_n >= 12 and zh_n >= en_words * 2)):
-        for pat, zh in _GLOSSARY:
-            s = pat.sub(zh, s)
-    s = re.sub(r"\s+", " ", s).strip(" ,")
-    s = _sanitize_zh(s)
-    _ZH_CACHE[key] = s
-    return s
+    if (zh_n >= 6 and en_words <= 4) or (zh_n >= 12 and zh_n >= en_words * 2):
+        out = _sanitize_zh(re.sub(r"\s+", " ", s).strip(" ,"))
+        _ZH_CACHE[key] = out
+        return out
+
+    def _ok(zh: str) -> bool:
+        return len(re.findall(r"[\u4e00-\u9fff]", zh or "")) >= 6
+
+    locked = _lock_en(s)
+    got = _http_zh(locked) or _http_zh(locked)
+    if got:
+        out = _sanitize_zh(_unlock_zh(got))
+        if _ok(out):
+            _ZH_CACHE[key] = out
+            return out
+    got = _http_zh(s) or _http_zh(s)
+    if got:
+        out = _sanitize_zh(got)
+        if _ok(out):
+            _ZH_CACHE[key] = out
+            return out
+    for pat, zh in _GLOSSARY:
+        s = pat.sub(zh, s)
+    out = _sanitize_zh(re.sub(r"\s+", " ", s).strip(" ,"))
+    _ZH_CACHE[key] = out
+    return out
