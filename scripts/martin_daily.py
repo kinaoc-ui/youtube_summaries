@@ -91,6 +91,17 @@ def _summary_exists(video_id: str) -> bool:
     return (SUMMARY_DIR / f"{video_id}.md").exists()
 
 
+def _win_job_flags() -> int:
+    """Survive Task Scheduler killing children when the parent .bat exits."""
+    if sys.platform != "win32":
+        return 0
+    return (
+        getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)
+        | getattr(subprocess, "DETACHED_PROCESS", 0)
+        | getattr(subprocess, "CREATE_BREAKAWAY_FROM_JOB", 0x01000000)
+    )
+
+
 def _start_job(script_name: str, video_id: str, status_dir: Path) -> None:
     status_dir.mkdir(parents=True, exist_ok=True)
     status_path = status_dir / f"{video_id}.json"
@@ -109,8 +120,47 @@ def _start_job(script_name: str, video_id: str, status_dir: Path) -> None:
         cwd=str(ROOT),
         stdout=log_f,
         stderr=subprocess.STDOUT,
-        creationflags=getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0),
+        stdin=subprocess.DEVNULL,
+        close_fds=False,
+        creationflags=_win_job_flags(),
     )
+
+
+def _wait_for_whisper_jobs(
+    video_ids: list[str],
+    *,
+    timeout_sec: int = 5400,
+    poll_sec: int = 20,
+) -> None:
+    """Block until spawned Whisper jobs finish so git push includes the summary."""
+    remaining = [vid for vid in video_ids if vid]
+    if not remaining:
+        return
+    deadline = time.time() + timeout_sec
+    _log(f"waiting up to {timeout_sec}s for {len(remaining)} whisper job(s)")
+    while remaining and time.time() < deadline:
+        nxt: list[str] = []
+        for vid in remaining:
+            job_path = WHISPER_JOB_DIR / f"{vid}.json"
+            job: dict[str, Any] = {}
+            if job_path.exists():
+                try:
+                    job = json.loads(job_path.read_text(encoding="utf-8"))
+                except json.JSONDecodeError:
+                    job = {}
+            status = str(job.get("status") or "")
+            if status == "done":
+                _log(f"  whisper {vid}: done")
+                continue
+            if status == "error":
+                _log(f"  whisper {vid}: error — {job.get('error') or 'see log'}")
+                continue
+            nxt.append(vid)
+        remaining = nxt
+        if remaining:
+            time.sleep(poll_sec)
+    if remaining:
+        _log(f"whisper still running after {timeout_sec}s: {', '.join(remaining)}")
 
 
 def _kick_asr_compare(video_id: str) -> None:
@@ -291,6 +341,12 @@ def main() -> int:
     for it in items:
         known.add(it["id"])
     state["known_ids"] = sorted(known)
+
+    pending = list(state.get("pending_whisper") or [])
+    if pending:
+        _wait_for_whisper_jobs(pending)
+        finish_pending_whisper(state)
+
     _save_state(state)
     _log(
         f"done | known={len(known)} pending_whisper={len(state.get('pending_whisper') or [])}"
