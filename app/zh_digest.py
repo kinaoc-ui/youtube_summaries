@@ -139,11 +139,13 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
     if re.search(r"gapping down|gap(?:ping)? down", low):
         bits.append("gap down")
     if re.search(r"looks? pretty strong|looks? strong", low):
-        bits.append("睇落強")
+        if not re.search(r"not .{0,20}strong", low):
+            bits.append("睇落強")
     if re.search(r"wanted to short|like to short|short entry", low):
         bits.append("想／考慮短")
     if re.search(r"relative strength|showing .{0,12}strength", low):
-        bits.append("相對強勢")
+        if not re.search(r"not .{0,24}strength", low):
+            bits.append("相對強勢")
     if wait_gap:
         bits.append("等 gap down／早市 flush 先買 dips")
     elif got_gap:
@@ -153,8 +155,11 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
     if "hourly 50" in low or "hourly fifty" in low:
         bits.append("落 hourly 50")
     if "shortable" in low or "good short" in low:
-        bits.append("或 shortable／good short")
-    if "breaking out" in low or "breakout" in low:
+        if not re.search(r"\bnot a short\b", low):
+            bits.append("或 shortable／good short")
+    if re.search(r"failed breakouts?", low):
+        bits.append("破位失敗")
+    elif "breaking out" in low or re.search(r"\bbreakouts?\b", low):
         bits.append("破位／轉強")
     if "stopped" in low:
         bits.append("之前止蝕／試多次")
@@ -177,9 +182,11 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
     if "follow through" in low or "downside" in low:
         bits.append("或跟空／向下")
     if re.search(r"really strong|still .{0,16}strong|pretty strong|some strength", low):
-        bits.append("睇落仍然強")
+        if not re.search(r"not .{0,24}(?:really |pretty )?strong", low):
+            bits.append("睇落仍然強")
     if re.search(r"little bit.{0,12}weak|getting .{0,16}weak", low):
-        bits.append("有少少弱")
+        if not re.search(r"not .{0,20}weak", low):
+            bits.append("有少少弱")
     if "not finding support" in low:
         bits.append("未搵到支持")
     if "finding" in low and "resistance" in low:
@@ -198,7 +205,8 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
         else:
             bits.append("反彈／回測")
     if "strength" in low and lab in {"cyber", "wulf", "smci", "semis"}:
-        bits.append("仍有強勢")
+        if not re.search(r"not .{0,24}strength", low):
+            bits.append("仍有強勢")
     if re.search(r"better to wait|wait for the extension", low) and not wait_gap:
         bits.append("建議再等一等先入")
     return bits
@@ -211,14 +219,42 @@ def _reason_zh(label: str, side: str, text: str, conf: str = "") -> str:
     return "；".join(bits[:3])
 
 
-def _merge_reasons(label: str, rs: list[dict[str, Any]]) -> str:
-    seen: list[str] = []
+_BULL_BITS = {"睇落仍然強", "睇落強", "破位／轉強", "相對強勢", "仍有強勢"}
+_BEAR_BITS = {"想／考慮短", "或跟空／向下", "或 shortable／good short", "收市偏弱", "問／考慮短"}
+
+
+def _lean_key(side: str) -> str:
+    sz = _side_zh(side)
+    if "偏空" in sz or _bucket(sz) == "short":
+        return "short"
+    if "偏多" in sz or _bucket(sz) == "long":
+        return "long"
+    return "watch"
+
+
+def _merge_reasons(label: str, rs: list[dict[str, Any]], pick: dict[str, Any] | None = None) -> str:
+    """Reasons must match the digest badge — do not glue 睇落強 onto a 偏空 pick."""
+    pick = pick or (rs[-1] if rs else {})
+    want = _lean_key(str(pick.get("side") or ""))
+    use: list[dict[str, Any]] = []
     for r in rs:
+        k = _lean_key(str(r.get("side") or ""))
+        if want in {"short", "long"} and k not in {want, "watch"}:
+            continue
+        use.append(r)
+    if not use:
+        use = [pick] if pick else rs
+    seen: list[str] = []
+    for r in use:
         for b in _reason_bits(label, str(r.get("side") or ""), _blob(r)):
             if b not in seen:
                 seen.append(b)
+    if want == "short":
+        seen = [b for b in seen if b not in _BULL_BITS]
+    elif want == "long":
+        seen = [b for b in seen if b not in _BEAR_BITS]
     if not seen:
-        seen = [_side_zh(str(rs[-1].get("side") or ""))]
+        seen = [_side_zh(str(pick.get("side") or ""))]
     return "；".join(seen[:4])
 
 
@@ -295,7 +331,7 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
                     pick = x
                     break
         side = _side_zh(str(pick.get("side") or ""))
-        reason = _merge_reasons(label, rs)
+        reason = _merge_reasons(label, rs, pick)
         arc = _side_arc(rs)
         if arc and label.lower() in {"semis", "software", "cyber"}:
             reason = f"{arc}；{reason}" if reason else arc

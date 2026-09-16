@@ -13,7 +13,7 @@
 - **實際操作｜Semis** [08:10](https://www.youtube.com/watch?v=qAbZe_GD42w&t=490s) — 之前止蝕離場（觀望／watch）
 - **觀望／watch｜ONDS** [57:31](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3451s) — 觀望
 - **觀望／watch｜Semis** [08:10](https://www.youtube.com/watch?v=qAbZe_GD42w&t=490s) — 之前止蝕／試多次
-- **觀望偏空／lean short｜SPY** [10:36](https://www.youtube.com/watch?v=qAbZe_GD42w&t=636s) — 觀望偏多
+- **觀望偏空／lean short｜SPY** [10:36](https://www.youtube.com/watch?v=qAbZe_GD42w&t=636s) — 觀望偏空
 - **觀望／watch｜Software** [23:29](https://www.youtube.com/watch?v=qAbZe_GD42w&t=1409s) — 觀望
 - **觀望／watch｜Cyber** [23:33](https://www.youtube.com/watch?v=qAbZe_GD42w&t=1413s) — 仍有強勢
 - **觀望偏多／lean long｜SMTC** [45:27](https://www.youtube.com/watch?v=qAbZe_GD42w&t=2727s) — 睇落仍然強；睇落強；破位／轉強

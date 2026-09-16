@@ -92,9 +92,10 @@ SIDE_TRIM = re.compile(
 )
 
 
-def _watch_lean(blob: str) -> str:
+def _watch_lean(blob: str, ticker: str | None = None) -> str:
     """Not in a trade, but chart talk still has a long/short bias."""
     b = blob or ""
+    tick = (ticker or "").upper()
     if re.search(
         r"wanted to short|like to short|would also like to short|short entry|"
         r"more aggressive short|good (?:position|spot) to short|"
@@ -113,13 +114,45 @@ def _watch_lean(blob: str) -> str:
         re.search(r"attempts? to (?:push|go) lower", b, re.I)
         and re.search(r"\bfailed\b", b, re.I)
     )
-    # "when the stock is weak we will see rejection … but SMTC is holding"
     scored = re.sub(
         r"when the stock is weak.{0,360}?\bbut\b",
         " but ",
         b,
         flags=re.I | re.S,
     )
+    scored = re.sub(
+        r"\bnot (?:getting |seeing |a )?(?:much )?(?:sign of )?weakness\b",
+        " ",
+        scored,
+        flags=re.I,
+    )
+    scored = re.sub(r"\bno (?:sign of )?weakness\b", " ", scored, flags=re.I)
+    scored = re.sub(r"\bnot a short\b", " ", scored, flags=re.I)
+    scored = re.sub(
+        r"\bnot .{0,28}interested in (?:the )?short",
+        " ",
+        scored,
+        flags=re.I,
+    )
+    scored = re.sub(
+        r"\bwe will see (?:a fade|some rejection|some resistance)(?:(?:,| and we will see)[^,]{0,40})*",
+        " ",
+        scored,
+        flags=re.I,
+    )
+    parts = re.split(r"\bbut\b", scored, flags=re.I)
+    if len(parts) >= 2:
+        tail = parts[-1]
+        if re.search(
+            r"holding|breakouts?|strength|strong|failed",
+            tail,
+            re.I,
+        ) and not re.search(
+            r"\bshorting\b|\bshorted\b|shortable|rejected|weakness",
+            tail,
+            re.I,
+        ):
+            scored = tail
     bear = bool(
         re.search(
             r"closing weak|closed? (?:fairly )?weak|getting rejected|rejected at|"
@@ -152,6 +185,22 @@ def _watch_lean(blob: str) -> str:
     )
     if failed_push:
         bull = True
+    tick = (ticker or "").upper()
+    names = {
+        "SOFTWARE": r"softwares?",
+        "SEMIS": r"semis?",
+        "CYBER": r"cyber(?:security)?",
+    }
+    pat = names.get(tick)
+    if pat:
+        own_str = bool(re.search(rf"strength (?:in|among) (?:the )?{pat}", b, re.I))
+        own_wk = bool(re.search(rf"weakness in (?:the )?{pat}", b, re.I))
+        other_str = bool(re.search(r"strength (?:in|among)", b, re.I)) and not own_str
+        other_wk = bool(re.search(r"weakness in", b, re.I)) and not own_wk
+        if own_str and other_wk:
+            return "Watch／偏多"
+        if own_wk and other_str:
+            return "Watch／偏空"
     if bear and not bull:
         return "Watch／偏空"
     if bull and not bear:
@@ -223,9 +272,9 @@ def _infer_side(blob: str, ticker: str | None = None) -> str:
                 b,
                 re.I,
             ):
-                return _watch_lean(b)
+                return _watch_lean(b, tick)
         else:
-            return _watch_lean(b)
+            return _watch_lean(b, tick)
     # SMTC reclaim — don't give Long to CRWV just because same sentence
     if tick == "SMTC" and re.search(r"reclaiming", b, re.I):
         if re.search(r"not consider buying|probably not consider buying", b, re.I):
@@ -251,8 +300,8 @@ def _infer_side(blob: str, ticker: str | None = None) -> str:
         elif not re.search(r"re-?enter", b, re.I) or tick in {"FTNT", "PANW", ""}:
             return "Long"
     if re.search(r"stopp(?:ed|ing)\s+me\s+out|got stopped", b, re.I):
-        return _watch_lean(b)
-    return _watch_lean(b)
+        return _watch_lean(b, tick)
+    return _watch_lean(b, tick)
 
 
 def _window(snippets: list[dict[str, Any]], center: float, before: float = 40.0, after: float = 90.0) -> str:
@@ -606,8 +655,27 @@ def _new_hit(
         elif wide.startswith("Short") and quote_has_short:
             side = wide
         elif wide.startswith("Watch"):
-            side = wide
-        # else keep Watch — reject foreign shortable pollution
+            quote_bull = bool(
+                re.search(
+                    r"breakouts?|really strong|pretty strong|holding near|"
+                    r"sign of strength|not .{0,24}weakness|attempts? to (?:push|go) lower.{0,40}failed",
+                    quote,
+                    re.I,
+                )
+            )
+            quote_bear = bool(
+                re.search(
+                    r"\bshorting\b|\bshorted\b|shortable|follow through to the downside",
+                    quote,
+                    re.I,
+                )
+            )
+            if "偏空" in wide and quote_bull and not quote_bear:
+                side = _watch_lean(quote, tick)
+            elif "偏多" in wide and quote_bear and not quote_bull:
+                side = _watch_lean(quote, tick)
+            else:
+                side = wide
     # #region agent log
     try:
         from pathlib import Path

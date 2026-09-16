@@ -5,12 +5,12 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 觀望偏空：Semis；做多：Software。",
+      "text": "今日總覽 — 觀望偏空：Semis、WDC、SPY、IGV、HPQ；做多：Software。",
       "start": "0"
     },
     {
       "t": "06:54",
-      "text": "做多／long｜Software — 觀望→偏多→觀望；gap down；software gap 填缺口可關注",
+      "text": "做多／long｜Software — 觀望→偏多→觀望；偏多／長",
       "start": "0"
     },
     {
@@ -20,17 +20,17 @@
     },
     {
       "t": "1:11:21",
-      "text": "觀望／watch｜WDC — 觀望",
+      "text": "觀望偏空／lean short｜WDC — 觀望偏空",
       "start": "0"
     },
     {
       "t": "1:12:00",
-      "text": "觀望／watch｜SPY — 觀望",
+      "text": "觀望偏空／lean short｜SPY — 觀望偏空",
       "start": "0"
     },
     {
       "t": "1:20:46",
-      "text": "觀望／watch｜IGV — 相對強勢；睇落仍然強",
+      "text": "觀望偏空／lean short｜IGV — 觀望偏空",
       "start": "0"
     },
     {
@@ -50,24 +50,29 @@
     },
     {
       "t": "1:42:19",
-      "text": "觀望／watch｜HPQ — 觀望",
+      "text": "觀望偏空／lean short｜HPQ — 觀望偏空",
       "start": "0"
     }
   ],
   "bullets_en": [
     {
       "t": "03:47",
-      "text": "**Software** | 觀望偏空／lean short | dual ASR | Most of them are the softwares and I'm looking for the pullback bar on this gap down there.",
+      "text": "**Software** | 觀望偏空／lean short | dual ASR | Got some names on the watchlist today. Most of them are the softwares and I'm looking for the pullback bar on this gap down there.",
       "start": "0"
     },
     {
       "t": "05:30",
-      "text": "**Semis** | 觀望／watch | dual ASR | And Semic may or may not find certain support on the resistance support level.",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | And Semic may or may not find certain support on the resistance support level.",
       "start": "0"
     },
     {
       "t": "06:54",
       "text": "**Software** | 做多／long | dual ASR | to me today I think would be a pretty good like it is it will not be a short a day for the shorts but yeah I'm going to look for the longs on the the stronger sector which is the software I may I may",
+      "start": "0"
+    },
+    {
+      "t": "07:17",
+      "text": "**Mute gap** | — | mic muted / no speech | 07:17–59:22 約 52 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
       "start": "0"
     },
     {
@@ -77,27 +82,27 @@
     },
     {
       "t": "1:09:19",
-      "text": "**Software** | 觀望／watch | dual ASR | So the one major theme that I'm watching for is the software.",
-      "start": "0"
-    },
-    {
-      "t": "1:11:03",
-      "text": "**Semis** | 觀望／watch | dual ASR | The semis is getting into the previous gap area, although now it is well below it, and...",
+      "text": "**Software** | 觀望偏空／lean short | dual ASR | they are hanging around the 9 EMA and also the the end can feel up from this gap up pretty well and there are also lots of other other stuff like maybe the bow tags maybe the",
       "start": "0"
     },
     {
       "t": "1:11:21",
-      "text": "**WDC** | 觀望／watch | WhisperX | At the same time, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA.",
+      "text": "**WDC** | 觀望偏空／lean short | WhisperX | At the same time, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. The stronger names like Mavel is sitting at the 50 EMA.",
       "start": "0"
     },
     {
       "t": "1:12:00",
-      "text": "**SPY** | 觀望／watch | dual ASR | And apart from that, like SPY and IWM is like after 21 year may also near the",
+      "text": "**SPY** | 觀望偏空／lean short | dual ASR | And apart from that, like SPY and IWM is like after 21 year may also near the",
+      "start": "0"
+    },
+    {
+      "t": "1:12:21",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | And to me, as I'm focusing on the non-semi-sector, and I think those stocks are doing fine, that's why I treat this weakness as the potential entry opportunities.",
       "start": "0"
     },
     {
       "t": "1:20:46",
-      "text": "**IGV** | 觀望／watch | dual ASR | I feel like the market conditions were fairly similar with semi-witness and IGV showing some strength.",
+      "text": "**IGV** | 觀望偏空／lean short | dual ASR | I feel like the market conditions were fairly similar with semi-witness and IGV showing some strength.",
       "start": "0"
     },
     {
@@ -117,34 +122,39 @@
     },
     {
       "t": "1:29:29",
-      "text": "**RGTI** | 觀望／watch | dual ASR | And like RGTI is a little bit stronger than",
+      "text": "**RGTI** | 觀望／watch | dual ASR | And like RGTI is a little bit stronger than the R and Q and QBTS.",
       "start": "0"
     },
     {
       "t": "1:29:35",
-      "text": "**QBTS** | 觀望／watch | dual ASR | the R and Q and QBTS.",
+      "text": "**QBTS** | 觀望／watch | dual ASR | And like RGTI is a little bit stronger than the R and Q and QBTS.",
       "start": "0"
     },
     {
       "t": "1:42:19",
-      "text": "**HPQ** | 觀望／watch | dual ASR | HPQ bought on 12th of August.",
+      "text": "**HPQ** | 觀望偏空／lean short | dual ASR | HPQ bought on 12th of August.",
       "start": "0"
     }
   ],
   "bullets_zh": [
     {
       "t": "03:47",
-      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | Most of them are the softwares and I'm looking for the pullback bar on this gap down there. ‖ Most of them are the softwares and I'm looking for the 回調 bar on this gap down there",
+      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | Got some names on the watchlist today. Most of them are the softwares and I'm looking for the pullback bar on this gap down there. ‖ Got some names on the watchlist today. Most of them are the softwares and I'm looking for the 回調 bar on this gap down there",
       "start": "0"
     },
     {
       "t": "05:30",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | And Semic may or may not find certain support on the resistance support level. ‖ And Semic may or may not find certain support on the resistance support level",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And Semic may or may not find certain support on the resistance support level. ‖ And Semic may or may not find certain support on the resistance support level",
       "start": "0"
     },
     {
       "t": "06:54",
       "text": "**Software** | 做多／long | 雙ASR確認 | to me today I think would be a pretty good like it is it will not be a short a day for the shorts but yeah I'm going to look for the longs on the the stronger sector which is the software I may I may ‖ to me today I think would be a pretty good like it is it will not be a 空倉 a day for the 空倉 but I'm going to look for the 多倉 on the stronger sector which is the software I may I may",
+      "start": "0"
+    },
+    {
+      "t": "07:17",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 07:17–59:22 約 52 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
       "start": "0"
     },
     {
@@ -154,27 +164,27 @@
     },
     {
       "t": "1:09:19",
-      "text": "**Software** | 觀望／watch | 雙ASR確認 | So the one major theme that I'm watching for is the software. ‖ So the one major theme that I'm watching for is the software",
-      "start": "0"
-    },
-    {
-      "t": "1:11:03",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | The semis is getting into the previous gap area, although now it is well below it, and... ‖ The semis is getting into the previous gap area, although now it is well below it, and",
+      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | they are hanging around the 9 EMA and also the the end can feel up from this gap up pretty well and there are also lots of other other stuff like maybe the bow tags maybe the ‖ they are hanging around the 9 EMA and also the end can feel up from this gap up pretty well and there are also lots of other other stuff like maybe the bow tags maybe the",
       "start": "0"
     },
     {
       "t": "1:11:21",
-      "text": "**WDC** | 觀望／watch | WhisperX | At the same time, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. ‖ 同一時間, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA",
+      "text": "**WDC** | 觀望偏空／lean short | WhisperX | At the same time, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. The stronger names like Mavel is sitting at the 50 EMA. ‖ 同一時間, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. The stronger names like Mavel is sitting at the 50 EMA",
       "start": "0"
     },
     {
       "t": "1:12:00",
-      "text": "**SPY** | 觀望／watch | 雙ASR確認 | And apart from that, like SPY and IWM is like after 21 year may also near the ‖ And apart from that, like SPY and IWM is like after 21 year may also near the",
+      "text": "**SPY** | 觀望偏空／lean short | 雙ASR確認 | And apart from that, like SPY and IWM is like after 21 year may also near the ‖ And apart from that, like SPY and IWM is like after 21 year may also near the",
+      "start": "0"
+    },
+    {
+      "t": "1:12:21",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And to me, as I'm focusing on the non-semi-sector, and I think those stocks are doing fine, that's why I treat this weakness as the potential entry opportunities. ‖ And to me, as I'm focusing on the non-semi-sector, and I think those stocks are doing fine, that's why I treat this 弱勢 as the potential entry opportunities",
       "start": "0"
     },
     {
       "t": "1:20:46",
-      "text": "**IGV** | 觀望／watch | 雙ASR確認 | I feel like the market conditions were fairly similar with semi-witness and IGV showing some strength. ‖ I feel like the market conditions were fairly similar with semi-witness and IGV showing some 強勢",
+      "text": "**IGV** | 觀望偏空／lean short | 雙ASR確認 | I feel like the market conditions were fairly similar with semi-witness and IGV showing some strength. ‖ I feel like the market conditions were fairly similar with semi-witness and IGV showing some 強勢",
       "start": "0"
     },
     {
@@ -194,34 +204,39 @@
     },
     {
       "t": "1:29:29",
-      "text": "**RGTI** | 觀望／watch | 雙ASR確認 | And like RGTI is a little bit stronger than ‖ And like RGTI is a little bit stronger than",
+      "text": "**RGTI** | 觀望／watch | 雙ASR確認 | And like RGTI is a little bit stronger than the R and Q and QBTS. ‖ And like RGTI is a little bit stronger than the R and Q and QBTS",
       "start": "0"
     },
     {
       "t": "1:29:35",
-      "text": "**QBTS** | 觀望／watch | 雙ASR確認 | the R and Q and QBTS. ‖ the R and Q and QBTS",
+      "text": "**QBTS** | 觀望／watch | 雙ASR確認 | And like RGTI is a little bit stronger than the R and Q and QBTS. ‖ And like RGTI is a little bit stronger than the R and Q and QBTS",
       "start": "0"
     },
     {
       "t": "1:42:19",
-      "text": "**HPQ** | 觀望／watch | 雙ASR確認 | HPQ bought on 12th of August. ‖ HPQ bought on 12th of August",
+      "text": "**HPQ** | 觀望偏空／lean short | 雙ASR確認 | HPQ bought on 12th of August. ‖ HPQ bought on 12th of August",
       "start": "0"
     }
   ],
   "bullets": [
     {
       "t": "03:47",
-      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | Most of them are the softwares and I'm looking for the pullback bar on this gap down there. ‖ Most of them are the softwares and I'm looking for the 回調 bar on this gap down there",
+      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | Got some names on the watchlist today. Most of them are the softwares and I'm looking for the pullback bar on this gap down there. ‖ Got some names on the watchlist today. Most of them are the softwares and I'm looking for the 回調 bar on this gap down there",
       "start": "0"
     },
     {
       "t": "05:30",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | And Semic may or may not find certain support on the resistance support level. ‖ And Semic may or may not find certain support on the resistance support level",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And Semic may or may not find certain support on the resistance support level. ‖ And Semic may or may not find certain support on the resistance support level",
       "start": "0"
     },
     {
       "t": "06:54",
       "text": "**Software** | 做多／long | 雙ASR確認 | to me today I think would be a pretty good like it is it will not be a short a day for the shorts but yeah I'm going to look for the longs on the the stronger sector which is the software I may I may ‖ to me today I think would be a pretty good like it is it will not be a 空倉 a day for the 空倉 but I'm going to look for the 多倉 on the stronger sector which is the software I may I may",
+      "start": "0"
+    },
+    {
+      "t": "07:17",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 07:17–59:22 約 52 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
       "start": "0"
     },
     {
@@ -231,27 +246,27 @@
     },
     {
       "t": "1:09:19",
-      "text": "**Software** | 觀望／watch | 雙ASR確認 | So the one major theme that I'm watching for is the software. ‖ So the one major theme that I'm watching for is the software",
-      "start": "0"
-    },
-    {
-      "t": "1:11:03",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | The semis is getting into the previous gap area, although now it is well below it, and... ‖ The semis is getting into the previous gap area, although now it is well below it, and",
+      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | they are hanging around the 9 EMA and also the the end can feel up from this gap up pretty well and there are also lots of other other stuff like maybe the bow tags maybe the ‖ they are hanging around the 9 EMA and also the end can feel up from this gap up pretty well and there are also lots of other other stuff like maybe the bow tags maybe the",
       "start": "0"
     },
     {
       "t": "1:11:21",
-      "text": "**WDC** | 觀望／watch | WhisperX | At the same time, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. ‖ 同一時間, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA",
+      "text": "**WDC** | 觀望偏空／lean short | WhisperX | At the same time, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. The stronger names like Mavel is sitting at the 50 EMA. ‖ 同一時間, like a lot of the stocks individual names are like the weaker names like this Western digital is coming into the 150 EMA. The stronger names like Mavel is sitting at the 50 EMA",
       "start": "0"
     },
     {
       "t": "1:12:00",
-      "text": "**SPY** | 觀望／watch | 雙ASR確認 | And apart from that, like SPY and IWM is like after 21 year may also near the ‖ And apart from that, like SPY and IWM is like after 21 year may also near the",
+      "text": "**SPY** | 觀望偏空／lean short | 雙ASR確認 | And apart from that, like SPY and IWM is like after 21 year may also near the ‖ And apart from that, like SPY and IWM is like after 21 year may also near the",
+      "start": "0"
+    },
+    {
+      "t": "1:12:21",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And to me, as I'm focusing on the non-semi-sector, and I think those stocks are doing fine, that's why I treat this weakness as the potential entry opportunities. ‖ And to me, as I'm focusing on the non-semi-sector, and I think those stocks are doing fine, that's why I treat this 弱勢 as the potential entry opportunities",
       "start": "0"
     },
     {
       "t": "1:20:46",
-      "text": "**IGV** | 觀望／watch | 雙ASR確認 | I feel like the market conditions were fairly similar with semi-witness and IGV showing some strength. ‖ I feel like the market conditions were fairly similar with semi-witness and IGV showing some 強勢",
+      "text": "**IGV** | 觀望偏空／lean short | 雙ASR確認 | I feel like the market conditions were fairly similar with semi-witness and IGV showing some strength. ‖ I feel like the market conditions were fairly similar with semi-witness and IGV showing some 強勢",
       "start": "0"
     },
     {
@@ -271,17 +286,17 @@
     },
     {
       "t": "1:29:29",
-      "text": "**RGTI** | 觀望／watch | 雙ASR確認 | And like RGTI is a little bit stronger than ‖ And like RGTI is a little bit stronger than",
+      "text": "**RGTI** | 觀望／watch | 雙ASR確認 | And like RGTI is a little bit stronger than the R and Q and QBTS. ‖ And like RGTI is a little bit stronger than the R and Q and QBTS",
       "start": "0"
     },
     {
       "t": "1:29:35",
-      "text": "**QBTS** | 觀望／watch | 雙ASR確認 | the R and Q and QBTS. ‖ the R and Q and QBTS",
+      "text": "**QBTS** | 觀望／watch | 雙ASR確認 | And like RGTI is a little bit stronger than the R and Q and QBTS. ‖ And like RGTI is a little bit stronger than the R and Q and QBTS",
       "start": "0"
     },
     {
       "t": "1:42:19",
-      "text": "**HPQ** | 觀望／watch | 雙ASR確認 | HPQ bought on 12th of August. ‖ HPQ bought on 12th of August",
+      "text": "**HPQ** | 觀望偏空／lean short | 雙ASR確認 | HPQ bought on 12th of August. ‖ HPQ bought on 12th of August",
       "start": "0"
     }
   ],
@@ -289,5 +304,6 @@
     "suspect_count": 0,
     "ok_count": 8,
     "suspects": []
-  }
+  },
+  "provider": "auto-summary"
 }

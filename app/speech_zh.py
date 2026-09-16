@@ -681,7 +681,7 @@ def _http_zh(en: str) -> str | None:
             "https://translate.googleapis.com/translate_a/single?" + qs,
             headers={"User-Agent": "Mozilla/5.0"},
         )
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=6) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         parts = [x[0] for x in (data[0] or []) if x and x[0]]
         out = "".join(parts).strip()
@@ -714,13 +714,13 @@ def translate_speech_zh(text: str) -> str:
         return len(re.findall(r"[\u4e00-\u9fff]", zh or "")) >= 6
 
     locked = _lock_en(s)
-    got = _http_zh(locked) or _http_zh(locked)
+    got = _http_zh(locked)
     if got:
         out = _sanitize_zh(_unlock_zh(got))
         if _ok(out):
             _ZH_CACHE[key] = out
             return out
-    got = _http_zh(s) or _http_zh(s)
+    got = _http_zh(s)
     if got:
         out = _sanitize_zh(got)
         if _ok(out):
