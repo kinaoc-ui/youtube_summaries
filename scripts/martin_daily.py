@@ -351,6 +351,14 @@ def main() -> int:
     _log(
         f"done | known={len(known)} pending_whisper={len(state.get('pending_whisper') or [])}"
     )
+    from app.side_audit import scan_outputs_gate
+
+    hits = scan_outputs_gate()
+    if hits:
+        _log(f"SIDE GATE FAIL {len(hits)} — fix digest before push")
+        for h in hits[:15]:
+            _log(f"  {h}")
+        return 1
     return 0
 
 

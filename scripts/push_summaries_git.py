@@ -25,6 +25,30 @@ def _git(args: list[str], check: bool = False) -> subprocess.CompletedProcess[st
 
 def main() -> int:
     msg = sys.argv[1] if len(sys.argv) > 1 else "Update Martin Luk summaries"
+    tests = subprocess.run(
+        [sys.executable, "-m", "unittest", "tests.test_side_consistency", "-q"],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    if tests.returncode != 0:
+        print("[ERROR] side consistency tests failed — not pushing")
+        print(tests.stderr or tests.stdout)
+        return 1
+    gate = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "audit_sides.py")],
+        cwd=str(ROOT),
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    print(gate.stdout or "")
+    if gate.returncode != 0:
+        print(gate.stderr or "")
+        return 1
     add = _git(["add", "-A"])
     if add.returncode != 0:
         print("[ERROR] git add failed")

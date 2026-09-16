@@ -335,6 +335,12 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
         arc = _side_arc(rs)
         if arc and label.lower() in {"semis", "software", "cyber"}:
             reason = f"{arc}；{reason}" if reason else arc
+        if "偏空" in side or _bucket(side) == "short":
+            bits = [b for b in reason.split("；") if b and b not in _BULL_BITS]
+            reason = "；".join(bits) or _side_zh(side)
+        elif "偏多" in side or _bucket(side) == "long":
+            bits = [b for b in reason.split("；") if b and b not in _BEAR_BITS]
+            reason = "；".join(bits) or _side_zh(side)
 
         tags = _actions_for_label(label, rs, rows)
         if label.lower() == "software":
