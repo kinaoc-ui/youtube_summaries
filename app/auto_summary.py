@@ -108,6 +108,18 @@ def _watch_lean(blob: str) -> str:
         r"lower|reject|goes down", b, re.I
     ):
         return "Watch／偏多"
+    # Failed breakdown + breakout is strength, not a short.
+    failed_push = bool(
+        re.search(r"attempts? to (?:push|go) lower", b, re.I)
+        and re.search(r"\bfailed\b", b, re.I)
+    )
+    # "when the stock is weak we will see rejection … but SMTC is holding"
+    scored = re.sub(
+        r"when the stock is weak.{0,360}?\bbut\b",
+        " but ",
+        b,
+        flags=re.I | re.S,
+    )
     bear = bool(
         re.search(
             r"closing weak|closed? (?:fairly )?weak|getting rejected|rejected at|"
@@ -119,22 +131,27 @@ def _watch_lean(blob: str) -> str:
             r"(?:a )?little bit(?: little bit)? weak|getting .{0,20}weak|"
             r"goes lower|going lower|follow through to the downside|"
             r"pulling back",
-            b,
+            scored,
             re.I,
         )
     )
+    if failed_push:
+        bear = False
     bull = bool(
         re.search(
             r"looks? (?:pretty |really |still )?(?:pretty |really )?strong|"
             r"still .{0,20}(?:really )?strong|really strong|pretty strong|"
             r"found (?:some )?strength|some strength in|"
             r"relative strength|showing (?:good |relative )?strength|pushing into|"
-            r"breaking out|stick into the|find .{0,24}strength|"
+            r"breaking out|\bbreakouts?\b|stick into the|find .{0,24}strength|"
+            r"sign of strength|holding near|"
             r"doing pretty well|bouncing (?:higher|back)|optimistic",
-            b,
+            scored,
             re.I,
         )
     )
+    if failed_push:
+        bull = True
     if bear and not bull:
         return "Watch／偏空"
     if bull and not bear:
