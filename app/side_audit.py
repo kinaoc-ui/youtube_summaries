@@ -7,8 +7,15 @@ from pathlib import Path
 
 from .config import OUTPUT_DIR, SUMMARY_DIR, ROOT
 
-_BULL_REASON = re.compile(r"睇落.*強|破位／轉強|相對強勢|仍有強勢")
+_BULL_REASON = re.compile(
+    r"睇落.*強|破位／轉強|相對強勢|仍有強勢|有機會／未跟到|反彈|企穩"
+)
 _SHORT_BADGE = re.compile(r"偏空|做空／short")
+_PLAIN_WATCH = re.compile(r"觀望／watch")
+_DIR_REASON = re.compile(
+    r"睇落.*強|破位／轉強|相對強勢|仍有強勢|有機會／未跟到|反彈|企穩|"
+    r"被 reject|跟空|shortable|想／考慮短|收市偏弱|問／考慮短|有少少弱"
+)
 
 
 def _digest_section(md: str) -> str:
@@ -38,6 +45,13 @@ def digest_contradictions(md: str, video_id: str = "") -> list[str]:
             continue
         badge, reason = re.split(r"\s+[—–-]\s+", line, maxsplit=1)
         if _SHORT_BADGE.search(badge) and _BULL_REASON.search(reason):
+            hits.append(f"{video_id} {line}".strip())
+        elif (
+            _PLAIN_WATCH.search(badge)
+            and "偏" not in badge
+            and _DIR_REASON.search(reason)
+            and reason.strip() not in {"觀望", "觀望／watch"}
+        ):
             hits.append(f"{video_id} {line}".strip())
     return hits
 

@@ -5,7 +5,7 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 做空：SNDK；觀望偏空：SPY、RDDT。",
+      "text": "今日總覽 — 做空：SNDK；觀望偏空：SPY、MU、TSLA、QQQ、SPCX、RDDT。",
       "start": "0"
     },
     {
@@ -20,32 +20,32 @@
     },
     {
       "t": "11:43",
-      "text": "做空／short｜SNDK — 反彈／回測；短倉唔敢太進取",
+      "text": "做空／short｜SNDK — 短倉唔敢太進取",
       "start": "0"
     },
     {
       "t": "41:43",
-      "text": "觀望偏空／lean short｜SPY — 反彈／回測；撞阻力",
+      "text": "觀望偏空／lean short｜SPY — 撞阻力",
       "start": "0"
     },
     {
       "t": "12:27",
-      "text": "觀望／watch｜MU — 被 reject；破位／轉強",
+      "text": "觀望偏空／lean short｜MU — 被 reject",
       "start": "0"
     },
     {
       "t": "1:41:48",
-      "text": "觀望／watch｜TSLA — 之前止蝕／試多次；或跟空／向下",
+      "text": "觀望偏空／lean short｜TSLA — 之前止蝕／試多次；或跟空／向下",
       "start": "0"
     },
     {
       "t": "1:28:33",
-      "text": "觀望／watch｜QQQ — 觀望",
+      "text": "觀望偏空／lean short｜QQQ — 觀望偏空",
       "start": "0"
     },
     {
       "t": "55:53",
-      "text": "觀望／watch｜SPCX — 或跟空／向下",
+      "text": "觀望偏空／lean short｜SPCX — 或跟空／向下",
       "start": "0"
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "t": "05:58",
-      "text": "**SNDK** | 觀望／watch | YouTube CC + dual ASR | Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today. So I Yeah. And then I I prepared for both sides if we if we're going to see a and I think I'm going to short um D RM and SNDK today probably. And if we're seeing some dump uh in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness",
+      "text": "**SNDK** | 觀望偏多／lean long | YouTube CC + dual ASR | Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today. So I Yeah. And then I I prepared for both sides if we if we're going to see a and I think I'm going to short um D RM and SNDK today probably. And if we're seeing some dump uh in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness",
       "start": "0"
     },
     {
@@ -102,7 +102,7 @@
     },
     {
       "t": "12:27",
-      "text": "**MU** | 觀望／watch | YouTube CC + dual ASR | actually it it maybe it should be a short a great short entries. And I think MU is the really good examples. Looks um getting a breakout into previous day high and then just getting rejected and closed below all the anchor VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the weakness and I'm going to stay I'm going to focus on the the short side",
+      "text": "**MU** | 觀望偏空／lean short | YouTube CC + dual ASR | actually it it maybe it should be a short a great short entries. And I think MU is the really good examples. Looks um getting a breakout into previous day high and then just getting rejected and closed below all the anchor VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the weakness and I'm going to stay I'm going to focus on the the short side",
       "start": "0"
     },
     {
@@ -217,7 +217,7 @@
     },
     {
       "t": "55:53",
-      "text": "**SPCX** | 觀望／watch | YouTube CC + dual ASR | And finally the breakdown on SpaceX (SPCX) (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some follow through from the highs. Hopefully we can close the week um the week weak",
+      "text": "**SPCX** | 觀望偏空／lean short | YouTube CC + dual ASR | And finally the breakdown on SpaceX (SPCX) (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some follow through from the highs. Hopefully we can close the week um the week weak",
       "start": "0"
     },
     {
@@ -287,7 +287,7 @@
     },
     {
       "t": "1:28:33",
-      "text": "**QQQ** | 觀望／watch | YouTube CC + dual ASR | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe. Yeah I think this bar counts as the uh breakdown from the previous five minute candle too.",
+      "text": "**QQQ** | 觀望偏空／lean short | YouTube CC + dual ASR | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe. Yeah I think this bar counts as the uh breakdown from the previous five minute candle too.",
       "start": "0"
     },
     {
@@ -419,12 +419,12 @@
   "bullets_zh": [
     {
       "t": "03:50",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Hello everyone. Good morning, good afternoon and good ‖ Hello everyone. Good morning, good afternoon and good",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Hello everyone. Good morning, good afternoon and good ‖ 大家好。早安，下午好，大家好",
       "start": "0"
     },
     {
       "t": "05:58",
-      "text": "**SNDK** | 觀望／watch | YouTube字幕＋雙ASR核對 | Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today. So I Yeah. And then I I prepared for both sides if we if we're going to see a and I think I'm going to short um D RM and SNDK today probably. And if we're seeing some dump uh in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness ‖ today my my plan was to like cover some into 弱勢. It looks like the market is bouncing back slightly today. So I . And then I I prepared for both sides if we if we're going to see a and 我今日會短 D RM and SNDK today probably. And if we're seeing some dump in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness",
+      "text": "**SNDK** | 觀望偏多／lean long | YouTube字幕＋雙ASR核對 | Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today. So I Yeah. And then I I prepared for both sides if we if we're going to see a and I think I'm going to short um D RM and SNDK today probably. And if we're seeing some dump uh in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness ‖ today my my plan was to like cover some into 弱勢. It looks like the market is bouncing back slightly today. So I . And then I I prepared for both sides if we if we're going to see a and 我今日會短 D RM and SNDK today probably. And if we're seeing some dump in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness",
       "start": "0"
     },
     {
@@ -434,7 +434,7 @@
     },
     {
       "t": "07:14",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | is getting a little bit extended to the downside. But but it's still far from being like super oversold. Like we got a wide pairing with a gap down that we saw like in late July like down 15% in four So I would I think we we are like getting a pretty solid um downtrend without getting ‖ is getting a little bit extended to the downside. But but it's still far from being like super oversold. Like we got a wide pairing with a gap down that we saw like in late July like down 15% in four So I would I think we we are like getting a pretty solid downtrend without getting",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | is getting a little bit extended to the downside. But but it's still far from being like super oversold. Like we got a wide pairing with a gap down that we saw like in late July like down 15% in four So I would I think we we are like getting a pretty solid um downtrend without getting ‖ 正在向下行方向延伸一點。但距離超級超賣還很遠。就像我們在 7 月下旬看到的那樣，我們有一個廣泛的配對，但有一個向下的差距，例如在四天內下跌了 15％，所以我認為我們就像得到了一個相當穩固的下降趨勢，但沒有得到",
       "start": "0"
     },
     {
@@ -449,12 +449,12 @@
     },
     {
       "t": "09:27",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I don't know. But like Q is still like slightly below the 50 EMA. So we still need to see how the market is going to react. ‖ I don't know. But like Q is still like slightly below the 50 EMA. So we still need to see how the market is going to react",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I don't know. But like Q is still like slightly below the 50 EMA. So we still need to see how the market is going to react. ‖ 我不知道。但像Q還是像略低於50的EMA。所以我們還需要看看市場會如何反應",
       "start": "0"
     },
     {
       "t": "09:58",
-      "text": "**SPY** | 觀望／watch | YouTube字幕＋雙ASR核對 | SPY and IWM is bouncing into the hourly Q is still uh opening red. Seems like ‖ SPY and IWM is bouncing into the hourly Q is still opening red. Seems like",
+      "text": "**SPY** | 觀望／watch | YouTube字幕＋雙ASR核對 | SPY and IWM is bouncing into the hourly Q is still uh opening red. Seems like ‖ SPY 和 IWM 正在反彈進入每小時 Q 仍然開紅。看起來像",
       "start": "0"
     },
     {
@@ -464,12 +464,12 @@
     },
     {
       "t": "12:27",
-      "text": "**MU** | 觀望／watch | YouTube字幕＋雙ASR核對 | actually it it maybe it should be a short a great short entries. And I think MU is the really good examples. Looks um getting a breakout into previous day high and then just getting rejected and closed below all the anchor VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the weakness and I'm going to stay I'm going to focus on the the short side ‖ actually it it maybe it should be a 空倉 a great 空倉 entries. And I think MU is the really good examples. Looks getting a 破位 into previous day high and then just 被 reject and closed below all the anchored VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the 弱勢 and I'm going to stay I'm going to focus on the 空倉 side",
+      "text": "**MU** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | actually it it maybe it should be a short a great short entries. And I think MU is the really good examples. Looks um getting a breakout into previous day high and then just getting rejected and closed below all the anchor VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the weakness and I'm going to stay I'm going to focus on the the short side ‖ actually it it maybe it should be a 空倉 a great 空倉 entries. And I think MU is the really good examples. Looks getting a 破位 into previous day high and then just 被 reject and closed below all the anchored VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the 弱勢 and I'm going to stay I'm going to focus on the 空倉 side",
       "start": "0"
     },
     {
       "t": "13:09",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I for the coming days unless the market proves otherwise. ‖ I for the coming days unless the market proves otherwise",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I for the coming days unless the market proves otherwise. ‖ 除非市場證明不然，否則我會在未來幾天",
       "start": "0"
     },
     {
@@ -489,12 +489,12 @@
     },
     {
       "t": "25:43",
-      "text": "**QQQ** | 觀望／watch | YouTube字幕 | It looks like we're getting a some on the cues the memory names. Oh the tag names ‖ It looks like we're getting a some on the cues the memory names. Oh the tag names",
+      "text": "**QQQ** | 觀望／watch | YouTube字幕 | It looks like we're getting a some on the cues the memory names. Oh the tag names ‖ 看起來我們得到了一些關於 QQQ 和 memory 名字的資訊。哦標籤名稱",
       "start": "0"
     },
     {
       "t": "26:02",
-      "text": "**TSLA** | 觀望／watch | YouTube字幕＋雙ASR核對 | but just not Tesla. Oh, the this Tesla stop just go straight down after stopping me out and I couldn't find another entry on Maybe um I just don't belong to this ‖ but just not Tesla. Oh, the this Tesla stop just go straight down after stopping me out and I couldn't find another entry on Maybe I just don't belong to this",
+      "text": "**TSLA** | 觀望／watch | YouTube字幕＋雙ASR核對 | but just not Tesla. Oh, the this Tesla stop just go straight down after stopping me out and I couldn't find another entry on Maybe um I just don't belong to this ‖ 但不是Tesla。哦，這個 Tesla 站讓我下車後就直接往下走，我找不到另一個入場也許我只是不屬於這個",
       "start": "0"
     },
     {
@@ -504,7 +504,7 @@
     },
     {
       "t": "36:39",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute. ‖ But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute. ‖ 但這是一個非常不正常的舉動，就像在每個時間框架上一樣。 1分鐘、5分鐘、15分鐘",
       "start": "0"
     },
     {
@@ -514,12 +514,12 @@
     },
     {
       "t": "39:26",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Where would be my stop? I believe somewhere maybe the high of this candle or maybe the high of maybe this candle like somewhere around here. So the stop will be around 1%. Maybe this five minute candle high. ‖ Where would be my stop? I believe somewhere maybe the high of this candle or maybe the high of maybe this candle like somewhere around here. So the stop will be around 1%. Maybe this five minute candle high",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Where would be my stop? I believe somewhere maybe the high of this candle or maybe the high of maybe this candle like somewhere around here. So the stop will be around 1%. Maybe this five minute candle high. ‖ 我的停靠點在哪裡？我相信某個地方可能是這根蠟燭的最高點，或者可能是這根蠟燭的最高點，就像這裡附近的某個地方。所以停損點會在1%左右。也許這五分鐘蠟燭高",
       "start": "0"
     },
     {
       "t": "39:52",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I mean this is very volatile so but uh yeah but I'm still going to take it. This is ‖ I mean this is very volatile so but but I'm still going to take it. This is",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I mean this is very volatile so but uh yeah but I'm still going to take it. This is ‖ 我的意思是，這非常不穩定，但我仍然會接受它。這是",
       "start": "0"
     },
     {
@@ -529,7 +529,7 @@
     },
     {
       "t": "40:30",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | But it's he's just going a little bit too fast. I was caught like a little bit off guard, too. ‖ But it's he's just going a little bit too fast. I was caught like a little bit off guard, too",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | But it's he's just going a little bit too fast. I was caught like a little bit off guard, too. ‖ 但他只是走得太快了一點。我也有點措手不及",
       "start": "0"
     },
     {
@@ -539,7 +539,7 @@
     },
     {
       "t": "41:43",
-      "text": "**SPY** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | like when spy like I mean if spy is finding some resistance of this n hourly 9 EMA I think that's the time where the market really starts to tank right now it's still doing fine but yeah and kills is already like Near the low of the day ‖ like when spy like I mean if spy is finding some resistance of this n hourly 9 EMA I think that's the time where the market really starts to tank right now it's still doing fine but and kills is already like Near the low of the day",
+      "text": "**SPY** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | like when spy like I mean if spy is finding some resistance of this n hourly 9 EMA I think that's the time where the market really starts to tank right now it's still doing fine but yeah and kills is already like Near the low of the day ‖ 就像當 SPY 一樣，我的意思是，如果 SPY 找到了每小時 9 EMA 的一些阻力，我認為那是市場真正開始下跌的時候，現在它仍然表現良好，但殺戮已經像接近當天的低點一樣",
       "start": "0"
     },
     {
@@ -549,12 +549,12 @@
     },
     {
       "t": "48:56",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Especially like I took a few losses before today like by getting too early. ‖ Especially like I took a few losses before today like by getting too early",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Especially like I took a few losses before today like by getting too early. ‖ 特別是在今天之前我因為太早而遭受了一些損失",
       "start": "0"
     },
     {
       "t": "49:15",
-      "text": "**SNDK** | 觀望／watch | YouTube字幕＋雙ASR核對 | Yeah, it's so hard especially for SNDK. This one gets a few shakeouts. ‖ it's so hard especially for SNDK. This one gets a few shakeouts",
+      "text": "**SNDK** | 觀望／watch | YouTube字幕＋雙ASR核對 | Yeah, it's so hard especially for SNDK. This one gets a few shakeouts. ‖ 尤其是對於SNDK 來說，這太難了。這一個得到了一些震動",
       "start": "0"
     },
     {
@@ -569,7 +569,7 @@
     },
     {
       "t": "54:18",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | most stocks right now are are just bouncing into the resistance like um I don't see any like substantial changes in the market. ‖ most stocks right now are are just bouncing into the resistance like I don't see any like substantial changes in the market",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | most stocks right now are are just bouncing into the resistance like um I don't see any like substantial changes in the market. ‖ 目前大多數股票只是反彈至阻力位，我沒有看到市場有任何重大變化",
       "start": "0"
     },
     {
@@ -579,12 +579,12 @@
     },
     {
       "t": "55:53",
-      "text": "**SPCX** | 觀望／watch | YouTube字幕＋雙ASR核對 | And finally the breakdown on SpaceX (SPCX) (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some follow through from the highs. Hopefully we can close the week um the week weak ‖ And finally SpaceX（SPCX）破位 (SPCX) for so 做多. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some 跟蹤 from the highs. Hopefully we can close the week the week weak",
+      "text": "**SPCX** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | And finally the breakdown on SpaceX (SPCX) (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some follow through from the highs. Hopefully we can close the week um the week weak ‖ And finally SpaceX（SPCX）破位 (SPCX) for so 做多. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some 跟蹤 from the highs. Hopefully we can close the week the week weak",
       "start": "0"
     },
     {
       "t": "1:03:09",
-      "text": "**TSLA** | 觀望／watch | YouTube字幕＋WhisperX | Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please. ‖ Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please",
+      "text": "**TSLA** | 觀望／watch | YouTube字幕＋WhisperX | Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please. ‖ 希望Tesla能夠走得更高一點。那會更好。不，請再高一點",
       "start": "0"
     },
     {
@@ -594,12 +594,12 @@
     },
     {
       "t": "1:08:29",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing. Maybe we can we can we'll get a stronger ‖ very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing. Maybe we can we can we'll get a stronger",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing. Maybe we can we can we'll get a stronger ‖ 非常不幸的是，我沒有，我沒有更多的購買力。但也許這是一件好事。也許我們可以我們可以我們會變得更強大",
       "start": "0"
     },
     {
       "t": "1:13:17",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | right now. I'm like um I'm like a man with with a broken leg that trying to trying to shoot a penalty kick. ‖ right now. I'm like I'm like a man with with a broken leg that trying to trying to shoot a penalty kick",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | right now. I'm like um I'm like a man with with a broken leg that trying to trying to shoot a penalty kick. ‖ 現在。我就像一個腿斷了的人試圖射點球",
       "start": "0"
     },
     {
@@ -609,12 +609,12 @@
     },
     {
       "t": "1:22:39",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think that's that will be all the trading for today. ‖ I think that's that will be all the trading for today",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think that's that will be all the trading for today. ‖ 我想這就是今天的全部交易",
       "start": "0"
     },
     {
       "t": "1:22:53",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I I don't even have the buying power for the SQQ. So ‖ I I don't even have the buying power for the SQQ. So",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I I don't even have the buying power for the SQQ. So ‖ 我連SQQ的購買力都沒有。所以",
       "start": "0"
     },
     {
@@ -624,17 +624,17 @@
     },
     {
       "t": "1:25:11",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Do you still journal? Um, I don't like do the the writings. ‖ Do you still journal? , I don't like do the writings",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Do you still journal? Um, I don't like do the the writings. ‖ 你還寫日記嗎？ ，我不喜歡寫文章",
       "start": "0"
     },
     {
       "t": "1:25:27",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | In the earlier days, I I do like the daily writings like um most of them are like the premarket kids. I mean u it's also it's a summary of the ideas of the coming day and also a a a reflection of the previous day to uh yeah so it's a combination of both into a single writing every day but I I I stopped doing that like after after after a year or a year and a half I think. ‖ In the earlier days, I I do like the daily writings like most of them are like the premarket kids. I mean u it's also it's a summary of the ideas of the coming day and also a a a reflection of the previous day to so it's a combination of both into a single writing every day but I I I stopped doing that like after after after a year or a year and a half I think",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | In the earlier days, I I do like the daily writings like um most of them are like the premarket kids. I mean u it's also it's a summary of the ideas of the coming day and also a a a reflection of the previous day to uh yeah so it's a combination of both into a single writing every day but I I I stopped doing that like after after after a year or a year and a half I think. ‖ 以前，我確實很喜歡日常寫作，就像大多數人都像未出生的孩子一樣。我的意思是，它也是對即將到來的一天的想法的總結，也是對前一天的反思，所以它是每天將兩者結合成一篇文章，但我我我在一年或一年半之後就停止這樣做了，我想",
       "start": "0"
     },
     {
       "t": "1:26:14",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | But right now I will like do the uh the trades only like I would only journal my entries and exits. ‖ But right now I will like do the the trades only like I would only journal my entries and exits",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | But right now I will like do the uh the trades only like I would only journal my entries and exits. ‖ 但現在我只想進行交易，就像我只記錄我的進場和出場一樣",
       "start": "0"
     },
     {
@@ -644,12 +644,12 @@
     },
     {
       "t": "1:28:00",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | if you're specifically talking about it the first five minutes after the open then it will be the latter which is the last point in that time frame but if it's like um not the first five minutes maybe the later part of the day but still I kind of wanted to zoom in and look at the one minute charts then maybe probably I'm like looking that the bar like that it touches the supports or like that near the support ‖ if you're specifically talking about it the first five minutes after the open then it will be the latter which is the last point in that time frame but if it's like not the first five minutes maybe the later part of the day but still I kind of wanted to zoom in and look at the one minute charts then maybe probably I'm like looking that the bar like that it touches the supports or like that near the support",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | if you're specifically talking about it the first five minutes after the open then it will be the latter which is the last point in that time frame but if it's like um not the first five minutes maybe the later part of the day but still I kind of wanted to zoom in and look at the one minute charts then maybe probably I'm like looking that the bar like that it touches the supports or like that near the support ‖ 如果您在開盤後的前五分鐘專門談論它，那麼它將是後者，即該時間範圍內的最後一個點，但如果不是前五分鐘，可能是當天的晚些時候，但我仍然想放大並查看一分鐘圖表，那麼也許我喜歡看柱形圖，它接觸支撐位或靠近支撐位",
       "start": "0"
     },
     {
       "t": "1:28:33",
-      "text": "**QQQ** | 觀望／watch | YouTube字幕＋雙ASR核對 | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe. Yeah I think this bar counts as the uh breakdown from the previous five minute candle too. ‖ or resistance zone or levels. like if I'm trading like a one minute 破位向下 on on on this on the cues at this 60 minute 回調 and 回調 空倉 this bar will count as the one minute break 破位向下 from the previous bar or actually maybe like the five minute will be better five minute maybe. I think this bar counts as the 破位向下 from the previous five minute candle too",
+      "text": "**QQQ** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe. Yeah I think this bar counts as the uh breakdown from the previous five minute candle too. ‖ or resistance zone or levels. like if I'm trading like a one minute 破位向下 on on on this on the cues at this 60 minute 回調 and 回調 空倉 this bar will count as the one minute break 破位向下 from the previous bar or actually maybe like the five minute will be better five minute maybe. I think this bar counts as the 破位向下 from the previous five minute candle too",
       "start": "0"
     },
     {
@@ -669,7 +669,7 @@
     },
     {
       "t": "1:32:27",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | through to the downside and maybe close near uh near the low of the day it the the 21 EMA would also like goes lower from the point that it is sitting now. So, I mean, you don't have to like wait for the the like touch or like you need to like overshoot. I mean, sometimes it really highly correlates with the maybe the market or the sector sector movements or or the ‖ through to the downside and maybe close near near the low of the day it the 21 EMA would also like goes lower from the point that it is sitting now. So, I mean, you don't have to like wait for the like touch or like you need to like overshoot. I mean, sometimes it really highly correlates with the maybe the market or the sector sector movements or or the",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | through to the downside and maybe close near uh near the low of the day it the the 21 EMA would also like goes lower from the point that it is sitting now. So, I mean, you don't have to like wait for the the like touch or like you need to like overshoot. I mean, sometimes it really highly correlates with the maybe the market or the sector sector movements or or the ‖ 一直到下行，可能收盤接近當日低點附近，21 EMA 也希望從現在的位置走低。所以，我的意思是，你不必喜歡等待類似的觸摸或喜歡你需要喜歡的超調。我的意思是，有時它確實與市場或行業的走勢高度相關。",
       "start": "0"
     },
     {
@@ -684,52 +684,52 @@
     },
     {
       "t": "1:34:45",
-      "text": "**RDDT** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | I that's that's irrelevant to my trades and and and red can do anything. It can gap up 30% tomorrow or it can also gap down like 30% tomorrow. um trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know. ‖ I that's that's irrelevant to my trades and and and red can do anything. It can gap up 30% tomorrow or it can also gap down like 30% tomorrow. trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know",
+      "text": "**RDDT** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | I that's that's irrelevant to my trades and and and red can do anything. It can gap up 30% tomorrow or it can also gap down like 30% tomorrow. um trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know. ‖ 我認為這與我的交易無關，紅色可以做任何事情。明天它可能會跳空 30%，也可能明天跳空 30%。交易你所看到的，我不知道誰知道 Reddit 是否可以在未來做出類似 VCP 或任何模式。我不知道",
       "start": "0"
     },
     {
       "t": "1:35:50",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | What's the most important stats or analytics you use, things you look for habits or tips was journal crucial to profitability? Personally, I don't find any trading are useful to me. I don't um find them useful like the win rate or like the average win or average loss or yeah any trading stats. Um things I look for um let me answer the last question. was general crucial to profitability ‖ What's the most important stats or analytics you use, things you look for habits or tips was journal crucial to profitability? Personally, I don't find any trading are useful to me. I don't find them useful like the win rate or like the average win or average loss or any trading stats. things I look for let me answer the last question. was general crucial to profitability",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | What's the most important stats or analytics you use, things you look for habits or tips was journal crucial to profitability? Personally, I don't find any trading are useful to me. I don't um find them useful like the win rate or like the average win or average loss or yeah any trading stats. Um things I look for um let me answer the last question. was general crucial to profitability ‖ 您使用的最重要的統計數據或分析是什麼？您尋找的習慣或技巧對於日記對獲利能力至關重要嗎？就我個人而言，我不認為任何交易對我有用。我不認為它們像贏率或平均贏或平均輸或任何交易統計數據那樣有用。我正在尋找的東西讓我回答最後一個問題。通常對獲利能力至關重要",
       "start": "0"
     },
     {
       "t": "1:36:36",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I think 100%. Um to me it it was more like how you I mean the journaling is the first step of of improving your mistakes because you have to identify what what you're doing wrong in the first place and then eventually you you you're trying to come um come up with some ways to to improve them and then um practically to do to take actions to improve them. So journaling to me is the first step of improving your mistakes ‖ I think 100%. to me it it was more like how you I mean the journaling is the first step of of improving your mistakes because you have to identify what what you're doing wrong in the first place and then eventually you you you're trying to come come up with some ways to improve them and then practically to do to take actions to improve them. So journaling to me is the first step of improving your mistakes",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I think 100%. Um to me it it was more like how you I mean the journaling is the first step of of improving your mistakes because you have to identify what what you're doing wrong in the first place and then eventually you you you're trying to come um come up with some ways to to improve them and then um practically to do to take actions to improve them. So journaling to me is the first step of improving your mistakes ‖ 我認為是100%。對我來說，這更像是你的意思，我的意思是，寫日記是改善錯誤的第一步，因為你必須先確定自己做錯了什麼，然後最終你會嘗試想出一些方法來改進它們，然後實際採取行動來改進它們。所以給我寫日記是改正錯誤的第一步",
       "start": "0"
     },
     {
       "t": "1:37:17",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | like every trading mistakes and it also uh a type of like clarity in your mind like and also like the take the responsibility of of um of the mistakes that you made. like after draw down if you don't really look at your losing trades thoroughly. you you probably won't find like whether are you is the problem um lies in your ‖ like every trading mistakes and it also a type of like clarity in your mind like and also like the take the responsibility of of of the mistakes that you made. like after draw down if you don't really look at your losing trades thoroughly. you you probably won't find like whether are you is the problem lies in your",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | like every trading mistakes and it also uh a type of like clarity in your mind like and also like the take the responsibility of of um of the mistakes that you made. like after draw down if you don't really look at your losing trades thoroughly. you you probably won't find like whether are you is the problem um lies in your ‖ 就像每一個交易錯誤一樣，它也像你腦中的清晰一樣，也像對你所犯的錯誤負責。如果您沒有真正徹底地審視自己的虧損交易，就像在提款後一樣。你可能不會發現問題是否在於你",
       "start": "0"
     },
     {
       "t": "1:38:04",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | stop setting or it lies in your entries or like stock selection or other stuffs. ‖ stop setting or it lies in your entries or like stock selection or other stuffs",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | stop setting or it lies in your entries or like stock selection or other stuffs. ‖ 停止設定或它位於您的入場中或像股票選擇或其他東西",
       "start": "0"
     },
     {
       "t": "1:38:39",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | like a list of of a a of of a journal like what what are the stats apps of doing a jet journal. I don't really have that. But you have to make sure that you really learn something from your losing trades, from the mistakes that you made and trying to improve them one by one or like gradually. ‖ like a list of of a a of of a journal like what what are the stats apps of doing a jet journal. I don't really have that. But you have to make sure that you really learn something from your losing trades, from the mistakes that you made and trying to improve them one by one or like gradually",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | like a list of of a a of of a journal like what what are the stats apps of doing a jet journal. I don't really have that. But you have to make sure that you really learn something from your losing trades, from the mistakes that you made and trying to improve them one by one or like gradually. ‖ 就像一本日記的列表，例如寫噴射日記的統計應用程式是什麼。我真的沒有那個。但你必須確保你確實從失敗的交易中、從你所犯的錯誤中學到了一些東西，並嘗試一一或逐漸地改進它們",
       "start": "0"
     },
     {
       "t": "1:39:22",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I think the habits or tips to me I I really think like journaling my entries and seeing like um like my trade results are are very important for uh yeah are very important especially when when you're in a draw down or you if you got a losing streaks. So I think a lot of um a lot of traders including me um in the in the earlier years are are like refuse uh refuse to look at the losing trades. Like I I know ‖ I think the habits or tips to me I I really think like journaling my entries and seeing like like my trade results are are very important for are very important especially when when you're in a draw down or you if you got a losing streaks. So I think a lot of a lot of traders including me in the in the earlier years are are like refuse refuse to look at the losing trades. Like I I know",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I think the habits or tips to me I I really think like journaling my entries and seeing like um like my trade results are are very important for uh yeah are very important especially when when you're in a draw down or you if you got a losing streaks. So I think a lot of um a lot of traders including me um in the in the earlier years are are like refuse uh refuse to look at the losing trades. Like I I know ‖ 我認為習慣或技巧對我來說真的很重要，例如記錄我的入場並查看我的交易結果非常重要，尤其是當您處於虧損狀態或連續虧損時。所以我認為包括我在內的許多交易者在早年都拒絕關注虧損的交易。就像我知道的那樣",
       "start": "0"
     },
     {
       "t": "1:40:08",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | there I got a draw down. I know there are tons of losses that I've took in a row but I just don't want to look at them. I don't don't want it to ‖ there I got a draw down. I know there are tons of losses that I've took in a row but I just don't want to look at them. I don't don't want it to",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | there I got a draw down. I know there are tons of losses that I've took in a row but I just don't want to look at them. I don't don't want it to ‖ 在那裡我得到了平局。我知道我連續遭受了很多損失，但我只是不想看到它們。我不不想",
       "start": "0"
     },
     {
       "t": "1:40:32",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | to to really take um learn from your pain or like Well, maybe they take a detailed look from your wounds or from your scars like I but I think there's the lessons like the big the the big lessons the big lies lies uh lies in the losing trace. and the mistakes. ‖ to really take learn from your pain or like Well, maybe they take a detailed look from your wounds or from your scars like I but I think there's the lessons like the big the big lessons the big lies lies lies in the losing trace. and the mistakes",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | to to really take um learn from your pain or like Well, maybe they take a detailed look from your wounds or from your scars like I but I think there's the lessons like the big the the big lessons the big lies lies uh lies in the losing trace. and the mistakes. ‖ 真正從你的痛苦中吸取教訓，或者像好吧，也許他們會像我一樣從你的傷口或疤痕中仔細觀察，但我認為有一些教訓，比如重大的教訓，重大的謊言在於失去的痕跡。和錯誤",
       "start": "0"
     },
     {
       "t": "1:41:31",
-      "text": "**SNDK** | 觀望／watch | YouTube字幕 | and the SNTK2. I just I should should have been a little bit more patient. So, I think this is a good example. ‖ and the SNTK2. I just I should should have been a little bit more patient. So, I think this is a good example",
+      "text": "**SNDK** | 觀望／watch | YouTube字幕 | and the SNTK2. I just I should should have been a little bit more patient. So, I think this is a good example. ‖ 和SNTK2。我只是應該多一點耐心。所以，我認為這是一個很好的例子",
       "start": "0"
     },
     {
@@ -749,12 +749,12 @@
     },
     {
       "t": "1:47:32",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good ‖ I took light today on reject of the 9A but it was still above a rising 21 or 50 which is still considered a good",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good ‖ 我今天對 9A 的拒絕感到輕鬆，但它仍然高於上升的 21 或 50，這仍然被認為是一個好的",
       "start": "0"
     },
     {
       "t": "1:48:23",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think it especially in the like hourly chart the we got a spike into the 21 and the 50 declining 21 declining 50 and also like the daily declining non-MA you had just mentioned and apart from that it's also bouncing into the low of the previous like the previous day low and also like these highs here. Um ‖ I think it especially in the like hourly chart the we got a spike into the 21 and the 50 declining 21 declining 50 and also like the daily declining non-MA you had just mentioned and apart from that it's also bouncing into the low of the previous like the previous day low and also like these highs here",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think it especially in the like hourly chart the we got a spike into the 21 and the 50 declining 21 declining 50 and also like the daily declining non-MA you had just mentioned and apart from that it's also bouncing into the low of the previous like the previous day low and also like these highs here. Um ‖ 我認為特別是在類似的每小時圖表中，我們在 21 和 50 下降 21 下降 50 中出現峰值，也像您剛才提到的每日下降非移動平均線一樣，除此之外，它還像前一天的低點一樣反彈到前一天的低點，也像這裡的這些高點一樣",
       "start": "0"
     },
     {
@@ -769,24 +769,24 @@
     },
     {
       "t": "1:50:30",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah. But I think if your if your entry is really near to the high of the day like really near to the declining nine that that is that is great. I think ‖ But I think if your if your entry is really near to the high of the day like really near to the declining nine that that is that is great. I think",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah. But I think if your if your entry is really near to the high of the day like really near to the declining nine that that is that is great. I think ‖ 但我認為，如果您的入場點確實接近當天的高點，就像非常接近下降的九點，那就太好了。我認為",
       "start": "0"
     },
     {
       "t": "1:53:04",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | So, I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one. ‖ So, I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | So, I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one. ‖ 那麼，我今天就到此為止了。那麼，今天的直播到此結束。感謝大家的到來，我們下期再見",
       "start": "0"
     }
   ],
   "bullets": [
     {
       "t": "03:50",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Hello everyone. Good morning, good afternoon and good ‖ Hello everyone. Good morning, good afternoon and good",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Hello everyone. Good morning, good afternoon and good ‖ 大家好。早安，下午好，大家好",
       "start": "0"
     },
     {
       "t": "05:58",
-      "text": "**SNDK** | 觀望／watch | YouTube字幕＋雙ASR核對 | Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today. So I Yeah. And then I I prepared for both sides if we if we're going to see a and I think I'm going to short um D RM and SNDK today probably. And if we're seeing some dump uh in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness ‖ today my my plan was to like cover some into 弱勢. It looks like the market is bouncing back slightly today. So I . And then I I prepared for both sides if we if we're going to see a and 我今日會短 D RM and SNDK today probably. And if we're seeing some dump in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness",
+      "text": "**SNDK** | 觀望偏多／lean long | YouTube字幕＋雙ASR核對 | Um, today uh my my plan was to like cover some into weakness. It looks like the market is bouncing back slightly today. So I Yeah. And then I I prepared for both sides if we if we're going to see a and I think I'm going to short um D RM and SNDK today probably. And if we're seeing some dump uh in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness ‖ today my my plan was to like cover some into 弱勢. It looks like the market is bouncing back slightly today. So I . And then I I prepared for both sides if we if we're going to see a and 我今日會短 D RM and SNDK today probably. And if we're seeing some dump in the especially in the earlier part of the day, then probably I'm going to cover some in the wickedness",
       "start": "0"
     },
     {
@@ -796,7 +796,7 @@
     },
     {
       "t": "07:14",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | is getting a little bit extended to the downside. But but it's still far from being like super oversold. Like we got a wide pairing with a gap down that we saw like in late July like down 15% in four So I would I think we we are like getting a pretty solid um downtrend without getting ‖ is getting a little bit extended to the downside. But but it's still far from being like super oversold. Like we got a wide pairing with a gap down that we saw like in late July like down 15% in four So I would I think we we are like getting a pretty solid downtrend without getting",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | is getting a little bit extended to the downside. But but it's still far from being like super oversold. Like we got a wide pairing with a gap down that we saw like in late July like down 15% in four So I would I think we we are like getting a pretty solid um downtrend without getting ‖ 正在向下行方向延伸一點。但距離超級超賣還很遠。就像我們在 7 月下旬看到的那樣，我們有一個廣泛的配對，但有一個向下的差距，例如在四天內下跌了 15％，所以我認為我們就像得到了一個相當穩固的下降趨勢，但沒有得到",
       "start": "0"
     },
     {
@@ -811,12 +811,12 @@
     },
     {
       "t": "09:27",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I don't know. But like Q is still like slightly below the 50 EMA. So we still need to see how the market is going to react. ‖ I don't know. But like Q is still like slightly below the 50 EMA. So we still need to see how the market is going to react",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I don't know. But like Q is still like slightly below the 50 EMA. So we still need to see how the market is going to react. ‖ 我不知道。但像Q還是像略低於50的EMA。所以我們還需要看看市場會如何反應",
       "start": "0"
     },
     {
       "t": "09:58",
-      "text": "**SPY** | 觀望／watch | YouTube字幕＋雙ASR核對 | SPY and IWM is bouncing into the hourly Q is still uh opening red. Seems like ‖ SPY and IWM is bouncing into the hourly Q is still opening red. Seems like",
+      "text": "**SPY** | 觀望／watch | YouTube字幕＋雙ASR核對 | SPY and IWM is bouncing into the hourly Q is still uh opening red. Seems like ‖ SPY 和 IWM 正在反彈進入每小時 Q 仍然開紅。看起來像",
       "start": "0"
     },
     {
@@ -826,12 +826,12 @@
     },
     {
       "t": "12:27",
-      "text": "**MU** | 觀望／watch | YouTube字幕＋雙ASR核對 | actually it it maybe it should be a short a great short entries. And I think MU is the really good examples. Looks um getting a breakout into previous day high and then just getting rejected and closed below all the anchor VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the weakness and I'm going to stay I'm going to focus on the the short side ‖ actually it it maybe it should be a 空倉 a great 空倉 entries. And I think MU is the really good examples. Looks getting a 破位 into previous day high and then just 被 reject and closed below all the anchored VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the 弱勢 and I'm going to stay I'm going to focus on the 空倉 side",
+      "text": "**MU** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | actually it it maybe it should be a short a great short entries. And I think MU is the really good examples. Looks um getting a breakout into previous day high and then just getting rejected and closed below all the anchor VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the weakness and I'm going to stay I'm going to focus on the the short side ‖ actually it it maybe it should be a 空倉 a great 空倉 entries. And I think MU is the really good examples. Looks getting a 破位 into previous day high and then just 被 reject and closed below all the anchored VWAP and the 9 EMA and near the low of the day. So, seems like the market is confirming the 弱勢 and I'm going to stay I'm going to focus on the 空倉 side",
       "start": "0"
     },
     {
       "t": "13:09",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I for the coming days unless the market proves otherwise. ‖ I for the coming days unless the market proves otherwise",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I for the coming days unless the market proves otherwise. ‖ 除非市場證明不然，否則我會在未來幾天",
       "start": "0"
     },
     {
@@ -851,12 +851,12 @@
     },
     {
       "t": "25:43",
-      "text": "**QQQ** | 觀望／watch | YouTube字幕 | It looks like we're getting a some on the cues the memory names. Oh the tag names ‖ It looks like we're getting a some on the cues the memory names. Oh the tag names",
+      "text": "**QQQ** | 觀望／watch | YouTube字幕 | It looks like we're getting a some on the cues the memory names. Oh the tag names ‖ 看起來我們得到了一些關於 QQQ 和 memory 名字的資訊。哦標籤名稱",
       "start": "0"
     },
     {
       "t": "26:02",
-      "text": "**TSLA** | 觀望／watch | YouTube字幕＋雙ASR核對 | but just not Tesla. Oh, the this Tesla stop just go straight down after stopping me out and I couldn't find another entry on Maybe um I just don't belong to this ‖ but just not Tesla. Oh, the this Tesla stop just go straight down after stopping me out and I couldn't find another entry on Maybe I just don't belong to this",
+      "text": "**TSLA** | 觀望／watch | YouTube字幕＋雙ASR核對 | but just not Tesla. Oh, the this Tesla stop just go straight down after stopping me out and I couldn't find another entry on Maybe um I just don't belong to this ‖ 但不是Tesla。哦，這個 Tesla 站讓我下車後就直接往下走，我找不到另一個入場也許我只是不屬於這個",
       "start": "0"
     },
     {
@@ -866,7 +866,7 @@
     },
     {
       "t": "36:39",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute. ‖ But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute. ‖ 但這是一個非常不正常的舉動，就像在每個時間框架上一樣。 1分鐘、5分鐘、15分鐘",
       "start": "0"
     },
     {
@@ -876,12 +876,12 @@
     },
     {
       "t": "39:26",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Where would be my stop? I believe somewhere maybe the high of this candle or maybe the high of maybe this candle like somewhere around here. So the stop will be around 1%. Maybe this five minute candle high. ‖ Where would be my stop? I believe somewhere maybe the high of this candle or maybe the high of maybe this candle like somewhere around here. So the stop will be around 1%. Maybe this five minute candle high",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Where would be my stop? I believe somewhere maybe the high of this candle or maybe the high of maybe this candle like somewhere around here. So the stop will be around 1%. Maybe this five minute candle high. ‖ 我的停靠點在哪裡？我相信某個地方可能是這根蠟燭的最高點，或者可能是這根蠟燭的最高點，就像這裡附近的某個地方。所以停損點會在1%左右。也許這五分鐘蠟燭高",
       "start": "0"
     },
     {
       "t": "39:52",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I mean this is very volatile so but uh yeah but I'm still going to take it. This is ‖ I mean this is very volatile so but but I'm still going to take it. This is",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I mean this is very volatile so but uh yeah but I'm still going to take it. This is ‖ 我的意思是，這非常不穩定，但我仍然會接受它。這是",
       "start": "0"
     },
     {
@@ -891,7 +891,7 @@
     },
     {
       "t": "40:30",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | But it's he's just going a little bit too fast. I was caught like a little bit off guard, too. ‖ But it's he's just going a little bit too fast. I was caught like a little bit off guard, too",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | But it's he's just going a little bit too fast. I was caught like a little bit off guard, too. ‖ 但他只是走得太快了一點。我也有點措手不及",
       "start": "0"
     },
     {
@@ -901,7 +901,7 @@
     },
     {
       "t": "41:43",
-      "text": "**SPY** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | like when spy like I mean if spy is finding some resistance of this n hourly 9 EMA I think that's the time where the market really starts to tank right now it's still doing fine but yeah and kills is already like Near the low of the day ‖ like when spy like I mean if spy is finding some resistance of this n hourly 9 EMA I think that's the time where the market really starts to tank right now it's still doing fine but and kills is already like Near the low of the day",
+      "text": "**SPY** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | like when spy like I mean if spy is finding some resistance of this n hourly 9 EMA I think that's the time where the market really starts to tank right now it's still doing fine but yeah and kills is already like Near the low of the day ‖ 就像當 SPY 一樣，我的意思是，如果 SPY 找到了每小時 9 EMA 的一些阻力，我認為那是市場真正開始下跌的時候，現在它仍然表現良好，但殺戮已經像接近當天的低點一樣",
       "start": "0"
     },
     {
@@ -911,12 +911,12 @@
     },
     {
       "t": "48:56",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Especially like I took a few losses before today like by getting too early. ‖ Especially like I took a few losses before today like by getting too early",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Especially like I took a few losses before today like by getting too early. ‖ 特別是在今天之前我因為太早而遭受了一些損失",
       "start": "0"
     },
     {
       "t": "49:15",
-      "text": "**SNDK** | 觀望／watch | YouTube字幕＋雙ASR核對 | Yeah, it's so hard especially for SNDK. This one gets a few shakeouts. ‖ it's so hard especially for SNDK. This one gets a few shakeouts",
+      "text": "**SNDK** | 觀望／watch | YouTube字幕＋雙ASR核對 | Yeah, it's so hard especially for SNDK. This one gets a few shakeouts. ‖ 尤其是對於SNDK 來說，這太難了。這一個得到了一些震動",
       "start": "0"
     },
     {
@@ -931,7 +931,7 @@
     },
     {
       "t": "54:18",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | most stocks right now are are just bouncing into the resistance like um I don't see any like substantial changes in the market. ‖ most stocks right now are are just bouncing into the resistance like I don't see any like substantial changes in the market",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | most stocks right now are are just bouncing into the resistance like um I don't see any like substantial changes in the market. ‖ 目前大多數股票只是反彈至阻力位，我沒有看到市場有任何重大變化",
       "start": "0"
     },
     {
@@ -941,12 +941,12 @@
     },
     {
       "t": "55:53",
-      "text": "**SPCX** | 觀望／watch | YouTube字幕＋雙ASR核對 | And finally the breakdown on SpaceX (SPCX) (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some follow through from the highs. Hopefully we can close the week um the week weak ‖ And finally SpaceX（SPCX）破位 (SPCX) for so 做多. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some 跟蹤 from the highs. Hopefully we can close the week the week weak",
+      "text": "**SPCX** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | And finally the breakdown on SpaceX (SPCX) (SPCX) for so long. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some follow through from the highs. Hopefully we can close the week um the week weak ‖ And finally SpaceX（SPCX）破位 (SPCX) for so 做多. I've I've tried this thing since I don't know maybe on Thursday. Hopefully that I can we can get some 跟蹤 from the highs. Hopefully we can close the week the week weak",
       "start": "0"
     },
     {
       "t": "1:03:09",
-      "text": "**TSLA** | 觀望／watch | YouTube字幕＋WhisperX | Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please. ‖ Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please",
+      "text": "**TSLA** | 觀望／watch | YouTube字幕＋WhisperX | Hopefully Tesla can go a little bit higher. That will be better. No, just get a little bit higher, please. ‖ 希望Tesla能夠走得更高一點。那會更好。不，請再高一點",
       "start": "0"
     },
     {
@@ -956,12 +956,12 @@
     },
     {
       "t": "1:08:29",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing. Maybe we can we can we'll get a stronger ‖ very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing. Maybe we can we can we'll get a stronger",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | very unfortunately I I don't I don't got any more buying power. But maybe maybe it's a good thing. Maybe we can we can we'll get a stronger ‖ 非常不幸的是，我沒有，我沒有更多的購買力。但也許這是一件好事。也許我們可以我們可以我們會變得更強大",
       "start": "0"
     },
     {
       "t": "1:13:17",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | right now. I'm like um I'm like a man with with a broken leg that trying to trying to shoot a penalty kick. ‖ right now. I'm like I'm like a man with with a broken leg that trying to trying to shoot a penalty kick",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | right now. I'm like um I'm like a man with with a broken leg that trying to trying to shoot a penalty kick. ‖ 現在。我就像一個腿斷了的人試圖射點球",
       "start": "0"
     },
     {
@@ -971,12 +971,12 @@
     },
     {
       "t": "1:22:39",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think that's that will be all the trading for today. ‖ I think that's that will be all the trading for today",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think that's that will be all the trading for today. ‖ 我想這就是今天的全部交易",
       "start": "0"
     },
     {
       "t": "1:22:53",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I I don't even have the buying power for the SQQ. So ‖ I I don't even have the buying power for the SQQ. So",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I I don't even have the buying power for the SQQ. So ‖ 我連SQQ的購買力都沒有。所以",
       "start": "0"
     },
     {
@@ -986,17 +986,17 @@
     },
     {
       "t": "1:25:11",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Do you still journal? Um, I don't like do the the writings. ‖ Do you still journal? , I don't like do the writings",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Do you still journal? Um, I don't like do the the writings. ‖ 你還寫日記嗎？ ，我不喜歡寫文章",
       "start": "0"
     },
     {
       "t": "1:25:27",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | In the earlier days, I I do like the daily writings like um most of them are like the premarket kids. I mean u it's also it's a summary of the ideas of the coming day and also a a a reflection of the previous day to uh yeah so it's a combination of both into a single writing every day but I I I stopped doing that like after after after a year or a year and a half I think. ‖ In the earlier days, I I do like the daily writings like most of them are like the premarket kids. I mean u it's also it's a summary of the ideas of the coming day and also a a a reflection of the previous day to so it's a combination of both into a single writing every day but I I I stopped doing that like after after after a year or a year and a half I think",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | In the earlier days, I I do like the daily writings like um most of them are like the premarket kids. I mean u it's also it's a summary of the ideas of the coming day and also a a a reflection of the previous day to uh yeah so it's a combination of both into a single writing every day but I I I stopped doing that like after after after a year or a year and a half I think. ‖ 以前，我確實很喜歡日常寫作，就像大多數人都像未出生的孩子一樣。我的意思是，它也是對即將到來的一天的想法的總結，也是對前一天的反思，所以它是每天將兩者結合成一篇文章，但我我我在一年或一年半之後就停止這樣做了，我想",
       "start": "0"
     },
     {
       "t": "1:26:14",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | But right now I will like do the uh the trades only like I would only journal my entries and exits. ‖ But right now I will like do the the trades only like I would only journal my entries and exits",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | But right now I will like do the uh the trades only like I would only journal my entries and exits. ‖ 但現在我只想進行交易，就像我只記錄我的進場和出場一樣",
       "start": "0"
     },
     {
@@ -1006,12 +1006,12 @@
     },
     {
       "t": "1:28:00",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | if you're specifically talking about it the first five minutes after the open then it will be the latter which is the last point in that time frame but if it's like um not the first five minutes maybe the later part of the day but still I kind of wanted to zoom in and look at the one minute charts then maybe probably I'm like looking that the bar like that it touches the supports or like that near the support ‖ if you're specifically talking about it the first five minutes after the open then it will be the latter which is the last point in that time frame but if it's like not the first five minutes maybe the later part of the day but still I kind of wanted to zoom in and look at the one minute charts then maybe probably I'm like looking that the bar like that it touches the supports or like that near the support",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | if you're specifically talking about it the first five minutes after the open then it will be the latter which is the last point in that time frame but if it's like um not the first five minutes maybe the later part of the day but still I kind of wanted to zoom in and look at the one minute charts then maybe probably I'm like looking that the bar like that it touches the supports or like that near the support ‖ 如果您在開盤後的前五分鐘專門談論它，那麼它將是後者，即該時間範圍內的最後一個點，但如果不是前五分鐘，可能是當天的晚些時候，但我仍然想放大並查看一分鐘圖表，那麼也許我喜歡看柱形圖，它接觸支撐位或靠近支撐位",
       "start": "0"
     },
     {
       "t": "1:28:33",
-      "text": "**QQQ** | 觀望／watch | YouTube字幕＋雙ASR核對 | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe. Yeah I think this bar counts as the uh breakdown from the previous five minute candle too. ‖ or resistance zone or levels. like if I'm trading like a one minute 破位向下 on on on this on the cues at this 60 minute 回調 and 回調 空倉 this bar will count as the one minute break 破位向下 from the previous bar or actually maybe like the five minute will be better five minute maybe. I think this bar counts as the 破位向下 from the previous five minute candle too",
+      "text": "**QQQ** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minute pullback and pullback shorts this bar will count as the one minute break breakdown from the previous bar or actually maybe like the five minute will be better five minute maybe. Yeah I think this bar counts as the uh breakdown from the previous five minute candle too. ‖ or resistance zone or levels. like if I'm trading like a one minute 破位向下 on on on this on the cues at this 60 minute 回調 and 回調 空倉 this bar will count as the one minute break 破位向下 from the previous bar or actually maybe like the five minute will be better five minute maybe. I think this bar counts as the 破位向下 from the previous five minute candle too",
       "start": "0"
     },
     {
@@ -1031,7 +1031,7 @@
     },
     {
       "t": "1:32:27",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | through to the downside and maybe close near uh near the low of the day it the the 21 EMA would also like goes lower from the point that it is sitting now. So, I mean, you don't have to like wait for the the like touch or like you need to like overshoot. I mean, sometimes it really highly correlates with the maybe the market or the sector sector movements or or the ‖ through to the downside and maybe close near near the low of the day it the 21 EMA would also like goes lower from the point that it is sitting now. So, I mean, you don't have to like wait for the like touch or like you need to like overshoot. I mean, sometimes it really highly correlates with the maybe the market or the sector sector movements or or the",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | through to the downside and maybe close near uh near the low of the day it the the 21 EMA would also like goes lower from the point that it is sitting now. So, I mean, you don't have to like wait for the the like touch or like you need to like overshoot. I mean, sometimes it really highly correlates with the maybe the market or the sector sector movements or or the ‖ 一直到下行，可能收盤接近當日低點附近，21 EMA 也希望從現在的位置走低。所以，我的意思是，你不必喜歡等待類似的觸摸或喜歡你需要喜歡的超調。我的意思是，有時它確實與市場或行業的走勢高度相關。",
       "start": "0"
     },
     {
@@ -1046,52 +1046,52 @@
     },
     {
       "t": "1:34:45",
-      "text": "**RDDT** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | I that's that's irrelevant to my trades and and and red can do anything. It can gap up 30% tomorrow or it can also gap down like 30% tomorrow. um trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know. ‖ I that's that's irrelevant to my trades and and and red can do anything. It can gap up 30% tomorrow or it can also gap down like 30% tomorrow. trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know",
+      "text": "**RDDT** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | I that's that's irrelevant to my trades and and and red can do anything. It can gap up 30% tomorrow or it can also gap down like 30% tomorrow. um trade what you see and I don't know who knows whether Reddit could could make a like VCP or or or whatever pattern it in the future. I don't know. ‖ 我認為這與我的交易無關，紅色可以做任何事情。明天它可能會跳空 30%，也可能明天跳空 30%。交易你所看到的，我不知道誰知道 Reddit 是否可以在未來做出類似 VCP 或任何模式。我不知道",
       "start": "0"
     },
     {
       "t": "1:35:50",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | What's the most important stats or analytics you use, things you look for habits or tips was journal crucial to profitability? Personally, I don't find any trading are useful to me. I don't um find them useful like the win rate or like the average win or average loss or yeah any trading stats. Um things I look for um let me answer the last question. was general crucial to profitability ‖ What's the most important stats or analytics you use, things you look for habits or tips was journal crucial to profitability? Personally, I don't find any trading are useful to me. I don't find them useful like the win rate or like the average win or average loss or any trading stats. things I look for let me answer the last question. was general crucial to profitability",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | What's the most important stats or analytics you use, things you look for habits or tips was journal crucial to profitability? Personally, I don't find any trading are useful to me. I don't um find them useful like the win rate or like the average win or average loss or yeah any trading stats. Um things I look for um let me answer the last question. was general crucial to profitability ‖ 您使用的最重要的統計數據或分析是什麼？您尋找的習慣或技巧對於日記對獲利能力至關重要嗎？就我個人而言，我不認為任何交易對我有用。我不認為它們像贏率或平均贏或平均輸或任何交易統計數據那樣有用。我正在尋找的東西讓我回答最後一個問題。通常對獲利能力至關重要",
       "start": "0"
     },
     {
       "t": "1:36:36",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I think 100%. Um to me it it was more like how you I mean the journaling is the first step of of improving your mistakes because you have to identify what what you're doing wrong in the first place and then eventually you you you're trying to come um come up with some ways to to improve them and then um practically to do to take actions to improve them. So journaling to me is the first step of improving your mistakes ‖ I think 100%. to me it it was more like how you I mean the journaling is the first step of of improving your mistakes because you have to identify what what you're doing wrong in the first place and then eventually you you you're trying to come come up with some ways to improve them and then practically to do to take actions to improve them. So journaling to me is the first step of improving your mistakes",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I think 100%. Um to me it it was more like how you I mean the journaling is the first step of of improving your mistakes because you have to identify what what you're doing wrong in the first place and then eventually you you you're trying to come um come up with some ways to to improve them and then um practically to do to take actions to improve them. So journaling to me is the first step of improving your mistakes ‖ 我認為是100%。對我來說，這更像是你的意思，我的意思是，寫日記是改善錯誤的第一步，因為你必須先確定自己做錯了什麼，然後最終你會嘗試想出一些方法來改進它們，然後實際採取行動來改進它們。所以給我寫日記是改正錯誤的第一步",
       "start": "0"
     },
     {
       "t": "1:37:17",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | like every trading mistakes and it also uh a type of like clarity in your mind like and also like the take the responsibility of of um of the mistakes that you made. like after draw down if you don't really look at your losing trades thoroughly. you you probably won't find like whether are you is the problem um lies in your ‖ like every trading mistakes and it also a type of like clarity in your mind like and also like the take the responsibility of of of the mistakes that you made. like after draw down if you don't really look at your losing trades thoroughly. you you probably won't find like whether are you is the problem lies in your",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | like every trading mistakes and it also uh a type of like clarity in your mind like and also like the take the responsibility of of um of the mistakes that you made. like after draw down if you don't really look at your losing trades thoroughly. you you probably won't find like whether are you is the problem um lies in your ‖ 就像每一個交易錯誤一樣，它也像你腦中的清晰一樣，也像對你所犯的錯誤負責。如果您沒有真正徹底地審視自己的虧損交易，就像在提款後一樣。你可能不會發現問題是否在於你",
       "start": "0"
     },
     {
       "t": "1:38:04",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | stop setting or it lies in your entries or like stock selection or other stuffs. ‖ stop setting or it lies in your entries or like stock selection or other stuffs",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | stop setting or it lies in your entries or like stock selection or other stuffs. ‖ 停止設定或它位於您的入場中或像股票選擇或其他東西",
       "start": "0"
     },
     {
       "t": "1:38:39",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | like a list of of a a of of a journal like what what are the stats apps of doing a jet journal. I don't really have that. But you have to make sure that you really learn something from your losing trades, from the mistakes that you made and trying to improve them one by one or like gradually. ‖ like a list of of a a of of a journal like what what are the stats apps of doing a jet journal. I don't really have that. But you have to make sure that you really learn something from your losing trades, from the mistakes that you made and trying to improve them one by one or like gradually",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | like a list of of a a of of a journal like what what are the stats apps of doing a jet journal. I don't really have that. But you have to make sure that you really learn something from your losing trades, from the mistakes that you made and trying to improve them one by one or like gradually. ‖ 就像一本日記的列表，例如寫噴射日記的統計應用程式是什麼。我真的沒有那個。但你必須確保你確實從失敗的交易中、從你所犯的錯誤中學到了一些東西，並嘗試一一或逐漸地改進它們",
       "start": "0"
     },
     {
       "t": "1:39:22",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I think the habits or tips to me I I really think like journaling my entries and seeing like um like my trade results are are very important for uh yeah are very important especially when when you're in a draw down or you if you got a losing streaks. So I think a lot of um a lot of traders including me um in the in the earlier years are are like refuse uh refuse to look at the losing trades. Like I I know ‖ I think the habits or tips to me I I really think like journaling my entries and seeing like like my trade results are are very important for are very important especially when when you're in a draw down or you if you got a losing streaks. So I think a lot of a lot of traders including me in the in the earlier years are are like refuse refuse to look at the losing trades. Like I I know",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I think the habits or tips to me I I really think like journaling my entries and seeing like um like my trade results are are very important for uh yeah are very important especially when when you're in a draw down or you if you got a losing streaks. So I think a lot of um a lot of traders including me um in the in the earlier years are are like refuse uh refuse to look at the losing trades. Like I I know ‖ 我認為習慣或技巧對我來說真的很重要，例如記錄我的入場並查看我的交易結果非常重要，尤其是當您處於虧損狀態或連續虧損時。所以我認為包括我在內的許多交易者在早年都拒絕關注虧損的交易。就像我知道的那樣",
       "start": "0"
     },
     {
       "t": "1:40:08",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | there I got a draw down. I know there are tons of losses that I've took in a row but I just don't want to look at them. I don't don't want it to ‖ there I got a draw down. I know there are tons of losses that I've took in a row but I just don't want to look at them. I don't don't want it to",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | there I got a draw down. I know there are tons of losses that I've took in a row but I just don't want to look at them. I don't don't want it to ‖ 在那裡我得到了平局。我知道我連續遭受了很多損失，但我只是不想看到它們。我不不想",
       "start": "0"
     },
     {
       "t": "1:40:32",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | to to really take um learn from your pain or like Well, maybe they take a detailed look from your wounds or from your scars like I but I think there's the lessons like the big the the big lessons the big lies lies uh lies in the losing trace. and the mistakes. ‖ to really take learn from your pain or like Well, maybe they take a detailed look from your wounds or from your scars like I but I think there's the lessons like the big the big lessons the big lies lies lies in the losing trace. and the mistakes",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | to to really take um learn from your pain or like Well, maybe they take a detailed look from your wounds or from your scars like I but I think there's the lessons like the big the the big lessons the big lies lies uh lies in the losing trace. and the mistakes. ‖ 真正從你的痛苦中吸取教訓，或者像好吧，也許他們會像我一樣從你的傷口或疤痕中仔細觀察，但我認為有一些教訓，比如重大的教訓，重大的謊言在於失去的痕跡。和錯誤",
       "start": "0"
     },
     {
       "t": "1:41:31",
-      "text": "**SNDK** | 觀望／watch | YouTube字幕 | and the SNTK2. I just I should should have been a little bit more patient. So, I think this is a good example. ‖ and the SNTK2. I just I should should have been a little bit more patient. So, I think this is a good example",
+      "text": "**SNDK** | 觀望／watch | YouTube字幕 | and the SNTK2. I just I should should have been a little bit more patient. So, I think this is a good example. ‖ 和SNTK2。我只是應該多一點耐心。所以，我認為這是一個很好的例子",
       "start": "0"
     },
     {
@@ -1111,12 +1111,12 @@
     },
     {
       "t": "1:47:32",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good ‖ I took light today on reject of the 9A but it was still above a rising 21 or 50 which is still considered a good",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good ‖ 我今天對 9A 的拒絕感到輕鬆，但它仍然高於上升的 21 或 50，這仍然被認為是一個好的",
       "start": "0"
     },
     {
       "t": "1:48:23",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think it especially in the like hourly chart the we got a spike into the 21 and the 50 declining 21 declining 50 and also like the daily declining non-MA you had just mentioned and apart from that it's also bouncing into the low of the previous like the previous day low and also like these highs here. Um ‖ I think it especially in the like hourly chart the we got a spike into the 21 and the 50 declining 21 declining 50 and also like the daily declining non-MA you had just mentioned and apart from that it's also bouncing into the low of the previous like the previous day low and also like these highs here",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think it especially in the like hourly chart the we got a spike into the 21 and the 50 declining 21 declining 50 and also like the daily declining non-MA you had just mentioned and apart from that it's also bouncing into the low of the previous like the previous day low and also like these highs here. Um ‖ 我認為特別是在類似的每小時圖表中，我們在 21 和 50 下降 21 下降 50 中出現峰值，也像您剛才提到的每日下降非移動平均線一樣，除此之外，它還像前一天的低點一樣反彈到前一天的低點，也像這裡的這些高點一樣",
       "start": "0"
     },
     {
@@ -1131,12 +1131,12 @@
     },
     {
       "t": "1:50:30",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah. But I think if your if your entry is really near to the high of the day like really near to the declining nine that that is that is great. I think ‖ But I think if your if your entry is really near to the high of the day like really near to the declining nine that that is that is great. I think",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah. But I think if your if your entry is really near to the high of the day like really near to the declining nine that that is that is great. I think ‖ 但我認為，如果您的入場點確實接近當天的高點，就像非常接近下降的九點，那就太好了。我認為",
       "start": "0"
     },
     {
       "t": "1:53:04",
-      "text": "**Session** | 觀望／watch | YouTube字幕 | So, I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one. ‖ So, I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one",
+      "text": "**Session** | 觀望／watch | YouTube字幕 | So, I'm going to call it a day here. And so, this is the end of today's stream. Thank you guys for coming and we'll see you in the next one. ‖ 那麼，我今天就到此為止了。那麼，今天的直播到此結束。感謝大家的到來，我們下期再見",
       "start": "0"
     }
   ],
@@ -1153,7 +1153,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | Hello everyone. Good morning, good afternoon and good ‖ Hello everyone. Good morning, good afternoon and good"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | Hello everyone. Good morning, good afternoon and good ‖ 大家好。早安，下午好，大家好"
       },
       {
         "t": "06:45",
@@ -1219,7 +1219,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | I for the coming days unless the market proves otherwise. ‖ I for the coming days unless the market proves otherwise"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | I for the coming days unless the market proves otherwise. ‖ 除非市場證明不然，否則我會在未來幾天"
       },
       {
         "t": "17:41",
@@ -1241,7 +1241,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**QQQ** | 觀望／watch | YouTube字幕 | It looks like we're getting a some on the cues the memory names. Oh the tag names ‖ It looks like we're getting a some on the c"
+        "text": "**QQQ** | 觀望／watch | YouTube字幕 | It looks like we're getting a some on the cues the memory names. Oh the tag names ‖ 看起來我們得到了一些關於 QQQ 和 memory 名字的資訊。哦標籤名稱"
       },
       {
         "t": "36:39",
@@ -1252,7 +1252,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute. ‖ But this is a very abnormal mov"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | But this is a very abnormal move like on every time frame. 1 minute, 5 minute, 15 minute. ‖ 但這是一個非常不正常的舉動，就像在每個時間框架上一樣。 1分鐘"
       },
       {
         "t": "37:56",
@@ -1285,7 +1285,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | I mean this is very volatile so but uh yeah but I'm still going to take it. This is ‖ I mean this is very volatile so but b"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | I mean this is very volatile so but uh yeah but I'm still going to take it. This is ‖ 我的意思是，這非常不穩定，但我仍然會接受它。這是"
       },
       {
         "t": "40:09",
@@ -1307,7 +1307,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | But it's he's just going a little bit too fast. I was caught like a little bit off guard, too. ‖ But it's he's just going a"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | But it's he's just going a little bit too fast. I was caught like a little bit off guard, too. ‖ 但他只是走得太快了一點。我也有點措手不及"
       },
       {
         "t": "48:56",
@@ -1318,7 +1318,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | Especially like I took a few losses before today like by getting too early. ‖ Especially like I took a few losses before to"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | Especially like I took a few losses before today like by getting too early. ‖ 特別是在今天之前我因為太早而遭受了一些損失"
       },
       {
         "t": "51:32",
@@ -1362,7 +1362,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | right now. I'm like um I'm like a man with with a broken leg that trying to trying to shoot a penalty kick. ‖ right now. I'"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | right now. I'm like um I'm like a man with with a broken leg that trying to trying to shoot a penalty kick. ‖ 現在。我就像一個腿斷了的人"
       },
       {
         "t": "1:22:39",
@@ -1373,7 +1373,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think that's that will be all the trading for today. ‖ I think that's that will be all the trading for today"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | Yeah, I think that's that will be all the trading for today. ‖ 我想這就是今天的全部交易"
       },
       {
         "t": "1:22:53",
@@ -1384,7 +1384,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | I I don't even have the buying power for the SQQ. So ‖ I I don't even have the buying power for the SQQ. So"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | I I don't even have the buying power for the SQQ. So ‖ 我連SQQ的購買力都沒有。所以"
       },
       {
         "t": "1:23:26",
@@ -1406,7 +1406,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | Do you still journal? Um, I don't like do the the writings. ‖ Do you still journal? , I don't like do the writings"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | Do you still journal? Um, I don't like do the the writings. ‖ 你還寫日記嗎？ ，我不喜歡寫文章"
       },
       {
         "t": "1:25:27",
@@ -1428,7 +1428,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | But right now I will like do the uh the trades only like I would only journal my entries and exits. ‖ But right now I will "
+        "text": "**Session** | 觀望／watch | YouTube字幕 | But right now I will like do the uh the trades only like I would only journal my entries and exits. ‖ 但現在我只想進行交易，就像我只記錄我的進場"
       },
       {
         "t": "1:27:33",
@@ -1461,7 +1461,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**QQQ** | 觀望／watch | YouTube字幕＋雙ASR核對 | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 60 minut"
+        "text": "**QQQ** | 觀望偏空／lean short | YouTube字幕＋雙ASR核對 | or resistance zone or levels. like if I'm trading like a one minute breakdown on on on this on the cues at this 6"
       },
       {
         "t": "1:29:10",
@@ -1560,7 +1560,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | stop setting or it lies in your entries or like stock selection or other stuffs. ‖ stop setting or it lies in your entries "
+        "text": "**Session** | 觀望／watch | YouTube字幕 | stop setting or it lies in your entries or like stock selection or other stuffs. ‖ 停止設定或它位於您的入場中或像股票選擇或其他東西"
       },
       {
         "t": "1:38:39",
@@ -1626,7 +1626,7 @@
         "hit_cc": false,
         "screen": null,
         "screen_ok": false,
-        "text": "**Session** | 觀望／watch | YouTube字幕 | I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good ‖ I too"
+        "text": "**Session** | 觀望／watch | YouTube字幕 | I took light today on rejection of the 9A but it was still above a rising 21 or 50 which is still considered a good ‖ 我今天對 "
       },
       {
         "t": "1:48:23",

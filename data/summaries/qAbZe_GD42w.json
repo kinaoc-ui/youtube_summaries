@@ -5,7 +5,7 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 觀望偏空：SPY、TSLA；觀望偏多：SMTC、QQQ。",
+      "text": "今日總覽 — 觀望偏空：Semis、SPY、TSLA；觀望偏多：ONDS、Software、Cyber、SMTC、QQQ、ARM。",
       "start": "0"
     },
     {
@@ -15,12 +15,12 @@
     },
     {
       "t": "57:31",
-      "text": "觀望／watch｜ONDS — 觀望",
+      "text": "觀望偏多／lean long｜ONDS — 觀望偏多",
       "start": "0"
     },
     {
       "t": "08:10",
-      "text": "觀望／watch｜Semis — 之前止蝕／試多次",
+      "text": "觀望偏空／lean short｜Semis — 之前止蝕／試多次；想／考慮短",
       "start": "0"
     },
     {
@@ -30,12 +30,12 @@
     },
     {
       "t": "23:29",
-      "text": "觀望／watch｜Software — 觀望",
+      "text": "觀望偏多／lean long｜Software — 仍有強勢",
       "start": "0"
     },
     {
       "t": "23:33",
-      "text": "觀望／watch｜Cyber — 仍有強勢",
+      "text": "觀望偏多／lean long｜Cyber — 仍有強勢",
       "start": "0"
     },
     {
@@ -49,8 +49,8 @@
       "start": "0"
     },
     {
-      "t": "59:46",
-      "text": "觀望／watch｜ARM — 觀望",
+      "t": "57:15",
+      "text": "觀望偏多／lean long｜ARM — 有機會／未跟到",
       "start": "0"
     },
     {
@@ -67,12 +67,12 @@
   "bullets_en": [
     {
       "t": "06:52",
-      "text": "**ONDS** | 觀望／watch | dual ASR | Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip long. Maybe not. Yeah.",
+      "text": "**ONDS** | 觀望偏多／lean long | dual ASR | Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip long. Maybe not. Yeah.",
       "start": "0"
     },
     {
       "t": "08:10",
-      "text": "**Semis** | 觀望／watch | dual ASR | I almost got stopped out from the semi-short",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | I almost got stopped out from the semi-short",
       "start": "0"
     },
     {
@@ -87,17 +87,17 @@
     },
     {
       "t": "17:14",
-      "text": "**Software** | 觀望／watch | WhisperX | The software name seems like they're still leading.",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | The software name seems like they're still leading.",
       "start": "0"
     },
     {
       "t": "23:29",
-      "text": "**Software** | 觀望／watch | dual ASR | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks.",
+      "text": "**Software** | 觀望偏多／lean long | dual ASR | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks.",
       "start": "0"
     },
     {
       "t": "23:33",
-      "text": "**Cyber** | 觀望／watch | dual ASR | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks.",
+      "text": "**Cyber** | 觀望偏多／lean long | dual ASR | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks.",
       "start": "0"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "t": "36:08",
-      "text": "**SMTC** | 觀望／watch | dual ASR | a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction.",
+      "text": "**SMTC** | 觀望偏多／lean long | dual ASR | a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction.",
       "start": "0"
     },
     {
@@ -137,12 +137,12 @@
     },
     {
       "t": "57:15",
-      "text": "**ARM** | 觀望／watch | dual ASR | I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute breakdown.",
+      "text": "**ARM** | 觀望偏多／lean long | dual ASR | I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute breakdown.",
       "start": "0"
     },
     {
       "t": "57:31",
-      "text": "**ONDS** | 觀望／watch | WhisperX | It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA.",
+      "text": "**ONDS** | 觀望偏多／lean long | WhisperX | It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA.",
       "start": "0"
     },
     {
@@ -164,12 +164,12 @@
   "bullets_zh": [
     {
       "t": "06:52",
-      "text": "**ONDS** | 觀望／watch | 雙ASR確認 | Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip long. Maybe not. Yeah. ‖ Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip 做多. Maybe not",
+      "text": "**ONDS** | 觀望偏多／lean long | 雙ASR確認 | Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip long. Maybe not. Yeah. ‖ Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip 做多. Maybe not",
       "start": "0"
     },
     {
       "t": "08:10",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | I almost got stopped out from the semi-short ‖ I almost got 被 stop 出 from the semi-short",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | I almost got stopped out from the semi-short ‖ I almost got 被 stop 出 from the semi-short",
       "start": "0"
     },
     {
@@ -184,17 +184,17 @@
     },
     {
       "t": "17:14",
-      "text": "**Software** | 觀望／watch | WhisperX | The software name seems like they're still leading. ‖ The software name seems like they're still leading",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | The software name seems like they're still leading. ‖ software 這個名字看起來他們仍然領先",
       "start": "0"
     },
     {
       "t": "23:29",
-      "text": "**Software** | 觀望／watch | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
+      "text": "**Software** | 觀望偏多／lean long | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
       "start": "0"
     },
     {
       "t": "23:33",
-      "text": "**Cyber** | 觀望／watch | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
+      "text": "**Cyber** | 觀望偏多／lean long | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
       "start": "0"
     },
     {
@@ -204,17 +204,17 @@
     },
     {
       "t": "34:30",
-      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | I chose BE over SMTC because it looks stronger for the past few days. ‖ I chose BE over SMTC because it looks stronger for the past few days",
+      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | I chose BE over SMTC because it looks stronger for the past few days. ‖ 我選擇BE而不是SMTC，因為過去幾天它看起來更強",
       "start": "0"
     },
     {
       "t": "36:08",
-      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction. ‖ a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction",
+      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction. ‖ 稍微淺一點，與 B 相比沒有那麼深。而且我們還得到了，就像這次修正後更強的反彈",
       "start": "0"
     },
     {
       "t": "38:50",
-      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | Based on hindsight, what was the possible entry on SMTC? ‖ Based on hindsight, what was the possible entry on SMTC?",
+      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | Based on hindsight, what was the possible entry on SMTC? ‖ 事後看來，SMTC 的可能入口是什麼？",
       "start": "0"
     },
     {
@@ -229,44 +229,44 @@
     },
     {
       "t": "48:02",
-      "text": "**SPY** | 觀望偏多／lean long | WhisperX | on the daily. That gives us... ‖ on the daily. That gives us",
+      "text": "**SPY** | 觀望偏多／lean long | WhisperX | on the daily. That gives us... ‖ 每日。這給了我們",
       "start": "0"
     },
     {
       "t": "57:15",
-      "text": "**ARM** | 觀望／watch | 雙ASR確認 | I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute breakdown. ‖ I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute 破位向下",
+      "text": "**ARM** | 觀望偏多／lean long | 雙ASR確認 | I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute breakdown. ‖ I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute 破位向下",
       "start": "0"
     },
     {
       "t": "57:31",
-      "text": "**ONDS** | 觀望／watch | WhisperX | It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA. ‖ It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA",
+      "text": "**ONDS** | 觀望偏多／lean long | WhisperX | It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA. ‖ 這就像發生在短短一兩秒內，然後就像離 9 EMA 太遠一樣",
       "start": "0"
     },
     {
       "t": "59:46",
-      "text": "**ARM** | 觀望／watch | 雙ASR確認 | So glad to see you have the same opinion on ARM too. ‖ So glad to see you have the same opinion on ARM too",
+      "text": "**ARM** | 觀望／watch | 雙ASR確認 | So glad to see you have the same opinion on ARM too. ‖ 很高興看到你對 ARM 也有同樣的看法",
       "start": "0"
     },
     {
       "t": "1:02:04",
-      "text": "**PATH** | 觀望／watch | 雙ASR確認 | So yeah, don't try to like really like follow my path or like copy everything I do. ‖ So , don't try to like really like follow my path or like copy everything I do",
+      "text": "**PATH** | 觀望／watch | 雙ASR確認 | So yeah, don't try to like really like follow my path or like copy everything I do. ‖ 所以，不要試圖真正喜歡跟隨我的 PATH 或喜歡複製我所做的一切",
       "start": "0"
     },
     {
       "t": "1:36:55",
-      "text": "**TSLA** | 觀望偏空／lean short | WhisperX | I think, yeah, I think Tesla shot is the one that I took. ‖ I think, , I think Tesla shot is the one that I took",
+      "text": "**TSLA** | 觀望偏空／lean short | WhisperX | I think, yeah, I think Tesla shot is the one that I took. ‖ 我想，我想Tesla鏡頭是我拍的",
       "start": "0"
     }
   ],
   "bullets": [
     {
       "t": "06:52",
-      "text": "**ONDS** | 觀望／watch | 雙ASR確認 | Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip long. Maybe not. Yeah. ‖ Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip 做多. Maybe not",
+      "text": "**ONDS** | 觀望偏多／lean long | 雙ASR確認 | Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip long. Maybe not. Yeah. ‖ Maybe we can get like a huge green candle in just like 10 seconds. No idea. Maybe I'm gonna flip 做多. Maybe not",
       "start": "0"
     },
     {
       "t": "08:10",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | I almost got stopped out from the semi-short ‖ I almost got 被 stop 出 from the semi-short",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | I almost got stopped out from the semi-short ‖ I almost got 被 stop 出 from the semi-short",
       "start": "0"
     },
     {
@@ -281,17 +281,17 @@
     },
     {
       "t": "17:14",
-      "text": "**Software** | 觀望／watch | WhisperX | The software name seems like they're still leading. ‖ The software name seems like they're still leading",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | The software name seems like they're still leading. ‖ software 這個名字看起來他們仍然領先",
       "start": "0"
     },
     {
       "t": "23:29",
-      "text": "**Software** | 觀望／watch | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
+      "text": "**Software** | 觀望偏多／lean long | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
       "start": "0"
     },
     {
       "t": "23:33",
-      "text": "**Cyber** | 觀望／watch | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
+      "text": "**Cyber** | 觀望偏多／lean long | 雙ASR確認 | Now I can only see strength among the software names and especially particularly in the cybersecurity stocks. ‖ Now I can only see 強勢 among the software names and especially particularly in the cybersecurity stocks",
       "start": "0"
     },
     {
@@ -301,17 +301,17 @@
     },
     {
       "t": "34:30",
-      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | I chose BE over SMTC because it looks stronger for the past few days. ‖ I chose BE over SMTC because it looks stronger for the past few days",
+      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | I chose BE over SMTC because it looks stronger for the past few days. ‖ 我選擇BE而不是SMTC，因為過去幾天它看起來更強",
       "start": "0"
     },
     {
       "t": "36:08",
-      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction. ‖ a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction",
+      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | a little bit shallower, like not that deep compared to like B. And we also got a, like a stronger bounce after this correction. ‖ 稍微淺一點，與 B 相比沒有那麼深。而且我們還得到了，就像這次修正後更強的反彈",
       "start": "0"
     },
     {
       "t": "38:50",
-      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | Based on hindsight, what was the possible entry on SMTC? ‖ Based on hindsight, what was the possible entry on SMTC?",
+      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | Based on hindsight, what was the possible entry on SMTC? ‖ 事後看來，SMTC 的可能入口是什麼？",
       "start": "0"
     },
     {
@@ -326,32 +326,32 @@
     },
     {
       "t": "48:02",
-      "text": "**SPY** | 觀望偏多／lean long | WhisperX | on the daily. That gives us... ‖ on the daily. That gives us",
+      "text": "**SPY** | 觀望偏多／lean long | WhisperX | on the daily. That gives us... ‖ 每日。這給了我們",
       "start": "0"
     },
     {
       "t": "57:15",
-      "text": "**ARM** | 觀望／watch | 雙ASR確認 | I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute breakdown. ‖ I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute 破位向下",
+      "text": "**ARM** | 觀望偏多／lean long | 雙ASR確認 | I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute breakdown. ‖ I think like ARM has a pretty decent shot in the morning, but it's going too fast and I missed it on this like a one minute 破位向下",
       "start": "0"
     },
     {
       "t": "57:31",
-      "text": "**ONDS** | 觀望／watch | WhisperX | It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA. ‖ It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA",
+      "text": "**ONDS** | 觀望偏多／lean long | WhisperX | It's like happening in just one or two seconds and then it's like getting too far away from the 9 EMA. ‖ 這就像發生在短短一兩秒內，然後就像離 9 EMA 太遠一樣",
       "start": "0"
     },
     {
       "t": "59:46",
-      "text": "**ARM** | 觀望／watch | 雙ASR確認 | So glad to see you have the same opinion on ARM too. ‖ So glad to see you have the same opinion on ARM too",
+      "text": "**ARM** | 觀望／watch | 雙ASR確認 | So glad to see you have the same opinion on ARM too. ‖ 很高興看到你對 ARM 也有同樣的看法",
       "start": "0"
     },
     {
       "t": "1:02:04",
-      "text": "**PATH** | 觀望／watch | 雙ASR確認 | So yeah, don't try to like really like follow my path or like copy everything I do. ‖ So , don't try to like really like follow my path or like copy everything I do",
+      "text": "**PATH** | 觀望／watch | 雙ASR確認 | So yeah, don't try to like really like follow my path or like copy everything I do. ‖ 所以，不要試圖真正喜歡跟隨我的 PATH 或喜歡複製我所做的一切",
       "start": "0"
     },
     {
       "t": "1:36:55",
-      "text": "**TSLA** | 觀望偏空／lean short | WhisperX | I think, yeah, I think Tesla shot is the one that I took. ‖ I think, , I think Tesla shot is the one that I took",
+      "text": "**TSLA** | 觀望偏空／lean short | WhisperX | I think, yeah, I think Tesla shot is the one that I took. ‖ 我想，我想Tesla鏡頭是我拍的",
       "start": "0"
     }
   ],

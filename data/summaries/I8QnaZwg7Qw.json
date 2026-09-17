@@ -5,7 +5,7 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 做空：SPCX；觀望偏空：Silver、WDC、FIG、SNDK。",
+      "text": "今日總覽 — 做空：SPCX；觀望偏空：Silver、Quantum、WDC、FIG、SNDK；觀望偏多：ARM、AXTI、ASTS。",
       "start": "0"
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "t": "08:59",
-      "text": "觀望偏空／lean short｜Silver — 被 reject",
+      "text": "觀望偏空／lean short｜Silver — 被 reject；想／考慮短",
       "start": "0"
     },
     {
@@ -30,17 +30,17 @@
     },
     {
       "t": "1:12:04",
-      "text": "觀望／watch｜ARM — 觀望",
+      "text": "觀望偏多／lean long｜ARM — 觀望偏多",
       "start": "0"
     },
     {
       "t": "1:12:14",
-      "text": "觀望／watch｜AXTI — 觀望",
+      "text": "觀望偏多／lean long｜AXTI — 觀望偏多",
       "start": "0"
     },
     {
       "t": "1:12:17",
-      "text": "觀望／watch｜Quantum — 觀望",
+      "text": "觀望偏空／lean short｜Quantum — 想／考慮短",
       "start": "0"
     },
     {
@@ -60,7 +60,7 @@
     },
     {
       "t": "1:44:20",
-      "text": "觀望／watch｜ASTS — 反彈／回測",
+      "text": "觀望偏多／lean long｜ASTS — 反彈／回測",
       "start": "0"
     }
   ],
@@ -82,17 +82,17 @@
     },
     {
       "t": "1:12:04",
-      "text": "**ARM** | 觀望／watch | dual ASR | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also.",
+      "text": "**ARM** | 觀望偏多／lean long | dual ASR | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also.",
       "start": "0"
     },
     {
       "t": "1:12:14",
-      "text": "**AXTI** | 觀望／watch | dual ASR | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also.",
+      "text": "**AXTI** | 觀望偏多／lean long | dual ASR | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also.",
       "start": "0"
     },
     {
       "t": "1:12:17",
-      "text": "**Quantum** | 觀望／watch | WhisperX | And maybe also the quantum shot.",
+      "text": "**Quantum** | 觀望偏空／lean short | WhisperX | And maybe also the quantum shot.",
       "start": "0"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "t": "1:23:47",
-      "text": "**SPCX** | 觀望／watch | dual ASR | And I really got a very tight risk here, like a really tight stop. less than 1% stop and yeah I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only",
+      "text": "**SPCX** | 觀望偏多／lean long | dual ASR | And I really got a very tight risk here, like a really tight stop. less than 1% stop and yeah I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only",
       "start": "0"
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "t": "1:44:20",
-      "text": "**ASTS** | 觀望／watch | dual ASR | So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher.",
+      "text": "**ASTS** | 觀望偏多／lean long | dual ASR | So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher.",
       "start": "0"
     }
   ],
@@ -154,27 +154,27 @@
     },
     {
       "t": "1:12:04",
-      "text": "**ARM** | 觀望／watch | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ I think if ARM can break out from this opening range high, like the height of the 60-minute candle, probably then I'm gonna cover AXTI also",
+      "text": "**ARM** | 觀望偏多／lean long | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ 我認為如果 ARM 能夠突破這個開盤區間高點，例如 60 分鐘蠟燭的高度，那麼我可能也會平倉 AXTI",
       "start": "0"
     },
     {
       "t": "1:12:14",
-      "text": "**AXTI** | 觀望／watch | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ I think if ARM can break out from this opening range high, like the height of the 60-minute candle, probably then I'm gonna cover AXTI also",
+      "text": "**AXTI** | 觀望偏多／lean long | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ 我認為如果 ARM 能夠突破這個開盤區間高點，例如 60 分鐘蠟燭的高度，那麼我可能也會平倉 AXTI",
       "start": "0"
     },
     {
       "t": "1:12:17",
-      "text": "**Quantum** | 觀望／watch | WhisperX | And maybe also the quantum shot. ‖ And maybe also the quantum 空倉",
+      "text": "**Quantum** | 觀望偏空／lean short | WhisperX | And maybe also the quantum shot. ‖ And maybe also the quantum 空倉",
       "start": "0"
     },
     {
       "t": "1:14:38",
-      "text": "**WDC** | 觀望偏空／lean short | 雙ASR確認 | I kind of missed the entry on the Western Digital today, but it's going like too fast. If we get some type of a bounce or like a chop before breaking down from the opening range lows, that would be great. But we are just going straight down. ‖ I kind of missed the entry on the Western Digital today, but it's going like too fast. If we get some type of a bounce or like a chop before breaking down from the opening range lows, that would be great. But we are just going straight down",
+      "text": "**WDC** | 觀望偏空／lean short | 雙ASR確認 | I kind of missed the entry on the Western Digital today, but it's going like too fast. If we get some type of a bounce or like a chop before breaking down from the opening range lows, that would be great. But we are just going straight down. ‖ 我有點錯過了今天 WDC 的入場，但它進展得太快了。如果我們在從開盤低點跌破之前出現某種類型的反彈或類似的下跌，那就太好了。但我們只是直接往下走",
       "start": "0"
     },
     {
       "t": "1:15:04",
-      "text": "**FIG** | 觀望偏空／lean short | 雙ASR確認 | And then I also didn't catch this fakeouts on the end of the web and the rejection. ‖ And then I also didn't catch this fakeouts on the anchored VWAP and the reject",
+      "text": "**FIG** | 觀望偏空／lean short | 雙ASR確認 | And then I also didn't catch this fakeouts on the end of the web and the rejection. ‖ 然後我也沒有發現 anchored VWAP 上的假突破和拒絕",
       "start": "0"
     },
     {
@@ -184,7 +184,7 @@
     },
     {
       "t": "1:19:44",
-      "text": "**SPCX** | 觀望偏空／lean short | 雙ASR確認 | let's say if SpaceX (SPCX) is going to like really finding resistance here and then going to maybe the close below the 9 EMA and before the daily close below the 9, we generally would have to close below the 16 minute 9 EMA first. So we got the close below the 9gma yesterday and then and then today we get a gap up into this end to view up from yesterday. ‖ let's say if SpaceX (SPCX) is going to like really finding resistance here and then going to maybe the close below the 9 EMA and before the daily close below the 9, we generally would have to close below the 16 minute 9 EMA first. So we got the close below the 9 EMA yesterday and then and then today we get a gap up into this anchored VWAP from yesterday",
+      "text": "**SPCX** | 觀望偏空／lean short | 雙ASR確認 | let's say if SpaceX (SPCX) is going to like really finding resistance here and then going to maybe the close below the 9 EMA and before the daily close below the 9, we generally would have to close below the 16 minute 9 EMA first. So we got the close below the 9gma yesterday and then and then today we get a gap up into this end to view up from yesterday. ‖ 假設 SPCX 想要真正在這裡找到阻力，然後收盤價可能會低於 9 EMA，並且在每日收盤價低於 9 之前，我們通常必須先收盤於 16 分鐘 9 EMA 以下。因此，我們昨天收盤價低於 9 EMA，然後今天我們從昨天的 anchored VWAP 向上跳空",
       "start": "0"
     },
     {
@@ -194,17 +194,17 @@
     },
     {
       "t": "1:23:47",
-      "text": "**SPCX** | 觀望／watch | 雙ASR確認 | And I really got a very tight risk here, like a really tight stop. less than 1% stop and yeah I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only ‖ And I really got a very tight risk here, like a really tight stop. less than 1% stop and I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only",
+      "text": "**SPCX** | 觀望偏多／lean long | 雙ASR確認 | And I really got a very tight risk here, like a really tight stop. less than 1% stop and yeah I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only ‖ 我在這裡確實面臨著非常嚴格的風險，就像一個非常嚴格的停損。小於 1% 的止損，我認為這只是止損，嚴格的止損真正讓我能夠真正嘗試，而不會像現在這樣受到大 cut，它甚至不像一個小 cut，我認為這只是",
       "start": "0"
     },
     {
       "t": "1:30:28",
-      "text": "**SNDK** | 觀望偏空／lean short | 雙ASR確認 | But this one is so weak today. ‖ But this one is so weak today",
+      "text": "**SNDK** | 觀望偏空／lean short | 雙ASR確認 | But this one is so weak today. ‖ 但今天這個太弱了",
       "start": "0"
     },
     {
       "t": "1:44:20",
-      "text": "**ASTS** | 觀望／watch | 雙ASR確認 | So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher. ‖ So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher",
+      "text": "**ASTS** | 觀望偏多／lean long | 雙ASR確認 | So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher. ‖ 那麼也許這個 ASTS 怎麼樣，最近 7 月的反彈。但就像這個或像這個一樣，就像它彈到 50 EMA 一樣，它就像忽略了它，然後繼續走高",
       "start": "0"
     }
   ],
@@ -226,27 +226,27 @@
     },
     {
       "t": "1:12:04",
-      "text": "**ARM** | 觀望／watch | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ I think if ARM can break out from this opening range high, like the height of the 60-minute candle, probably then I'm gonna cover AXTI also",
+      "text": "**ARM** | 觀望偏多／lean long | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ 我認為如果 ARM 能夠突破這個開盤區間高點，例如 60 分鐘蠟燭的高度，那麼我可能也會平倉 AXTI",
       "start": "0"
     },
     {
       "t": "1:12:14",
-      "text": "**AXTI** | 觀望／watch | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ I think if ARM can break out from this opening range high, like the height of the 60-minute candle, probably then I'm gonna cover AXTI also",
+      "text": "**AXTI** | 觀望偏多／lean long | 雙ASR確認 | Yeah, I think if ARM can break out from this opening range height, like the height of the 16-minute candle, probably then I'm gonna close the AXTI also. ‖ 我認為如果 ARM 能夠突破這個開盤區間高點，例如 60 分鐘蠟燭的高度，那麼我可能也會平倉 AXTI",
       "start": "0"
     },
     {
       "t": "1:12:17",
-      "text": "**Quantum** | 觀望／watch | WhisperX | And maybe also the quantum shot. ‖ And maybe also the quantum 空倉",
+      "text": "**Quantum** | 觀望偏空／lean short | WhisperX | And maybe also the quantum shot. ‖ And maybe also the quantum 空倉",
       "start": "0"
     },
     {
       "t": "1:14:38",
-      "text": "**WDC** | 觀望偏空／lean short | 雙ASR確認 | I kind of missed the entry on the Western Digital today, but it's going like too fast. If we get some type of a bounce or like a chop before breaking down from the opening range lows, that would be great. But we are just going straight down. ‖ I kind of missed the entry on the Western Digital today, but it's going like too fast. If we get some type of a bounce or like a chop before breaking down from the opening range lows, that would be great. But we are just going straight down",
+      "text": "**WDC** | 觀望偏空／lean short | 雙ASR確認 | I kind of missed the entry on the Western Digital today, but it's going like too fast. If we get some type of a bounce or like a chop before breaking down from the opening range lows, that would be great. But we are just going straight down. ‖ 我有點錯過了今天 WDC 的入場，但它進展得太快了。如果我們在從開盤低點跌破之前出現某種類型的反彈或類似的下跌，那就太好了。但我們只是直接往下走",
       "start": "0"
     },
     {
       "t": "1:15:04",
-      "text": "**FIG** | 觀望偏空／lean short | 雙ASR確認 | And then I also didn't catch this fakeouts on the end of the web and the rejection. ‖ And then I also didn't catch this fakeouts on the anchored VWAP and the reject",
+      "text": "**FIG** | 觀望偏空／lean short | 雙ASR確認 | And then I also didn't catch this fakeouts on the end of the web and the rejection. ‖ 然後我也沒有發現 anchored VWAP 上的假突破和拒絕",
       "start": "0"
     },
     {
@@ -256,7 +256,7 @@
     },
     {
       "t": "1:19:44",
-      "text": "**SPCX** | 觀望偏空／lean short | 雙ASR確認 | let's say if SpaceX (SPCX) is going to like really finding resistance here and then going to maybe the close below the 9 EMA and before the daily close below the 9, we generally would have to close below the 16 minute 9 EMA first. So we got the close below the 9gma yesterday and then and then today we get a gap up into this end to view up from yesterday. ‖ let's say if SpaceX (SPCX) is going to like really finding resistance here and then going to maybe the close below the 9 EMA and before the daily close below the 9, we generally would have to close below the 16 minute 9 EMA first. So we got the close below the 9 EMA yesterday and then and then today we get a gap up into this anchored VWAP from yesterday",
+      "text": "**SPCX** | 觀望偏空／lean short | 雙ASR確認 | let's say if SpaceX (SPCX) is going to like really finding resistance here and then going to maybe the close below the 9 EMA and before the daily close below the 9, we generally would have to close below the 16 minute 9 EMA first. So we got the close below the 9gma yesterday and then and then today we get a gap up into this end to view up from yesterday. ‖ 假設 SPCX 想要真正在這裡找到阻力，然後收盤價可能會低於 9 EMA，並且在每日收盤價低於 9 之前，我們通常必須先收盤於 16 分鐘 9 EMA 以下。因此，我們昨天收盤價低於 9 EMA，然後今天我們從昨天的 anchored VWAP 向上跳空",
       "start": "0"
     },
     {
@@ -266,17 +266,17 @@
     },
     {
       "t": "1:23:47",
-      "text": "**SPCX** | 觀望／watch | 雙ASR確認 | And I really got a very tight risk here, like a really tight stop. less than 1% stop and yeah I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only ‖ And I really got a very tight risk here, like a really tight stop. less than 1% stop and I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only",
+      "text": "**SPCX** | 觀望偏多／lean long | 雙ASR確認 | And I really got a very tight risk here, like a really tight stop. less than 1% stop and yeah I think it's just the stop the tight stop really like allows me to take to really try it without getting a getting a huge cut like it is it's not even like a tiny cut I think it's only ‖ 我在這裡確實面臨著非常嚴格的風險，就像一個非常嚴格的停損。小於 1% 的止損，我認為這只是止損，嚴格的止損真正讓我能夠真正嘗試，而不會像現在這樣受到大 cut，它甚至不像一個小 cut，我認為這只是",
       "start": "0"
     },
     {
       "t": "1:30:28",
-      "text": "**SNDK** | 觀望偏空／lean short | 雙ASR確認 | But this one is so weak today. ‖ But this one is so weak today",
+      "text": "**SNDK** | 觀望偏空／lean short | 雙ASR確認 | But this one is so weak today. ‖ 但今天這個太弱了",
       "start": "0"
     },
     {
       "t": "1:44:20",
-      "text": "**ASTS** | 觀望／watch | 雙ASR確認 | So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher. ‖ So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher",
+      "text": "**ASTS** | 觀望偏多／lean long | 雙ASR確認 | So maybe how about this one, ASTS, the recent bounce in July. But then like on this one or like this one, like it is bouncing into the 50 EMA and it just like neglects it and then keeps going higher. ‖ 那麼也許這個 ASTS 怎麼樣，最近 7 月的反彈。但就像這個或像這個一樣，就像它彈到 50 EMA 一樣，它就像忽略了它，然後繼續走高",
       "start": "0"
     }
   ],

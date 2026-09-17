@@ -505,6 +505,27 @@ def _prep_en(text: str) -> str:
 
 _ZH_CACHE: dict[str, str] = {}
 
+
+def seed_zh_cache_from_markdown(md: str) -> int:
+    """Reuse already-translated timeline lines so rebuilds don't hammer Google."""
+    n = 0
+    for line in (md or "").splitlines():
+        if " ‖ " not in line:
+            continue
+        tail = line.rsplit("|", 1)[-1]
+        if " ‖ " not in tail:
+            continue
+        en, zh = tail.split(" ‖ ", 1)
+        en = en.strip()
+        zh = zh.strip()
+        if not en or not re.search(r"[\u4e00-\u9fff]", zh or ""):
+            continue
+        key = re.sub(r"\s+", " ", en).lower()
+        if key not in _ZH_CACHE:
+            _ZH_CACHE[key] = zh
+            n += 1
+    return n
+
 # Lock trading jargon FIRST so Google cannot turn short→短片 / shorts→短褲.
 # Tickers after that: spy≠間諜, semi≠半決賽, quantum≠量子.
 _LOCKS: list[tuple[str, str]] = [

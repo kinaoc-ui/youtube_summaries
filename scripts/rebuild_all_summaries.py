@@ -6,12 +6,19 @@ sys.stdout.reconfigure(encoding="utf-8")
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.dual_asr_build import patch_markdown_with_dual
+from app.speech_zh import seed_zh_cache_from_markdown
 from app.storage import save_summary
 
 ROOT = Path(__file__).resolve().parents[1]
 failed = []
 only = set(sys.argv[1:])
-for p in sorted((ROOT / "data" / "summaries").glob("*.md")):
+summary_dir = ROOT / "data" / "summaries"
+for p in sorted(summary_dir.glob("*.md")):
+    seed_zh_cache_from_markdown(p.read_text(encoding="utf-8"))
+    outp = ROOT / "outputs" / f"{p.stem}.md"
+    if outp.is_file():
+        seed_zh_cache_from_markdown(outp.read_text(encoding="utf-8"))
+for p in sorted(summary_dir.glob("*.md")):
     vid = p.stem
     if only and vid not in only:
         continue

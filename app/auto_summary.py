@@ -91,6 +91,42 @@ SIDE_TRIM = re.compile(
     re.I,
 )
 
+_BEAR_CUE = re.compile(
+    r"closing weak|closed? (?:fairly )?weak|getting rejected|rejected at|"
+    r"\brejection\b|gapping down|gap(?:ping)? down|gap(?:ing|ping) below|"
+    r"\bshorted\b|shorting |semi-?short|"
+    r"weakness|slowdown|not going to participate.{0,24}long|"
+    r"extended from the daily|hanging around|"
+    r"not finding support|finding (?:some )?resistance|"
+    r"(?:a )?little bit(?: little bit)? weak|getting .{0,20}weak|"
+    r"goes lower|going lower|follow through to the downside|"
+    r"pulling back|breakdown",
+    re.I,
+)
+_BULL_CUE = re.compile(
+    r"looks? (?:pretty |really |still )?(?:pretty |really )?strong|"
+    r"still .{0,20}(?:really )?strong|really strong|pretty strong|"
+    r"looks stronger|found (?:some )?strength|some strength in|"
+    r"relative strength|showing (?:good |relative )?strength|"
+    r"strength among|see strength|still leading|"
+    r"they(?:'re| are) leading|names? (?:are |seems? like they'?re )?leading|"
+    r"pushing into|breaking out|break outs?|\bbreakouts?\b|stick into the|"
+    r"find .{0,24}strength|sign of strength|holding near|"
+    r"doing pretty well|bouncing (?:higher|back)|stronger bounce|"
+    r"optimistic|decent shot|flip long|reclaim|going higher",
+    re.I,
+)
+
+
+def _last_watch_lean(scored: str) -> str:
+    """When both bull and bear fire, the later cue in the sentence wins."""
+    events = [(m.end(), "short") for m in _BEAR_CUE.finditer(scored)]
+    events += [(m.end(), "long") for m in _BULL_CUE.finditer(scored)]
+    if not events:
+        return "Watch"
+    events.sort()
+    return "Watch／偏空" if events[-1][1] == "short" else "Watch／偏多"
+
 
 def _watch_lean(blob: str, ticker: str | None = None) -> str:
     """Not in a trade, but chart talk still has a long/short bias."""
@@ -99,7 +135,8 @@ def _watch_lean(blob: str, ticker: str | None = None) -> str:
     if re.search(
         r"wanted to short|like to short|would also like to short|short entry|"
         r"more aggressive short|good (?:position|spot) to short|"
-        r"(?:position|spot) to short|consider(?:ing)? .{0,24}short",
+        r"(?:position|spot) to short|consider(?:ing)? .{0,24}short|semi-?short|"
+        r"(?:quantum|silver|semi)s?\s+shot",
         b,
         re.I,
     ):
@@ -153,36 +190,10 @@ def _watch_lean(blob: str, ticker: str | None = None) -> str:
             re.I,
         ):
             scored = tail
-    bear = bool(
-        re.search(
-            r"closing weak|closed? (?:fairly )?weak|getting rejected|rejected at|"
-            r"\brejection\b|gapping down|gap(?:ping)? down|"
-            r"\bshorted\b|shorting |"
-            r"weakness|slowdown|not going to participate.{0,24}long|"
-            r"extended from the daily|hanging around|"
-            r"not finding support|finding (?:some )?resistance|"
-            r"(?:a )?little bit(?: little bit)? weak|getting .{0,20}weak|"
-            r"goes lower|going lower|follow through to the downside|"
-            r"pulling back",
-            scored,
-            re.I,
-        )
-    )
+    bear = bool(_BEAR_CUE.search(scored))
     if failed_push:
         bear = False
-    bull = bool(
-        re.search(
-            r"looks? (?:pretty |really |still )?(?:pretty |really )?strong|"
-            r"still .{0,20}(?:really )?strong|really strong|pretty strong|"
-            r"found (?:some )?strength|some strength in|"
-            r"relative strength|showing (?:good |relative )?strength|pushing into|"
-            r"breaking out|\bbreakouts?\b|stick into the|find .{0,24}strength|"
-            r"sign of strength|holding near|"
-            r"doing pretty well|bouncing (?:higher|back)|optimistic",
-            scored,
-            re.I,
-        )
-    )
+    bull = bool(_BULL_CUE.search(scored))
     if failed_push:
         bull = True
     tick = (ticker or "").upper()
@@ -205,6 +216,19 @@ def _watch_lean(blob: str, ticker: str | None = None) -> str:
         return "Watch／偏空"
     if bull and not bear:
         return "Watch／偏多"
+    if bear and bull:
+        # Missed long / sector strength without actually shorting → lean long
+        if re.search(
+            r"strength among|see strength|still leading|decent shot",
+            scored,
+            re.I,
+        ) and not re.search(
+            r"\bshorting\b|\bshorted\b|shortable|semi-?short",
+            scored,
+            re.I,
+        ):
+            return "Watch／偏多"
+        return _last_watch_lean(scored)
     return "Watch"
 
 
@@ -278,8 +302,8 @@ def _infer_side(blob: str, ticker: str | None = None) -> str:
     # SMTC reclaim — don't give Long to CRWV just because same sentence
     if tick == "SMTC" and re.search(r"reclaiming", b, re.I):
         if re.search(r"not consider buying|probably not consider buying", b, re.I):
-            return "Watch"
-        return "Watch"  # track / reclaim, not a market order today
+            return "Watch／偏多"
+        return "Watch／偏多"  # track / reclaim, not a market order today
     if tick == "CRWV" and re.search(r"good short|short .{0,20}crwv|crwv .{0,20}short", b, re.I):
         return "Short（考慮）"
     if re.search(r"re-?enter", b, re.I):
@@ -289,11 +313,11 @@ def _infer_side(blob: str, ticker: str | None = None) -> str:
             return "Long"
     if SIDE_LONG.search(b):
         if re.search(r"not consider buying|probably not consider buying", b, re.I):
-            return "Watch"
+            return "Watch／偏多"
         if re.search(r"reclaiming", b, re.I) and re.search(
             r"not consider buying|good stock to track", b, re.I
         ):
-            return "Watch"
+            return "Watch／偏多"
         if re.search(r"re-?enter", b, re.I) and tick not in {"FTNT", "PANW", ""}:
             if re.search(rf"re-?enter(?:ing)?\s+{re.escape(tick)}\b", b, re.I):
                 return "Long"
@@ -627,6 +651,13 @@ def _extend_hit(hit: dict[str, Any], extra: str) -> None:
         merged = merged[:477] + "…"
     hit["text"] = merged
     hit["reason"] = merged[:140] + ("…" if len(merged) > 140 else "")
+    tick = str(hit.get("ticker") or "")
+    cur_side = str(hit.get("side") or "Watch")
+    if cur_side == "Watch":
+        filled = _watch_lean(merged, tick)
+        if "偏" in filled:
+            hit["side"] = filled
+            hit["suggestion"] = filled
 
 
 def _new_hit(
@@ -658,7 +689,8 @@ def _new_hit(
             quote_bull = bool(
                 re.search(
                     r"breakouts?|really strong|pretty strong|holding near|"
-                    r"sign of strength|not .{0,24}weakness|attempts? to (?:push|go) lower.{0,40}failed",
+                    r"sign of strength|not .{0,24}weakness|attempts? to (?:push|go) lower.{0,40}failed|"
+                    r"strength among|see strength|still leading|decent shot|break out",
                     quote,
                     re.I,
                 )
@@ -719,7 +751,7 @@ def _new_hit(
             para = quote + " I'm not very confident on getting too aggressive on the short side."
     if "reclaim" in plow and "not consider buying" in blow:
         para = quote + " Probably not consider buying it today but it will be a good stock to track."
-        side = "Watch"
+        side = "Watch／偏多"
     if tick.upper() in {"FTNT", "PANW"} and "tried too many times" in blow:
         if "tried too many times" not in plow:
             para = quote + " I tried too many times on them."

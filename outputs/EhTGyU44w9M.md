@@ -9,7 +9,7 @@
 
 撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
 
-- **今日總覽** — 觀望偏空：SPCX、NVDA、CRWV、QQQ；做多：Cyber、Software、FTNT、PANW；觀望偏多：SMCI、Semis、ORCL、WULF；減／平：CRCL。
+- **今日總覽** — 觀望偏空：SPCX、NVDA、CRWV、QQQ；做多：Cyber、Software、FTNT、PANW；觀望偏多：Quantum、SMCI、Semis、ORCL、SMTC、WULF；減／平：CRCL。
 - **實際操作｜Cyber** [1:34:09](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5649s) — 已有倉（話太早）（做多／long）
 - **實際操作｜CRWV** [1:16:30](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4590s) — 問／考慮短（觀望／watch）
 - **實際操作｜FTNT** [1:30:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5444s) — 再入場（做多／long）
@@ -17,17 +17,17 @@
 - **實際操作｜SNDK** [1:37:50](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5870s) — 之前止蝕離場（觀望／watch）
 - **實際操作｜CRCL** [1:41:33](https://www.youtube.com/watch?v=EhTGyU44w9M&t=6093s) — 講緊平倉（減倉／trim）
 - **做多／long｜Cyber** [1:34:09](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5649s) — 偏多→觀望；cyber long 太早；software 有撐；gap down；等 gap down／早市 flush 先買 dips；相對強勢
-- **做多／long｜Software** [1:32:10](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5530s) — 觀望→偏多；gap down；今日已 gap down；software gap 填缺口可關注
+- **做多／long｜Software** [1:32:10](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5530s) — 觀望→偏多；仍有強勢；gap down；今日已 gap down；software gap 填缺口可關注
 - **做多／long｜FTNT** [1:30:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5444s) — 再入場
 - **做多／long｜PANW** [1:30:48](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5448s) — 再入場
 - **減倉／trim｜CRCL** [1:41:33](https://www.youtube.com/watch?v=EhTGyU44w9M&t=6093s) — 唔鐘意 crypto，考慮平
-- **觀望偏空／lean short｜SPCX** [05:00](https://www.youtube.com/watch?v=EhTGyU44w9M&t=300s) — gap down；今日已 gap down；落 hourly 50；反彈／回測
-- **觀望／watch｜Quantum** [05:43](https://www.youtube.com/watch?v=EhTGyU44w9M&t=343s) — 睇落仍然強
+- **觀望偏空／lean short｜SPCX** [05:00](https://www.youtube.com/watch?v=EhTGyU44w9M&t=300s) — gap down；今日已 gap down；落 hourly 50
+- **觀望偏多／lean long｜Quantum** [05:43](https://www.youtube.com/watch?v=EhTGyU44w9M&t=343s) — 睇落仍然強
 - **觀望偏多／lean long｜SMCI** [06:10](https://www.youtube.com/watch?v=EhTGyU44w9M&t=370s) — NVDA 業績後或轉方向
 - **觀望偏多／lean long｜Semis** [1:29:27](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5367s) — NVDA 業績後或轉方向；反彈，睇 hourly 21；仍有強勢
 - **觀望偏多／lean long｜ORCL** [09:51](https://www.youtube.com/watch?v=EhTGyU44w9M&t=591s) — 破位／轉強
 - **觀望偏空／lean short｜NVDA** [1:10:05](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4205s) — NVDA 業績後或轉方向
-- **觀望／watch｜SMTC** [1:14:36](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4476s) — reclaim open／VWAP，今日唔急買
+- **觀望偏多／lean long｜SMTC** [1:14:36](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4476s) — reclaim open／VWAP，今日唔急買
 - **觀望偏空／lean short｜CRWV** [1:16:30](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4590s) — 或 shortable／good short
 - **觀望偏多／lean long｜WULF** [1:26:28](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5188s) — 睇落強；相對強勢；企穩 21 EMA；仍有強勢
 - **觀望／watch｜SNDK** [1:37:50](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5870s) — 之前止蝕／試多次
@@ -40,19 +40,19 @@
 
 - [05:00](https://www.youtube.com/watch?v=EhTGyU44w9M&t=300s) **SPCX** | 觀望偏空／lean short | 雙ASR確認 | So I am considering like to flipping short on SpaceX (SPCX) today. And I kind of like how this bouncing back into the declining weekly nine, also at the end can feel up from the swing high. yesterday also close like fairly weak and today we got a gap down into the hourly 50 EMA ‖ So 我而家考慮轉空 SpaceX (SPCX) today. And I kind of like how this bouncing back into the declining weekly nine, also at the end can feel up from the swing high（波段高位）. 尋日收市都幾弱 and 今日我哋有 gap down 去到 hourly 50 EMA
 - [05:43](https://www.youtube.com/watch?v=EhTGyU44w9M&t=343s) **Quantum** | 觀望／watch | WhisperX | But at the same time, there are also some strengths showing up across the different themes, something like this light and SMCI are one of the few examples of the stronger semi-names. ‖ But 同一時間, 唔同主題都有強勢出現, 好似 this light 同 SMCI 係少數較強 semi 之一
-- [06:10](https://www.youtube.com/watch?v=EhTGyU44w9M&t=370s) **SMCI** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday
-- [06:18](https://www.youtube.com/watch?v=EhTGyU44w9M&t=378s) **Semis** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday
+- [06:10](https://www.youtube.com/watch?v=EhTGyU44w9M&t=370s) **SMCI** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ 我也得到了一些類似的信息，所以也找到了這家公司，但該公司的盈利情況非常接近。昨天新的透明稀土和一些稀土也表現不錯
+- [06:18](https://www.youtube.com/watch?v=EhTGyU44w9M&t=378s) **Semis** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ 我也得到了一些類似的信息，所以也找到了這家公司，但該公司的盈利情況非常接近。昨天新的透明稀土和一些稀土也表現不錯
 - [09:51](https://www.youtube.com/watch?v=EhTGyU44w9M&t=591s) **ORCL** | 觀望偏多／lean long | 雙ASR確認 | His ORCL is breaking out today after stopping me out a few times in a row. ‖ ORCL 今日破位向上，之前連續幾次 stop 我出嚟
 - [17:23](https://www.youtube.com/watch?v=EhTGyU44w9M&t=1043s) **Cyber** | 做多／long | 雙ASR確認 | Looks like I'm too early on the cypress longs. ‖ 睇嚟我喺 cypress long 入得太早
 - [17:43](https://www.youtube.com/watch?v=EhTGyU44w9M&t=1063s) **Software** | 觀望／watch | 雙ASR確認 | Now they are finding support with the software sector. and ‖ 而家佢哋 靠 software 板塊搵到支持. and
 - [17:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=1064s) **字幕缺口** | — | 咪 mute／無語音 | 17:44–1:05:21 約 48 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）
-- [1:05:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=3944s) **Semis** | 觀望／watch | 雙ASR確認 | And particularly like semis are looking really bad. ‖ 尤其係 semis 睇落好差
+- [1:05:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=3944s) **Semis** | 觀望偏多／lean long | 雙ASR確認 | And particularly like semis are looking really bad. ‖ 尤其係 semis 睇落好差
 - [1:08:29](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4109s) **Semis** | 觀望偏空／lean short | 雙ASR確認 | You're right now a little bit worried about the weakness in the semis spread to other sectors. ‖ 你而家有少少 擔心 semis 弱勢擴散去其他板塊
 - [1:10:05](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4205s) **NVDA** | 觀望偏空／lean short | 雙ASR確認 | and today we got the Nvidia earnings after hours so maybe it will give another new direction or like it's gonna bring some weakness into the into the semi sector and in the general market as well ‖ and 今日有 Nvidia 盤後業績 所以或者會 帶新方向 or like 會帶弱勢入 semi 板塊 and 大市都係
 - [1:10:25](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4225s) **Semis** | 觀望偏空／lean short | 雙ASR確認 | and today we got the Nvidia earnings after hours so maybe it will give another new direction or like it's gonna bring some weakness into the into the semi sector and in the general market as well ‖ and 今日有 Nvidia 盤後業績 所以或者會 帶新方向 or like 會帶弱勢入 semi 板塊 and 大市都係
 - [1:13:21](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4401s) **Software** | 觀望偏多／lean long | WhisperX | And the market can go polar like the strength in the software and the weakness in the semis can go together at the same time. ‖ And 大市可以兩極化 like software 嘅強勢同 semis 嘅弱勢可以同時出現
-- [1:13:23](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4403s) **Semis** | 觀望偏空／lean short | 雙ASR確認 | And that would be a pretty difficult market condition to trade in my opinion. ‖ And that would be a pretty difficult market condition to trade in my opinion
-- [1:14:36](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4476s) **SMTC** | 觀望／watch | 雙ASR確認 | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track. ‖ SMTC 喺 reclaim 開市同 CRWV. 今日可能唔考慮買 but 係一隻值得跟蹤嘅股
+- [1:13:23](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4403s) **Semis** | 觀望偏空／lean short | 雙ASR確認 | And that would be a pretty difficult market condition to trade in my opinion. ‖ 我認為這將是一個相當困難的市場條件
+- [1:14:36](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4476s) **SMTC** | 觀望偏多／lean long | 雙ASR確認 | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track. ‖ SMTC 喺 reclaim 開市同 CRWV. 今日可能唔考慮買 but 係一隻值得跟蹤嘅股
 - [1:16:30](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4590s) **CRWV** | 觀望偏空／lean short | 雙ASR確認 | Do you think core VVC good short position? ‖ 你覺得 CRWV 係咪 good short 位?
 - [1:26:28](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5188s) **WULF** | 觀望偏多／lean long | WhisperX | WULF looks strong, showing good strength, finding support on the 21 EMA. ‖ WULF 睇落好強，有好嘅強勢, 喺 21 EMA 搵到支持
 - [1:29:27](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5367s) **Semis** | 觀望偏多／lean long | WhisperX | seems like the semi is bouncing higher bouncing back see whether we can uh whether it can sustain the strength under the hourly 21 and ‖ semis 好似 反彈緊、彈返上 睇下可唔可以維持呢股強勢 under the hourly 21 and
@@ -78,13 +78,13 @@ Time | Ticker | Long/Short | Source | ASR English (original)
 - [17:23](https://www.youtube.com/watch?v=EhTGyU44w9M&t=1043s) **Cyber** | 做多／long | dual ASR | Looks like I'm too early on the cypress longs.
 - [17:43](https://www.youtube.com/watch?v=EhTGyU44w9M&t=1063s) **Software** | 觀望／watch | dual ASR | Now they are finding support with the software sector. and
 - [17:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=1064s) **Mute gap** | — | mic muted / no speech | 17:44–1:05:21 約 48 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）
-- [1:05:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=3944s) **Semis** | 觀望／watch | dual ASR | And particularly like semis are looking really bad.
+- [1:05:44](https://www.youtube.com/watch?v=EhTGyU44w9M&t=3944s) **Semis** | 觀望偏多／lean long | dual ASR | And particularly like semis are looking really bad.
 - [1:08:29](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4109s) **Semis** | 觀望偏空／lean short | dual ASR | You're right now a little bit worried about the weakness in the semis spread to other sectors.
 - [1:10:05](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4205s) **NVDA** | 觀望偏空／lean short | dual ASR | and today we got the Nvidia earnings after hours so maybe it will give another new direction or like it's gonna bring some weakness into the into the semi sector and in the general market as well
 - [1:10:25](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4225s) **Semis** | 觀望偏空／lean short | dual ASR | and today we got the Nvidia earnings after hours so maybe it will give another new direction or like it's gonna bring some weakness into the into the semi sector and in the general market as well
 - [1:13:21](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4401s) **Software** | 觀望偏多／lean long | WhisperX | And the market can go polar like the strength in the software and the weakness in the semis can go together at the same time.
 - [1:13:23](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4403s) **Semis** | 觀望偏空／lean short | dual ASR | And that would be a pretty difficult market condition to trade in my opinion.
-- [1:14:36](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4476s) **SMTC** | 觀望／watch | dual ASR | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track.
+- [1:14:36](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4476s) **SMTC** | 觀望偏多／lean long | dual ASR | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track.
 - [1:16:30](https://www.youtube.com/watch?v=EhTGyU44w9M&t=4590s) **CRWV** | 觀望偏空／lean short | dual ASR | Do you think core VVC good short position?
 - [1:26:28](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5188s) **WULF** | 觀望偏多／lean long | WhisperX | WULF looks strong, showing good strength, finding support on the 21 EMA.
 - [1:29:27](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5367s) **Semis** | 觀望偏多／lean long | WhisperX | seems like the semi is bouncing higher bouncing back see whether we can uh whether it can sustain the strength under the hourly 21 and

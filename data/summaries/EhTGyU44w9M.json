@@ -5,7 +5,7 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 觀望偏空：SPCX、NVDA、CRWV、QQQ；做多：Cyber、Software、FTNT、PANW；觀望偏多：SMCI、Semis、ORCL、WULF；減／平：CRCL。",
+      "text": "今日總覽 — 觀望偏空：SPCX、NVDA、CRWV、QQQ；做多：Cyber、Software、FTNT、PANW；觀望偏多：Quantum、SMCI、Semis、ORCL、SMTC、WULF；減／平：CRCL。",
       "start": "0"
     },
     {
@@ -45,7 +45,7 @@
     },
     {
       "t": "1:32:10",
-      "text": "做多／long｜Software — 觀望→偏多；gap down；今日已 gap down；software gap 填缺口可關注",
+      "text": "做多／long｜Software — 觀望→偏多；仍有強勢；gap down；今日已 gap down；software gap 填缺口可關注",
       "start": "0"
     },
     {
@@ -65,12 +65,12 @@
     },
     {
       "t": "05:00",
-      "text": "觀望偏空／lean short｜SPCX — gap down；今日已 gap down；落 hourly 50；反彈／回測",
+      "text": "觀望偏空／lean short｜SPCX — gap down；今日已 gap down；落 hourly 50",
       "start": "0"
     },
     {
       "t": "05:43",
-      "text": "觀望／watch｜Quantum — 睇落仍然強",
+      "text": "觀望偏多／lean long｜Quantum — 睇落仍然強",
       "start": "0"
     },
     {
@@ -95,7 +95,7 @@
     },
     {
       "t": "1:14:36",
-      "text": "觀望／watch｜SMTC — reclaim open／VWAP，今日唔急買",
+      "text": "觀望偏多／lean long｜SMTC — reclaim open／VWAP，今日唔急買",
       "start": "0"
     },
     {
@@ -167,7 +167,7 @@
     },
     {
       "t": "1:05:44",
-      "text": "**Semis** | 觀望／watch | dual ASR | And particularly like semis are looking really bad.",
+      "text": "**Semis** | 觀望偏多／lean long | dual ASR | And particularly like semis are looking really bad.",
       "start": "0"
     },
     {
@@ -197,7 +197,7 @@
     },
     {
       "t": "1:14:36",
-      "text": "**SMTC** | 觀望／watch | dual ASR | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track.",
+      "text": "**SMTC** | 觀望偏多／lean long | dual ASR | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track.",
       "start": "0"
     },
     {
@@ -274,12 +274,12 @@
     },
     {
       "t": "06:10",
-      "text": "**SMCI** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday",
+      "text": "**SMCI** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ 我也得到了一些類似的信息，所以也找到了這家公司，但該公司的盈利情況非常接近。昨天新的透明稀土和一些稀土也表現不錯",
       "start": "0"
     },
     {
       "t": "06:18",
-      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday",
+      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ 我也得到了一些類似的信息，所以也找到了這家公司，但該公司的盈利情況非常接近。昨天新的透明稀土和一些稀土也表現不錯",
       "start": "0"
     },
     {
@@ -304,7 +304,7 @@
     },
     {
       "t": "1:05:44",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | And particularly like semis are looking really bad. ‖ 尤其係 semis 睇落好差",
+      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | And particularly like semis are looking really bad. ‖ 尤其係 semis 睇落好差",
       "start": "0"
     },
     {
@@ -329,12 +329,12 @@
     },
     {
       "t": "1:13:23",
-      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And that would be a pretty difficult market condition to trade in my opinion. ‖ And that would be a pretty difficult market condition to trade in my opinion",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And that would be a pretty difficult market condition to trade in my opinion. ‖ 我認為這將是一個相當困難的市場條件",
       "start": "0"
     },
     {
       "t": "1:14:36",
-      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track. ‖ SMTC 喺 reclaim 開市同 CRWV. 今日可能唔考慮買 but 係一隻值得跟蹤嘅股",
+      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track. ‖ SMTC 喺 reclaim 開市同 CRWV. 今日可能唔考慮買 but 係一隻值得跟蹤嘅股",
       "start": "0"
     },
     {
@@ -411,12 +411,12 @@
     },
     {
       "t": "06:10",
-      "text": "**SMCI** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday",
+      "text": "**SMCI** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ 我也得到了一些類似的信息，所以也找到了這家公司，但該公司的盈利情況非常接近。昨天新的透明稀土和一些稀土也表現不錯",
       "start": "0"
     },
     {
       "t": "06:18",
-      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday",
+      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | I also got some like, so find the firm as well, but the firm is really close to the earnings. And also the new clear and some rare earths is doing pretty well yesterday. ‖ 我也得到了一些類似的信息，所以也找到了這家公司，但該公司的盈利情況非常接近。昨天新的透明稀土和一些稀土也表現不錯",
       "start": "0"
     },
     {
@@ -441,7 +441,7 @@
     },
     {
       "t": "1:05:44",
-      "text": "**Semis** | 觀望／watch | 雙ASR確認 | And particularly like semis are looking really bad. ‖ 尤其係 semis 睇落好差",
+      "text": "**Semis** | 觀望偏多／lean long | 雙ASR確認 | And particularly like semis are looking really bad. ‖ 尤其係 semis 睇落好差",
       "start": "0"
     },
     {
@@ -466,12 +466,12 @@
     },
     {
       "t": "1:13:23",
-      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And that would be a pretty difficult market condition to trade in my opinion. ‖ And that would be a pretty difficult market condition to trade in my opinion",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | And that would be a pretty difficult market condition to trade in my opinion. ‖ 我認為這將是一個相當困難的市場條件",
       "start": "0"
     },
     {
       "t": "1:14:36",
-      "text": "**SMTC** | 觀望／watch | 雙ASR確認 | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track. ‖ SMTC 喺 reclaim 開市同 CRWV. 今日可能唔考慮買 but 係一隻值得跟蹤嘅股",
+      "text": "**SMTC** | 觀望偏多／lean long | 雙ASR確認 | SMTC is reclaiming its opening and CRWV. Probably not consider buying it today but it will be a good stock to track. ‖ SMTC 喺 reclaim 開市同 CRWV. 今日可能唔考慮買 but 係一隻值得跟蹤嘅股",
       "start": "0"
     },
     {
