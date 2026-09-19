@@ -7,13 +7,13 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 今日坐出／唔交易；觀望偏空：Software、Semis、TSLA。
 - **觀望偏空／lean short｜Software** [16:50](https://www.youtube.com/watch?v=rrTaA0m7WxA&t=1010s) — 被 reject；gap down；拒 declining 9；software gap 填缺口可關注
 - **觀望偏空／lean short｜Semis** [31:18](https://www.youtube.com/watch?v=rrTaA0m7WxA&t=1878s) — gap down
 - **觀望偏空／lean short｜TSLA** [17:10](https://www.youtube.com/watch?v=rrTaA0m7WxA&t=1030s) — 或跟空／向下
-- **觀望／watch｜FIG** [17:55](https://www.youtube.com/watch?v=rrTaA0m7WxA&t=1075s) — 觀望
+- **觀望／watch｜FIG** [17:55](https://www.youtube.com/watch?v=rrTaA0m7WxA&t=1075s) — 我对这个有点太早了，就像这个 FIG 一样。我应该稍等一下，耐心一点，先等待假牌。所以提前几天，提前一周，削减一千次。我对这个有点太早了，就像这个 FIG…
 
 ## 時間軸內容
 

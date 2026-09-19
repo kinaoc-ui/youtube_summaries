@@ -32,6 +32,10 @@ ASR_FIXES = [
     (r"\bon form payrolls\b", "non-farm payrolls"),
     (r"\bangle up\b", "anchored VWAP"),
     (r"\banchor up\b", "anchored VWAP"),
+    (r"\bend of (?:the )?VWAP\b", "anchored VWAP"),
+    (r"\binto the end of VWAP\b", "into the anchored VWAP"),
+    (r"\bankle view\b", "anchored VWAP"),
+    (r"\bangle view\b", "anchored VWAP"),
     (r"\breal break\b", "CoreWeave"),
     (r"\bHUDs\b", "HOOD"),
     (r"\bhuts\b", "HOOD"),
@@ -123,7 +127,21 @@ def fix_asr(text: str) -> str:
             return ""
     for pat, repl in ASR_FIXES:
         out = re.sub(pat, repl, out, flags=re.IGNORECASE)
+    out = _fix_year_mate_ema(out)
     return out
+
+
+def _fix_year_mate_ema(text: str) -> str:
+    """Whisper hears '5, 9 EMA' as '5.9 year mate'."""
+
+    def repl(m: re.Match[str]) -> str:
+        n = m.group(1)
+        if "." in n:
+            a, b = n.split(".", 1)
+            return f"{a}, {b} EMA"
+        return f"{n} EMA"
+
+    return re.sub(r"\b(\d+(?:\.\d+)?)\s+year mates?\b", repl, text, flags=re.I)
 
 
 def rewrite_transcript_file(path: Path) -> int:

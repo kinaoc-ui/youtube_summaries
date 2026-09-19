@@ -7,18 +7,18 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：Semis、WDC、SPY、IGV、HPQ；做多：Software。
-- **做多／long｜Software** [06:54](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=414s) — 觀望→偏多→觀望；偏多／長
+- **做多／long｜Software** [06:54](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=414s) — 觀望→偏多→觀望；今天對我來說，我認為這將是一個非常好的事情，因為它不會是 短倉 的一天 空倉，但我將在更強的部門（即 software）上尋找 長倉 我可能今天對我來說，…
 - **觀望偏空／lean short｜Semis** [1:21:13](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4873s) — 想／考慮短
-- **觀望偏空／lean short｜WDC** [1:11:21](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4281s) — 觀望偏空
-- **觀望偏空／lean short｜SPY** [1:12:00](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4320s) — 觀望偏空
-- **觀望偏空／lean short｜IGV** [1:20:46](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4846s) — 觀望偏空
-- **觀望／watch｜RGTI** [1:29:29](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=5369s) — 觀望
-- **觀望／watch｜Quantum** [1:29:10](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=5350s) — 觀望
-- **觀望／watch｜QBTS** [1:29:35](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=5375s) — 觀望
-- **觀望偏空／lean short｜HPQ** [1:42:19](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=6139s) — 觀望偏空
+- **觀望偏空／lean short｜WDC** [1:11:21](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4281s) — 同一時間，就像許多股票的個股名稱都像WDC這樣較弱的名稱一樣，即將進入150 EMA。像 Mavel 這樣更強大的名字位於 50 EMA。 同一時間，就像…
+- **觀望偏空／lean short｜SPY** [1:12:00](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4320s) — 除此之外，就像SPY和IWM一樣，21年後也可能接近
+- **觀望偏空／lean short｜IGV** [1:20:46](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=4846s) — 我覺得市場狀況相當相似，semis-witness 和 IGV 展現了一些實力。我覺得市場狀況相當相似，semis-witness 和 IGV 展現了一些實力
+- **觀望／watch｜RGTI** [1:29:29](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=5369s) — 而且像RGTI 比R、Q 和QBTS 稍微強。和RGTI一樣，比R、Q和QBTS強一點
+- **觀望／watch｜Quantum** [1:29:10](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=5350s) — 所以我認為所有 quantum 名字在周五都有相當不錯的實力。今天我們回調至低點，例如接近週五低點的低點。所以我認為所有 quantum 名字在周五都有相…
+- **觀望／watch｜QBTS** [1:29:35](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=5375s) — 而且像RGTI 比R、Q 和QBTS 稍微強。和RGTI一樣，比R、Q和QBTS強一點
+- **觀望偏空／lean short｜HPQ** [1:42:19](https://www.youtube.com/watch?v=G3oc-Dv6Izs&t=6139s) — HPQ於8月12日購買。 HPQ 8月12日購買
 
 ## 時間軸內容
 

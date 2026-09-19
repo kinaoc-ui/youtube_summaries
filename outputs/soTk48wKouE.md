@@ -7,52 +7,52 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
-- **今日總覽** — 觀望偏空：SNDK、Silver；觀望偏多：Software。
+- **今日總覽** — 觀望偏空：SPCX、SNDK、Silver；觀望偏多：SMCI、MSTR、AMD、Software。
 - **實際操作｜Silver** [2:31:32](https://www.youtube.com/watch?v=soTk48wKouE&t=9092s) — 之前止蝕離場（觀望／watch）
-- **觀望／watch｜SMCI** [2:11:59](https://www.youtube.com/watch?v=soTk48wKouE&t=7919s) — 觀望
-- **觀望／watch｜SPCX** [2:12:36](https://www.youtube.com/watch?v=soTk48wKouE&t=7956s) — 觀望
-- **觀望／watch｜Semis** [2:20:20](https://www.youtube.com/watch?v=soTk48wKouE&t=8420s) — 觀望
-- **觀望／watch｜MSTR** [2:36:03](https://www.youtube.com/watch?v=soTk48wKouE&t=9363s) — 觀望
-- **觀望／watch｜AMD** [2:20:54](https://www.youtube.com/watch?v=soTk48wKouE&t=8454s) — 觀望
-- **觀望／watch｜IGV** [2:21:44](https://www.youtube.com/watch?v=soTk48wKouE&t=8504s) — 觀望
-- **觀望偏多／lean long｜Software** [2:31:04](https://www.youtube.com/watch?v=soTk48wKouE&t=9064s) — 破位／轉強
+- **觀望偏多／lean long｜SMCI** [2:11:59](https://www.youtube.com/watch?v=soTk48wKouE&t=7919s) — 錯過回調／未跟到；回調入 VWAP
+- **觀望偏空／lean short｜SPCX** [2:12:36](https://www.youtube.com/watch?v=soTk48wKouE&t=7956s) — 太延伸／怕 overtrade
+- **觀望／watch｜Semis** [2:20:20](https://www.youtube.com/watch?v=soTk48wKouE&t=8420s) — 有跟有唔跟
+- **觀望偏多／lean long｜MSTR** [2:36:03](https://www.youtube.com/watch?v=soTk48wKouE&t=9363s) — 想入但忍住
+- **觀望偏多／lean long｜AMD** [2:20:54](https://www.youtube.com/watch?v=soTk48wKouE&t=8454s) — 睇落強但唔追
+- **觀望／watch｜IGV** [2:21:44](https://www.youtube.com/watch?v=soTk48wKouE&t=8504s) — 開市應該繼續睇
+- **觀望偏多／lean long｜Software** [2:31:04](https://www.youtube.com/watch?v=soTk48wKouE&t=9064s) — 開市應該繼續睇；破位／轉強
 - **觀望偏空／lean short｜SNDK** [2:23:03](https://www.youtube.com/watch?v=soTk48wKouE&t=8583s) — gap down
-- **觀望偏空／lean short｜Silver** [2:31:32](https://www.youtube.com/watch?v=soTk48wKouE&t=9092s) — 之前止蝕／試多次
+- **觀望偏空／lean short｜Silver** [2:31:32](https://www.youtube.com/watch?v=soTk48wKouE&t=9092s) — 之前止蝕／試多次；反彈入 VWAP／阻力
 
 ## 時間軸內容
 
 時間 | 股票 | Long/Short | 建議 | 英文原文＋中文翻譯
 
 - [10:52](https://www.youtube.com/watch?v=soTk48wKouE&t=652s) **字幕缺口** | — | 咪 mute／無語音 | 10:52–2:09:23 約 119 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）
-- [2:11:59](https://www.youtube.com/watch?v=soTk48wKouE&t=7919s) **SMCI** | 觀望／watch | WhisperX | And I missed this SMCI pullback into the end of VWAP and I believe in the 5.9 year mate. ‖ 我錯過了 SMCI 回調到 VWAP 的末尾，我相信 5.9 年的伙伴
-- [2:12:36](https://www.youtube.com/watch?v=soTk48wKouE&t=7956s) **SPCX** | 觀望／watch | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too. ‖ 我想我幾乎喜歡嘗試在 SPCX 上進行交易，但我認為這會有點過度交易，因為它的上行空間太大了，我想，今天，無論是 60 分鐘還是每日交易
+- [2:11:59](https://www.youtube.com/watch?v=soTk48wKouE&t=7919s) **SMCI** | 觀望偏多／lean long | WhisperX | And I missed this SMCI pullback into the anchored VWAP and I believe in the 5, 9 EMA. ‖ 我錯過了 SMCI 回撤到 anchored VWAP，我相信 5、9 EMA
+- [2:12:36](https://www.youtube.com/watch?v=soTk48wKouE&t=7956s) **SPCX** | 觀望偏空／lean short | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too. ‖ 我想我幾乎喜歡嘗試在 SPCX 上進行交易，但我認為這會有點過度交易，因為它的上行空間太大了，我想，今天，無論是 60 分鐘還是每日交易
 - [2:16:04](https://www.youtube.com/watch?v=soTk48wKouE&t=8164s) **Semis** | 觀望／watch | 雙ASR確認 | For semis, some names are getting followed through, but some are not. ‖ 對於 semis，有些名字得到了關注，但有些卻沒有
 - [2:18:47](https://www.youtube.com/watch?v=soTk48wKouE&t=8327s) **MSTR** | 觀望／watch | 雙ASR確認 | Like even with a very tight stock, like even for MSTR, my stock is around like 0.75% percent. ‖ 即使庫存非常緊張，就像 MSTR 一樣，我的股票也大約是 0.75%
 - [2:20:20](https://www.youtube.com/watch?v=soTk48wKouE&t=8420s) **Semis** | 觀望／watch | 雙ASR確認 | semi-solder version and loose should be better to afford them. ‖ semis-焊接版和散裝版應該可以更好買得起
-- [2:20:54](https://www.youtube.com/watch?v=soTk48wKouE&t=8454s) **AMD** | 觀望／watch | 雙ASR確認 | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength. ‖ 英特爾看起來很強大，AMD 看起來也很強大，但我只是不相信這種實力
+- [2:20:54](https://www.youtube.com/watch?v=soTk48wKouE&t=8454s) **AMD** | 觀望偏多／lean long | 雙ASR確認 | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength. ‖ 英特爾看起來很強大，AMD 看起來也很強大，但我只是不相信這種實力
 - [2:21:44](https://www.youtube.com/watch?v=soTk48wKouE&t=8504s) **IGV** | 觀望／watch | 雙ASR確認 | It just hasn't tracked that so close and maybe I should just like should have just keep watching this at the open. ‖ 它只是沒有追蹤得這麼近，也許我應該繼續在公開場合觀看這個
 - [2:21:45](https://www.youtube.com/watch?v=soTk48wKouE&t=8505s) **Software** | 觀望／watch | 雙ASR確認 | It just hasn't tracked that so close and maybe I should just like should have just keep watching this at the open. ‖ 它只是沒有追蹤得這麼近，也許我應該繼續在公開場合觀看這個
 - [2:23:03](https://www.youtube.com/watch?v=soTk48wKouE&t=8583s) **SNDK** | 觀望偏空／lean short | 雙ASR確認 | Right now, like after if the memories, memory names are like SNDK, maybe SK Hynex, MU, like they are the leaders and if they can pull backs a little bit together with maybe the Sock X into the daily nine, I could be put could be an entry. because right now we haven't got the resistance on the on the on the nine on the weekly nine and now it is like a it's like a gap down and then we first to the upside now sitting below the gap and ‖ 現在，如果 memory、memory 的名字像 SNDK，也許是 SK Hynex、MU，就像他們是領導者一樣，如果他們能和 Sock X 一起退回到每日九名，我可能會進入。因為現在我們還沒有在周九週的九週上遇到阻力，現在就像一個向下的缺口，然後我們首先向上，現在坐在缺口下方，
 - [2:31:04](https://www.youtube.com/watch?v=soTk48wKouE&t=9064s) **Software** | 觀望偏多／lean long | 雙ASR確認 | Yeah, I just kind of like how it is serving the 21-9 after this breakout. ‖ 我只是有點喜歡這次突破之後 21-9 的表現
 - [2:31:32](https://www.youtube.com/watch?v=soTk48wKouE&t=9092s) **Silver** | 觀望偏空／lean short | 雙ASR確認 | And the metals, although it's like rallying into the resistance, silver has stopped me out at the open. Yesterday we got a pretty ugly day but today we just take out priority high in all the GMAs. ‖ 而金屬，雖然它就像是反彈到阻力位，但白銀已經阻止了我的開盤。昨天我們度過了非常糟糕的一天，但今天我們在所有 GMA 中都優先考慮了高優先級
-- [2:36:03](https://www.youtube.com/watch?v=soTk48wKouE&t=9363s) **MSTR** | 觀望／watch | 雙ASR確認 | And I wanted to take MSTR in that, yes, but I had to restrain myself. ‖ 我想參加 MSTR，是的，但我必須克制自己
+- [2:36:03](https://www.youtube.com/watch?v=soTk48wKouE&t=9363s) **MSTR** | 觀望偏多／lean long | 雙ASR確認 | And I wanted to take MSTR in that, yes, but I had to restrain myself. ‖ 我想參加 MSTR，是的，但我必須克制自己
 
 ## Timeline content (EN)
 
 Time | Ticker | Long/Short | Source | ASR English (original)
 
 - [10:52](https://www.youtube.com/watch?v=soTk48wKouE&t=652s) **Mute gap** | — | mic muted / no speech | 10:52–2:09:23 約 119 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）
-- [2:11:59](https://www.youtube.com/watch?v=soTk48wKouE&t=7919s) **SMCI** | 觀望／watch | WhisperX | And I missed this SMCI pullback into the end of VWAP and I believe in the 5.9 year mate.
-- [2:12:36](https://www.youtube.com/watch?v=soTk48wKouE&t=7956s) **SPCX** | 觀望／watch | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too.
+- [2:11:59](https://www.youtube.com/watch?v=soTk48wKouE&t=7919s) **SMCI** | 觀望偏多／lean long | WhisperX | And I missed this SMCI pullback into the anchored VWAP and I believe in the 5, 9 EMA.
+- [2:12:36](https://www.youtube.com/watch?v=soTk48wKouE&t=7956s) **SPCX** | 觀望偏空／lean short | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too.
 - [2:16:04](https://www.youtube.com/watch?v=soTk48wKouE&t=8164s) **Semis** | 觀望／watch | dual ASR | For semis, some names are getting followed through, but some are not.
 - [2:18:47](https://www.youtube.com/watch?v=soTk48wKouE&t=8327s) **MSTR** | 觀望／watch | dual ASR | Like even with a very tight stock, like even for MSTR, my stock is around like 0.75% percent.
 - [2:20:20](https://www.youtube.com/watch?v=soTk48wKouE&t=8420s) **Semis** | 觀望／watch | dual ASR | semi-solder version and loose should be better to afford them.
-- [2:20:54](https://www.youtube.com/watch?v=soTk48wKouE&t=8454s) **AMD** | 觀望／watch | dual ASR | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength.
+- [2:20:54](https://www.youtube.com/watch?v=soTk48wKouE&t=8454s) **AMD** | 觀望偏多／lean long | dual ASR | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength.
 - [2:21:44](https://www.youtube.com/watch?v=soTk48wKouE&t=8504s) **IGV** | 觀望／watch | dual ASR | It just hasn't tracked that so close and maybe I should just like should have just keep watching this at the open.
 - [2:21:45](https://www.youtube.com/watch?v=soTk48wKouE&t=8505s) **Software** | 觀望／watch | dual ASR | It just hasn't tracked that so close and maybe I should just like should have just keep watching this at the open.
 - [2:23:03](https://www.youtube.com/watch?v=soTk48wKouE&t=8583s) **SNDK** | 觀望偏空／lean short | dual ASR | Right now, like after if the memories, memory names are like SNDK, maybe SK Hynex, MU, like they are the leaders and if they can pull backs a little bit together with maybe the Sock X into the daily nine, I could be put could be an entry. because right now we haven't got the resistance on the on the on the nine on the weekly nine and now it is like a it's like a gap down and then we first to the upside now sitting below the gap and
 - [2:31:04](https://www.youtube.com/watch?v=soTk48wKouE&t=9064s) **Software** | 觀望偏多／lean long | dual ASR | Yeah, I just kind of like how it is serving the 21-9 after this breakout.
 - [2:31:32](https://www.youtube.com/watch?v=soTk48wKouE&t=9092s) **Silver** | 觀望偏空／lean short | dual ASR | And the metals, although it's like rallying into the resistance, silver has stopped me out at the open. Yesterday we got a pretty ugly day but today we just take out priority high in all the GMAs.
-- [2:36:03](https://www.youtube.com/watch?v=soTk48wKouE&t=9363s) **MSTR** | 觀望／watch | dual ASR | And I wanted to take MSTR in that, yes, but I had to restrain myself.
+- [2:36:03](https://www.youtube.com/watch?v=soTk48wKouE&t=9363s) **MSTR** | 觀望偏多／lean long | dual ASR | And I wanted to take MSTR in that, yes, but I had to restrain myself.

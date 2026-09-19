@@ -5,7 +5,7 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 觀望偏空：SNDK、Silver；觀望偏多：Software。",
+      "text": "今日總覽 — 觀望偏空：SPCX、SNDK、Silver；觀望偏多：SMCI、MSTR、AMD、Software。",
       "start": "0"
     },
     {
@@ -15,37 +15,37 @@
     },
     {
       "t": "2:11:59",
-      "text": "觀望／watch｜SMCI — 觀望",
+      "text": "觀望偏多／lean long｜SMCI — 錯過回調／未跟到；回調入 VWAP",
       "start": "0"
     },
     {
       "t": "2:12:36",
-      "text": "觀望／watch｜SPCX — 觀望",
+      "text": "觀望偏空／lean short｜SPCX — 太延伸／怕 overtrade",
       "start": "0"
     },
     {
       "t": "2:20:20",
-      "text": "觀望／watch｜Semis — 觀望",
+      "text": "觀望／watch｜Semis — 有跟有唔跟",
       "start": "0"
     },
     {
       "t": "2:36:03",
-      "text": "觀望／watch｜MSTR — 觀望",
+      "text": "觀望偏多／lean long｜MSTR — 想入但忍住",
       "start": "0"
     },
     {
       "t": "2:20:54",
-      "text": "觀望／watch｜AMD — 觀望",
+      "text": "觀望偏多／lean long｜AMD — 睇落強但唔追",
       "start": "0"
     },
     {
       "t": "2:21:44",
-      "text": "觀望／watch｜IGV — 觀望",
+      "text": "觀望／watch｜IGV — 開市應該繼續睇",
       "start": "0"
     },
     {
       "t": "2:31:04",
-      "text": "觀望偏多／lean long｜Software — 破位／轉強",
+      "text": "觀望偏多／lean long｜Software — 開市應該繼續睇；破位／轉強",
       "start": "0"
     },
     {
@@ -55,7 +55,7 @@
     },
     {
       "t": "2:31:32",
-      "text": "觀望偏空／lean short｜Silver — 之前止蝕／試多次",
+      "text": "觀望偏空／lean short｜Silver — 之前止蝕／試多次；反彈入 VWAP／阻力",
       "start": "0"
     }
   ],
@@ -67,12 +67,12 @@
     },
     {
       "t": "2:11:59",
-      "text": "**SMCI** | 觀望／watch | WhisperX | And I missed this SMCI pullback into the end of VWAP and I believe in the 5.9 year mate.",
+      "text": "**SMCI** | 觀望偏多／lean long | WhisperX | And I missed this SMCI pullback into the anchored VWAP and I believe in the 5, 9 EMA.",
       "start": "0"
     },
     {
       "t": "2:12:36",
-      "text": "**SPCX** | 觀望／watch | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too.",
+      "text": "**SPCX** | 觀望偏空／lean short | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too.",
       "start": "0"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "t": "2:20:54",
-      "text": "**AMD** | 觀望／watch | dual ASR | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength.",
+      "text": "**AMD** | 觀望偏多／lean long | dual ASR | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength.",
       "start": "0"
     },
     {
@@ -122,7 +122,7 @@
     },
     {
       "t": "2:36:03",
-      "text": "**MSTR** | 觀望／watch | dual ASR | And I wanted to take MSTR in that, yes, but I had to restrain myself.",
+      "text": "**MSTR** | 觀望偏多／lean long | dual ASR | And I wanted to take MSTR in that, yes, but I had to restrain myself.",
       "start": "0"
     }
   ],
@@ -134,12 +134,12 @@
     },
     {
       "t": "2:11:59",
-      "text": "**SMCI** | 觀望／watch | WhisperX | And I missed this SMCI pullback into the end of VWAP and I believe in the 5.9 year mate. ‖ 我錯過了 SMCI 回調到 VWAP 的末尾，我相信 5.9 年的伙伴",
+      "text": "**SMCI** | 觀望偏多／lean long | WhisperX | And I missed this SMCI pullback into the anchored VWAP and I believe in the 5, 9 EMA. ‖ 我錯過了 SMCI 回撤到 anchored VWAP，我相信 5、9 EMA",
       "start": "0"
     },
     {
       "t": "2:12:36",
-      "text": "**SPCX** | 觀望／watch | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too. ‖ 我想我幾乎喜歡嘗試在 SPCX 上進行交易，但我認為這會有點過度交易，因為它的上行空間太大了，我想，今天，無論是 60 分鐘還是每日交易",
+      "text": "**SPCX** | 觀望偏空／lean short | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too. ‖ 我想我幾乎喜歡嘗試在 SPCX 上進行交易，但我認為這會有點過度交易，因為它的上行空間太大了，我想，今天，無論是 60 分鐘還是每日交易",
       "start": "0"
     },
     {
@@ -159,7 +159,7 @@
     },
     {
       "t": "2:20:54",
-      "text": "**AMD** | 觀望／watch | 雙ASR確認 | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength. ‖ 英特爾看起來很強大，AMD 看起來也很強大，但我只是不相信這種實力",
+      "text": "**AMD** | 觀望偏多／lean long | 雙ASR確認 | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength. ‖ 英特爾看起來很強大，AMD 看起來也很強大，但我只是不相信這種實力",
       "start": "0"
     },
     {
@@ -189,7 +189,7 @@
     },
     {
       "t": "2:36:03",
-      "text": "**MSTR** | 觀望／watch | 雙ASR確認 | And I wanted to take MSTR in that, yes, but I had to restrain myself. ‖ 我想參加 MSTR，是的，但我必須克制自己",
+      "text": "**MSTR** | 觀望偏多／lean long | 雙ASR確認 | And I wanted to take MSTR in that, yes, but I had to restrain myself. ‖ 我想參加 MSTR，是的，但我必須克制自己",
       "start": "0"
     }
   ],
@@ -201,12 +201,12 @@
     },
     {
       "t": "2:11:59",
-      "text": "**SMCI** | 觀望／watch | WhisperX | And I missed this SMCI pullback into the end of VWAP and I believe in the 5.9 year mate. ‖ 我錯過了 SMCI 回調到 VWAP 的末尾，我相信 5.9 年的伙伴",
+      "text": "**SMCI** | 觀望偏多／lean long | WhisperX | And I missed this SMCI pullback into the anchored VWAP and I believe in the 5, 9 EMA. ‖ 我錯過了 SMCI 回撤到 anchored VWAP，我相信 5、9 EMA",
       "start": "0"
     },
     {
       "t": "2:12:36",
-      "text": "**SPCX** | 觀望／watch | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too. ‖ 我想我幾乎喜歡嘗試在 SPCX 上進行交易，但我認為這會有點過度交易，因為它的上行空間太大了，我想，今天，無論是 60 分鐘還是每日交易",
+      "text": "**SPCX** | 觀望偏空／lean short | WhisperX | And I think I almost like trying to trade in SpaceX (SPCX), but I think it will be a little bit over-trade because it's too extended in there to the upside, I think, today, both on the 60 minutes and also the daily too. ‖ 我想我幾乎喜歡嘗試在 SPCX 上進行交易，但我認為這會有點過度交易，因為它的上行空間太大了，我想，今天，無論是 60 分鐘還是每日交易",
       "start": "0"
     },
     {
@@ -226,7 +226,7 @@
     },
     {
       "t": "2:20:54",
-      "text": "**AMD** | 觀望／watch | 雙ASR確認 | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength. ‖ 英特爾看起來很強大，AMD 看起來也很強大，但我只是不相信這種實力",
+      "text": "**AMD** | 觀望偏多／lean long | 雙ASR確認 | The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength. ‖ 英特爾看起來很強大，AMD 看起來也很強大，但我只是不相信這種實力",
       "start": "0"
     },
     {
@@ -256,7 +256,7 @@
     },
     {
       "t": "2:36:03",
-      "text": "**MSTR** | 觀望／watch | 雙ASR確認 | And I wanted to take MSTR in that, yes, but I had to restrain myself. ‖ 我想參加 MSTR，是的，但我必須克制自己",
+      "text": "**MSTR** | 觀望偏多／lean long | 雙ASR確認 | And I wanted to take MSTR in that, yes, but I had to restrain myself. ‖ 我想參加 MSTR，是的，但我必須克制自己",
       "start": "0"
     }
   ],
@@ -265,12 +265,5 @@
     "ok_count": 8,
     "suspects": []
   },
-  "provider": "reconcile+dual-asr",
-  "reconcile": {
-    "dual_count": 10,
-    "wx_only_count": 2,
-    "faster_only_count": 15,
-    "hint": "雙ASR確認 10 行＋WhisperX獨有 2 行（faster獨有 15 已唔入主表）",
-    "asof": 1789678496
-  }
+  "provider": "auto-summary"
 }

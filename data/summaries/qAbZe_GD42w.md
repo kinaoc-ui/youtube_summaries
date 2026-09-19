@@ -7,20 +7,20 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：Semis、SPY、TSLA；觀望偏多：ONDS、Software、Cyber、SMTC、QQQ、ARM。
 - **實際操作｜Semis** [08:10](https://www.youtube.com/watch?v=qAbZe_GD42w&t=490s) — 之前止蝕離場（觀望／watch）
-- **觀望偏多／lean long｜ONDS** [57:31](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3451s) — 觀望偏多
+- **觀望偏多／lean long｜ONDS** [57:31](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3451s) — 這就像發生在短短一兩秒內，然後就像離 9 EMA 太遠一樣
 - **觀望偏空／lean short｜Semis** [08:10](https://www.youtube.com/watch?v=qAbZe_GD42w&t=490s) — 之前止蝕／試多次；想／考慮短
-- **觀望偏空／lean short｜SPY** [10:36](https://www.youtube.com/watch?v=qAbZe_GD42w&t=636s) — 觀望偏空
+- **觀望偏空／lean short｜SPY** [10:36](https://www.youtube.com/watch?v=qAbZe_GD42w&t=636s) — 反彈入 declining 9；喺 declining 9
 - **觀望偏多／lean long｜Software** [23:29](https://www.youtube.com/watch?v=qAbZe_GD42w&t=1409s) — 仍有強勢
 - **觀望偏多／lean long｜Cyber** [23:33](https://www.youtube.com/watch?v=qAbZe_GD42w&t=1413s) — 仍有強勢
 - **觀望偏多／lean long｜SMTC** [45:27](https://www.youtube.com/watch?v=qAbZe_GD42w&t=2727s) — 睇落仍然強；睇落強；破位／轉強
 - **觀望偏多／lean long｜QQQ** [47:56](https://www.youtube.com/watch?v=qAbZe_GD42w&t=2876s) — 破位／轉強
-- **觀望偏多／lean long｜ARM** [57:15](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3435s) — 有機會／未跟到
-- **觀望／watch｜PATH** [1:02:04](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3724s) — 觀望
-- **觀望偏空／lean short｜TSLA** [1:36:55](https://www.youtube.com/watch?v=qAbZe_GD42w&t=5815s) — 觀望偏空
+- **觀望偏多／lean long｜ARM** [57:15](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3435s) — 有機會／未跟到；走太快／直落
+- **觀望／watch｜PATH** [1:02:04](https://www.youtube.com/watch?v=qAbZe_GD42w&t=3724s) — 所以，不要試圖真正喜歡跟隨我的 PATH 或喜歡複製我所做的一切
+- **觀望偏空／lean short｜TSLA** [1:36:55](https://www.youtube.com/watch?v=qAbZe_GD42w&t=5815s) — 我想，我想Tesla鏡頭是我拍的
 
 ## 時間軸內容
 

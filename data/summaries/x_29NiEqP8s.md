@@ -7,24 +7,24 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 今日坐出／唔交易；做空：SNDK；觀望偏空：NVDA、Semis、ONDS、SPCX；做多：Cyber；觀望偏多：TSLA、QQQ、MU、CRCL、Software。
 - **實際操作｜SNDK** [43:26](https://www.youtube.com/watch?v=x_29NiEqP8s&t=2606s) — 已做空（做空／short）
 - **實際操作｜ONDS** [1:23:14](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4994s) — 問／考慮短（觀望／watch）
 - **實際操作｜SPCX** [1:27:23](https://www.youtube.com/watch?v=x_29NiEqP8s&t=5243s) — 之前止蝕離場（觀望／watch）
-- **做多／long｜Cyber** [50:38](https://www.youtube.com/watch?v=x_29NiEqP8s&t=3038s) — 觀望→偏多；偏多／長
+- **做多／long｜Cyber** [50:38](https://www.youtube.com/watch?v=x_29NiEqP8s&t=3038s) — 觀望→偏多；I don't have like a really good statistic on on that, but I rarely like buy t…
 - **做空／short｜SNDK** [43:26](https://www.youtube.com/watch?v=x_29NiEqP8s&t=2606s) — 被 reject
-- **觀望偏多／lean long｜TSLA** [06:52](https://www.youtube.com/watch?v=x_29NiEqP8s&t=412s) — 觀望偏多
+- **觀望偏多／lean long｜TSLA** [06:52](https://www.youtube.com/watch?v=x_29NiEqP8s&t=412s) — 還有 Tesla。 Tesla 在一天快結束時有一點上漲，現在看來它削弱了 9 號上升 9 號的回收率，今天我們也出現了差距
 - **觀望偏多／lean long｜QQQ** [11:40](https://www.youtube.com/watch?v=x_29NiEqP8s&t=700s) — 睇落仍然強
 - **觀望偏多／lean long｜MU** [12:41](https://www.youtube.com/watch?v=x_29NiEqP8s&t=761s) — 企穩 21 EMA；睇落仍然強
-- **觀望／watch｜IGV** [18:57](https://www.youtube.com/watch?v=x_29NiEqP8s&t=1137s) — 觀望
-- **觀望／watch｜SPY** [59:02](https://www.youtube.com/watch?v=x_29NiEqP8s&t=3542s) — 觀望
+- **觀望／watch｜IGV** [18:57](https://www.youtube.com/watch?v=x_29NiEqP8s&t=1137s) — 過去幾天的走勢相當波動，就像 IGV 一樣，我認為每日波動範圍至少是每天 3%
+- **觀望／watch｜SPY** [59:02](https://www.youtube.com/watch?v=x_29NiEqP8s&t=3542s) — Q、SPY 和 Russell 實際上不是
 - **觀望偏空／lean short｜NVDA** [1:20:55](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4855s) — 被 reject；NVDA 業績後或轉方向；有少少弱
 - **觀望偏多／lean long｜CRCL** [1:06:01](https://www.youtube.com/watch?v=x_29NiEqP8s&t=3961s) — NVDA 業績後或轉方向；唔鐘意 crypto，考慮平；破位／轉強
 - **觀望偏空／lean short｜Semis** [57:54](https://www.youtube.com/watch?v=x_29NiEqP8s&t=3474s) — 或跟空／向下
-- **觀望偏多／lean long｜Software** [1:15:03](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4503s) — 觀望偏多
-- **觀望／watch｜SILVER** [1:17:35](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4655s) — 觀望
+- **觀望偏多／lean long｜Software** [1:15:03](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4503s) — software也做得很好。這個末端水龍頭比開盤上漲了 13%
+- **觀望／watch｜SILVER** [1:17:35](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4655s) — 反彈入 VWAP／阻力
 - **觀望偏空／lean short｜ONDS** [1:23:14](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4994s) — 或 shortable／good short
 - **觀望偏空／lean short｜SPCX** [1:27:23](https://www.youtube.com/watch?v=x_29NiEqP8s&t=5243s) — 之前止蝕／試多次
 
@@ -112,7 +112,7 @@
 - [1:12:37](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4357s) **Session** | 觀望／watch | YouTube字幕 | if if you Yeah, I think it's really part of the game if you really like out of like 10 trades maybe like eight or nine of your trades are not getting follow through. So that the stocks are not moving at all. Maybe like it's not either your entries are not the maybe not like either the market are not the are not favorable for the pullbacks like either the markets are choppy like maybe maybe here ‖ if if you , I think it's really part of the game if you really like out of like 10 trades maybe like eight or nine of your trades are not getting 跟蹤. So that the stocks are not moving at all. Maybe like it's not either your entries are not the maybe not like either the market are not the are not favorable for the 回調 like either the markets are choppy like maybe maybe here
 - [1:13:28](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4408s) **Session** | 觀望／watch | YouTube字幕 | yeah either the market or e or you are not focusing on the right stock like the stocks are not really getting the trends like some stocks are just chopping around I don't know espec especially for defensive ones Coca-Cola like if you are like buying on Coca-Cola then probably you won't get a decent trend so yeah either the markets or either Stocks are not favorable for the pullbacks. ‖ either the market or e or you are not focusing on the right stock like the stocks are not really getting the trends like some stocks are just chopping around I don't know espec especially for defensive ones Coca-Cola like if you are like buying on Coca-Cola then probably you won't get a decent trend so either the markets or either Stocks are not favorable for the 回調
 - [1:15:03](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4503s) **Software** | 觀望偏多／lean long | YouTube字幕＋WhisperX | Software is also doing pretty well. This end tap is it's up like 13% from the open. ‖ software也做得很好。這個末端水龍頭比開盤上漲了 13%
-- [1:17:35](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4655s) **SILVER** | 觀望／watch | YouTube字幕 | Silver and gold is rallying into the ankle view from the swing high. ‖ Silver and gold is 反彈去到 the ankle view from the swing high（波段高位）
+- [1:17:35](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4655s) **SILVER** | 觀望／watch | YouTube字幕 | Silver and gold is rallying into the anchored VWAP from the swing high. ‖ 白銀和黃金從swing high（波段高位）反彈到anchored VWAP
 - [1:18:37](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4717s) **Session** | 觀望／watch | YouTube字幕 | Maybe maybe I'll try short in the coming days or even maybe today. ‖ Maybe maybe I'll try 空倉 in the coming days or even maybe today
 - [1:19:05](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4745s) **Session** | 觀望／watch | YouTube字幕 | Yeah, but I want at least like maybe the like 15 minutes lows below the 9 EMA like at least maybe the 30 minute or the hourly. I don't want to be too early and they could stay strong and continue continuing higher. So I want to see some weakness in the lower time frame first. ‖ but I want at least like maybe the like 15 minutes lows below the 9 EMA like at least maybe the 30 minute or the hourly. I don't want to be too early and they could stay strong and continue continuing higher. So I want to see some 弱勢 in the lower time frame first
 - [1:20:16](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4816s) **Session** | 觀望／watch | YouTube字幕 | shorted in video yesterday. The trade was doing good yesterday but just got shake out today and then it's going down again. Really sad. ‖ 做空咗 in video yesterday. The trade was doing good yesterday but just got shake out today and then it's going down again. Really sad
@@ -226,7 +226,7 @@ Time | Ticker | Long/Short | Source | YouTube CC English (original)
 - [1:12:37](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4357s) **Session** | 觀望／watch | YouTube CC | if if you Yeah, I think it's really part of the game if you really like out of like 10 trades maybe like eight or nine of your trades are not getting follow through. So that the stocks are not moving at all. Maybe like it's not either your entries are not the maybe not like either the market are not the are not favorable for the pullbacks like either the markets are choppy like maybe maybe here
 - [1:13:28](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4408s) **Session** | 觀望／watch | YouTube CC | yeah either the market or e or you are not focusing on the right stock like the stocks are not really getting the trends like some stocks are just chopping around I don't know espec especially for defensive ones Coca-Cola like if you are like buying on Coca-Cola then probably you won't get a decent trend so yeah either the markets or either Stocks are not favorable for the pullbacks.
 - [1:15:03](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4503s) **Software** | 觀望偏多／lean long | YouTube CC + WhisperX | Software is also doing pretty well. This end tap is it's up like 13% from the open.
-- [1:17:35](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4655s) **SILVER** | 觀望／watch | YouTube CC | Silver and gold is rallying into the ankle view from the swing high.
+- [1:17:35](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4655s) **SILVER** | 觀望／watch | YouTube CC | Silver and gold is rallying into the anchored VWAP from the swing high.
 - [1:18:37](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4717s) **Session** | 觀望／watch | YouTube CC | Maybe maybe I'll try short in the coming days or even maybe today.
 - [1:19:05](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4745s) **Session** | 觀望／watch | YouTube CC | Yeah, but I want at least like maybe the like 15 minutes lows below the 9 EMA like at least maybe the 30 minute or the hourly. I don't want to be too early and they could stay strong and continue continuing higher. So I want to see some weakness in the lower time frame first.
 - [1:20:16](https://www.youtube.com/watch?v=x_29NiEqP8s&t=4816s) **Session** | 觀望／watch | YouTube CC | shorted in video yesterday. The trade was doing good yesterday but just got shake out today and then it's going down again. Really sad.

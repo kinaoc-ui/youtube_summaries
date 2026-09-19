@@ -231,6 +231,12 @@ def _episode_sort_key(s: Summary) -> tuple:
     return (0, 0, 0, epn)
 
 
+def _tl_anchor(stamp: str, ticker: str) -> str:
+    s = re.sub(r"[^0-9]+", "-", stamp or "").strip("-")
+    t = re.sub(r"[^A-Za-z0-9]+", "", ticker or "")
+    return f"tl-{s}-{t}"
+
+
 def _badge(key: str, label: str) -> str:
     bg, fg, _ = SIDE_COLORS.get(key, SIDE_COLORS["watch"])
     return (
@@ -240,8 +246,9 @@ def _badge(key: str, label: str) -> str:
     )
 
 
-def _card(inner: str, cls: str = "row-card") -> None:
-    st.markdown(f'<div class="{cls}">{inner}</div>', unsafe_allow_html=True)
+def _card(inner: str, cls: str = "row-card", anchor: str = "") -> None:
+    aid = f' id="{html.escape(anchor, quote=True)}"' if anchor else ""
+    st.markdown(f'<div class="{cls}"{aid}>{inner}</div>', unsafe_allow_html=True)
 
 
 def main() -> None:
@@ -259,6 +266,7 @@ def main() -> None:
             border: 1px solid #2a303c; border-radius: 14px;
             padding: 0.85rem 0.95rem; margin-bottom: 0.55rem;
             background: #171a21;
+            scroll-margin-top: 12px;
         }
         .row-card a.t, .digest-card a.t {
             color: #7aa2ff; text-decoration: none; font-variant-numeric: tabular-nums;
@@ -321,6 +329,7 @@ def main() -> None:
 
     overview = next((it for it in s.digest_items if it.key == "overview"), None)
     st.markdown('<div class="sec-h">真正摘要</div>', unsafe_allow_html=True)
+    st.caption("撳時間跳去下面時間軸該行；時間軸時間戳先跳 YouTube")
     if overview and overview.rest:
         st.info(overview.rest)
 
@@ -340,10 +349,11 @@ def main() -> None:
         st.markdown(f'<div class="sec-h">{html.escape(title)}</div>', unsafe_allow_html=True)
         _, _, fallback = SIDE_COLORS.get(key, SIDE_COLORS["watch"])
         for it in chunk:
+            tl = _tl_anchor(it.stamp, it.ticker)
             stamp_html = (
-                f'<a class="t" href="{html.escape(it.url)}" target="_blank" rel="noreferrer">'
+                f'<a class="t" href="#{html.escape(tl)}">'
                 f"{html.escape(it.stamp)}</a> "
-                if it.url and it.stamp
+                if it.stamp
                 else ""
             )
             _card(
@@ -373,7 +383,9 @@ def main() -> None:
             f'<a class="t" href="{html.escape(row.url)}" target="_blank" rel="noreferrer">'
             f"{html.escape(row.stamp)}</a> "
             f"<b>{html.escape(row.ticker)}</b> {badge}"
-            f"{quote_html}"
+            f"{quote_html}",
+            "row-card",
+            _tl_anchor(row.stamp, row.ticker),
         )
 
     if not s.digest_items and not rows:

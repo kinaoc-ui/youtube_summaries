@@ -7,7 +7,7 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 做空：SNDK；觀望偏空：QQQ、SPCX、AXTI、Semis、MU；觀望偏多：SPY、TSLA、ASTS、Software。
 - **實際操作｜SNDK** [1:41:59](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=6119s) — 已做空（做空／short）
@@ -19,7 +19,7 @@
 - **觀望偏空／lean short｜AXTI** [17:07](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=1027s) — 想／考慮短；短倉唔敢太進取
 - **觀望偏多／lean long｜ASTS** [19:05](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=1145s) — 睇落強；企穩 21 EMA；睇落仍然強
 - **觀望偏空／lean short｜Semis** [49:26](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=2966s) — 或跟空／向下；被 reject
-- **觀望偏空／lean short｜MU** [54:10](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=3250s) — 觀望偏空
+- **觀望偏空／lean short｜MU** [54:10](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=3250s) — 我感覺我是做多邊我不會參與甚至喜歡MU可以拿出前一周的高點或第一天蠟燭我感覺我是做多邊我不會參與甚至喜歡MU可以拿出前一周的高點或第一天蠟燭
 - **觀望偏多／lean long｜Software** [1:50:38](https://www.youtube.com/watch?v=ECvUYIDbscQ&t=6638s) — 睇落仍然強；仍有強勢
 
 ## 時間軸內容

@@ -7,29 +7,29 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：IREN、SPY、SNDK、TSLA、Quantum、SKHY；觀望偏多：Software、CRCL；減／平：Semis、PATH。
 - **實際操作｜Semis** [33:15](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=1995s) — 講緊平倉；已做空（減倉／trim）
 - **實際操作｜HOOD** [2:26:13](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=8773s) — 問／考慮短（觀望／watch）
 - **減倉／trim｜Semis** [33:15](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=1995s) — 觀望→減／平→觀望；企穩 21 EMA；反彈／回測；仍有強勢
-- **減倉／trim｜PATH** [29:14](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=1754s) — 考慮減／平
+- **減倉／trim｜PATH** [29:14](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=1754s) — 我將出售我的 PATH，因為我將保留我的 XYZ 一點。我不知道。 ，我將出售我的 PATH，因為我將保留我的 XYZ 一點。我不知道
 - **觀望偏多／lean long｜Software** [2:49:22](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=10162s) — 仍有強勢
-- **觀望／watch｜IGV** [06:12](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=372s) — 觀望
-- **觀望偏空／lean short｜IREN** [3:02:38](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=10958s) — 觀望偏空
-- **觀望偏空／lean short｜SPY** [11:48](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=708s) — 觀望偏空
-- **觀望／watch｜SOXX** [19:15](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=1155s) — 觀望
-- **觀望／watch｜Cyber** [33:58](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=2038s) — 觀望
+- **觀望／watch｜IGV** [06:12](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=372s) — 我真正不喜歡的事情之一是 IGV 的擴展 我真正不喜歡的事情之一是 IGV 的擴展
+- **觀望偏空／lean short｜IREN** [3:02:38](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=10958s) — 在經歷了五分鐘的故障之後，這個 IREN 表現得非常好。有兩個大約五分鐘的故障。但這是你喜歡的，它消耗了太多的購買力。所以，我跳過這個，這個 IREN 在…
+- **觀望偏空／lean short｜SPY** [11:48](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=708s) — 做得很好，就像 IWM 位於 9 點稍上方的位置 EMA SPY 山也每小時九點向後拉一點點 做得很好，就像 IWM 位於 9 點稍上方的位置 EMA S…
+- **觀望／watch｜SOXX** [19:15](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=1155s) — SOXX 也接近每日九點。 SOXX 也接近每日九點
+- **觀望／watch｜Cyber** [33:58](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=2038s) — 有些相似的網名是昨天的 回饋昨天的收穫有點 有些相似的網名是昨天的 回饋昨天的收穫有點
 - **觀望偏空／lean short｜SNDK** [3:03:05](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=10985s) — 被 reject；拒 declining 9；或跟空／向下
 - **觀望偏空／lean short｜TSLA** [42:30](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=2550s) — 或跟空／向下
 - **觀望偏空／lean short｜Quantum** [2:18:46](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=8326s) — 被 reject；或跟空／向下
 - **觀望偏空／lean short｜SKHY** [45:11](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=2711s) — gap down
-- **觀望／watch｜QQQ** [3:00:36](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=10836s) — 觀望
-- **觀望／watch｜FTNT** [1:32:34](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=5554s) — 觀望
-- **觀望／watch｜ASTS** [2:45:52](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=9952s) — 觀望
+- **觀望／watch｜QQQ** [3:00:36](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=10836s) — 看來我們現在正面臨同樣的困境。 QQQ 和 SPY 正在打擊整點九點。即將迎來每日九點。但這 1 小時蠟燭似乎不太對勁。這可能更像是比我們預期的要低一點。…
+- **觀望／watch｜FTNT** [1:32:34](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=5554s) — 您今天對出售 FTNT 有何看法？我感覺跌幅太大了。即使昨天也很好。當股價下跌 5% 左右時，我就損失了利潤。您今天對出售 FTNT 有何看法？我感覺跌幅…
+- **觀望／watch｜ASTS** [2:45:52](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=9952s) — 有些名字的比例還不到 1%，例如 ASTS。也許只有百分之半。也許比這多一點。有些名字的比例還不到 1%，例如 ASTS。也許只有百分之半。也許比這多一點
 - **觀望偏空／lean short｜APLD** [2:21:59](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=8519s) — 被 reject
 - **觀望偏空／lean short｜HOOD** [2:26:13](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=8773s) — 想／考慮短；或 shortable／good short
-- **觀望／watch｜SILVER** [2:32:46](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=9166s) — 觀望
+- **觀望／watch｜SILVER** [2:32:46](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=9166s) — 巨大的尺寸，例如 35% 被送到一個位置。我今年早些時候在黃金和白銀拋物線 空倉 上的這一面相當巨大，但它們確實是十年來的機會。 ，我認為他們是例外。在您…
 - **觀望偏多／lean long｜CRCL** [2:38:06](https://www.youtube.com/watch?v=ufN4u_ncWZg&t=9486s) — 破位／轉強；唔鐘意 crypto，考慮平
 
 ## 時間軸內容

@@ -7,7 +7,7 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 今日坐出／唔交易；觀望偏空：SKHY、KIOXIA、PATH、SILVER、Software、SPCX；觀望偏多：Semis、Quantum。
 - **觀望偏多／lean long｜Semis** [1:04:30](https://www.youtube.com/watch?v=asj4AsRSafk&t=3870s) — 睇落仍然強；仍有強勢
@@ -18,9 +18,9 @@
 - **觀望偏多／lean long｜Quantum** [21:19](https://www.youtube.com/watch?v=asj4AsRSafk&t=1279s) — 被 reject；唔想見向下
 - **觀望偏空／lean short｜Software** [1:08:27](https://www.youtube.com/watch?v=asj4AsRSafk&t=4107s) — gap down；今日已 gap down；有少少弱
 - **觀望偏空／lean short｜SPCX** [27:50](https://www.youtube.com/watch?v=asj4AsRSafk&t=1670s) — 問／考慮短
-- **觀望／watch｜TSLA** [34:54](https://www.youtube.com/watch?v=asj4AsRSafk&t=2094s) — 觀望
-- **觀望／watch｜JPM** [48:02](https://www.youtube.com/watch?v=asj4AsRSafk&t=2882s) — 觀望
-- **觀望／watch｜ASTS** [49:23](https://www.youtube.com/watch?v=asj4AsRSafk&t=2963s) — 觀望
+- **觀望／watch｜TSLA** [34:54](https://www.youtube.com/watch?v=asj4AsRSafk&t=2094s) — 可以給我們舉個例子，說明如何研究一隻股票的歷史圖表，我是新手，但我仍然不知道要找什麼。例如，如果您要研究 Tesla 亞馬遜，或過去的歷史領導人。 H，也…
+- **觀望／watch｜JPM** [48:02](https://www.youtube.com/watch?v=asj4AsRSafk&t=2882s) — 因此，假設您的研究僅適用於摩根大通，而不適用於其他股票。您也可以透過查看其他庫存來找到它。就像如果你看到如果你看到那麼說你的研究只適用於摩根大通而不適用於…
+- **觀望／watch｜ASTS** [49:23](https://www.youtube.com/watch?v=asj4AsRSafk&t=2963s) — 光錶現非常好，EST 也在塑造高塑性 光錶現非常好，EST 也在塑造高塑性
 - **觀望偏空／lean short｜SPY** [1:08:06](https://www.youtube.com/watch?v=asj4AsRSafk&t=4086s) — 被 reject
 
 ## 時間軸內容
@@ -53,7 +53,7 @@
 - [26:26](https://www.youtube.com/watch?v=asj4AsRSafk&t=1586s) **Session** | 觀望／watch | YouTube字幕 | the lower time frames. Could be 1 minute, could be 5 minute, could be 15 ‖ 較低的時間範圍。可能是1分鐘，可能是5分鐘，可能是15分鐘
 - [26:53](https://www.youtube.com/watch?v=asj4AsRSafk&t=1613s) **Software** | 觀望偏空／lean short | YouTube字幕 | Wow, softares are pretty weak. We got a gap down and we're not even feeling the gap and now it's following through lower breaking down from this day low. ‖ 哇，軟體相當弱。我們有一個向下的缺口，我們甚至沒有感覺到這個缺口，現在它正在從當天的低點向下突破
 - [27:16](https://www.youtube.com/watch?v=asj4AsRSafk&t=1636s) **Semis** | 觀望偏空／lean short | YouTube字幕 | also finding some resistance on semis. Not going to lie, I think semis today looks like a perfect shot, but I'm just I think this is a like a punishment for me getting in too early and not getting patient enough. So, I'm going to accept it. ‖ semis 都撞到阻力. Not going to lie, I think semis today looks like a perfect shot, but I'm just I think this is a like a punishment for me getting in too early and not getting patient enough. So, I'm going to accept it
-- [27:50](https://www.youtube.com/watch?v=asj4AsRSafk&t=1670s) **SPCX** | 觀望偏空／lean short | YouTube字幕＋WhisperX | You think SpaceX (SPCX) is a is the good position to short today? Space theme week. Third of September offers shoots the private shaking private high shaking shorts out. Also the end of VWAP from the IPO day ‖ 你覺得 SPCX 今日係咪好嘅短倉位？ Space theme week. Third of September offers shoots the private shaking private high shaking 空倉 out. Also the end of VWAP from the IPO day
+- [27:50](https://www.youtube.com/watch?v=asj4AsRSafk&t=1670s) **SPCX** | 觀望偏空／lean short | YouTube字幕＋WhisperX | You think SpaceX (SPCX) is a is the good position to short today? Space theme week. Third of September offers shoots the private shaking private high shaking shorts out. Also the anchored VWAP from the IPO day ‖ 你覺得SPCX 今日係咪好感短部位嗎？ 太空主題週。九月三號優惠將私人震動私人高震動 短倉 射出。還有 IPO 當天的 anchored VWAP
 - [28:25](https://www.youtube.com/watch?v=asj4AsRSafk&t=1705s) **Session** | 觀望／watch | YouTube字幕 | I think yeah I think definitely yes if I think it makes sense but yeah it ‖ 我想我認為肯定是的，如果我認為這是有道理的，但它
 - [28:41](https://www.youtube.com/watch?v=asj4AsRSafk&t=1721s) **Session** | 觀望／watch | YouTube字幕 | But now it's like a little bit looks a little bit too strong like all the EMAs are trending higher. Um if you're like shorting really near the high of day, I think probably like the angle of your swing high like if you're near here, near the open, that would be great. That would be fine. So you have really I think you you have really nailed the entry on this type of shorts which um is more difficult and ‖ But now it's like a little bit looks a little bit too strong like all the EMAs are trending higher. if you're like 做空 really near the high of day, I think probably like the angle of your swing high（波段高位） like if you're near here, near the open, that would be great. That would be fine. So you have really I think you you have really nailed the entry on this type of 空倉 which is more difficult and
 - [29:20](https://www.youtube.com/watch?v=asj4AsRSafk&t=1760s) **Session** | 觀望／watch | YouTube字幕 | have a lower win rate because it just looks strong. Uh you can be like yeah, it it it just it just more difficult when you're shorting a stock like above the EMAs and uh but it it is a possible George still. ‖ have a lower win rate because it just looks strong. you can be like , it it it just it just more difficult when you're 做空 a stock like above the EMAs and but it it is a possible George still
@@ -130,7 +130,7 @@ Time | Ticker | Long/Short | Source | YouTube CC English (original)
 - [26:26](https://www.youtube.com/watch?v=asj4AsRSafk&t=1586s) **Session** | 觀望／watch | YouTube CC | the lower time frames. Could be 1 minute, could be 5 minute, could be 15
 - [26:53](https://www.youtube.com/watch?v=asj4AsRSafk&t=1613s) **Software** | 觀望偏空／lean short | YouTube CC | Wow, softares are pretty weak. We got a gap down and we're not even feeling the gap and now it's following through lower breaking down from this day low.
 - [27:16](https://www.youtube.com/watch?v=asj4AsRSafk&t=1636s) **Semis** | 觀望偏空／lean short | YouTube CC | also finding some resistance on semis. Not going to lie, I think semis today looks like a perfect shot, but I'm just I think this is a like a punishment for me getting in too early and not getting patient enough. So, I'm going to accept it.
-- [27:50](https://www.youtube.com/watch?v=asj4AsRSafk&t=1670s) **SPCX** | 觀望偏空／lean short | YouTube CC + WhisperX | You think SpaceX (SPCX) is a is the good position to short today? Space theme week. Third of September offers shoots the private shaking private high shaking shorts out. Also the end of VWAP from the IPO day
+- [27:50](https://www.youtube.com/watch?v=asj4AsRSafk&t=1670s) **SPCX** | 觀望偏空／lean short | YouTube CC + WhisperX | You think SpaceX (SPCX) is a is the good position to short today? Space theme week. Third of September offers shoots the private shaking private high shaking shorts out. Also the anchored VWAP from the IPO day
 - [28:25](https://www.youtube.com/watch?v=asj4AsRSafk&t=1705s) **Session** | 觀望／watch | YouTube CC | I think yeah I think definitely yes if I think it makes sense but yeah it
 - [28:41](https://www.youtube.com/watch?v=asj4AsRSafk&t=1721s) **Session** | 觀望／watch | YouTube CC | But now it's like a little bit looks a little bit too strong like all the EMAs are trending higher. Um if you're like shorting really near the high of day, I think probably like the angle of your swing high like if you're near here, near the open, that would be great. That would be fine. So you have really I think you you have really nailed the entry on this type of shorts which um is more difficult and
 - [29:20](https://www.youtube.com/watch?v=asj4AsRSafk&t=1760s) **Session** | 觀望／watch | YouTube CC | have a lower win rate because it just looks strong. Uh you can be like yeah, it it it just it just more difficult when you're shorting a stock like above the EMAs and uh but it it is a possible George still.

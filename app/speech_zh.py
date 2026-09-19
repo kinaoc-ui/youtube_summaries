@@ -484,6 +484,18 @@ def _prep_en(text: str) -> str:
     s = re.sub(r"\binterview up\b", "anchored VWAP", s, flags=re.I)
     s = re.sub(r"\bNGV(?:WAP|F)\b", "anchored VWAP", s, flags=re.I)
     s = re.sub(r"\bencovy wap\b|\buncovy wap\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\bankle view\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\bangle view\b", "anchored VWAP", s, flags=re.I)
+    s = re.sub(r"\binto the end of VWAP\b", "into the anchored VWAP", s, flags=re.I)
+
+    def _year_mate(m: re.Match[str]) -> str:
+        n = m.group(1)
+        if "." in n:
+            a, b = n.split(".", 1)
+            return f"{a}, {b} EMA"
+        return f"{n} EMA"
+
+    s = re.sub(r"\b(\d+(?:\.\d+)?)\s+year mates?\b", _year_mate, s, flags=re.I)
     s = re.sub(r"\b9gma\b", "9 EMA", s, flags=re.I)
     s = re.sub(r"\bopening range height\b", "opening range high", s, flags=re.I)
     s = re.sub(r"\b(silver|quantum|semis?)\s+shots?\b", r"\1 short", s, flags=re.I)

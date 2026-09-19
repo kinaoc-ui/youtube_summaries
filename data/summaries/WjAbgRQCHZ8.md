@@ -7,15 +7,15 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：Quantum、Cyber、SPCX；做多：FIG。
 - **做多／long｜FIG** [05:02](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=302s) — 短倉唔敢太進取
-- **觀望／watch｜Semis** [04:13](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=253s) — 觀望
-- **觀望偏空／lean short｜Quantum** [04:31](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=271s) — 觀望偏空
-- **觀望／watch｜ASTS** [13:09](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=789s) — 觀望
+- **觀望／watch｜Semis** [04:13](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=253s) — 我對這個差距有點懷疑，因為 semis 中的大多數都在突破阻力位 我對這個差距有點懷疑，因為 semis 中的大多數都在突破阻力
+- **觀望偏空／lean short｜Quantum** [04:31](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=271s) — quantum 昨天和今天的收市偏弱對我來說似乎是一個潛在的 短倉 quantum 昨天和今天的收市偏弱對我來說似乎是一個潛在的 短倉
+- **觀望／watch｜ASTS** [13:09](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=789s) — 我認為 ASTS 可以是雙向的。我認為它的行為相當中立，對這件事持開放態度。我認為 ASTS 可以是雙向的。我認為它的行為相當中立，對這件事持開放態度
 - **觀望偏空／lean short｜Cyber** [1:05:02](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=3902s) — 未搵到支持
-- **觀望偏空／lean short｜SPCX** [1:42:56](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=6176s) — 觀望偏空
+- **觀望偏空／lean short｜SPCX** [1:42:56](https://www.youtube.com/watch?v=WjAbgRQCHZ8&t=6176s) — 我個人認為 SPCX (SPCX) 可以採用任何一種方式。如果 SPCX (SPCX) 會阻止我，也許我會轉空，但我個人不確定，我認為 SPCX (SPC…
 
 ## 時間軸內容
 

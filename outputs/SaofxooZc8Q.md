@@ -7,7 +7,7 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 做空：SNDK；觀望偏空：SPY、MU、TSLA、QQQ、SPCX、RDDT。
 - **實際操作｜SNDK** [11:43](https://www.youtube.com/watch?v=SaofxooZc8Q&t=703s) — 已做空（做空／short）
@@ -16,7 +16,7 @@
 - **觀望偏空／lean short｜SPY** [41:43](https://www.youtube.com/watch?v=SaofxooZc8Q&t=2503s) — 撞阻力
 - **觀望偏空／lean short｜MU** [12:27](https://www.youtube.com/watch?v=SaofxooZc8Q&t=747s) — 被 reject
 - **觀望偏空／lean short｜TSLA** [1:41:48](https://www.youtube.com/watch?v=SaofxooZc8Q&t=6108s) — 之前止蝕／試多次；或跟空／向下
-- **觀望偏空／lean short｜QQQ** [1:28:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5313s) — 觀望偏空
+- **觀望偏空／lean short｜QQQ** [1:28:33](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5313s) — 或阻力區或水平。就像如果我在 QQQ 上進行 60 分鐘回調和回調 短倉 上的一分鐘細分交易，該柱將被視為前一個柱的一分鐘突破細分，或者實際上可能像五分鐘…
 - **觀望偏空／lean short｜SPCX** [55:53](https://www.youtube.com/watch?v=SaofxooZc8Q&t=3353s) — 或跟空／向下
 - **觀望偏空／lean short｜RDDT** [1:34:45](https://www.youtube.com/watch?v=SaofxooZc8Q&t=5685s) — gap down
 

@@ -138,8 +138,10 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
         bits.append("被 reject")
     if re.search(r"gapping down|gap(?:ping)? down", low):
         bits.append("gap down")
-    if re.search(r"looks? pretty strong|looks? strong", low):
-        if not re.search(r"not .{0,20}strong", low):
+    if re.search(r"looks? pretty strong|looks? strong|looking strong", low):
+        if re.search(r"not going to buy|not .{0,20}buy into", low):
+            bits.append("睇落強但唔追")
+        elif not re.search(r"not .{0,20}strong", low):
             bits.append("睇落強")
     if re.search(r"wanted to short|like to short|short entry", low):
         bits.append("想／考慮短")
@@ -216,6 +218,28 @@ def _reason_bits(label: str, side: str, text: str) -> list[str]:
         bits.append("想／考慮短")
     if re.search(r"better to wait|wait for the extension", low) and not wait_gap:
         bits.append("建議再等一等先入")
+    if re.search(r"missed .{0,60}pullback", low):
+        bits.append("錯過回調／未跟到")
+    if re.search(r"pullback.{0,40}vwap|vwap.{0,40}pullback", low):
+        bits.append("回調入 VWAP")
+    if re.search(r"too extended|over-?trade", low):
+        bits.append("太延伸／怕 overtrade")
+    if re.search(r"restrain myself|wanted to take", low):
+        bits.append("想入但忍住")
+    if re.search(r"keep watching", low):
+        bits.append("開市應該繼續睇")
+    if re.search(r"some .{0,24}followed through.{0,24}some are not", low):
+        bits.append("有跟有唔跟")
+    if re.search(r"missed (?:the )?entry|missed .{0,24}entry", low):
+        bits.append("錯過入場")
+    if re.search(r"going (?:like )?too fast|going straight down", low):
+        bits.append("走太快／直落")
+    if re.search(r"bounce into .{0,28}declining 9", low):
+        bits.append("反彈入 declining 9")
+    elif re.search(r"declining 9", low):
+        bits.append("喺 declining 9")
+    if re.search(r"rallying into", low):
+        bits.append("反彈入 VWAP／阻力")
     return bits
 
 
@@ -226,9 +250,12 @@ def _reason_zh(label: str, side: str, text: str, conf: str = "") -> str:
     return "；".join(bits[:3])
 
 
+_EMPTY_REASONS = {"觀望", "觀望偏多", "觀望偏空", "觀望／watch", "偏多／長", "偏空／短"}
+
 _BULL_BITS = {
     "睇落仍然強",
     "睇落強",
+    "睇落強但唔追",
     "破位／轉強",
     "相對強勢",
     "仍有強勢",
@@ -236,6 +263,9 @@ _BULL_BITS = {
     "反彈／回測",
     "反彈，睇 hourly 21",
     "企穩 21 EMA",
+    "錯過回調／未跟到",
+    "回調入 VWAP",
+    "想入但忍住",
 }
 _BEAR_BITS = {"想／考慮短", "或跟空／向下", "或 shortable／good short", "收市偏弱", "問／考慮短"}
 
@@ -270,9 +300,24 @@ def _merge_reasons(label: str, rs: list[dict[str, Any]], pick: dict[str, Any] | 
         seen = [b for b in seen if b not in _BULL_BITS]
     elif want == "long":
         seen = [b for b in seen if b not in _BEAR_BITS]
-    if not seen:
-        seen = [_side_zh(str(pick.get("side") or ""))]
+    if not seen or all(b in _EMPTY_REASONS for b in seen):
+        seen = [_speech_clip(str(pick.get("text") or "") or _blob(pick))]
     return "；".join(seen[:4])
+
+
+def _speech_clip(text: str) -> str:
+    """Faithful short clip of what he said — never a badge word like 觀望."""
+    raw = re.sub(r"\s+", " ", str(text or "")).strip()
+    if not raw:
+        return "（語音原文見時間軸）"
+    from .speech_zh import translate_speech_zh
+
+    zh = re.sub(r"\s+", " ", translate_speech_zh(raw)).strip(" ；。")
+    if zh in _EMPTY_REASONS or not re.search(r"[\u4e00-\u9fffA-Za-z]", zh or ""):
+        zh = raw
+    if len(zh) > 80:
+        zh = zh[:77] + "…"
+    return zh
 
 
 def _side_arc(rs: list[dict[str, Any]]) -> str | None:
@@ -378,8 +423,8 @@ def build_zh_digest(rows: list[dict[str, Any]], video_id: str = "") -> list[str]
             tags = [t for t in tags if "已有倉" not in t]
             reason = re.sub(r"cyber long 太早；?", "", reason).strip("；")
         bucket = _bucket(side)
-        if bucket != "watch" and (not reason or reason == "觀望"):
-            reason = side
+        if not reason or reason in _EMPTY_REASONS:
+            reason = _speech_clip(str(pick.get("text") or "") or _blob(pick))
         # #region agent log
         _dbg(
             "H2",

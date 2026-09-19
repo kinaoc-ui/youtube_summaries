@@ -295,9 +295,9 @@ def _replace_digest_sections(
         else "Time | Ticker | Long/Short | Source | ASR English (original)"
     )
     zh_intro = (
-        "撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。"
+        "撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。"
         if cc_mode
-        else "撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。"
+        else "撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。"
     )
     skip_heads = (
         "真正摘要",

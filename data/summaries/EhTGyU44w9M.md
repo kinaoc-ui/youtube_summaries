@@ -7,7 +7,7 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：SPCX、NVDA、CRWV、QQQ；做多：Cyber、Software、FTNT、PANW；觀望偏多：Quantum、SMCI、Semis、ORCL、SMTC、WULF；減／平：CRCL。
 - **實際操作｜Cyber** [1:34:09](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5649s) — 已有倉（話太早）（做多／long）
@@ -32,7 +32,7 @@
 - **觀望偏多／lean long｜WULF** [1:26:28](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5188s) — 睇落強；相對強勢；企穩 21 EMA；仍有強勢
 - **觀望／watch｜SNDK** [1:37:50](https://www.youtube.com/watch?v=EhTGyU44w9M&t=5870s) — 之前止蝕／試多次
 - **觀望偏空／lean short｜QQQ** [1:48:21](https://www.youtube.com/watch?v=EhTGyU44w9M&t=6501s) — 或跟空／向下
-- **觀望／watch｜SPY** [1:49:18](https://www.youtube.com/watch?v=EhTGyU44w9M&t=6558s) — 觀望
+- **觀望／watch｜SPY** [1:49:18](https://www.youtube.com/watch?v=EhTGyU44w9M&t=6558s) — 除此之外而家 Qs is at the 亦都喺 flat 50，亦都喺 weekly 9 and SPY 同 IWM 相對 21 較強 除此之外而家 Qs…
 
 ## 時間軸內容
 

@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+from app.asr_fix import fix_asr
 from app.auto_summary import _watch_lean
 from app.side_audit import digest_contradictions
 from app.zh_digest import _merge_reasons, build_zh_digest
@@ -78,6 +79,22 @@ class WatchLeanTests(unittest.TestCase):
         q = "Yeah, I think if ARM can break out from this opening range height"
         self.assertIn("偏多", _watch_lean(q, "ARM"))
 
+    def test_year_mate_is_ema_asr(self) -> None:
+        q = "And I missed this SMCI pullback into the end of VWAP and I believe in the 5.9 year mate."
+        fixed = fix_asr(q)
+        self.assertIn("anchored VWAP", fixed)
+        self.assertIn("5, 9 EMA", fixed)
+        self.assertNotIn("year mate", fixed.lower())
+        self.assertIn("偏多", _watch_lean(fixed, "SMCI"))
+
+    def test_looking_strong_not_chasing_is_lean_long(self) -> None:
+        q = "The Intel is looking strong, AMD is also looking strong, but I'm just not going to buy into the strength."
+        self.assertIn("偏多", _watch_lean(q, "AMD"))
+
+    def test_too_extended_is_lean_short(self) -> None:
+        q = "trying to trade in SpaceX, but I think it will be a little bit over-trade because it's too extended in there to the upside"
+        self.assertIn("偏空", _watch_lean(q, "SPCX"))
+
 
 class DigestMergeTests(unittest.TestCase):
     def test_does_not_glue_strength_onto_lean_short(self) -> None:
@@ -102,6 +119,21 @@ class DigestMergeTests(unittest.TestCase):
         joined = "\n".join(build_zh_digest(rows, "x"))
         self.assertIn("偏多", joined)
         self.assertNotIn("**觀望／watch｜Software**", joined)
+
+    def test_digest_reason_is_not_just_watch(self) -> None:
+        rows = [
+            {
+                "label": "SMCI",
+                "side": "Watch",
+                "text": "And I missed this SMCI pullback into the anchored VWAP and I believe in the 5, 9 EMA.",
+                "start": 7919,
+                "t": "2:11:59",
+            }
+        ]
+        joined = "\n".join(build_zh_digest(rows, "x"))
+        self.assertNotRegex(joined, r"— 觀望\s*$")
+        self.assertIn("錯過回調", joined)
+        self.assertIn("偏多", joined)
 
     def test_timeline_fills_plain_watch_from_quote(self) -> None:
         from app.zh_digest import content_zh_line
@@ -142,6 +174,13 @@ class DigestGateTests(unittest.TestCase):
         md = (
             "# EP\n\n## 真正摘要（中文）\n\n"
             "- **觀望／watch｜Software** [23:29](https://youtu.be/x) — 仍有強勢\n"
+        )
+        self.assertTrue(digest_contradictions(md, "x"))
+
+    def test_flags_badge_only_watch_reason(self) -> None:
+        md = (
+            "# EP\n\n## 真正摘要（中文）\n\n"
+            "- **觀望／watch｜SPCX** [2:12:36](https://youtu.be/x) — 觀望\n"
         )
         self.assertTrue(digest_contradictions(md, "x"))
 

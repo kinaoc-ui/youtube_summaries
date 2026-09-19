@@ -7,18 +7,18 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。有 YouTube 字幕就用字幕做原文；faster-whisper／WhisperX 只核對 ticker。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：SPY、Software、QQQ；觀望偏多：Semis、ALAB、Quantum。
 - **觀望偏多／lean long｜Semis** [15:27](https://www.youtube.com/watch?v=E5h9Cam51OU&t=927s) — 睇落仍然強；仍有強勢
 - **觀望偏空／lean short｜SPY** [1:05:04](https://www.youtube.com/watch?v=E5h9Cam51OU&t=3904s) — 或跟空／向下
-- **觀望／watch｜TSLA** [10:51](https://www.youtube.com/watch?v=E5h9Cam51OU&t=651s) — 觀望
+- **觀望／watch｜TSLA** [10:51](https://www.youtube.com/watch?v=E5h9Cam51OU&t=651s) — 但我仍然喜歡在我認為這 15 分鐘蠟燭上Tesla 但我仍然喜歡在我認為這 15 分鐘蠟燭上Tesla
 - **觀望偏多／lean long｜ALAB** [14:17](https://www.youtube.com/watch?v=E5h9Cam51OU&t=857s) — 相對強勢
 - **觀望偏空／lean short｜Software** [17:50](https://www.youtube.com/watch?v=E5h9Cam51OU&t=1070s) — software gap 填缺口可關注
 - **觀望偏多／lean long｜Quantum** [28:19](https://www.youtube.com/watch?v=E5h9Cam51OU&t=1699s) — 相對強勢
-- **觀望／watch｜HOOD** [31:18](https://www.youtube.com/watch?v=E5h9Cam51OU&t=1878s) — 觀望
-- **觀望／watch｜SILVER** [39:50](https://www.youtube.com/watch?v=E5h9Cam51OU&t=2390s) — 觀望
-- **觀望／watch｜IGV** [54:23](https://www.youtube.com/watch?v=E5h9Cam51OU&t=3263s) — 觀望
+- **觀望／watch｜HOOD** [31:18](https://www.youtube.com/watch?v=E5h9Cam51OU&t=1878s) — 在所有 EMA 的幕後，已經開始了兩到三週的下降趨勢。在所有 EMA 的幕後，已經開始了兩到三週的下降趨勢
+- **觀望／watch｜SILVER** [39:50](https://www.youtube.com/watch?v=E5h9Cam51OU&t=2390s) — 您之所以可以放置這麼多頭寸，是因為您的停損設定為在市場結束後起作用。並不真地。我的意思是，首先，黃金和白銀的走勢緩慢。您可以看出，您可以放置​​這麼多頭寸…
+- **觀望／watch｜IGV** [54:23](https://www.youtube.com/watch?v=E5h9Cam51OU&t=3263s) — 並從 IGV 上的九號線延伸了一點。我想如果我們能在 IGV 上橫向移動一兩天，並從九號線開始稍微延長一點。我想如果我們能相處一兩天
 - **觀望偏空／lean short｜QQQ** [1:13:08](https://www.youtube.com/watch?v=E5h9Cam51OU&t=4388s) — 或跟空／向下
 
 ## 時間軸內容

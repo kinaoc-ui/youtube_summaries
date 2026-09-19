@@ -7,17 +7,17 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 觀望偏空：SPY、PATH、Silver、Software；觀望偏多：WDC、Semis、SMCI。
-- **觀望偏空／lean short｜SPY** [06:15](https://www.youtube.com/watch?v=ghIBr65FY_I&t=375s) — 觀望偏空
+- **觀望偏空／lean short｜SPY** [06:15](https://www.youtube.com/watch?v=ghIBr65FY_I&t=375s) — 但現在，就像發布後一樣，SPY 的價格降低了一點，而 Russo 則讓我感到有點不安 但是現在，就像發布後一樣，SPY 的價格降低了一點，Russo 則讓…
 - **觀望偏多／lean long｜WDC** [07:18](https://www.youtube.com/watch?v=ghIBr65FY_I&t=438s) — 破位／轉強；反彈／回測
-- **觀望偏空／lean short｜PATH** [08:03](https://www.youtube.com/watch?v=ghIBr65FY_I&t=483s) — 觀望偏空
+- **觀望偏空／lean short｜PATH** [08:03](https://www.youtube.com/watch?v=ghIBr65FY_I&t=483s) — 而PATH，我計劃在21 EMA以及之前的swing high（波段高位）（波動高位）上回調買入，但現在它跳空低於支撐位進入周線150。而PATH我計劃在…
 - **觀望偏空／lean short｜Silver** [09:16](https://www.youtube.com/watch?v=ghIBr65FY_I&t=556s) — 撞阻力
 - **觀望偏多／lean long｜Semis** [18:58](https://www.youtube.com/watch?v=ghIBr65FY_I&t=1138s) — 睇落仍然強；有少少弱
 - **觀望偏空／lean short｜Software** [1:45:05](https://www.youtube.com/watch?v=ghIBr65FY_I&t=6305s) — 有少少弱；gap down；software gap 填缺口可關注
 - **觀望偏多／lean long｜SMCI** [23:06](https://www.youtube.com/watch?v=ghIBr65FY_I&t=1386s) — 破位／轉強
-- **觀望／watch｜AXTI** [1:36:48](https://www.youtube.com/watch?v=ghIBr65FY_I&t=5808s) — 觀望
+- **觀望／watch｜AXTI** [1:36:48](https://www.youtube.com/watch?v=ghIBr65FY_I&t=5808s) — 對於像AXTI這樣的投籃，如果它像這樣跑起來並逆向你進行掩護。對於像AXTI這樣的投籃，如果它像這樣跑起來並逆向你進行掩護
 
 ## 時間軸內容
 
@@ -26,7 +26,7 @@
 - [06:15](https://www.youtube.com/watch?v=ghIBr65FY_I&t=375s) **SPY** | 觀望偏空／lean short | 雙ASR確認 | But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit ‖ 但現在，就像發布後一樣，SPY 的性能下降了一點，而 Russo 則讓我有點不舒服
 - [07:18](https://www.youtube.com/watch?v=ghIBr65FY_I&t=438s) **WDC** | 觀望偏多／lean long | 雙ASR確認 | But at the same time, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout. ‖ But 同一時間, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a 破位
 - [08:03](https://www.youtube.com/watch?v=ghIBr65FY_I&t=483s) **PATH** | 觀望偏空／lean short | 雙ASR確認 | And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150. ‖ And the path I planned on the 回調 buy on the 21 EMA as well as the previous swing high（波段高位）, but now it is gaping below the supports into the weekly 150
-- [09:16](https://www.youtube.com/watch?v=ghIBr65FY_I&t=556s) **Silver** | 觀望偏空／lean short | WhisperX | and gold and silver is getting them and not getting them and finding resistance at this end of VWAP. ‖ 黃金和白銀正在得到它們，但沒有得到它們，並在 VWAP 的這一端找到阻力
+- [09:16](https://www.youtube.com/watch?v=ghIBr65FY_I&t=556s) **Silver** | 觀望偏空／lean short | WhisperX | and gold and silver is getting them and not getting them and finding resistance at this anchored VWAP. ‖ 黃金和白銀正在得到它們，但沒有得到它們，並在這個 anchored VWAP 中找到阻力
 - [09:40](https://www.youtube.com/watch?v=ghIBr65FY_I&t=580s) **Semis** | 觀望／watch | 雙ASR確認 | And this semi ETF is again gapping up into the declining nine. ‖ 而這只 semis ETF 再次跳空進入下跌九
 - [14:37](https://www.youtube.com/watch?v=ghIBr65FY_I&t=877s) **Semis** | 觀望偏多／lean long | WhisperX | Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher. ‖ 看起來 Riptodes 越來越高，semis 越來越高，memory 名字越來越高
 - [18:58](https://www.youtube.com/watch?v=ghIBr65FY_I&t=1138s) **Semis** | 觀望偏多／lean long | 雙ASR確認 | pretty strong action so far on the semis. ‖ pretty strong action 目前 on the semis
@@ -48,7 +48,7 @@ Time | Ticker | Long/Short | Source | ASR English (original)
 - [06:15](https://www.youtube.com/watch?v=ghIBr65FY_I&t=375s) **SPY** | 觀望偏空／lean short | dual ASR | But now, like after the release, where the spy is going lower a bit, the Russo is the one that makes me a little bit
 - [07:18](https://www.youtube.com/watch?v=ghIBr65FY_I&t=438s) **WDC** | 觀望偏多／lean long | dual ASR | But at the same time, Western Digital was much weaker. Now, they are bouncing into the resistance while the stronger names looks like getting a breakout.
 - [08:03](https://www.youtube.com/watch?v=ghIBr65FY_I&t=483s) **PATH** | 觀望偏空／lean short | dual ASR | And the path I planned on the pullback buy on the 21 EMA as well as the previous swing highs, but now it is gaping below the supports into the weekly 150.
-- [09:16](https://www.youtube.com/watch?v=ghIBr65FY_I&t=556s) **Silver** | 觀望偏空／lean short | WhisperX | and gold and silver is getting them and not getting them and finding resistance at this end of VWAP.
+- [09:16](https://www.youtube.com/watch?v=ghIBr65FY_I&t=556s) **Silver** | 觀望偏空／lean short | WhisperX | and gold and silver is getting them and not getting them and finding resistance at this anchored VWAP.
 - [09:40](https://www.youtube.com/watch?v=ghIBr65FY_I&t=580s) **Semis** | 觀望／watch | dual ASR | And this semi ETF is again gapping up into the declining nine.
 - [14:37](https://www.youtube.com/watch?v=ghIBr65FY_I&t=877s) **Semis** | 觀望偏多／lean long | WhisperX | Looks like the Riptodes are going higher, the Semis are going higher, the memory names are going higher.
 - [18:58](https://www.youtube.com/watch?v=ghIBr65FY_I&t=1138s) **Semis** | 觀望偏多／lean long | dual ASR | pretty strong action so far on the semis.

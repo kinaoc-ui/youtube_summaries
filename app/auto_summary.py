@@ -96,7 +96,7 @@ _BEAR_CUE = re.compile(
     r"\brejection\b|gapping down|gap(?:ping)? down|gap(?:ing|ping) below|"
     r"\bshorted\b|shorting |semi-?short|"
     r"weakness|slowdown|not going to participate.{0,24}long|"
-    r"extended from the daily|hanging around|"
+    r"extended from the daily|too extended|extended to the upside|hanging around|"
     r"not finding support|finding (?:some )?resistance|"
     r"(?:a )?little bit(?: little bit)? weak|getting .{0,20}weak|"
     r"goes lower|going lower|follow through to the downside|"
@@ -104,7 +104,7 @@ _BEAR_CUE = re.compile(
     re.I,
 )
 _BULL_CUE = re.compile(
-    r"looks? (?:pretty |really |still )?(?:pretty |really )?strong|"
+    r"look(?:s|ing)? (?:pretty |really |still )?(?:pretty |really )?strong|"
     r"still .{0,20}(?:really )?strong|really strong|pretty strong|"
     r"looks stronger|found (?:some )?strength|some strength in|"
     r"relative strength|showing (?:good |relative )?strength|"
@@ -146,6 +146,10 @@ def _watch_lean(blob: str, ticker: str | None = None) -> str:
         r"lower|reject|goes down", b, re.I
     ):
         return "Watch／偏多"
+    if re.search(r"missed .{0,60}pullback", b, re.I):
+        return "Watch／偏多"
+    if re.search(r"wanted to take|restrain myself", b, re.I):
+        return "Watch／偏多"
     # Failed breakdown + breakout is strength, not a short.
     failed_push = bool(
         re.search(r"attempts? to (?:push|go) lower", b, re.I)
@@ -185,7 +189,8 @@ def _watch_lean(blob: str, ticker: str | None = None) -> str:
             tail,
             re.I,
         ) and not re.search(
-            r"\bshorting\b|\bshorted\b|shortable|rejected|weakness",
+            r"\bshorting\b|\bshorted\b|shortable|rejected|weakness|"
+            r"not going to buy|not .{0,20}buy into",
             tail,
             re.I,
         ):

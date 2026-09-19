@@ -7,19 +7,19 @@
 
 ## 真正摘要（中文）
 
-撳時間可跳片。摘要按做多／做空／減倉／觀望分組；細節喺時間軸。
+撳摘要時間跳去下面時間軸該行。時間軸時間戳先跳 YouTube。
 
 - **今日總覽** — 做空：SPCX；觀望偏空：Silver、Quantum、WDC、FIG、SNDK；觀望偏多：ARM、AXTI、ASTS。
 - **實際操作｜SPCX** [1:22:00](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4920s) — 已做空（做空／short）
 - **做空／short｜SPCX** [1:22:00](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4920s) — 撞阻力
 - **觀望偏空／lean short｜Silver** [08:59](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=539s) — 被 reject；想／考慮短
-- **觀望／watch｜Semis** [1:11:27](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4287s) — 觀望
-- **觀望偏多／lean long｜ARM** [1:12:04](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4324s) — 觀望偏多
-- **觀望偏多／lean long｜AXTI** [1:12:14](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4334s) — 觀望偏多
+- **觀望／watch｜Semis** [1:11:27](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4287s) — Mmm
+- **觀望偏多／lean long｜ARM** [1:12:04](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4324s) — 我認為如果 ARM 能夠突破這個開盤區間高點，例如 60 分鐘蠟燭的高度，那麼我可能也會平倉 AXTI
+- **觀望偏多／lean long｜AXTI** [1:12:14](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4334s) — 我認為如果 ARM 能夠突破這個開盤區間高點，例如 60 分鐘蠟燭的高度，那麼我可能也會平倉 AXTI
 - **觀望偏空／lean short｜Quantum** [1:12:17](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4337s) — 想／考慮短
-- **觀望偏空／lean short｜WDC** [1:14:38](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4478s) — 觀望偏空
+- **觀望偏空／lean short｜WDC** [1:14:38](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4478s) — 錯過入場；走太快／直落
 - **觀望偏空／lean short｜FIG** [1:15:04](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=4504s) — 被 reject
-- **觀望偏空／lean short｜SNDK** [1:30:28](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=5428s) — 觀望偏空
+- **觀望偏空／lean short｜SNDK** [1:30:28](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=5428s) — 但今天這個太弱了
 - **觀望偏多／lean long｜ASTS** [1:44:20](https://www.youtube.com/watch?v=I8QnaZwg7Qw&t=6260s) — 反彈／回測
 
 ## 時間軸內容
