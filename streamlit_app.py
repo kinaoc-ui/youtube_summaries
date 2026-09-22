@@ -231,10 +231,49 @@ def _episode_sort_key(s: Summary) -> tuple:
     return (0, 0, 0, epn)
 
 
+def _qp_one(name: str) -> str:
+    v = st.query_params.get(name)
+    if v is None:
+        return ""
+    if isinstance(v, (list, tuple)):
+        return str(v[0] or "")
+    return str(v)
+
+
 def _tl_anchor(stamp: str, ticker: str) -> str:
     s = re.sub(r"[^0-9]+", "-", stamp or "").strip("-")
     t = re.sub(r"[^A-Za-z0-9]+", "", ticker or "")
     return f"tl-{s}-{t}"
+
+
+def _scroll_app_top() -> None:
+    """After a digest tap, Streamlit often keeps the old scroll offset."""
+    import streamlit.components.v1 as components
+
+    components.html(
+        """<!DOCTYPE html><html><body><script>
+(function () {
+  const w = window.parent || window;
+  const doc = w.document;
+  const go = () => {
+    const el = doc.getElementById("jump-quote");
+    if (el) {
+      el.scrollIntoView({behavior: "smooth", block: "start"});
+      return;
+    }
+    const main = doc.querySelector("section.main")
+      || doc.querySelector('[data-testid="stAppViewContainer"]');
+    if (main && main.scrollTo) main.scrollTo({top: 0, behavior: "smooth"});
+    else w.scrollTo(0, 0);
+  };
+  go();
+  setTimeout(go, 200);
+  setTimeout(go, 600);
+})();
+</script></body></html>""",
+        height=1,
+        scrolling=False,
+    )
 
 
 def _badge(key: str, label: str) -> str:
@@ -248,7 +287,36 @@ def _badge(key: str, label: str) -> str:
 
 def _card(inner: str, cls: str = "row-card", anchor: str = "") -> None:
     aid = f' id="{html.escape(anchor, quote=True)}"' if anchor else ""
-    st.markdown(f'<div class="{cls}"{aid}>{inner}</div>', unsafe_allow_html=True)
+    dtl = f' data-tl="{html.escape(anchor, quote=True)}"' if anchor else ""
+    st.markdown(f'<div class="{cls}"{aid}{dtl}>{inner}</div>', unsafe_allow_html=True)
+
+
+def _put_timeline_row(
+    row: Row,
+    *,
+    en_by: dict[tuple[str, str], str],
+    highlight: bool = False,
+    with_anchor: bool = True,
+) -> None:
+    tl = _tl_anchor(row.stamp, row.ticker)
+    badge = _badge(row.side_key, row.side)
+    en_q, zh_q = _split_en_zh(row.quote)
+    if not en_q:
+        en_q = en_by.get((row.stamp, row.ticker), "")
+    quote_html = ""
+    if en_q:
+        quote_html += f'<div class="quote">{html.escape(en_q)}</div>'
+    if zh_q and zh_q != en_q:
+        quote_html += f'<div class="muted">{html.escape(zh_q)}</div>'
+    cls = "row-card jump-hit" if highlight else "row-card"
+    _card(
+        f'<a class="t" href="{html.escape(row.url)}" target="_blank" rel="noreferrer">'
+        f"{html.escape(row.stamp)}</a> "
+        f"<b>{html.escape(row.ticker)}</b> {badge}"
+        f"{quote_html}",
+        cls,
+        tl if with_anchor else "",
+    )
 
 
 def main() -> None:
@@ -267,6 +335,18 @@ def main() -> None:
             padding: 0.85rem 0.95rem; margin-bottom: 0.55rem;
             background: #171a21;
             scroll-margin-top: 12px;
+        }
+        .row-card.jump-hit {
+            outline: 2px solid #7aa2ff;
+            outline-offset: 2px;
+        }
+        h3[id^="tl-"] {
+            height: 0 !important; margin: 0 !important; padding: 0 !important;
+            overflow: hidden !important; font-size: 0 !important; line-height: 0 !important;
+        }
+        #jump-quote { scroll-margin-top: 8px; }
+        div[data-testid="stHeading"]:has(h3[id^="tl-"]) {
+            height: 0; margin: 0; padding: 0; overflow: hidden;
         }
         .row-card a.t, .digest-card a.t {
             color: #7aa2ff; text-decoration: none; font-variant-numeric: tabular-nums;
@@ -291,7 +371,8 @@ def main() -> None:
 
     by_id = {s.video_id: s for s in summaries}
     latest_id = summaries[0].video_id
-    q = st.query_params.get("v")
+    q = _qp_one("v")
+    jump = _qp_one("tl")
     default_id = q if q in by_id else latest_id
     if not q:
         st.query_params["v"] = latest_id
@@ -318,8 +399,14 @@ def main() -> None:
     )
     if pick != q:
         st.query_params["v"] = pick
+        if "tl" in st.query_params:
+            del st.query_params["tl"]
+        jump = ""
 
     s = by_id[pick]
+    en_by = {(r.stamp, r.ticker): r.quote for r in s.rows_en}
+    rows = s.rows_zh or s.rows_en
+    jumped = next((r for r in rows if _tl_anchor(r.stamp, r.ticker) == jump), None) if jump else None
     st.title(s.title)
     top_l, top_r = st.columns([2, 1])
     with top_l:
@@ -329,9 +416,15 @@ def main() -> None:
 
     overview = next((it for it in s.digest_items if it.key == "overview"), None)
     st.markdown('<div class="sec-h">真正摘要</div>', unsafe_allow_html=True)
-    st.caption("撳時間跳去下面時間軸該行；時間軸時間戳先跳 YouTube")
+    st.caption("撳摘要時間，即刻喺上面出時間軸該行原文；時間軸時間戳先跳 YouTube")
     if overview and overview.rest:
         st.info(overview.rest)
+    if jumped:
+        st.markdown(
+            '<div id="jump-quote" class="sec-h">時間軸該行</div>',
+            unsafe_allow_html=True,
+        )
+        _put_timeline_row(jumped, en_by=en_by, highlight=True, with_anchor=False)
 
     groups = [
         ("action", "實際操作"),
@@ -348,45 +441,36 @@ def main() -> None:
             continue
         st.markdown(f'<div class="sec-h">{html.escape(title)}</div>', unsafe_allow_html=True)
         _, _, fallback = SIDE_COLORS.get(key, SIDE_COLORS["watch"])
-        for it in chunk:
+        for i, it in enumerate(chunk):
             tl = _tl_anchor(it.stamp, it.ticker)
-            stamp_html = (
-                f'<a class="t" href="#{html.escape(tl)}">'
-                f"{html.escape(it.stamp)}</a> "
-                if it.stamp
-                else ""
-            )
+            if it.stamp:
+                if st.button(
+                    f"{it.stamp}  {it.ticker}",
+                    key=f"jump-{s.video_id}-{key}-{i}-{tl}",
+                    use_container_width=True,
+                ):
+                    st.query_params["v"] = s.video_id
+                    st.query_params["tl"] = tl
+                    st.rerun()
             _card(
-                f"{stamp_html}{_badge(key, fallback)} <b>{html.escape(it.ticker)}</b>"
+                f"{_badge(key, fallback)} <b>{html.escape(it.ticker)}</b>"
                 f'<div class="quote">{html.escape(it.rest)}</div>',
                 "digest-card",
             )
 
-    en_by = {(r.stamp, r.ticker): r.quote for r in s.rows_en}
-    rows = s.rows_zh or s.rows_en
     st.markdown('<div class="sec-h">時間軸（英→中）</div>', unsafe_allow_html=True)
     st.caption("撳時間 → YouTube 跳去該秒")
     show_mute = st.toggle("顯示字幕缺口", value=False)
     for row in rows:
-        if not show_mute and row.side_key == "mute":
+        is_jump = bool(jump) and _tl_anchor(row.stamp, row.ticker) == jump
+        if not show_mute and row.side_key == "mute" and not is_jump:
             continue
-        badge = _badge(row.side_key, row.side)
-        en_q, zh_q = _split_en_zh(row.quote)
-        if not en_q and s.rows_en:
-            en_q = en_by.get((row.stamp, row.ticker), "")
-        quote_html = ""
-        if en_q:
-            quote_html += f'<div class="quote">{html.escape(en_q)}</div>'
-        if zh_q and zh_q != en_q:
-            quote_html += f'<div class="muted">{html.escape(zh_q)}</div>'
-        _card(
-            f'<a class="t" href="{html.escape(row.url)}" target="_blank" rel="noreferrer">'
-            f"{html.escape(row.stamp)}</a> "
-            f"<b>{html.escape(row.ticker)}</b> {badge}"
-            f"{quote_html}",
-            "row-card",
-            _tl_anchor(row.stamp, row.ticker),
-        )
+        _put_timeline_row(row, en_by=en_by, highlight=is_jump, with_anchor=True)
+
+    if jump:
+        _scroll_app_top()
+        if jumped is None:
+            st.caption("搵唔到對應時間軸行")
 
     if not s.digest_items and not rows:
         st.markdown(s.path.read_text(encoding="utf-8"))
