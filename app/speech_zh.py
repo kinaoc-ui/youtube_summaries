@@ -496,6 +496,7 @@ def _prep_en(text: str) -> str:
         return f"{n} EMA"
 
     s = re.sub(r"\b(\d+(?:\.\d+)?)\s+year mates?\b", _year_mate, s, flags=re.I)
+    s = re.sub(r"\bweekly night\b", "weekly 9", s, flags=re.I)
     s = re.sub(r"\b9gma\b", "9 EMA", s, flags=re.I)
     s = re.sub(r"\bopening range height\b", "opening range high", s, flags=re.I)
     s = re.sub(r"\b(silver|quantum|semis?)\s+shots?\b", r"\1 short", s, flags=re.I)
@@ -530,7 +531,7 @@ def seed_zh_cache_from_markdown(md: str) -> int:
         en, zh = tail.split(" ‖ ", 1)
         en = en.strip()
         zh = zh.strip()
-        if not en or not re.search(r"[\u4e00-\u9fff]", zh or ""):
+        if not en or not _zh_usable(zh):
             continue
         key = re.sub(r"\s+", " ", en).lower()
         if key not in _ZH_CACHE:
@@ -574,6 +575,12 @@ _LOCKS: list[tuple[str, str]] = [
     (r"\bIWM\b", "ZZIWMZZ"),
     (r"\bsemis?\b", "ZZSEMISZZ"),
     (r"\bquantum'?s?\b", "ZZQUANTUMZZ"),
+    (r"software weekly", "ZZSOFTWKZZ"),
+    (r"not even extended", "ZZNOEXTZZ"),
+    (r"\bpullbacks?\b", "ZZPBZZ"),
+    (r"\bbreakouts?\b", "ZZBOZZ"),
+    (r"finding support", "ZZSUPZZ"),
+    (r"setting up a candle", "ZZCANDLEZZ"),
     (r"\bsoftwares?\b", "ZZSOFTZZ"),
     (r"\bmemories\b", "ZZMEMZZ"),
     (r"\bmemory\b", "ZZMEMZZ"),
@@ -630,6 +637,12 @@ _UNLOCK = {
     "ZZIWMZZ": "IWM",
     "ZZSEMISZZ": "semis",
     "ZZQUANTUMZZ": "quantum",
+    "ZZSOFTWKZZ": "\u8edf\u4ef6\u9031\u7dda",
+    "ZZNOEXTZZ": "\u4ef2\u672a\u5ef6\u4f38",
+    "ZZPBZZ": "\u56de\u8abf",
+    "ZZBOZZ": "\u7834\u4f4d",
+    "ZZSUPZZ": "\u6435\u5230\u652f\u6301",
+    "ZZCANDLEZZ": "\u6574\u7dca\u4e00\u6839K\u7dda",
     "ZZSOFTZZ": "software",
     "ZZMEMZZ": "memory",
     "ZZEMAZZ": "EMA",
@@ -690,11 +703,45 @@ def _sanitize_zh(zh: str) -> str:
         lambda m: "\u5e73\u6389 " + m.group(1),
         s,
     )
+    s = s.replace("\u8edf\u9ad4\u9031\u520a", "\u8edf\u4ef6\u9031\u7dda")
+    s = s.replace("\u8f6f\u4ef6\u5468\u520a", "\u8f6f\u4ef6\u5468\u7ebf")
     s = s.replace("\u689d\u76ee", "\u5165\u5834")
     s = s.replace("\u5047\u5192", "\u5047\u7a81\u7834")
     s = s.replace("\u5de8\u5927\u7684\u524a\u6e1b", "\u5927 cut")
     s = s.replace("\u5fae\u5c0f\u7684\u524a\u6e1b", "\u5c0f cut")
     return s
+
+
+def _zh_usable(zh: str) -> bool:
+    """Glossary swap (回調／破位 stuck in an English sentence) is not a translation."""
+    text = zh or ""
+    zh_n = len(re.findall(r"[\u4e00-\u9fff]", text))
+    en_words = re.findall(r"\b[A-Za-z]{4,}\b", text)
+    if zh_n < 8:
+        return False
+    if len(en_words) > 6:
+        return False
+    return zh_n >= len(en_words) * 3
+
+
+def _http_zh_parts(en: str) -> str | None:
+    """Google drops the head and tail of long captions. Translate one sentence at a time."""
+    parts = [p.strip() for p in re.split(r"(?<=[.!?])\s+", (en or "").strip()) if p.strip()]
+    if len(parts) <= 1:
+        return _http_zh(en)
+    outs: list[str] = []
+    any_zh = False
+    for part in parts:
+        if len(part) < 8:
+            outs.append(part)
+            continue
+        got = _http_zh(part)
+        if got:
+            any_zh = True
+            outs.append(got)
+        else:
+            outs.append(part)
+    return " ".join(outs) if any_zh else None
 
 
 def _http_zh(en: str) -> str | None:
@@ -744,16 +791,16 @@ def translate_speech_zh(text: str) -> str:
         return out
 
     def _ok(zh: str) -> bool:
-        return len(re.findall(r"[\u4e00-\u9fff]", zh or "")) >= 6
+        return _zh_usable(zh)
 
     locked = _lock_en(s)
-    got = _http_zh(locked)
+    got = _http_zh_parts(locked)
     if got:
         out = _sanitize_zh(_unlock_zh(got))
         if _ok(out):
             _ZH_CACHE[key] = out
             return out
-    got = _http_zh(s)
+    got = _http_zh_parts(s)
     if got:
         out = _sanitize_zh(got)
         if _ok(out):
@@ -762,5 +809,6 @@ def translate_speech_zh(text: str) -> str:
     for pat, zh in _GLOSSARY:
         s = pat.sub(zh, s)
     out = _sanitize_zh(re.sub(r"\s+", " ", s).strip(" ,"))
-    _ZH_CACHE[key] = out
+    if _ok(out):
+        _ZH_CACHE[key] = out
     return out
