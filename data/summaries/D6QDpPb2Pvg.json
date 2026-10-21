@@ -5,24 +5,559 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 今日以觀望為主。",
+      "text": "今日總覽 — 觀望偏空：Software、Semis、SNDK、SPY、SPCX、IGV；觀望偏多：COIN。",
       "start": "0"
     },
     {
-      "t": "",
-      "text": "（未有足夠雙 ASR 內容可寫摘要）",
+      "t": "1:52:24",
+      "text": "觀望偏空／lean short｜Software — 唔鐘意 crypto，考慮平",
+      "start": "0"
+    },
+    {
+      "t": "2:07:02",
+      "text": "觀望偏空／lean short｜Semis — 唔鐘意 crypto，考慮平；喺 declining 9；想／考慮短",
+      "start": "0"
+    },
+    {
+      "t": "08:10",
+      "text": "觀望／watch｜CRCL — 唔鐘意 crypto，考慮平",
+      "start": "0"
+    },
+    {
+      "t": "16:49",
+      "text": "觀望偏空／lean short｜SNDK — 之前止蝕／試多次",
+      "start": "0"
+    },
+    {
+      "t": "1:52:56",
+      "text": "觀望偏空／lean short｜SPY — Maybe not that much compared to a spy, but spy is also like 回測去到 the 50 EMAs …",
+      "start": "0"
+    },
+    {
+      "t": "28:37",
+      "text": "觀望／watch｜QQQ — like this sockets compared to the cues or any other in the in the in the seat…",
+      "start": "0"
+    },
+    {
+      "t": "1:32:15",
+      "text": "觀望偏多／lean long｜COIN — 破位／轉強；唔鐘意 crypto，考慮平；睇落仍然強",
+      "start": "0"
+    },
+    {
+      "t": "1:03:54",
+      "text": "觀望／watch｜HOOD — Sometimes the index cannot really truly refute what's happening under the hood",
+      "start": "0"
+    },
+    {
+      "t": "1:04:22",
+      "text": "觀望偏空／lean short｜SPCX — Can SpaceX (SPCX) be a good shot now with 破位向下 of five minute candle?",
+      "start": "0"
+    },
+    {
+      "t": "1:52:39",
+      "text": "觀望偏空／lean short｜IGV — Although IGV is like going down like 回測去到 the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:57:13",
+      "text": "觀望偏空／lean short｜AXTI — It also depends on how, maybe, AXTI and GEV is acting at that moment",
       "start": "0"
     }
   ],
-  "bullets_en": [],
-  "bullets_zh": [],
-  "bullets": [],
+  "bullets_en": [
+    {
+      "t": "05:15",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | Also some like the biotechs are strong, some software names are also pretty strong.",
+      "start": "0"
+    },
+    {
+      "t": "06:00",
+      "text": "**Semis** | 觀望／watch | dual ASR | Mainly, semis related names, AI related names are gaping up into the resistance level.",
+      "start": "0"
+    },
+    {
+      "t": "07:55",
+      "text": "**Semis** | 觀望／watch | WhisperX | And like how the weaker names, the semi-names react to the declining EMAs, and will the cryptos or the other stronger names, it's like breaking us successfully to the upside.",
+      "start": "0"
+    },
+    {
+      "t": "08:10",
+      "text": "**CRCL** | 觀望／watch | WhisperX | The CRCL is holding up very well during this pullback on Q's.",
+      "start": "0"
+    },
+    {
+      "t": "16:49",
+      "text": "**SNDK** | 觀望偏空／lean short | WhisperX | SNDK is failing at the 9-year may.",
+      "start": "0"
+    },
+    {
+      "t": "26:50",
+      "text": "**SPY** | 觀望偏多／lean long | dual ASR | If spy can hold the 921 Then I think on the, you know, on both Danny and the hourly is setting up for the potential breakout.",
+      "start": "0"
+    },
+    {
+      "t": "27:42",
+      "text": "**SNDK** | 觀望／watch | dual ASR | pretty sad that i missed the sndk at the open",
+      "start": "0"
+    },
+    {
+      "t": "28:37",
+      "text": "**QQQ** | 觀望／watch | WhisperX | like this sockets compared to the cues or any other in the in the in the seats they're just so weak i i don't like it like i",
+      "start": "0"
+    },
+    {
+      "t": "33:30",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | But I am a little bit worried about the semi weakness right now.",
+      "start": "0"
+    },
+    {
+      "t": "33:31",
+      "text": "**Mute gap** | — | mic muted / no speech | 33:31–44:01 約 10 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "44:01",
+      "text": "**SNDK** | 觀望／watch | WhisperX | No, we can't short SNDK.",
+      "start": "0"
+    },
+    {
+      "t": "48:11",
+      "text": "**COIN** | 觀望偏空／lean short | dual ASR | And coin is dropping too fast.",
+      "start": "0"
+    },
+    {
+      "t": "54:53",
+      "text": "**SNDK** | 觀望／watch | dual ASR | Definitely it will be like really tight and you'll get a pretty high risk of getting stopped out if the SNDK is going to like do another push to the upside.",
+      "start": "0"
+    },
+    {
+      "t": "59:29",
+      "text": "**Software** | 觀望／watch | dual ASR | Although Snow is not, like I said, it's one of the strongest software names, although it's like showing some cracks in the past week.",
+      "start": "0"
+    },
+    {
+      "t": "1:00:00",
+      "text": "**SPY** | 觀望／watch | dual ASR | Yeah, it takes a shot, especially at this timing when the spy and QZ is rallying higher under the EMAs.",
+      "start": "0"
+    },
+    {
+      "t": "1:03:54",
+      "text": "**HOOD** | 觀望／watch | WhisperX | Sometimes the index cannot really truly refute what's happening under the hood.",
+      "start": "0"
+    },
+    {
+      "t": "1:04:22",
+      "text": "**SPCX** | 觀望偏空／lean short | dual ASR | Can SpaceX (SPCX) be a good shot now with breakdown of five minute candle?",
+      "start": "0"
+    },
+    {
+      "t": "1:18:35",
+      "text": "**Software** | 觀望／watch | dual ASR | softwares are doing really good",
+      "start": "0"
+    },
+    {
+      "t": "1:23:08",
+      "text": "**Semis** | 觀望／watch | dual ASR | What do you think about not showing any semi-names until the kills come a little bit closer to the declining 9 and 50?",
+      "start": "0"
+    },
+    {
+      "t": "1:25:47",
+      "text": "**Semis** | 觀望／watch | dual ASR | I think I don't find any meaningful bounds in the weaker semi-sector.",
+      "start": "0"
+    },
+    {
+      "t": "1:32:15",
+      "text": "**COIN** | 觀望偏多／lean long | dual ASR | Crypto is really strong. Bitcoin is already breaking out from the previous week high.",
+      "start": "0"
+    },
+    {
+      "t": "1:35:31",
+      "text": "**Semis** | 觀望／watch | dual ASR | I really don't like the semis, especially the large caps, the mega caps semis are doing right now.",
+      "start": "0"
+    },
+    {
+      "t": "1:36:51",
+      "text": "**SNDK** | 觀望／watch | dual ASR | So at the, at the hour of the year.",
+      "start": "0"
+    },
+    {
+      "t": "1:36:55",
+      "text": "**Mute gap** | — | mic muted / no speech | 1:36:55–1:45:15 約 8 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "1:52:24",
+      "text": "**Software** | 觀望偏空／lean short | dual ASR | Would you consider shorting software?",
+      "start": "0"
+    },
+    {
+      "t": "1:52:34",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | Would you consider shorting software? IGV have been showing weakness in the past few days now it's back to the declining EMA or is it just not weak enough as compared to the semiconductor? Although IGV is like going down like pulling back into the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:52:39",
+      "text": "**IGV** | 觀望偏空／lean short | dual ASR | Although IGV is like going down like pulling back into the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:52:56",
+      "text": "**SPY** | 觀望偏空／lean short | dual ASR | Maybe not that much compared to a spy, but spy is also like pulling back into the 50 EMAs only.",
+      "start": "0"
+    },
+    {
+      "t": "1:54:25",
+      "text": "**Software** | 觀望／watch | dual ASR | Especially in the cryptos and also the software sector.",
+      "start": "0"
+    },
+    {
+      "t": "1:57:13",
+      "text": "**AXTI** | 觀望偏空／lean short | WhisperX | It also depends on how, maybe, AXTI and GEV is acting at that moment.",
+      "start": "0"
+    },
+    {
+      "t": "2:07:02",
+      "text": "**Semis** | 觀望偏空／lean short | WhisperX | I'm still trying to focus on the semi-short right now.",
+      "start": "0"
+    }
+  ],
+  "bullets_zh": [
+    {
+      "t": "05:15",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | Also some like the biotechs are strong, some software names are also pretty strong. ‖ Also some like the biotechs are strong, some software names are also pretty strong",
+      "start": "0"
+    },
+    {
+      "t": "06:00",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | Mainly, semis related names, AI related names are gaping up into the resistance level. ‖ Mainly, semis related names, AI related names are gaping up into the resistance level",
+      "start": "0"
+    },
+    {
+      "t": "07:55",
+      "text": "**Semis** | 觀望／watch | WhisperX | And like how the weaker names, the semi-names react to the declining EMAs, and will the cryptos or the other stronger names, it's like breaking us successfully to the upside. ‖ And like how the weaker names, the semi-names react to the declining EMAs, and will the cryptos or the other stronger names, it's like breaking us successfully to the upside",
+      "start": "0"
+    },
+    {
+      "t": "08:10",
+      "text": "**CRCL** | 觀望／watch | WhisperX | The CRCL is holding up very well during this pullback on Q's. ‖ The CRCL is holding up very well during this 回調 on Q's",
+      "start": "0"
+    },
+    {
+      "t": "16:49",
+      "text": "**SNDK** | 觀望偏空／lean short | WhisperX | SNDK is failing at the 9-year may. ‖ SNDK is failing at the 9-year may",
+      "start": "0"
+    },
+    {
+      "t": "26:50",
+      "text": "**SPY** | 觀望偏多／lean long | 雙ASR確認 | If spy can hold the 921 Then I think on the, you know, on both Danny and the hourly is setting up for the potential breakout. ‖ If spy can hold the 921 Then I think on the, , on both Danny and the hourly is setting up for the potential 破位",
+      "start": "0"
+    },
+    {
+      "t": "27:42",
+      "text": "**SNDK** | 觀望／watch | 雙ASR確認 | pretty sad that i missed the sndk at the open ‖ pretty sad that i missed the sndk at the open",
+      "start": "0"
+    },
+    {
+      "t": "28:37",
+      "text": "**QQQ** | 觀望／watch | WhisperX | like this sockets compared to the cues or any other in the in the in the seats they're just so weak i i don't like it like i ‖ like this sockets compared to the cues or any other in the in the in the seats they're just so weak i i don't like it like i",
+      "start": "0"
+    },
+    {
+      "t": "33:30",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | But I am a little bit worried about the semi weakness right now. ‖ But I am a little bit worried about the semi 弱勢 right now",
+      "start": "0"
+    },
+    {
+      "t": "33:31",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 33:31–44:01 約 10 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "44:01",
+      "text": "**SNDK** | 觀望／watch | WhisperX | No, we can't short SNDK. ‖ No, we can't 空倉 SNDK",
+      "start": "0"
+    },
+    {
+      "t": "48:11",
+      "text": "**COIN** | 觀望偏空／lean short | 雙ASR確認 | And coin is dropping too fast. ‖ And coin is dropping too fast",
+      "start": "0"
+    },
+    {
+      "t": "54:53",
+      "text": "**SNDK** | 觀望／watch | 雙ASR確認 | Definitely it will be like really tight and you'll get a pretty high risk of getting stopped out if the SNDK is going to like do another push to the upside. ‖ Definitely it will be like really tight and you'll get a pretty high risk of getting 被 stop 出 if the SNDK is going to like do another push to the upside",
+      "start": "0"
+    },
+    {
+      "t": "59:29",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | Although Snow is not, like I said, it's one of the strongest software names, although it's like showing some cracks in the past week. ‖ Although Snow is not, like I said, it's one of the strongest software names, although it's like showing some cracks in the past week",
+      "start": "0"
+    },
+    {
+      "t": "1:00:00",
+      "text": "**SPY** | 觀望／watch | 雙ASR確認 | Yeah, it takes a shot, especially at this timing when the spy and QZ is rallying higher under the EMAs. ‖ it takes a shot, especially at this timing when the spy and QZ is rallying higher under the EMAs",
+      "start": "0"
+    },
+    {
+      "t": "1:03:54",
+      "text": "**HOOD** | 觀望／watch | WhisperX | Sometimes the index cannot really truly refute what's happening under the hood. ‖ Sometimes the index cannot really truly refute what's happening under the hood",
+      "start": "0"
+    },
+    {
+      "t": "1:04:22",
+      "text": "**SPCX** | 觀望偏空／lean short | 雙ASR確認 | Can SpaceX (SPCX) be a good shot now with breakdown of five minute candle? ‖ Can SpaceX (SPCX) be a good shot now with 破位向下 of five minute candle?",
+      "start": "0"
+    },
+    {
+      "t": "1:18:35",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | softwares are doing really good ‖ softwares are doing really good",
+      "start": "0"
+    },
+    {
+      "t": "1:23:08",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | What do you think about not showing any semi-names until the kills come a little bit closer to the declining 9 and 50? ‖ What 你覺得 about not showing any semi-names until the kills come a little bit closer to the declining 9 and 50?",
+      "start": "0"
+    },
+    {
+      "t": "1:25:47",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | I think I don't find any meaningful bounds in the weaker semi-sector. ‖ I think I don't find any meaningful bounds in the weaker semi-sector",
+      "start": "0"
+    },
+    {
+      "t": "1:32:15",
+      "text": "**COIN** | 觀望偏多／lean long | 雙ASR確認 | Crypto is really strong. Bitcoin is already breaking out from the previous week high. ‖ Crypto is really strong. Bitcoin is already breaking out from the previous week high",
+      "start": "0"
+    },
+    {
+      "t": "1:35:31",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | I really don't like the semis, especially the large caps, the mega caps semis are doing right now. ‖ I really don't like the semis, especially the large caps, the mega caps semis are doing right now",
+      "start": "0"
+    },
+    {
+      "t": "1:36:51",
+      "text": "**SNDK** | 觀望／watch | 雙ASR確認 | So at the, at the hour of the year. ‖ So at the, at the hour of the year",
+      "start": "0"
+    },
+    {
+      "t": "1:36:55",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:36:55–1:45:15 約 8 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "1:52:24",
+      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | Would you consider shorting software? ‖ Would you consider 做空 software?",
+      "start": "0"
+    },
+    {
+      "t": "1:52:34",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | Would you consider shorting software? IGV have been showing weakness in the past few days now it's back to the declining EMA or is it just not weak enough as compared to the semiconductor? Although IGV is like going down like pulling back into the 50 EMA ‖ Would you consider 做空 software? IGV have been showing 弱勢 in the past few days now it's back to the declining EMA or is it just not weak enough as compared to the semiconductor? Although IGV is like going down like 回測去到 the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:52:39",
+      "text": "**IGV** | 觀望偏空／lean short | 雙ASR確認 | Although IGV is like going down like pulling back into the 50 EMA ‖ Although IGV is like going down like 回測去到 the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:52:56",
+      "text": "**SPY** | 觀望偏空／lean short | 雙ASR確認 | Maybe not that much compared to a spy, but spy is also like pulling back into the 50 EMAs only. ‖ Maybe not that much compared to a spy, but spy is also like 回測去到 the 50 EMAs only",
+      "start": "0"
+    },
+    {
+      "t": "1:54:25",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | Especially in the cryptos and also the software sector. ‖ Especially in the cryptos and also the software sector",
+      "start": "0"
+    },
+    {
+      "t": "1:57:13",
+      "text": "**AXTI** | 觀望偏空／lean short | WhisperX | It also depends on how, maybe, AXTI and GEV is acting at that moment. ‖ It also depends on how, maybe, AXTI and GEV is acting at that moment",
+      "start": "0"
+    },
+    {
+      "t": "2:07:02",
+      "text": "**Semis** | 觀望偏空／lean short | WhisperX | I'm still trying to focus on the semi-short right now. ‖ I'm still trying to focus on the semi-short right now",
+      "start": "0"
+    }
+  ],
+  "bullets": [
+    {
+      "t": "05:15",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | Also some like the biotechs are strong, some software names are also pretty strong. ‖ Also some like the biotechs are strong, some software names are also pretty strong",
+      "start": "0"
+    },
+    {
+      "t": "06:00",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | Mainly, semis related names, AI related names are gaping up into the resistance level. ‖ Mainly, semis related names, AI related names are gaping up into the resistance level",
+      "start": "0"
+    },
+    {
+      "t": "07:55",
+      "text": "**Semis** | 觀望／watch | WhisperX | And like how the weaker names, the semi-names react to the declining EMAs, and will the cryptos or the other stronger names, it's like breaking us successfully to the upside. ‖ And like how the weaker names, the semi-names react to the declining EMAs, and will the cryptos or the other stronger names, it's like breaking us successfully to the upside",
+      "start": "0"
+    },
+    {
+      "t": "08:10",
+      "text": "**CRCL** | 觀望／watch | WhisperX | The CRCL is holding up very well during this pullback on Q's. ‖ The CRCL is holding up very well during this 回調 on Q's",
+      "start": "0"
+    },
+    {
+      "t": "16:49",
+      "text": "**SNDK** | 觀望偏空／lean short | WhisperX | SNDK is failing at the 9-year may. ‖ SNDK is failing at the 9-year may",
+      "start": "0"
+    },
+    {
+      "t": "26:50",
+      "text": "**SPY** | 觀望偏多／lean long | 雙ASR確認 | If spy can hold the 921 Then I think on the, you know, on both Danny and the hourly is setting up for the potential breakout. ‖ If spy can hold the 921 Then I think on the, , on both Danny and the hourly is setting up for the potential 破位",
+      "start": "0"
+    },
+    {
+      "t": "27:42",
+      "text": "**SNDK** | 觀望／watch | 雙ASR確認 | pretty sad that i missed the sndk at the open ‖ pretty sad that i missed the sndk at the open",
+      "start": "0"
+    },
+    {
+      "t": "28:37",
+      "text": "**QQQ** | 觀望／watch | WhisperX | like this sockets compared to the cues or any other in the in the in the seats they're just so weak i i don't like it like i ‖ like this sockets compared to the cues or any other in the in the in the seats they're just so weak i i don't like it like i",
+      "start": "0"
+    },
+    {
+      "t": "33:30",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | But I am a little bit worried about the semi weakness right now. ‖ But I am a little bit worried about the semi 弱勢 right now",
+      "start": "0"
+    },
+    {
+      "t": "33:31",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 33:31–44:01 約 10 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "44:01",
+      "text": "**SNDK** | 觀望／watch | WhisperX | No, we can't short SNDK. ‖ No, we can't 空倉 SNDK",
+      "start": "0"
+    },
+    {
+      "t": "48:11",
+      "text": "**COIN** | 觀望偏空／lean short | 雙ASR確認 | And coin is dropping too fast. ‖ And coin is dropping too fast",
+      "start": "0"
+    },
+    {
+      "t": "54:53",
+      "text": "**SNDK** | 觀望／watch | 雙ASR確認 | Definitely it will be like really tight and you'll get a pretty high risk of getting stopped out if the SNDK is going to like do another push to the upside. ‖ Definitely it will be like really tight and you'll get a pretty high risk of getting 被 stop 出 if the SNDK is going to like do another push to the upside",
+      "start": "0"
+    },
+    {
+      "t": "59:29",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | Although Snow is not, like I said, it's one of the strongest software names, although it's like showing some cracks in the past week. ‖ Although Snow is not, like I said, it's one of the strongest software names, although it's like showing some cracks in the past week",
+      "start": "0"
+    },
+    {
+      "t": "1:00:00",
+      "text": "**SPY** | 觀望／watch | 雙ASR確認 | Yeah, it takes a shot, especially at this timing when the spy and QZ is rallying higher under the EMAs. ‖ it takes a shot, especially at this timing when the spy and QZ is rallying higher under the EMAs",
+      "start": "0"
+    },
+    {
+      "t": "1:03:54",
+      "text": "**HOOD** | 觀望／watch | WhisperX | Sometimes the index cannot really truly refute what's happening under the hood. ‖ Sometimes the index cannot really truly refute what's happening under the hood",
+      "start": "0"
+    },
+    {
+      "t": "1:04:22",
+      "text": "**SPCX** | 觀望偏空／lean short | 雙ASR確認 | Can SpaceX (SPCX) be a good shot now with breakdown of five minute candle? ‖ Can SpaceX (SPCX) be a good shot now with 破位向下 of five minute candle?",
+      "start": "0"
+    },
+    {
+      "t": "1:18:35",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | softwares are doing really good ‖ softwares are doing really good",
+      "start": "0"
+    },
+    {
+      "t": "1:23:08",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | What do you think about not showing any semi-names until the kills come a little bit closer to the declining 9 and 50? ‖ What 你覺得 about not showing any semi-names until the kills come a little bit closer to the declining 9 and 50?",
+      "start": "0"
+    },
+    {
+      "t": "1:25:47",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | I think I don't find any meaningful bounds in the weaker semi-sector. ‖ I think I don't find any meaningful bounds in the weaker semi-sector",
+      "start": "0"
+    },
+    {
+      "t": "1:32:15",
+      "text": "**COIN** | 觀望偏多／lean long | 雙ASR確認 | Crypto is really strong. Bitcoin is already breaking out from the previous week high. ‖ Crypto is really strong. Bitcoin is already breaking out from the previous week high",
+      "start": "0"
+    },
+    {
+      "t": "1:35:31",
+      "text": "**Semis** | 觀望／watch | 雙ASR確認 | I really don't like the semis, especially the large caps, the mega caps semis are doing right now. ‖ I really don't like the semis, especially the large caps, the mega caps semis are doing right now",
+      "start": "0"
+    },
+    {
+      "t": "1:36:51",
+      "text": "**SNDK** | 觀望／watch | 雙ASR確認 | So at the, at the hour of the year. ‖ So at the, at the hour of the year",
+      "start": "0"
+    },
+    {
+      "t": "1:36:55",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:36:55–1:45:15 約 8 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "1:52:24",
+      "text": "**Software** | 觀望偏空／lean short | 雙ASR確認 | Would you consider shorting software? ‖ Would you consider 做空 software?",
+      "start": "0"
+    },
+    {
+      "t": "1:52:34",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | Would you consider shorting software? IGV have been showing weakness in the past few days now it's back to the declining EMA or is it just not weak enough as compared to the semiconductor? Although IGV is like going down like pulling back into the 50 EMA ‖ Would you consider 做空 software? IGV have been showing 弱勢 in the past few days now it's back to the declining EMA or is it just not weak enough as compared to the semiconductor? Although IGV is like going down like 回測去到 the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:52:39",
+      "text": "**IGV** | 觀望偏空／lean short | 雙ASR確認 | Although IGV is like going down like pulling back into the 50 EMA ‖ Although IGV is like going down like 回測去到 the 50 EMA",
+      "start": "0"
+    },
+    {
+      "t": "1:52:56",
+      "text": "**SPY** | 觀望偏空／lean short | 雙ASR確認 | Maybe not that much compared to a spy, but spy is also like pulling back into the 50 EMAs only. ‖ Maybe not that much compared to a spy, but spy is also like 回測去到 the 50 EMAs only",
+      "start": "0"
+    },
+    {
+      "t": "1:54:25",
+      "text": "**Software** | 觀望／watch | 雙ASR確認 | Especially in the cryptos and also the software sector. ‖ Especially in the cryptos and also the software sector",
+      "start": "0"
+    },
+    {
+      "t": "1:57:13",
+      "text": "**AXTI** | 觀望偏空／lean short | WhisperX | It also depends on how, maybe, AXTI and GEV is acting at that moment. ‖ It also depends on how, maybe, AXTI and GEV is acting at that moment",
+      "start": "0"
+    },
+    {
+      "t": "2:07:02",
+      "text": "**Semis** | 觀望偏空／lean short | WhisperX | I'm still trying to focus on the semi-short right now. ‖ I'm still trying to focus on the semi-short right now",
+      "start": "0"
+    }
+  ],
   "speech_audit": {
-    "suspect_count": 0,
-    "ok_count": 0,
-    "suspects": []
+    "suspect_count": 1,
+    "ok_count": 15,
+    "suspects": [
+      {
+        "t": "28:37",
+        "ticker": "QQQ",
+        "speech_hit": false,
+        "hit_a": false,
+        "hit_b": false,
+        "hit_cc": false,
+        "screen": null,
+        "screen_ok": false,
+        "text": "**QQQ** | 觀望／watch | WhisperX | like this sockets compared to the cues or any other in the in the in the seats they're just so weak i i don't like it like i ‖ l"
+      }
+    ]
   },
-  "provider": "auto-summary",
-  "chunk_count": 41,
-  "source": "whisper-small"
+  "provider": "reconcile+dual-asr",
+  "reconcile": {
+    "dual_count": 20,
+    "wx_only_count": 9,
+    "faster_only_count": 29,
+    "hint": "雙ASR確認 20 行＋WhisperX獨有 9 行（faster獨有 29 已唔入主表）",
+    "asof": 1792616354
+  }
 }
