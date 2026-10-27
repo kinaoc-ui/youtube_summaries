@@ -5,24 +5,222 @@
   "exec_zh": [
     {
       "t": "",
-      "text": "今日總覽 — 今日以觀望為主。",
+      "text": "今日總覽 — 觀望偏空：Software、Semis、SNDK；觀望偏多：SPCX、QQQ。",
       "start": "0"
     },
     {
-      "t": "",
-      "text": "（未有足夠雙 ASR 內容可寫摘要）",
+      "t": "1:04:28",
+      "text": "觀望偏空／lean short｜Software — 目前最強勁的行業之一，但生物技術和software。 就像每週一樣，它保持得很好。 每天我們都得到這樣的訊息，看漲指的是這樣的，然後是pinbar蠟燭的底…",
+      "start": "0"
+    },
+    {
+      "t": "1:43:36",
+      "text": "觀望偏多／lean long｜SPCX — 反彈／回測",
+      "start": "0"
+    },
+    {
+      "t": "33:02",
+      "text": "觀望偏空／lean short｜Semis — 所以對我來說，我認為如果你是 做空 任何 semis，那將是一個很好的入口",
+      "start": "0"
+    },
+    {
+      "t": "36:20",
+      "text": "觀望／watch｜AMD — AMD 處於 21 YMV 和之前的高點",
+      "start": "0"
+    },
+    {
+      "t": "37:34",
+      "text": "觀望偏多／lean long｜QQQ — 如果你像TQQQ一樣對待，你還能做到1%嗎？ 為什麼不呢？",
+      "start": "0"
+    },
+    {
+      "t": "1:01:20",
+      "text": "觀望偏空／lean short｜SNDK — 想／考慮短",
       "start": "0"
     }
   ],
-  "bullets_en": [],
-  "bullets_zh": [],
-  "bullets": [],
+  "bullets_en": [
+    {
+      "t": "06:44",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | high exposure on the short side of them. So I'm not going to double down on this one, I guess. And I'm also like the softwares are pretty strong. There's the chance that the market can turn higher and together with some like beat and down send me names, some are a little bit over extended to the downside that could have, that could get a pullback into it. They may be the nine and 21 or even the 50.",
+      "start": "0"
+    },
+    {
+      "t": "07:50",
+      "text": "**SPCX** | 觀望／watch | dual ASR | Maybe SpaceX (SPCX) short, maybe.",
+      "start": "0"
+    },
+    {
+      "t": "13:37",
+      "text": "**Mute gap** | — | mic muted / no speech | 13:37–25:41 約 12 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "33:02",
+      "text": "**Semis** | 觀望偏空／lean short | dual ASR | So to me, I think if you're shorting any semis, that would be a good entry.",
+      "start": "0"
+    },
+    {
+      "t": "36:20",
+      "text": "**AMD** | 觀望／watch | dual ASR | AMD at 21 YMV and previous highs.",
+      "start": "0"
+    },
+    {
+      "t": "37:17",
+      "text": "**Semis** | 觀望／watch | WhisperX | The shots at the semi-CTF a little bit more, but I think AMD is still a really nice shot.",
+      "start": "0"
+    },
+    {
+      "t": "37:34",
+      "text": "**QQQ** | 觀望偏多／lean long | dual ASR | If you treat like TQQQ would you still manage to stop at 1%? Why not?",
+      "start": "0"
+    },
+    {
+      "t": "1:01:20",
+      "text": "**SNDK** | 觀望偏空／lean short | WhisperX | What do you think about my short entry on SNDK on 9th of October on the bounce on the 50 EMA?",
+      "start": "0"
+    },
+    {
+      "t": "1:04:28",
+      "text": "**Software** | 觀望偏空／lean short | WhisperX | one of the strongest sector right now, but biotechs and softwares. And like on the weekly it's holding up pretty well. And on the daily we got like the, that the bullish refers so, and then the undercut and rally the pinbar candle. I don't like shorting here.",
+      "start": "0"
+    },
+    {
+      "t": "1:24:10",
+      "text": "**Mute gap** | — | mic muted / no speech | 1:24:10–1:37:57 約 14 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "1:43:36",
+      "text": "**SPCX** | 觀望／watch | WhisperX | Like I was thinking to like maybe close some of the shorts but at the same time it's just a lot of the names is really bouncing into the resistance and some the SpaceX (SPCX) is pretty weak today.",
+      "start": "0"
+    }
+  ],
+  "bullets_zh": [
+    {
+      "t": "06:44",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | high exposure on the short side of them. So I'm not going to double down on this one, I guess. And I'm also like the softwares are pretty strong. There's the chance that the market can turn higher and together with some like beat and down send me names, some are a little bit over extended to the downside that could have, that could get a pullback into it. They may be the nine and 21 or even the 50. ‖ 它們的 空倉 一側的曝光度很高。 所以我想我不會在這件事上加倍努力。 我也覺得 software 非常強大。 市場有可能走高，加上一些像擊敗和下跌這樣的消息給我發送名字，有些有點過度延伸到可能出現的下行趨勢，這可能會導致 回調 進入其中。 他們可能是 9 號和 21 號，甚至是 50 號",
+      "start": "0"
+    },
+    {
+      "t": "07:50",
+      "text": "**SPCX** | 觀望／watch | 雙ASR確認 | Maybe SpaceX (SPCX) short, maybe. ‖ Maybe SpaceX (SPCX) 空倉, maybe",
+      "start": "0"
+    },
+    {
+      "t": "13:37",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 13:37–25:41 約 12 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "33:02",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | So to me, I think if you're shorting any semis, that would be a good entry. ‖ 所以對我來說，我認為如果你是 做空 任何 semis，那將是一個很好的入口",
+      "start": "0"
+    },
+    {
+      "t": "36:20",
+      "text": "**AMD** | 觀望／watch | 雙ASR確認 | AMD at 21 YMV and previous highs. ‖ AMD 處於 21 YMV 和之前的高點",
+      "start": "0"
+    },
+    {
+      "t": "37:17",
+      "text": "**Semis** | 觀望／watch | WhisperX | The shots at the semi-CTF a little bit more, but I think AMD is still a really nice shot. ‖ semis-CTF 的鏡頭有點多，但我認為 AMD 仍然是一個非常好的鏡頭",
+      "start": "0"
+    },
+    {
+      "t": "37:34",
+      "text": "**QQQ** | 觀望偏多／lean long | 雙ASR確認 | If you treat like TQQQ would you still manage to stop at 1%? Why not? ‖ 如果你像TQQQ一樣對待，你還能做到1%嗎？ 為什麼不呢？",
+      "start": "0"
+    },
+    {
+      "t": "1:01:20",
+      "text": "**SNDK** | 觀望偏空／lean short | WhisperX | What do you think about my short entry on SNDK on 9th of October on the bounce on the 50 EMA? ‖ 您對 10 月 9 日我在 SNDK 上的 空倉 入場在 50 EMA 上的反彈有何感想？",
+      "start": "0"
+    },
+    {
+      "t": "1:04:28",
+      "text": "**Software** | 觀望偏空／lean short | WhisperX | one of the strongest sector right now, but biotechs and softwares. And like on the weekly it's holding up pretty well. And on the daily we got like the, that the bullish refers so, and then the undercut and rally the pinbar candle. I don't like shorting here. ‖ 目前最強勁的行業之一，但生物技術和software。 就像每週一樣，它保持得很好。 每天我們都得到這樣的訊息，看漲指的是這樣的，然後是pinbar蠟燭的底切和反彈。 我不喜歡這裡的 做空",
+      "start": "0"
+    },
+    {
+      "t": "1:24:10",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:24:10–1:37:57 約 14 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "1:43:36",
+      "text": "**SPCX** | 觀望／watch | WhisperX | Like I was thinking to like maybe close some of the shorts but at the same time it's just a lot of the names is really bouncing into the resistance and some the SpaceX (SPCX) is pretty weak today. ‖ 就像我想關閉一些 短倉 但同樣的時間，只是很多名字確實反彈到阻力位，而一些 SPCX 今天相當弱",
+      "start": "0"
+    }
+  ],
+  "bullets": [
+    {
+      "t": "06:44",
+      "text": "**Software** | 觀望偏多／lean long | WhisperX | high exposure on the short side of them. So I'm not going to double down on this one, I guess. And I'm also like the softwares are pretty strong. There's the chance that the market can turn higher and together with some like beat and down send me names, some are a little bit over extended to the downside that could have, that could get a pullback into it. They may be the nine and 21 or even the 50. ‖ 它們的 空倉 一側的曝光度很高。 所以我想我不會在這件事上加倍努力。 我也覺得 software 非常強大。 市場有可能走高，加上一些像擊敗和下跌這樣的消息給我發送名字，有些有點過度延伸到可能出現的下行趨勢，這可能會導致 回調 進入其中。 他們可能是 9 號和 21 號，甚至是 50 號",
+      "start": "0"
+    },
+    {
+      "t": "07:50",
+      "text": "**SPCX** | 觀望／watch | 雙ASR確認 | Maybe SpaceX (SPCX) short, maybe. ‖ Maybe SpaceX (SPCX) 空倉, maybe",
+      "start": "0"
+    },
+    {
+      "t": "13:37",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 13:37–25:41 約 12 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "33:02",
+      "text": "**Semis** | 觀望偏空／lean short | 雙ASR確認 | So to me, I think if you're shorting any semis, that would be a good entry. ‖ 所以對我來說，我認為如果你是 做空 任何 semis，那將是一個很好的入口",
+      "start": "0"
+    },
+    {
+      "t": "36:20",
+      "text": "**AMD** | 觀望／watch | 雙ASR確認 | AMD at 21 YMV and previous highs. ‖ AMD 處於 21 YMV 和之前的高點",
+      "start": "0"
+    },
+    {
+      "t": "37:17",
+      "text": "**Semis** | 觀望／watch | WhisperX | The shots at the semi-CTF a little bit more, but I think AMD is still a really nice shot. ‖ semis-CTF 的鏡頭有點多，但我認為 AMD 仍然是一個非常好的鏡頭",
+      "start": "0"
+    },
+    {
+      "t": "37:34",
+      "text": "**QQQ** | 觀望偏多／lean long | 雙ASR確認 | If you treat like TQQQ would you still manage to stop at 1%? Why not? ‖ 如果你像TQQQ一樣對待，你還能做到1%嗎？ 為什麼不呢？",
+      "start": "0"
+    },
+    {
+      "t": "1:01:20",
+      "text": "**SNDK** | 觀望偏空／lean short | WhisperX | What do you think about my short entry on SNDK on 9th of October on the bounce on the 50 EMA? ‖ 您對 10 月 9 日我在 SNDK 上的 空倉 入場在 50 EMA 上的反彈有何感想？",
+      "start": "0"
+    },
+    {
+      "t": "1:04:28",
+      "text": "**Software** | 觀望偏空／lean short | WhisperX | one of the strongest sector right now, but biotechs and softwares. And like on the weekly it's holding up pretty well. And on the daily we got like the, that the bullish refers so, and then the undercut and rally the pinbar candle. I don't like shorting here. ‖ 目前最強勁的行業之一，但生物技術和software。 就像每週一樣，它保持得很好。 每天我們都得到這樣的訊息，看漲指的是這樣的，然後是pinbar蠟燭的底切和反彈。 我不喜歡這裡的 做空",
+      "start": "0"
+    },
+    {
+      "t": "1:24:10",
+      "text": "**字幕缺口** | — | 咪 mute／無語音 | 1:24:10–1:37:57 約 14 分鐘：疑似咪 mute／冇講嘢（faster+WhisperX 都近乎空白）",
+      "start": "0"
+    },
+    {
+      "t": "1:43:36",
+      "text": "**SPCX** | 觀望／watch | WhisperX | Like I was thinking to like maybe close some of the shorts but at the same time it's just a lot of the names is really bouncing into the resistance and some the SpaceX (SPCX) is pretty weak today. ‖ 就像我想關閉一些 短倉 但同樣的時間，只是很多名字確實反彈到阻力位，而一些 SPCX 今天相當弱",
+      "start": "0"
+    }
+  ],
   "speech_audit": {
     "suspect_count": 0,
-    "ok_count": 0,
+    "ok_count": 5,
     "suspects": []
   },
-  "provider": "auto-summary",
-  "chunk_count": 28,
-  "source": "whisper-small"
+  "provider": "reconcile+dual-asr",
+  "reconcile": {
+    "dual_count": 4,
+    "wx_only_count": 5,
+    "faster_only_count": 22,
+    "hint": "雙ASR確認 4 行＋WhisperX獨有 5 行（faster獨有 22 已唔入主表）",
+    "asof": 1793134624
+  }
 }
