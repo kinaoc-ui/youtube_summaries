@@ -34,6 +34,8 @@ class Settings(BaseSettings):
     deepgram_api_key: str = ""
     deepgram_model: str = "nova-3"
     video_max_height: int = 360
+    # Netscape cookies.txt for yt-dlp when YouTube bot-checks cloud IPs
+    yt_cookies: str = ""
 
 
 settings = Settings()

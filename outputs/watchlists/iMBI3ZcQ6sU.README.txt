@@ -1,0 +1,23 @@
+iMBI3ZcQ6sU — SOXX short | 28 Oct 2026
+========================================
+
+Cloud VM could NOT download this VOD (YouTube LOGIN_REQUIRED / bot check).
+No tickers were invented. Run locally on Luk's checkout to fill:
+
+  cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
+  run_watchlist_imbi.bat
+  rem or:
+  python scripts\watchlist_job.py iMBI3ZcQ6sU --mode screener --force
+
+After a successful run you should have:
+  outputs\watchlists\iMBI3ZcQ6sU.txt          ← TradingView Upload list
+  outputs\watchlists\iMBI3ZcQ6sU.md
+  data\summaries\iMBI3ZcQ6sU.watchlist.json
+
+New strategy (vs first attempt that only got junk "CERA"):
+  - Whole-VOD coarse sample + speech/summary densify (leader/screener/watch list)
+  - RapidOCR boxes → leftmost Symbol column of Leader/screener tables
+  - Detail panels (e.g. BRZE @45.85) do NOT wipe the table list
+
+If YouTube bot-checks on your PC too:
+  set TUBEON_YT_COOKIES=C:\path\to\cookies.txt

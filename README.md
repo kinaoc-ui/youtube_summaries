@@ -32,18 +32,34 @@ python -m app.cli "URL" --provider ollama --title "Martin Luk"
 
 ## Martin on-screen watchlist → TradingView
 
-Martin Luk（`@martinlukkt`）成日喺 livestream **最後 ~10 分鐘** 開 leading / mediocre / lagging 清單；字幕未必讀到，所以用畫面截圖 + OCR。
+Martin Luk（`@martinlukkt`）會開 **TradingView Leader / screener 表**（好多 Symbol 行），有時仲會撳開單一隻嘅 detail panel（例如 BRZE @45.85）。字幕未必讀到表內清單，所以用畫面截圖 + OCR。
+
+**策略（default `--mode screener`）：** 唔再死跟「最後 10 分鐘右欄」。改為全片粗掃 + 語音/摘要 hint（leader / screener / watch list…）附近加密取樣 + 尾段加密；用 RapidOCR **bounding boxes** 拎最左嘅 Symbol column；**detail panel 唔會覆蓋 table list**。
 
 ```bash
-# Standalone（重用 app/video_check 下載 360p + RapidOCR）
-python scripts/watchlist_job.py <videoId>
-python scripts/watchlist_job.py <videoId> --last-minutes 12 --interval 15
+# 推薦：Leader/screener（全片）
+python scripts/watchlist_job.py <videoId> --mode screener --force
 
-# 或者連埋 ASR 畫面核對一齊跑
+# iMBI3ZcQ6sU（SOXX short | 28 Oct 2026）— Luk 本機一掣
+# cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
+run_watchlist_imbi.bat
+# 或：
+python scripts\watchlist_job.py iMBI3ZcQ6sU --mode screener --force
+
+# 舊行為（只截尾 N 分鐘右欄）
+python scripts/watchlist_job.py <videoId> --mode tail --last-minutes 12
+
+# 連埋 ASR 畫面核對
 python scripts/vision_job.py <videoId> --watchlist
 
-# Martin daily 會自動 kick watchlist_job；亦可手動
+# Martin daily 會自動 kick；亦可手動
 python scripts/martin_daily.py --watchlist-id <videoId>
+```
+
+若 YouTube 報 bot check，設 Netscape cookies：
+
+```bat
+set TUBEON_YT_COOKIES=C:\path\to\cookies.txt
 ```
 
 輸出：
@@ -53,9 +69,9 @@ python scripts/martin_daily.py --watchlist-id <videoId>
 | `data/summaries/<id>.watchlist.json` | 符號清單（可 push / 電話 UI） |
 | `outputs/watchlists/<id>.txt` | TradingView **Upload list…** 用 |
 | `outputs/watchlists/<id>.md` | 可讀表 |
-| `data/frames/<id>/tail/*.jpg` | 本機截圖（gitignore） |
+| `data/frames/<id>/screener/*.jpg` | 本機截圖（gitignore） |
 
-**Import 去 TV：** Watchlist 面板 → 撳清單名 → **Upload list…** → 揀 `.txt`。格式係官方要求嘅 `EXCHANGE:SYMBOL`、逗號分隔（可有 `###Section`）。**無公開 TradingView API** 可以程式化改 watchlist；付費 Essential+ 先有 Upload。Web UI：`POST/GET /api/watchlist/{id}`，下載 `/api/watchlist/{id}/tradingview.txt`。
+**Import 去 TV：** Watchlist 面板 → 撳清單名 → **Upload list…** → 揀 `.txt`。格式係官方要求嘅 `EXCHANGE:SYMBOL`、逗號分隔（可有 `###Section`）。**無公開 TradingView API**；Essential+ 先有 Upload。Web：`POST/GET /api/watchlist/{id}`，下載 `/api/watchlist/{id}/tradingview.txt`。
 
 ## Summarizer modes
 

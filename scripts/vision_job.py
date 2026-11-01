@@ -46,6 +46,7 @@ def run(
     with_watchlist: bool = False,
     last_minutes: float = 10.0,
     interval_sec: float = 20.0,
+    watchlist_mode: str = "screener",
 ) -> None:
     write_status(video_id, status="running", step="start")
 
@@ -61,6 +62,7 @@ def run(
             write_status(video_id, step="watchlist_tail", status="running")
             wl = extract_watchlist(
                 video_id,
+                mode=watchlist_mode,
                 last_minutes=last_minutes,
                 interval_sec=interval_sec,
                 status_cb=cb,
@@ -94,7 +96,12 @@ if __name__ == "__main__":
     p.add_argument(
         "--watchlist",
         action="store_true",
-        help="Also OCR last N minutes for on-screen list → TradingView .txt",
+        help="Also OCR on-screen Leader/screener → TradingView .txt",
+    )
+    p.add_argument(
+        "--watchlist-mode",
+        choices=["screener", "tail", "auto"],
+        default="screener",
     )
     p.add_argument("--last-minutes", type=float, default=10.0)
     p.add_argument("--interval", type=float, default=20.0)
@@ -104,4 +111,5 @@ if __name__ == "__main__":
         with_watchlist=args.watchlist,
         last_minutes=args.last_minutes,
         interval_sec=args.interval,
+        watchlist_mode=args.watchlist_mode,
     )
