@@ -526,7 +526,12 @@ def _watchlist_status(video_id: str) -> dict[str, Any] | None:
         return None
 
 
-def _start_watchlist_job(video_id: str, *, force: bool = False) -> dict[str, Any]:
+def _start_watchlist_job(
+    video_id: str,
+    *,
+    force: bool = False,
+    mode: str = "screener",
+) -> dict[str, Any]:
     st = _watchlist_status(video_id)
     if not force and st and st.get("status") in {"running", "starting"}:
         return st
@@ -535,7 +540,12 @@ def _start_watchlist_job(video_id: str, *, force: bool = False) -> dict[str, Any
     status_path = WATCHLIST_JOB_DIR / f"{video_id}.json"
     status_path.write_text(
         json.dumps(
-            {"video_id": video_id, "status": "starting", "step": "spawn"},
+            {
+                "video_id": video_id,
+                "status": "starting",
+                "step": "spawn",
+                "mode": mode,
+            },
             ensure_ascii=False,
             indent=2,
         ),
@@ -543,7 +553,7 @@ def _start_watchlist_job(video_id: str, *, force: bool = False) -> dict[str, Any
     )
     log_path = WATCHLIST_JOB_DIR / f"{video_id}.log"
     log_f = open(log_path, "a", encoding="utf-8")  # noqa: SIM115
-    cmd = [sys.executable, str(job_script), video_id]
+    cmd = [sys.executable, str(job_script), video_id, "--mode", mode or "screener"]
     if force:
         cmd.append("--force")
     subprocess.Popen(
@@ -553,13 +563,19 @@ def _start_watchlist_job(video_id: str, *, force: bool = False) -> dict[str, Any
         stderr=subprocess.STDOUT,
         creationflags=getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0),
     )
-    return {"status": "starting", "video_id": video_id}
+    return {"status": "starting", "video_id": video_id, "mode": mode}
 
 
 @app.post("/api/watchlist/{video_id}")
-def api_watchlist_start(video_id: str, force: bool = False) -> dict[str, Any]:
-    """OCR last ~10 minutes of the VOD for Martin's on-screen ticker list."""
-    job = _start_watchlist_job(video_id, force=force)
+def api_watchlist_start(
+    video_id: str,
+    force: bool = False,
+    mode: str = "screener",
+) -> dict[str, Any]:
+    """OCR Leader/screener tables on the VOD for Martin's on-screen ticker list."""
+    if mode not in {"screener", "tail", "auto"}:
+        raise HTTPException(400, "mode must be screener|tail|auto")
+    job = _start_watchlist_job(video_id, force=force, mode=mode)
     return {"video_id": video_id, "job": job}
 
 
