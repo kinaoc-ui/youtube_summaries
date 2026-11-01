@@ -76,6 +76,25 @@ set TUBEON_YT_COOKIES=C:\path\to\cookies.txt
 
 **Import 去 TV：** 開／揀清單名 `Martin Luk YYYY-MM-DD E_Main` → **Upload list…** → 揀 `.txt`。**無公開 TradingView API**；Essential+ 先有 Upload。
 
+### Windows CDP auto-upload (optional)
+
+After extract, `watchlist_job` can push the dated file via NineEdge CDP (keeps `###` sections). Does **not** use flat MCP `watchlist_add`.
+
+```bat
+set TUBEON_TV_UPLOAD=1
+set TUBEON_TV_SCREENING_ROOT=C:\Users\kinao\OneDrive\桌面\stock\screening
+set TUBEON_TV_CDP_PORT=9222
+:: either launch first:
+C:\Users\kinao\OneDrive\桌面\stock\screening\launch_tv_debug.bat
+:: or auto-spawn:
+set TUBEON_TV_AUTO_LAUNCH=1
+
+python scripts\watchlist_job.py iMBI3ZcQ6sU --mode auto --vision --upload-date 20261028
+:: → node scripts\tv_upload_watchlist.js C:\...\outputs\watchlists\Martin_Luk_2026-10-28_E_Main.txt
+```
+
+`martin_daily` / `run_martin_daily.bat` needs no separate upload step — it kicks `watchlist_job`, which hooks CDP when `TUBEON_TV_UPLOAD=1`. Status JSON fields: `tv_upload_ok`, `tv_upload`, `listStem`.
+
 ## Summarizer modes
 
 | Provider | Env / setting | Notes |

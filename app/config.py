@@ -43,6 +43,13 @@ class Settings(BaseSettings):
     video_max_height: int = 360
     # Netscape cookies.txt for yt-dlp when YouTube bot-checks cloud IPs
     yt_cookies: str = ""
+    # Post-extract TradingView Desktop CDP upload (Windows local / NineEdge)
+    # set TUBEON_TV_UPLOAD=1 — calls screening/scripts/tv_upload_watchlist.js
+    tv_upload: bool = False
+    tv_screening_root: str = r"C:\Users\kinao\OneDrive\桌面\stock\screening"
+    tv_cdp_port: int = 9222
+    tv_node: str = ""
+    tv_auto_launch: bool = False
 
 
 settings = Settings()

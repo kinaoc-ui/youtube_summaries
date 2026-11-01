@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from app.config import DATA_DIR, ensure_dirs  # noqa: E402
+from app.tv_cdp_upload import maybe_upload_after_extract, tv_upload_enabled  # noqa: E402
 from app.watchlist_extract import extract_watchlist  # noqa: E402
 
 STATUS_DIR = DATA_DIR / "watchlist_jobs"
@@ -98,6 +99,27 @@ def run(
             force=force,
         )
         buckets = report.get("buckets") or {}
+        paths = report.get("paths") or {}
+        # Prefer dated Martin_Luk_YYYY-MM-DD_E_Main.txt for CDP listStem
+        tv_txt_path = (
+            paths.get("tradingview_txt_dated")
+            or paths.get("tradingview_txt")
+        )
+        tv_upload: dict = {"skipped": True, "reason": "not attempted"}
+        if tv_txt_path and (report.get("symbols") or report.get("buckets")):
+            if tv_upload_enabled():
+                write_status(video_id, step="tv_cdp_upload", status="running")
+                print(f"TV CDP upload → {tv_txt_path}")
+                tv_upload = maybe_upload_after_extract(tv_txt_path)
+            else:
+                tv_upload = {
+                    "ok": False,
+                    "skipped": True,
+                    "reason": "TUBEON_TV_UPLOAD not enabled",
+                    "txt": tv_txt_path,
+                    "listStem": Path(str(tv_txt_path)).stem,
+                }
+
         write_status(
             video_id,
             status="done",
@@ -118,7 +140,10 @@ def run(
             symbols=report.get("symbols") or [],
             buckets=buckets,
             vision_symbols=((report.get("vision") or {}).get("symbols") or []),
-            tradingview_txt=(report.get("paths") or {}).get("tradingview_txt"),
+            tradingview_txt=tv_txt_path,
+            tv_upload_ok=bool(tv_upload.get("ok")),
+            tv_upload=tv_upload,
+            listStem=tv_upload.get("listStem") or paths.get("list_stem"),
         )
         print(
             f"OK {video_id} [{mode}/{report.get('symbol_source')}] "
@@ -128,8 +153,21 @@ def run(
             f"SHORTS={len(buckets.get('SHORTS') or [])} "
             f"FOCUS={len(buckets.get('FOCUS') or [])} "
             f"TRACKING={len(buckets.get('TRACKING') or [])} "
-            f"→ {(report.get('paths') or {}).get('tradingview_txt')}"
+            f"→ {tv_txt_path}"
         )
+        if tv_upload.get("skipped"):
+            if tv_upload_enabled():
+                print(f"TV UPLOAD skipped: {tv_upload.get('reason')}")
+        elif tv_upload.get("ok"):
+            print(
+                f"TV UPLOAD ok listStem={tv_upload.get('listStem')} "
+                f"importResult={tv_upload.get('importResult')}"
+            )
+        else:
+            print(
+                f"TV UPLOAD failed: {tv_upload.get('error') or tv_upload} "
+                f"(CDP 9222 + launch_tv_debug.bat required)"
+            )
         vis = report.get("vision") or {}
         if vis.get("note"):
             print(f"VISION: {vis.get('note')}")

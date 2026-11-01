@@ -391,12 +391,16 @@ def write_tradingview_txt(
 
     path.write_text(text, encoding="utf-8")
 
+    dated_path: Path | None = None
     if also_dated_filename and emain and buckets and date_iso:
-        dated = path.parent / list_filename(date_iso, list_name=list_name)
-        if dated.resolve() != path.resolve():
-            dated.write_text(text, encoding="utf-8")
+        dated_path = path.parent / list_filename(date_iso, list_name=list_name)
+        if dated_path.resolve() != path.resolve():
+            dated_path.write_text(text, encoding="utf-8")
+        else:
+            dated_path = path
 
-    return path
+    # Prefer dated Martin_Luk_YYYY-MM-DD_E_Main.txt for CDP listStem
+    return dated_path or path
 
 
 # Canonical iMBI3ZcQ6sU E_Main (Luk/Grok MCP — USD = Ultra Semis)

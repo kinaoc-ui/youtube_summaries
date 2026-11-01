@@ -17,7 +17,15 @@ if not defined PYTHON_EXE (
 
 echo [%date% %time%] E_Main sidebar OCR+vision: iMBI3ZcQ6sU
 echo Tip: set TUBEON_OPENAI_API_KEY for vision E_Main sidebar read
-echo Watchlist name: Martin Luk 2026-10-28 E_Main
+echo Watchlist name / CDP listStem: Martin_Luk_2026-10-28_E_Main
+echo.
+echo Optional CDP upload into TV Desktop (keeps ### sections):
+echo   1^) set TUBEON_TV_UPLOAD=1
+echo   2^) set TUBEON_TV_SCREENING_ROOT=C:\Users\kinao\OneDrive\桌面\stock\screening
+echo   3^) run launch_tv_debug.bat  OR  set TUBEON_TV_AUTO_LAUNCH=1
+echo   watchlist_job will then call: node scripts\tv_upload_watchlist.js ^<abs Martin_Luk_*.txt^>
+echo   ^(martin_daily needs no separate upload — it kicks watchlist_job^)
+echo.
 "%PYTHON_EXE%" "%~dp0scripts\watchlist_job.py" iMBI3ZcQ6sU --mode auto --force --vision --upload-date 20261028 %*
 set "RC=%ERRORLEVEL%"
 if %RC% NEQ 0 (

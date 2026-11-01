@@ -32,6 +32,7 @@ from .tradingview_export import (
     IMBI_EMAIN_TXT,
     format_dated_watchlist_txt,
     format_emain_watchlist_txt,
+    list_filename,
     normalize_section_key,
     tv_symbol,
     write_tradingview_txt,
@@ -1068,9 +1069,12 @@ def extract_watchlist(
     summary_json.write_text(json.dumps(slim, ensure_ascii=False, indent=2), encoding="utf-8")
 
     WATCHLIST_OUT_DIR.mkdir(parents=True, exist_ok=True)
+    dated_name = list_filename(vod_date, list_name="E_Main")
+    video_txt_path = WATCHLIST_OUT_DIR / f"{video_id}.txt"
+    dated_txt_path: Path | None = None
     if emain_ok or any(buckets.values()):
         tv_path = write_tradingview_txt(
-            WATCHLIST_OUT_DIR / f"{video_id}.txt",
+            video_txt_path,
             buckets=buckets,
             date_iso=vod_date,
             video_id=video_id,
@@ -1078,9 +1082,14 @@ def extract_watchlist(
             emain=True,
             also_dated_filename=True,
         )
+        # CDP upload listStem = dated filename stem (Martin_Luk_YYYY-MM-DD_E_Main)
+        dated_txt_path = WATCHLIST_OUT_DIR / dated_name
+        if not dated_txt_path.exists():
+            dated_txt_path.write_text(tv_txt, encoding="utf-8")
+        tv_path = dated_txt_path
     else:
         tv_path = write_tradingview_txt(
-            WATCHLIST_OUT_DIR / f"{video_id}.txt",
+            video_txt_path,
             symbols=potent_symbols or symbols,
             date_iso=vod_date,
             video_id=video_id,
@@ -1111,6 +1120,9 @@ def extract_watchlist(
         "watchlist_json": str(local_json),
         "summary_json": str(summary_json),
         "tradingview_txt": str(tv_path),
+        "tradingview_txt_video": str(video_txt_path),
+        "tradingview_txt_dated": str(dated_txt_path) if dated_txt_path else None,
+        "list_stem": Path(tv_path).stem,
         "markdown": str(md_path),
     }
     note(
