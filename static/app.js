@@ -8,12 +8,14 @@ let current = {
   bullets_zh: [],
   exec_zh: [],
   vision: null,
+  watchlist: null,
   status: "idle",
 };
 let lang = "zh";
 let pollTimer = null;
 let visionPollTimer = null;
 let comparePollTimer = null;
+let watchlistPollTimer = null;
 
 function stopVisionPoll() {
   if (visionPollTimer) {
@@ -26,6 +28,90 @@ function stopComparePoll() {
   if (comparePollTimer) {
     clearInterval(comparePollTimer);
     comparePollTimer = null;
+  }
+}
+
+function stopWatchlistPoll() {
+  if (watchlistPollTimer) {
+    clearInterval(watchlistPollTimer);
+    watchlistPollTimer = null;
+  }
+}
+
+function renderWatchlist(data) {
+  const box = $("watchlistBox");
+  if (!box) return;
+  if (!data) {
+    box.classList.add("hidden");
+    box.innerHTML = "";
+    return;
+  }
+  const job = data.job || {};
+  const jobSt = job.status || "";
+  const running = jobSt === "running" || jobSt === "starting";
+  const symbols = data.symbols || [];
+  const n = data.symbol_count || symbols.length;
+  if (!running && !n && !jobSt) {
+    box.classList.add("hidden");
+    return;
+  }
+  box.classList.remove("hidden");
+  box.classList.toggle("ok", !!n && !running);
+  box.classList.toggle("warn", running);
+  const symHtml = symbols
+    .slice(0, 48)
+    .map((s) => `<span class="sym">${escapeHtml(s)}</span>`)
+    .join("");
+  const more = symbols.length > 48 ? ` …+${symbols.length - 48}` : "";
+  const dl = current.videoId
+    ? `<a href="/api/watchlist/${encodeURIComponent(current.videoId)}/tradingview.txt" download>下載 TradingView .txt</a>`
+    : "";
+  const note = running
+    ? `尾段清單 OCR 進行中：${escapeHtml(job.step || jobSt)}（最後 ~10 分鐘截圖）`
+    : n
+      ? `尾段畫面清單 <b>${n}</b> 隻 — import 去 TV：Watchlist → Upload list…`
+      : jobSt === "error"
+        ? `尾段清單失敗：${escapeHtml(job.error || "error")}`
+        : "未有尾段清單";
+  box.innerHTML = `<div>${note}${dl ? " · " + dl : ""}</div>${
+    symHtml ? `<div class="syms">${symHtml}${more}</div>` : ""
+  }`;
+}
+
+async function loadWatchlist(videoId) {
+  if (!videoId) return null;
+  try {
+    const data = await fetch(`/api/watchlist/${videoId}`).then((r) => r.json());
+    current.watchlist = data;
+    renderWatchlist(data);
+    const btn = $("watchlistBtn");
+    if (btn) btn.disabled = false;
+    const job = data.job || {};
+    if (data.ready || job.status === "done" || job.status === "error") {
+      stopWatchlistPoll();
+    }
+    return data;
+  } catch (_) {
+    return null;
+  }
+}
+
+async function startWatchlist() {
+  if (!current.videoId) {
+    setStatus("先 Analyze／開一條已存摘要", "err");
+    return;
+  }
+  $("watchlistBtn").disabled = true;
+  setStatus("開始截尾 10 分鐘畫面 → OCR Martin 清單…");
+  try {
+    await fetch(`/api/watchlist/${current.videoId}?force=true`, { method: "POST" });
+    stopWatchlistPoll();
+    await loadWatchlist(current.videoId);
+    watchlistPollTimer = setInterval(() => loadWatchlist(current.videoId), 8000);
+  } catch (e) {
+    setStatus(String(e.message || e), "err");
+  } finally {
+    $("watchlistBtn").disabled = false;
   }
 }
 
@@ -746,7 +832,9 @@ async function showResult(data, opts = {}) {
   $("copyBtn").disabled = !current.markdown;
   $("downloadBtn").disabled = !current.markdown;
   $("visionBtn").disabled = !current.videoId;
+  $("watchlistBtn").disabled = !current.videoId;
   await loadVision(current.videoId);
+  await loadWatchlist(current.videoId);
   setHint(data.hint || "");
 
   if (data.status === "whisper_running") {
@@ -775,6 +863,10 @@ async function showResult(data, opts = {}) {
   // Auto: keep polling vision + triple compare (Analyze already kicked jobs)
   stopVisionPoll();
   visionPollTimer = setInterval(() => loadVision(current.videoId), 8000);
+  stopWatchlistPoll();
+  if (current.watchlist && (current.watchlist.job?.status === "running" || current.watchlist.job?.status === "starting")) {
+    watchlistPollTimer = setInterval(() => loadWatchlist(current.videoId), 8000);
+  }
   if (!opts.skipComparePoll) {
     startComparePoll(current.videoId);
   }
@@ -807,6 +899,7 @@ async function openSaved(videoId) {
   stopPoll();
   stopComparePoll();
   stopVisionPoll();
+  stopWatchlistPoll();
   setStatus("Loading…");
   try {
     const data = await fetch(`/api/summaries/${videoId}`).then(async (r) => {
@@ -887,6 +980,7 @@ async function analyze(opts = {}) {
 
 $("analyzeBtn").addEventListener("click", () => analyze());
 $("visionBtn").addEventListener("click", () => startVision());
+$("watchlistBtn").addEventListener("click", () => startWatchlist());
 $("langZh").addEventListener("click", () => setLang("zh"));
 $("langEn").addEventListener("click", () => setLang("en"));
 $("url").addEventListener("change", prefetchTitle);

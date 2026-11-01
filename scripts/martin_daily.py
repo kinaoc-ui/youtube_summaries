@@ -34,6 +34,10 @@ STREAMS_URL = "https://www.youtube.com/@martinlukkt/streams"
 STATE_PATH = DATA_DIR / "martin_state.json"
 WHISPER_JOB_DIR = DATA_DIR / "whisper_jobs"
 COMPARE_JOB_DIR = DATA_DIR / "asr_compare_jobs"
+WATCHLIST_JOB_DIR = DATA_DIR / "watchlist_jobs"
+
+# Set False via --skip-watchlist so analyze_video / pending finish skip OCR jobs.
+_WATCHLIST_ENABLED = True
 
 
 def _log(msg: str) -> None:
@@ -177,6 +181,27 @@ def _kick_asr_compare(video_id: str) -> None:
     _start_job("asr_compare_job.py", video_id, COMPARE_JOB_DIR)
 
 
+def _kick_watchlist(video_id: str, *, force: bool = False) -> None:
+    """OCR last ~10 min for Martin's on-screen list → TradingView .txt."""
+    if not _WATCHLIST_ENABLED and not force:
+        return
+    st_path = WATCHLIST_JOB_DIR / f"{video_id}.json"
+    if not force and st_path.exists():
+        try:
+            st = json.loads(st_path.read_text(encoding="utf-8"))
+            if st.get("status") in {"running", "starting", "done"}:
+                _log(f"  watchlist already {st.get('status')}: {video_id}")
+                return
+        except json.JSONDecodeError:
+            pass
+    slim = SUMMARY_DIR / f"{video_id}.watchlist.json"
+    if not force and slim.exists():
+        _log(f"  watchlist summary exists: {video_id}")
+        return
+    _log(f"  kick watchlist: {video_id}")
+    _start_job("watchlist_job.py", video_id, WATCHLIST_JOB_DIR)
+
+
 def analyze_video(video_id: str, title: str | None = None) -> str:
     """Build speech summary; kick dual-ASR verify. Returns status tag."""
     meta = fetch_video_meta(video_id)
@@ -220,6 +245,7 @@ def analyze_video(video_id: str, title: str | None = None) -> str:
     )
     _log(f"  summary written → data/summaries/{video_id}.md")
     _kick_asr_compare(video_id)
+    _kick_watchlist(video_id)
     return "summarized"
 
 
@@ -245,8 +271,9 @@ def finish_pending_whisper(state: dict[str, Any]) -> None:
             still.append(video_id)
             continue
         if _summary_exists(video_id):
-            _log(f"pending {video_id}: summary already exists — kick compare if needed")
+            _log(f"pending {video_id}: summary already exists — kick compare/watchlist if needed")
             _kick_asr_compare(video_id)
+            _kick_watchlist(video_id)
             continue
         meta = fetch_video_meta(video_id)
         tag = analyze_video(video_id, title=str(meta.get("title") or video_id))
@@ -269,7 +296,20 @@ def main() -> int:
         default=[],
         help="Force-analyze this video id (can repeat)",
     )
+    p.add_argument(
+        "--watchlist-id",
+        action="append",
+        default=[],
+        help="Force-run on-screen watchlist OCR for this video id (can repeat)",
+    )
+    p.add_argument(
+        "--skip-watchlist",
+        action="store_true",
+        help="Do not spawn watchlist_job after analyze",
+    )
     args = p.parse_args()
+    global _WATCHLIST_ENABLED
+    _WATCHLIST_ENABLED = not bool(args.skip_watchlist)
     ensure_dirs()
     SUMMARY_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -295,9 +335,15 @@ def main() -> int:
             known.add(it["id"])
         state["known_ids"] = sorted(known)
         _save_state(state)
-        if args.bootstrap or not args.force_id:
+        if args.bootstrap or not (args.force_id or args.watchlist_id):
             _log("done (bootstrap)")
             return 0
+
+    for wid in args.watchlist_id:
+        try:
+            _kick_watchlist(wid, force=True)
+        except Exception as e:
+            _log(f"watchlist {wid} failed: {e}")
 
     finish_pending_whisper(state)
 
@@ -322,8 +368,9 @@ def main() -> int:
             vid = it["id"]
             try:
                 if _summary_exists(vid):
-                    _log(f"  {vid}: summary exists — mark known + kick compare")
+                    _log(f"  {vid}: summary exists — mark known + kick compare/watchlist")
                     _kick_asr_compare(vid)
+                    _kick_watchlist(vid)
                     known.add(vid)
                     continue
                 tag = analyze_video(vid, title=it.get("title"))
