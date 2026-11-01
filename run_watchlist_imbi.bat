@@ -15,9 +15,15 @@ if not defined PYTHON_EXE (
   exit /b 1
 )
 
-echo [%date% %time%] watchlist screener OCR: iMBI3ZcQ6sU
-"%PYTHON_EXE%" "%~dp0scripts\watchlist_job.py" iMBI3ZcQ6sU --mode screener --force %*
+echo [%date% %time%] watchlist screener OCR+vision: iMBI3ZcQ6sU
+echo Tip: set TUBEON_OPENAI_API_KEY for vision Symbol-column read (beats RapidOCR junk)
+"%PYTHON_EXE%" "%~dp0scripts\watchlist_job.py" iMBI3ZcQ6sU --mode screener --force --vision %*
 set "RC=%ERRORLEVEL%"
+if %RC% NEQ 0 (
+  echo Falling back to cached-frames reparse...
+  "%PYTHON_EXE%" "%~dp0scripts\watchlist_from_frames.py" iMBI3ZcQ6sU --vision
+  set "RC=%ERRORLEVEL%"
+)
 echo.
 echo Outputs:
 echo   outputs\watchlists\iMBI3ZcQ6sU.txt

@@ -62,6 +62,8 @@ def run(
     dense_interval: float = 12.0,
     max_frames: int = 90,
     min_hits: int = 2,
+    use_vision: bool | None = None,
+    vision_frames: int = 3,
     force: bool = False,
 ) -> None:
     write_status(
@@ -86,6 +88,8 @@ def run(
             dense_interval=dense_interval,
             max_frames=max_frames,
             min_hits=min_hits,
+            use_vision=use_vision,
+            vision_frames=vision_frames,
             status_cb=cb,
             force=force,
         )
@@ -94,25 +98,34 @@ def run(
             status="done",
             step="done",
             mode=mode,
+            symbol_source=report.get("symbol_source"),
             frame_count=report.get("frame_count"),
             table_frame_count=report.get("table_frame_count"),
             symbol_count=report.get("symbol_count"),
             ocr_engine=report.get("ocr_engine"),
             symbols=report.get("symbols") or [],
+            vision_symbols=((report.get("vision") or {}).get("symbols") or []),
             tradingview_txt=(report.get("paths") or {}).get("tradingview_txt"),
         )
         print(
-            f"OK {video_id} [{mode}]: {report.get('symbol_count')} symbols from "
+            f"OK {video_id} [{mode}/{report.get('symbol_source')}]: "
+            f"{report.get('symbol_count')} symbols from "
             f"{report.get('frame_count')} frames "
             f"(table_frames={report.get('table_frame_count')}) → "
             f"{(report.get('paths') or {}).get('tradingview_txt')}"
         )
+        vis = report.get("vision") or {}
+        if vis.get("note"):
+            print(f"VISION: {vis.get('note')}")
+        elif vis.get("backend"):
+            print(f"VISION: {vis.get('backend')} {vis.get('model')} → {vis.get('symbol_count')} syms")
         for sym in (report.get("symbols") or [])[:60]:
             print(f"  {sym}")
         if not (report.get("symbols") or []):
             print("WARN: no symbols — check best_frame OCR in watchlist.json")
             bf = report.get("best_frame") or {}
             print(f"  best_frame={bf.get('t')} layout={bf.get('layout')} score={bf.get('score')}")
+            print(f"  raw_ocr_sample={(bf.get('raw_ocr_symbols') or [])[:20]}")
     except Exception as e:
         write_status(video_id, status="error", error=str(e), traceback=traceback.format_exc())
         raise
@@ -120,7 +133,7 @@ def run(
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(
-        description="OCR Martin on-screen Leader/screener → TradingView .txt"
+        description="OCR/vision Martin Leader/screener → TradingView .txt"
     )
     p.add_argument("video_id")
     p.add_argument(
@@ -135,8 +148,22 @@ if __name__ == "__main__":
     p.add_argument("--dense-interval", type=float, default=12.0, help="Screener densify step")
     p.add_argument("--max-frames", type=int, default=90)
     p.add_argument("--min-hits", type=int, default=2, help="Min table hits for unknown tickers")
+    p.add_argument(
+        "--vision",
+        action="store_true",
+        help="Force vision/LLM Symbol-column read on top frames (needs API key / ollama vision)",
+    )
+    p.add_argument("--no-vision", action="store_true", help="Disable vision even if configured")
+    p.add_argument("--vision-frames", type=int, default=3)
     p.add_argument("--force", action="store_true", help="Re-extract frames even if cached")
     args = p.parse_args()
+    use_vision: bool | None
+    if args.no_vision:
+        use_vision = False
+    elif args.vision:
+        use_vision = True
+    else:
+        use_vision = None
     run(
         args.video_id,
         mode=args.mode,
@@ -146,5 +173,7 @@ if __name__ == "__main__":
         dense_interval=args.dense_interval,
         max_frames=args.max_frames,
         min_hits=args.min_hits,
+        use_vision=use_vision,
+        vision_frames=args.vision_frames,
         force=args.force,
     )

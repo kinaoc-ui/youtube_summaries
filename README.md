@@ -34,23 +34,25 @@ python -m app.cli "URL" --provider ollama --title "Martin Luk"
 
 Martin Luk（`@martinlukkt`）會開 **TradingView Leader / screener 表**（好多 Symbol 行），有時仲會撳開單一隻嘅 detail panel（例如 BRZE @45.85）。字幕未必讀到表內清單，所以用畫面截圖 + OCR。
 
-**策略（default `--mode screener`）：** 唔再死跟「最後 10 分鐘右欄」。改為全片粗掃 + 語音/摘要 hint（leader / screener / watch list…）附近加密取樣 + 尾段加密；用 RapidOCR **bounding boxes** 拎最左嘅 Symbol column；**detail panel 唔會覆蓋 table list**。
+**策略（default `--mode screener`）：**
+1. 全片粗掃 + 語音/摘要 hint 附近加密（唔死跟尾 10 分鐘右欄）
+2. RapidOCR boxes → 最左 **Symbol column**，再經 **US allowlist** 過濾（甩掉 KK / LM / A.M 呢啲 junk）
+3. 有 API key 時：**vision/LLM** 讀最高分 screener frames（優先過 OCR）；detail panel（BRZE）唔會覆蓋 table
+4. 無 vision 時只輸出 allowlist 命中嘅 symbols（validated subset，唔發明 ticker）
 
 ```bash
-# 推薦：Leader/screener（全片）
-python scripts/watchlist_job.py <videoId> --mode screener --force
+# 推薦：Leader/screener + vision（要 OpenAI key 或 ollama vision model）
+set TUBEON_OPENAI_API_KEY=sk-...
+python scripts/watchlist_job.py <videoId> --mode screener --force --vision
 
-# iMBI3ZcQ6sU（SOXX short | 28 Oct 2026）— Luk 本機一掣
-# cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
+# iMBI3ZcQ6sU — Luk 本機（已有 frames 可跳過下載）
+cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
 run_watchlist_imbi.bat
-# 或：
-python scripts\watchlist_job.py iMBI3ZcQ6sU --mode screener --force
+python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --vision
+python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --frame data\frames\iMBI3ZcQ6sU\screener\1-18-32.jpg --vision
 
 # 舊行為（只截尾 N 分鐘右欄）
 python scripts/watchlist_job.py <videoId> --mode tail --last-minutes 12
-
-# 連埋 ASR 畫面核對
-python scripts/vision_job.py <videoId> --watchlist
 
 # Martin daily 會自動 kick；亦可手動
 python scripts/martin_daily.py --watchlist-id <videoId>

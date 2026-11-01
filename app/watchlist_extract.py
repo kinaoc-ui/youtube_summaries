@@ -33,10 +33,11 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
-from .config import DATA_DIR, OUTPUT_DIR, SUMMARY_DIR, ensure_dirs
+from .config import DATA_DIR, OUTPUT_DIR, SUMMARY_DIR, ensure_dirs, settings
 from .parse_md import parse_summary_markdown
 from .tradingview_export import format_watchlist_txt, tv_symbol, write_tradingview_txt
 from .transcript import format_ts, load_transcript
+from .us_tickers import filter_symbols, is_valid_us_ticker, normalize_symbol
 from .video_check import (
     ASR_ALIASES,
     FRAMES_DIR,
@@ -110,6 +111,13 @@ PRICE_NEAR = re.compile(
 )
 
 TICKER_TOKEN_RE = re.compile(r"^[A-Z]{1,5}(?:\.[A-Z]{1,2})?$")
+
+# Ground-truth Symbol column from iMBI3ZcQ6sU best frame (vision); used in tests only docs
+IMBI_LEADER_SYMBOLS = [
+    "AXSM", "GNS", "ICLR", "EVR", "WMG", "TXG", "BYON", "TWST", "TEM", "PPG",
+    "CRL", "FRO", "ACN", "PNT", "REVV", "MRNA", "NTRA", "HCA", "ETSY", "IQV",
+    "SOFI", "GH", "EXAS", "RBRK", "AKAM", "Z", "MNSO",
+]
 
 
 def video_duration_sec(video_path: Path) -> float:
@@ -313,32 +321,45 @@ def crop_watchlist_panel(frame_path: Path, crop_path: Path) -> Path | None:
     return crop_path
 
 
+def crop_symbol_column(frame_path: Path, crop_path: Path) -> Path | None:
+    """Crop left ~30% (TradingView Symbol column) and upscale for OCR."""
+    try:
+        from PIL import Image
+    except ImportError:
+        return None
+    im = Image.open(frame_path)
+    w, h = im.size
+    # Symbol column is usually far left under "Symbol" header
+    col = im.crop((int(w * 0.02), int(h * 0.08), int(w * 0.30), int(h * 0.96)))
+    crop_path.parent.mkdir(parents=True, exist_ok=True)
+    col = col.resize((col.width * 3, col.height * 3), Image.Resampling.LANCZOS)
+    col.save(crop_path, quality=95)
+    return crop_path
+
+
 def _normalize_token(text: str) -> str:
-    raw = re.sub(r"[^A-Za-z.]", "", (text or "").strip()).upper()
-    if not raw:
-        return ""
-    return ASR_ALIASES.get(raw, raw)
+    return normalize_symbol(text)
 
 
-def _is_ticker_token(token: str) -> bool:
-    if not token or not TICKER_TOKEN_RE.match(token):
+def _is_ticker_token(token: str, *, allow_unknown_long: bool = False) -> bool:
+    """Strict: reject 1–2 letter noise + dotted OCR junk unless allowlisted."""
+    s = normalize_symbol(token)
+    if not s:
         return False
-    if token in OCR_STOP and token not in KNOWN_TICKERS:
+    if s in OCR_STOP and not is_valid_us_ticker(s):
         return False
-    # Single letter almost never a US equity ticker on Martin's list
-    if len(token) < 2:
-        return False
-    return True
+    return is_valid_us_ticker(s, allow_unknown_long=allow_unknown_long)
 
 
 def _candidate_tickers(text: str) -> list[str]:
     found: list[str] = []
     upper = (text or "").upper()
     for raw, canon in ASR_ALIASES.items():
-        if re.search(rf"\b{re.escape(raw)}\b", upper) and canon not in found:
-            found.append(canon)
+        if re.search(rf"\b{re.escape(raw)}\b", upper) and _is_ticker_token(canon):
+            if canon not in found:
+                found.append(canon)
     if "SPACE EXPLORATION" in upper or "SPACEX" in upper.replace(" ", ""):
-        if "SPCX" not in found:
+        if "SPCX" not in found and _is_ticker_token("SPCX"):
             found.append("SPCX")
     for m in TICKER_RE.findall(upper):
         canon = ASR_ALIASES.get(m, m)
@@ -379,9 +400,9 @@ def symbols_from_boxes(boxes: list[dict[str, Any]]) -> dict[str, Any]:
     ticker_boxes: list[dict[str, Any]] = []
     for b in boxes:
         tok = _normalize_token(str(b.get("text") or ""))
-        # Sometimes OCR glues "NVDA 142" — take first token
+        # Sometimes OCR glues "NVDA 142" — take first allowlisted token
         if not _is_ticker_token(tok):
-            parts = re.findall(r"[A-Z]{2,5}", tok)
+            parts = re.findall(r"[A-Z]{1,5}", tok)
             tok = next((p for p in parts if _is_ticker_token(p)), "")
         if not tok:
             continue
@@ -394,11 +415,12 @@ def symbols_from_boxes(boxes: list[dict[str, Any]]) -> dict[str, Any]:
             "symbols": [],
             "header_hits": header_hits,
             "column_count": 0,
+            "raw_column_symbols": [],
         }
 
-    # Cluster by x center into columns (bin width ~8% of max x, min 40px)
+    # Cluster by x center into columns (narrower bins → tighter Symbol column)
     max_x = max(float(b["x1"]) for b in boxes) or 1.0
-    bin_w = max(40.0, max_x * 0.08)
+    bin_w = max(28.0, max_x * 0.05)
     cols: dict[int, list[dict[str, Any]]] = defaultdict(list)
     for b in ticker_boxes:
         cols[int(float(b["cx"]) // bin_w)].append(b)
@@ -406,29 +428,35 @@ def symbols_from_boxes(boxes: list[dict[str, Any]]) -> dict[str, Any]:
     # Rank columns by unique symbols + vertical span (table rows)
     ranked: list[tuple[float, int, list[str]]] = []
     for key, items in cols.items():
-        syms = list(dict.fromkeys(x["symbol"] for x in items))
-        ys = [float(x["cy"]) for x in items]
+        # Sort by y so order matches the table
+        items_sorted = sorted(items, key=lambda x: float(x["cy"]))
+        syms = list(dict.fromkeys(x["symbol"] for x in items_sorted))
+        ys = [float(x["cy"]) for x in items_sorted]
         vspan = (max(ys) - min(ys)) if len(ys) > 1 else 0.0
-        score = len(syms) * 2.0 + (3.0 if vspan > max_x * 0.15 else 0.0)
-        # Prefer leftish columns for Symbol
-        score += max(0.0, 4.0 - key * 0.5)
+        # Prefer left columns with many vertically stacked allowlisted tickers
+        score = len(syms) * 3.0 + (4.0 if vspan > max_x * 0.20 else 0.0)
+        score += max(0.0, 6.0 - key * 0.8)
         ranked.append((score, key, syms))
     ranked.sort(reverse=True)
     best_score, best_key, best_syms = ranked[0]
-    # Second column if nearly as good and left-er — keep leftmost among top
-    left_key = min(r[1] for r in ranked[:3]) if ranked else best_key
-    for score, key, syms in ranked[:3]:
-        if key == left_key and len(syms) >= max(3, len(best_syms) - 2):
+    # Prefer leftmost among top candidates if similar density
+    left_key = min(r[1] for r in ranked[:4]) if ranked else best_key
+    for score, key, syms in ranked[:4]:
+        if key == left_key and len(syms) >= max(3, len(best_syms) - 3):
             best_key, best_syms, best_score = key, syms, score
             break
 
+    raw_column = list(best_syms)
+    # Hard filter: only allowlisted symbols ship from OCR
+    best_syms = filter_symbols(best_syms, allow_unknown_long=False)
+
     n = len(best_syms)
-    # Detail panel: 1–2 tickers, often right side, little vertical column
+    n_raw = len(raw_column)
     rightish = best_key >= max(2, int((max_x * 0.55) // bin_w))
     if n <= 2 and (rightish or header_hits == 0):
         layout = "detail_panel"
         score = float(n) * 0.25
-    elif n >= 4 or (n >= 3 and header_hits):
+    elif n >= 4 or (n >= 3 and header_hits) or (n_raw >= 6 and n >= 2):
         layout = "screener_table"
         score = float(n) + header_hits * 1.5 + (2.0 if re.search(r"\bleaders?\b", blob, re.I) else 0.0)
     elif n >= 3:
@@ -444,9 +472,9 @@ def symbols_from_boxes(boxes: list[dict[str, Any]]) -> dict[str, Any]:
         "symbols": best_syms if layout == "screener_table" else (
             best_syms if layout != "empty" else []
         ),
-        # For detail panels keep symbols separately so they do not replace table
         "detail_symbols": best_syms if layout == "detail_panel" else [],
         "table_symbols": best_syms if layout == "screener_table" else [],
+        "raw_column_symbols": raw_column,
         "header_hits": header_hits,
         "column_count": len(cols),
         "column_key": best_key,
@@ -466,19 +494,22 @@ def analyze_frame_ocr(image_path: Path) -> dict[str, Any]:
         "symbols": [],
         "detail_symbols": [],
         "table_symbols": [],
+        "raw_column_symbols": [],
         "header_hits": len(TABLE_HEADER_RE.findall(text or "")),
         "column_count": 0,
     }
-    # Text fallback when no geometry / weak table
-    text_syms = list(dict.fromkeys(tickers_from_text(text) + _candidate_tickers(text)))
-    table_syms = list(parsed.get("table_symbols") or [])
-    detail_syms = list(parsed.get("detail_symbols") or [])
+    # Text fallback — still allowlist-filtered (drops KK/LM/SX…)
+    text_syms = filter_symbols(
+        list(dict.fromkeys(tickers_from_text(text) + _candidate_tickers(text))),
+        allow_unknown_long=False,
+    )
+    table_syms = filter_symbols(list(parsed.get("table_symbols") or []), allow_unknown_long=False)
+    detail_syms = filter_symbols(list(parsed.get("detail_symbols") or []), allow_unknown_long=False)
     if parsed.get("layout") == "screener_table" and len(table_syms) >= 3:
         symbols = table_syms
     elif parsed.get("layout") == "detail_panel":
         symbols = detail_syms
     else:
-        # Merge text candidates but do not treat as strong table
         symbols = table_syms or text_syms
         if len(text_syms) >= 5 and parsed.get("layout") in {"text_only", "chart_chrome", "empty"}:
             parsed["layout"] = "screener_table"
@@ -494,6 +525,7 @@ def analyze_frame_ocr(image_path: Path) -> dict[str, Any]:
         "symbols": symbols,
         "table_symbols": table_syms,
         "detail_symbols": detail_syms,
+        "raw_ocr_symbols": list(parsed.get("raw_column_symbols") or []),
         "sections": _section_hits(text),
         "prices": _prices_from_ocr(text, set(symbols) | set(text_syms)),
         "header_hits": parsed.get("header_hits") or 0,
@@ -510,10 +542,12 @@ def extract_watchlist(
     dense_interval: float = 12.0,
     max_frames: int = 90,
     min_hits: int = 2,
+    use_vision: bool | None = None,
+    vision_frames: int | None = None,
     status_cb: Callable[..., None] | None = None,
     force: bool = False,
 ) -> dict[str, Any]:
-    """Download VOD if needed, sample frames, OCR screener tables, aggregate."""
+    """Download VOD if needed, sample frames, OCR+vision screener tables, aggregate."""
 
     def note(**kw: Any) -> None:
         if status_cb:
@@ -523,6 +557,10 @@ def extract_watchlist(
     mode = (mode or "screener").lower().strip()
     if mode == "auto":
         mode = "screener"
+    if use_vision is None:
+        use_vision = bool(getattr(settings, "watchlist_vision", True))
+    if vision_frames is None:
+        vision_frames = int(getattr(settings, "watchlist_vision_frames", 3) or 3)
     frames_root = FRAMES_DIR / video_id / ("screener" if mode == "screener" else "tail")
     frames_root.mkdir(parents=True, exist_ok=True)
 
@@ -568,6 +606,7 @@ def extract_watchlist(
     price_votes: dict[str, list[float]] = defaultdict(list)
     section_by_ticker: dict[str, Counter[str]] = defaultdict(Counter)
     ocr_examples: dict[str, str] = {}
+    path_by_stamp: dict[str, Path] = {}
 
     for i, sec in enumerate(times):
         stamp = stamp_name(sec)
@@ -575,8 +614,22 @@ def extract_watchlist(
         try:
             if force or not jpg.exists() or jpg.stat().st_size < 2000:
                 extract_frame(video_path, sec, jpg)
-            # Screener: OCR full frame. Tail mode: also try right-panel crop.
+            path_by_stamp[stamp] = jpg
+            # Screener: OCR full frame + left Symbol-column crop (stricter geometry)
             analysis = analyze_frame_ocr(jpg)
+            if mode == "screener":
+                col = frames_root / f"{stamp}_symcol.jpg"
+                if force and col.exists():
+                    col.unlink()
+                crop_symbol_column(jpg, col)
+                if col.exists():
+                    col_analysis = analyze_frame_ocr(col)
+                    # Prefer column crop when it yields more allowlisted symbols
+                    if len(col_analysis.get("table_symbols") or []) >= len(
+                        analysis.get("table_symbols") or []
+                    ) and float(col_analysis.get("score") or 0) >= float(analysis.get("score") or 0) * 0.8:
+                        analysis = col_analysis
+                        analysis["crop"] = f"/frames/{video_id}/screener/{col.name}"
             if mode == "tail":
                 crop = frames_root / f"{stamp}_wl.jpg"
                 if force and crop.exists():
@@ -584,20 +637,18 @@ def extract_watchlist(
                 crop_watchlist_panel(jpg, crop)
                 if crop.exists():
                     crop_analysis = analyze_frame_ocr(crop)
-                    # Prefer higher table score
                     if float(crop_analysis.get("score") or 0) >= float(analysis.get("score") or 0):
                         analysis = crop_analysis
                         analysis["crop"] = f"/frames/{video_id}/tail/{crop.name}"
             engine = str(analysis.get("engine") or engine)
             layout = str(analysis.get("layout") or "empty")
-            table_syms = list(analysis.get("table_symbols") or [])
-            detail_syms = list(analysis.get("detail_symbols") or [])
-            syms = list(analysis.get("symbols") or [])
+            table_syms = filter_symbols(list(analysis.get("table_symbols") or []))
+            detail_syms = filter_symbols(list(analysis.get("detail_symbols") or []))
+            syms = filter_symbols(list(analysis.get("symbols") or []))
             sections = list(analysis.get("sections") or [])
             prices = dict(analysis.get("prices") or {})
             ocr_text = str(analysis.get("ocr") or "")
 
-            # Weight: table frames count strongly; detail panels weakly
             if layout == "screener_table" and table_syms:
                 for t in table_syms:
                     table_hits[t] += 1
@@ -611,13 +662,15 @@ def extract_watchlist(
                     if t not in ocr_examples and ocr_text:
                         ocr_examples[t] = ocr_text[:180]
             for t, p in prices.items():
-                price_votes[t].append(p)
+                if is_valid_us_ticker(t):
+                    price_votes[t].append(p)
 
             frame_rows.append(
                 {
                     "t": format_ts(sec),
                     "seconds": sec,
                     "frame": f"/frames/{video_id}/{frames_root.name}/{jpg.name}",
+                    "local_path": str(jpg),
                     "crop": analysis.get("crop"),
                     "ocr": ocr_text[:400],
                     "layout": layout,
@@ -625,6 +678,7 @@ def extract_watchlist(
                     "tickers": syms,
                     "table_symbols": table_syms,
                     "detail_symbols": detail_syms,
+                    "raw_ocr_symbols": list(analysis.get("raw_ocr_symbols") or [])[:40],
                     "sections": sections,
                     "prices": prices,
                 }
@@ -634,7 +688,6 @@ def extract_watchlist(
         if i % 3 == 0:
             note(step="extract_frames", status="running", done=i + 1, total=len(times), mode=mode)
 
-    # Best frame = highest screener_table score
     def _row_score(row: dict[str, Any]) -> float:
         if row.get("layout") != "screener_table":
             return float(row.get("score") or 0) * 0.1
@@ -643,24 +696,83 @@ def extract_watchlist(
     best = max(frame_rows, key=_row_score, default=None)
     best_set = set((best or {}).get("table_symbols") or (best or {}).get("tickers") or [])
 
-    items: list[dict[str, Any]] = []
-    # Prefer symbols seen on table frames
-    all_syms = set(table_hits) | {s for s, n in weak_hits.items() if n >= max(min_hits + 1, 3)}
-    if not all_syms and best_set:
-        all_syms = set(best_set)
+    # --- Vision pass on top screener frames (preferred over RapidOCR junk) ---
+    vision_meta: dict[str, Any] = {"available": False, "symbols": [], "reads": []}
+    vision_syms: list[str] = []
+    if use_vision:
+        note(step="vision_screener", status="running")
+        from .screener_vision import read_best_screener_frames, vision_available
 
-    for sym in sorted(all_syms, key=lambda s: (-table_hits[s], -weak_hits[s], s)):
+        avail = vision_available()
+        ranked_frames = sorted(
+            [r for r in frame_rows if r.get("local_path") and not r.get("error")],
+            key=_row_score,
+            reverse=True,
+        )
+        # Prefer frames that look like tables even if OCR allowlist was sparse
+        paths = [Path(r["local_path"]) for r in ranked_frames[: max(vision_frames, 5)]]
+        # Always include highest-score path first
+        if best and best.get("local_path"):
+            bp = Path(best["local_path"])
+            paths = [bp] + [p for p in paths if p != bp]
+        paths = paths[:vision_frames]
+        if avail.get("ok") and paths:
+            vision_meta = read_best_screener_frames(paths, max_frames=vision_frames)
+            vision_syms = filter_symbols(
+                list(vision_meta.get("symbols") or []),
+                allow_unknown_long=True,
+            )
+            vision_meta["symbols"] = vision_syms
+        else:
+            vision_meta = {
+                "available": bool(avail.get("ok")),
+                "backend": avail.get("backend"),
+                "model": avail.get("model"),
+                "symbols": [],
+                "reads": [],
+                "note": (
+                    "Vision skipped — set TUBEON_OPENAI_API_KEY (or "
+                    "TUBEON_VISION_OLLAMA_MODEL) for Symbol-column vision read"
+                ),
+            }
+        note(
+            step="vision_screener",
+            status="done",
+            vision_symbols=len(vision_syms),
+            vision_backend=vision_meta.get("backend"),
+        )
+
+    items: list[dict[str, Any]] = []
+    # Prefer vision list when it found a real table (>=5). Else allowlisted OCR only.
+    if len(vision_syms) >= 5:
+        primary = list(vision_syms)
+        source_tag = "vision"
+        # Merge allowlisted OCR hits that also appear on table frames (extra confirmation)
+        for s in table_hits:
+            if s not in primary and is_valid_us_ticker(s):
+                primary.append(s)
+        all_syms = primary
+    else:
+        source_tag = "ocr_allowlist"
+        all_syms = [
+            s
+            for s in (set(table_hits) | {s for s, n in weak_hits.items() if n >= max(min_hits + 1, 3)})
+            if is_valid_us_ticker(s)
+        ]
+        if not all_syms and best_set:
+            all_syms = [s for s in best_set if is_valid_us_ticker(s)]
+        # Drop OCR-only junk that somehow slipped: require allowlist membership
+        all_syms = filter_symbols(list(all_syms), allow_unknown_long=False)
+
+    vision_set = set(vision_syms)
+    for sym in all_syms:
         th = table_hits[sym]
         wh = weak_hits[sym]
-        known = sym in KNOWN_TICKERS
-        if not _is_ticker_token(sym):
-            continue
-        if th <= 0:
-            # Weak-only: need more repeats and preferably known
-            if not known or wh < max(min_hits, 3):
-                continue
-        elif not known and th < min_hits and sym not in best_set:
-            continue
+        if source_tag != "vision":
+            if th <= 0 and (wh < max(min_hits, 3) or sym not in best_set):
+                # weak-only without vision: skip unless allowlisted short ticker in best
+                if not (is_valid_us_ticker(sym) and sym in best_set and wh >= 1):
+                    continue
         sections = [s for s, _ in section_by_ticker[sym].most_common()]
         prices = price_votes[sym]
         price = None
@@ -672,24 +784,34 @@ def extract_watchlist(
                 "symbol": sym,
                 "hits": th,
                 "weak_hits": wh,
-                "known": known,
+                "known": is_valid_us_ticker(sym),
                 "sections": sections,
                 "price": price,
                 "tv": tv_symbol(sym),
                 "ocr_sample": ocr_examples.get(sym),
                 "in_best_frame": sym in best_set,
-                "source": "screener_table" if th else "detail_or_chrome",
+                "in_vision": sym in vision_set,
+                "source": (
+                    "vision"
+                    if sym in vision_set
+                    else ("screener_table" if th else "detail_or_chrome")
+                ),
             }
         )
 
-    items.sort(
-        key=lambda x: (
-            -int(x.get("in_best_frame") or 0),
-            -int(x.get("hits") or 0),
-            -int(x.get("weak_hits") or 0),
-            x["symbol"],
+    if source_tag == "vision":
+        # Preserve vision Symbol-column order
+        order = {s: i for i, s in enumerate(vision_syms)}
+        items.sort(key=lambda x: (order.get(x["symbol"], 10_000), x["symbol"]))
+    else:
+        items.sort(
+            key=lambda x: (
+                -int(x.get("in_best_frame") or 0),
+                -int(x.get("hits") or 0),
+                -int(x.get("weak_hits") or 0),
+                x["symbol"],
+            )
         )
-    )
     symbols = [x["symbol"] for x in items]
 
     section_name = f"Martin Luk {video_id}"
@@ -702,9 +824,11 @@ def extract_watchlist(
         "video_id": video_id,
         "mode": mode,
         "strategy": (
-            "screener-aware: whole-VOD coarse + speech densify + box-based "
-            "Symbol column; detail panels do not replace table symbols"
+            "screener-aware: whole-VOD sample + left Symbol-column OCR filtered by "
+            "US allowlist (drops KK/A.M junk); prefer vision/LLM read of top "
+            "screener frames when configured; detail panels do not replace table"
         ),
+        "symbol_source": source_tag,
         "duration_sec": round(duration, 1),
         "last_minutes": last_minutes,
         "interval_sec": interval_sec,
@@ -715,6 +839,23 @@ def extract_watchlist(
         "symbol_count": len(symbols),
         "symbols": symbols,
         "items": items,
+        "vision": {
+            "available": vision_meta.get("available"),
+            "backend": vision_meta.get("backend"),
+            "model": vision_meta.get("model"),
+            "symbols": vision_syms,
+            "symbol_count": len(vision_syms),
+            "note": vision_meta.get("note"),
+            "reads": [
+                {
+                    "path": r.get("path"),
+                    "symbols": r.get("symbols"),
+                    "error": r.get("error"),
+                    "backend": r.get("backend"),
+                }
+                for r in (vision_meta.get("reads") or [])
+            ],
+        },
         "best_frame": {
             "t": (best or {}).get("t"),
             "seconds": (best or {}).get("seconds"),
@@ -722,6 +863,7 @@ def extract_watchlist(
             "layout": (best or {}).get("layout"),
             "score": (best or {}).get("score"),
             "tickers": (best or {}).get("table_symbols") or (best or {}).get("tickers") or [],
+            "raw_ocr_symbols": (best or {}).get("raw_ocr_symbols") or [],
         }
         if best
         else None,
@@ -744,6 +886,7 @@ def extract_watchlist(
             "video_id",
             "mode",
             "strategy",
+            "symbol_source",
             "duration_sec",
             "last_minutes",
             "interval_sec",
@@ -754,6 +897,7 @@ def extract_watchlist(
             "symbol_count",
             "symbols",
             "items",
+            "vision",
             "best_frame",
             "tradingview_txt",
             "tradingview_note",

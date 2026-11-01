@@ -19,6 +19,13 @@ class Settings(BaseSettings):
     openai_base_url: str = "https://api.openai.com/v1"
     openai_api_key: str = ""
     openai_model: str = "gpt-4o-mini"
+    # Vision model for screener Symbol-column reads (OpenAI-compatible)
+    vision_model: str = "gpt-4o-mini"
+    # Optional Ollama vision model e.g. llava / qwen2.5vl — empty = disabled
+    vision_ollama_model: str = ""
+    # Prefer vision on top screener frames when a backend is configured
+    watchlist_vision: bool = True
+    watchlist_vision_frames: int = 3
     chunk_seconds: int = 90
     host: str = "127.0.0.1"
     port: int = 8765
