@@ -1,24 +1,22 @@
-iMBI3ZcQ6sU — SOXX short | 28 Oct 2026
-========================================
+iMBI3ZcQ6sU — E_Main (Martin primary list)
+==========================================
 
-Expected Symbol column (vision-read of best frame 1-18-32.jpg), ~27 names:
-  AXSM GNS ICLR EVR WMG TXG BYON TWST TEM PPG CRL FRO ACN PNT REVV MRNA NTRA
-  HCA ETSY IQV SOFI GH EXAS RBRK AKAM Z MNSO
-  (+ BRZE may appear in detail panel — not a table wipe)
+Canonical right-sidebar E_Main (Luk), VOD date 2026-10-28:
 
-Local reparse (frames already on disk — preferred after RapidOCR junk run):
+  INDEXES:  QQQ SPY IWM
+  LONGS:    USD SSPC SOXS          (USD = Ultra Semis / AMEX)
+  SHORTS:   SLV GLD BMNR COIN
+  FOCUS:    DRAM UVXY
+  TRACKING: SOXX SPCX SNDK SKHY GEV VRT AXTI
 
-  cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
-  set TUBEON_OPENAI_API_KEY=sk-...
-  python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --vision
-  python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --frame data\frames\iMBI3ZcQ6sU\screener\1-18-32.jpg --vision
-
-Or full job:
-  run_watchlist_imbi.bat
-
-Without vision key: allowlisted OCR only (drops KK/LM/A.M); may be a subset.
+TV watchlist name:  Martin Luk 2026-10-28 E_Main
+File body: short ###INDEXES / ###LONGS / … sections (one file)
 
 Outputs:
   outputs\watchlists\iMBI3ZcQ6sU.txt
-  outputs\watchlists\iMBI3ZcQ6sU.md
-  data\summaries\iMBI3ZcQ6sU.watchlist.json
+  outputs\watchlists\Martin_Luk_2026-10-28_E_Main.txt
+
+Daily / job (prefers E_Main sidebar, not Potent):
+  set TUBEON_OPENAI_API_KEY=sk-...
+  run_martin_daily.bat
+  python scripts\watchlist_job.py iMBI3ZcQ6sU --mode auto --vision --upload-date 20261028

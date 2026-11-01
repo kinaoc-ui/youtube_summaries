@@ -15,8 +15,13 @@ from pathlib import Path
 from .config import ROOT
 from .video_check import ASR_ALIASES, KNOWN_TICKERS
 
-# Explicit extras seen on Martin streams / iMBI3ZcQ6sU Leader frame (vision-read)
+# Explicit extras: E_Main sidebar (primary) + occasional Potent names (secondary)
 STREAM_EXTRAS = {
+    # iMBI3ZcQ6sU E_Main (Luk canonical)
+    "QQQ", "SPY", "IWM", "USD", "SSPC", "SOXS", "SLV", "GLD", "BMNR", "COIN",
+    "DRAM", "UVXY", "SOXX", "SPCX", "SNDK", "SKHY", "GEV", "VRT", "AXTI",
+    "USO",  # OCR near-miss for USD on some frames
+    # Potent secondary (optional)
     "AXSM", "GNS", "ICLR", "EVR", "WMG", "TXG", "BYON", "TWST", "TEM", "PPG",
     "CRL", "FRO", "ACN", "PNT", "REVV", "MRNA", "NTRA", "HCA", "ETSY", "IQV",
     "SOFI", "GH", "EXAS", "RBRK", "AKAM", "Z", "MNSO", "BRZE",

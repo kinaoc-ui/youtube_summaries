@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
-"""OCR Martin's on-screen Leader/screener table → TradingView Upload-list TXT.
+"""Extract Martin's E_Main right-sidebar watchlist → TradingView Upload .txt.
 
-Default mode ``screener`` samples the whole VOD (not only last 10 minutes),
-densifies around speech/summary hints, uses RapidOCR boxes to read the Symbol
-column, and ignores detail-panel-only frames as the list source.
+Default mode ``auto`` / ``sidebar`` prefers the chart right watchlist
+(INDEXES/LONGS/SHORTS/FOCUS/TRACKING). Potent/Leader screener is optional
+secondary (``--mode screener``) and must not overwrite E_Main as the default.
 
 Usage (from repo root — Windows checkout example):
   cd /d "C:\\Users\\kinao\\OneDrive\\桌面\\stock\\youtube"
-  python scripts\\watchlist_job.py iMBI3ZcQ6sU --mode screener --force
+  set TUBEON_OPENAI_API_KEY=sk-...
+  python scripts\\watchlist_job.py iMBI3ZcQ6sU --mode auto --force --vision
+  python scripts\\watchlist_job.py iMBI3ZcQ6sU --upload-date 20261028
 
-  python scripts/watchlist_job.py iMBI3ZcQ6sU
-  python scripts/watchlist_job.py iMBI3ZcQ6sU --mode tail --last-minutes 12
-  python scripts/watchlist_job.py iMBI3ZcQ6sU --force
+Optional Potent secondary:
+  python scripts/watchlist_job.py iMBI3ZcQ6sU --mode screener
 
 Optional if YouTube bot-checks:
   set TUBEON_YT_COOKIES=C:\\path\\to\\cookies.txt
@@ -55,7 +56,7 @@ def write_status(video_id: str, **kwargs) -> None:
 def run(
     video_id: str,
     *,
-    mode: str = "screener",
+    mode: str = "auto",
     last_minutes: float = 10.0,
     interval_sec: float = 20.0,
     coarse_interval: float = 45.0,
@@ -64,6 +65,7 @@ def run(
     min_hits: int = 2,
     use_vision: bool | None = None,
     vision_frames: int = 3,
+    upload_date: str | None = None,
     force: bool = False,
 ) -> None:
     write_status(
@@ -73,6 +75,7 @@ def run(
         mode=mode,
         last_minutes=last_minutes,
         interval_sec=interval_sec,
+        upload_date=upload_date,
     )
 
     def cb(**kw):
@@ -90,37 +93,49 @@ def run(
             min_hits=min_hits,
             use_vision=use_vision,
             vision_frames=vision_frames,
+            upload_date=upload_date,
             status_cb=cb,
             force=force,
         )
+        buckets = report.get("buckets") or {}
         write_status(
             video_id,
             status="done",
             step="done",
             mode=mode,
+            vod_date=report.get("vod_date"),
+            list_name=report.get("list_name"),
             symbol_source=report.get("symbol_source"),
             frame_count=report.get("frame_count"),
-            table_frame_count=report.get("table_frame_count"),
+            sidebar_frame_count=report.get("sidebar_frame_count"),
             symbol_count=report.get("symbol_count"),
+            indexes=len(buckets.get("INDEXES") or []),
+            longs=len(buckets.get("LONGS") or []),
+            shorts=len(buckets.get("SHORTS") or []),
+            focus=len(buckets.get("FOCUS") or []),
+            tracking=len(buckets.get("TRACKING") or []),
             ocr_engine=report.get("ocr_engine"),
             symbols=report.get("symbols") or [],
+            buckets=buckets,
             vision_symbols=((report.get("vision") or {}).get("symbols") or []),
             tradingview_txt=(report.get("paths") or {}).get("tradingview_txt"),
         )
         print(
-            f"OK {video_id} [{mode}/{report.get('symbol_source')}]: "
-            f"{report.get('symbol_count')} symbols from "
-            f"{report.get('frame_count')} frames "
-            f"(table_frames={report.get('table_frame_count')}) → "
-            f"{(report.get('paths') or {}).get('tradingview_txt')}"
+            f"OK {video_id} [{mode}/{report.get('symbol_source')}] "
+            f"name={report.get('list_name')}: "
+            f"INDEXES={len(buckets.get('INDEXES') or [])} "
+            f"LONGS={len(buckets.get('LONGS') or [])} "
+            f"SHORTS={len(buckets.get('SHORTS') or [])} "
+            f"FOCUS={len(buckets.get('FOCUS') or [])} "
+            f"TRACKING={len(buckets.get('TRACKING') or [])} "
+            f"→ {(report.get('paths') or {}).get('tradingview_txt')}"
         )
         vis = report.get("vision") or {}
         if vis.get("note"):
             print(f"VISION: {vis.get('note')}")
         elif vis.get("backend"):
             print(f"VISION: {vis.get('backend')} {vis.get('model')} → {vis.get('symbol_count')} syms")
-        for sym in (report.get("symbols") or [])[:60]:
-            print(f"  {sym}")
+        print((report.get("tradingview_txt") or "").strip())
         if not (report.get("symbols") or []):
             print("WARN: no symbols — check best_frame OCR in watchlist.json")
             bf = report.get("best_frame") or {}
@@ -133,14 +148,14 @@ def run(
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(
-        description="OCR/vision Martin Leader/screener → TradingView .txt"
+        description="OCR/vision Martin E_Main sidebar → TradingView Upload .txt"
     )
     p.add_argument("video_id")
     p.add_argument(
         "--mode",
-        choices=["screener", "tail", "auto"],
-        default="screener",
-        help="screener=whole VOD + Symbol column (default); tail=legacy last-N-min right crop",
+        choices=["auto", "sidebar", "emain", "tail", "screener"],
+        default="auto",
+        help="auto/sidebar=E_Main right watchlist (default); screener=Potent secondary only",
     )
     p.add_argument("--last-minutes", type=float, default=10.0, help="Tail densify window")
     p.add_argument("--interval", type=float, default=20.0, help="Tail-mode interval seconds")
@@ -151,10 +166,15 @@ if __name__ == "__main__":
     p.add_argument(
         "--vision",
         action="store_true",
-        help="Force vision/LLM Symbol-column read on top frames (needs API key / ollama vision)",
+        help="Force vision/LLM E_Main sidebar read (needs TUBEON_OPENAI_API_KEY)",
     )
     p.add_argument("--no-vision", action="store_true", help="Disable vision even if configured")
     p.add_argument("--vision-frames", type=int, default=3)
+    p.add_argument(
+        "--upload-date",
+        default=None,
+        help="VOD calendar date YYYY-MM-DD or yt-dlp upload_date (watchlist name date)",
+    )
     p.add_argument("--force", action="store_true", help="Re-extract frames even if cached")
     args = p.parse_args()
     use_vision: bool | None
@@ -164,6 +184,15 @@ if __name__ == "__main__":
         use_vision = True
     else:
         use_vision = None
+    # Prefer CLI date; else status file from martin_daily
+    upload_date = args.upload_date
+    if not upload_date:
+        st = status_path(args.video_id)
+        if st.exists():
+            try:
+                upload_date = json.loads(st.read_text(encoding="utf-8")).get("upload_date")
+            except json.JSONDecodeError:
+                upload_date = None
     run(
         args.video_id,
         mode=args.mode,
@@ -175,5 +204,6 @@ if __name__ == "__main__":
         min_hits=args.min_hits,
         use_vision=use_vision,
         vision_frames=args.vision_frames,
+        upload_date=upload_date,
         force=args.force,
     )

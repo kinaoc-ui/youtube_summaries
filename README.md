@@ -32,29 +32,29 @@ python -m app.cli "URL" --provider ollama --title "Martin Luk"
 
 ## Martin on-screen watchlist → TradingView
 
-Martin Luk（`@martinlukkt`）會開 **TradingView Leader / screener 表**（好多 Symbol 行），有時仲會撳開單一隻嘅 detail panel（例如 BRZE @45.85）。字幕未必讀到表內清單，所以用畫面截圖 + OCR。
+Martin 嘅 **主清單** 係 chart 右欄 **E_Main**（`INDEXES` / `LONGS` / `SHORTS` / `FOCUS` / `TRACKING`），唔係 Potent/Leader screener 表。Potent 只係 optional secondary（`--mode screener`）。
 
-**策略（default `--mode screener`）：**
-1. 全片粗掃 + 語音/摘要 hint 附近加密（唔死跟尾 10 分鐘右欄）
-2. RapidOCR boxes → 最左 **Symbol column**，再經 **US allowlist** 過濾（甩掉 KK / LM / A.M 呢啲 junk）
-3. 有 API key 時：**vision/LLM** 讀最高分 screener frames（優先過 OCR）；detail panel（BRZE）唔會覆蓋 table
-4. 無 vision 時只輸出 allowlist 命中嘅 symbols（validated subset，唔發明 ticker）
+**策略（default `--mode auto`）：**
+1. 截 chart frames + 右欄 `*_wl.jpg` crop
+2. OCR/vision 讀 E_Main section headers → 分桶
+3. 一個 Upload `.txt`：短 `###INDEXES` / `###LONGS` / …（dated 名喺 filename / TV list name，唔重複寫入每個 header）
+4. Watchlist 名：`Martin Luk YYYY-MM-DD E_Main`（用 VOD `upload_date`，唔用 run date）
+5. 需要 vision 時設 `TUBEON_OPENAI_API_KEY`（或 `TUBEON_VISION_OLLAMA_MODEL`）
 
 ```bash
-# 推薦：Leader/screener + vision（要 OpenAI key 或 ollama vision model）
 set TUBEON_OPENAI_API_KEY=sk-...
-python scripts/watchlist_job.py <videoId> --mode screener --force --vision
+python scripts/watchlist_job.py <videoId> --mode auto --force --vision --upload-date 20261028
 
-# iMBI3ZcQ6sU — Luk 本機（已有 frames 可跳過下載）
+# iMBI3ZcQ6sU sample
 cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
 run_watchlist_imbi.bat
-python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --vision
-python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --frame data\frames\iMBI3ZcQ6sU\screener\1-18-32.jpg --vision
+python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --frame watchlist-frames\e_main_sidebar.png --vision
 
-# 舊行為（只截尾 N 分鐘右欄）
-python scripts/watchlist_job.py <videoId> --mode tail --last-minutes 12
+# Potent secondary only
+python scripts/watchlist_job.py <videoId> --mode screener
 
-# Martin daily 會自動 kick；亦可手動
+# Martin daily 自動 kick E_Main
+python scripts/martin_daily.py
 python scripts/martin_daily.py --watchlist-id <videoId>
 ```
 
@@ -69,11 +69,12 @@ set TUBEON_YT_COOKIES=C:\path\to\cookies.txt
 | Path | 用途 |
 |---|---|
 | `data/summaries/<id>.watchlist.json` | 符號清單（可 push / 電話 UI） |
-| `outputs/watchlists/<id>.txt` | TradingView **Upload list…** 用 |
+| `outputs/watchlists/<id>.txt` | TradingView **Upload list…** |
+| `outputs/watchlists/Martin_Luk_<date>_E_Main.txt` | 同內容、dated 檔名 |
 | `outputs/watchlists/<id>.md` | 可讀表 |
-| `data/frames/<id>/screener/*.jpg` | 本機截圖（gitignore） |
+| `data/frames/<id>/tail/*_wl.jpg` | 右欄 crop（gitignore） |
 
-**Import 去 TV：** Watchlist 面板 → 撳清單名 → **Upload list…** → 揀 `.txt`。格式係官方要求嘅 `EXCHANGE:SYMBOL`、逗號分隔（可有 `###Section`）。**無公開 TradingView API**；Essential+ 先有 Upload。Web：`POST/GET /api/watchlist/{id}`，下載 `/api/watchlist/{id}/tradingview.txt`。
+**Import 去 TV：** 開／揀清單名 `Martin Luk YYYY-MM-DD E_Main` → **Upload list…** → 揀 `.txt`。**無公開 TradingView API**；Essential+ 先有 Upload。
 
 ## Summarizer modes
 

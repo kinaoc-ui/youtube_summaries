@@ -1,21 +1,12 @@
 # -*- coding: utf-8 -*-
-"""OCR Martin Luk on-screen ticker lists (TradingView screener / Leader tables).
+"""OCR/vision Martin Luk on-screen TradingView lists.
 
-History: the first pass assumed a right-column watchlist in the last ~10 minutes.
-On VODs like iMBI3ZcQ6sU Martin instead opens a full **Leader** screener table
-(many symbols in a Symbol column) and may also open a single-name detail panel
-(e.g. BRZE @ 45.85). Detail panels must not wipe the table list.
+Primary path = right sidebar **E_Main** (INDEXES / LONGS / SHORTS / FOCUS /
+TRACKING). Sample chart frames + ``*_wl.jpg`` right crops; export dated
+multi-section TradingView Upload ``.txt``.
 
-Strategy (mode=screener / auto):
-  1. Sample across the whole VOD (coarse) + denser windows around speech/summary
-     hints (leader / screener / watch list / leading / mediocre / lagging) + a
-     modest tail densify. Not hard-locked to last 10 minutes.
-  2. OCR full frames with RapidOCR **bounding boxes**.
-  3. Detect layout: screener_table vs detail_panel vs chart_chrome.
-  4. For tables, take the leftmost vertically-aligned symbol column — ignore
-     detail-panel-only frames as list sources (they only add weak single-symbol
-     evidence).
-  5. Aggregate by table-weighted hits; export TradingView Upload-list .txt.
+Potent/Leader screener (``--mode screener``) is optional secondary only and
+must never overwrite E_Main as the default Martin list.
 
 Outputs:
   data/frames/{id}/watchlist.json
@@ -31,13 +22,23 @@ import shutil
 import subprocess
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, Callable, Iterable
+from typing import Any, Callable, Iterable, Mapping, Sequence
 
 from .config import DATA_DIR, OUTPUT_DIR, SUMMARY_DIR, ensure_dirs, settings
 from .parse_md import parse_summary_markdown
-from .tradingview_export import format_watchlist_txt, tv_symbol, write_tradingview_txt
+from .tradingview_export import (
+    IMBI_EMAIN_BUCKETS,
+    IMBI_EMAIN_DATE,
+    IMBI_EMAIN_TXT,
+    format_dated_watchlist_txt,
+    format_emain_watchlist_txt,
+    normalize_section_key,
+    tv_symbol,
+    write_tradingview_txt,
+)
 from .transcript import format_ts, load_transcript
 from .us_tickers import filter_symbols, is_valid_us_ticker, normalize_symbol
+from .vod_date import resolve_vod_date
 from .video_check import (
     ASR_ALIASES,
     FRAMES_DIR,
@@ -55,10 +56,12 @@ from .video_check import (
 WATCHLIST_OUT_DIR = OUTPUT_DIR / "watchlists"
 WATCHLIST_JOB_DIR = DATA_DIR / "watchlist_jobs"
 
-# UI / chart chrome that looks like a ticker but is not one
+# UI / chart chrome that looks like a ticker but is not one.
+# NOTE: USD is ProShares Ultra Semiconductors on E_Main — NOT stop-listed.
 OCR_STOP = {
-    "EMA", "SMA", "RSI", "MACD", "ATR", "VWAP", "VOL", "USD", "USDT", "DAY", "DAYS",
-    "HIGH", "LOW", "OPEN", "CLOSE", "LONG", "SHORT", "BUY", "SELL", "WATCH", "LIST",
+    "EMA", "SMA", "RSI", "MACD", "ATR", "VWAP", "VOL", "USDT", "DAY", "DAYS",
+    "HIGH", "LOW", "OPEN", "CLOSE", "LONG", "LONGS", "SHORT", "SHORTS", "BUY", "SELL",
+    "WATCH", "LIST", "FOCUS", "TRACKING", "INDEXES", "INDICES",
     "LEAD", "LEADING", "LAGGING", "LAG", "MEDIOCRE", "SESSION", "CHART", "TIME",
     "PRICE", "LAST", "BID", "ASK", "CHANGE", "VOLUME", "MARKET", "STOCK", "STOCKS",
     "SHARE", "SHARES", "INDEX", "FUTURE", "OPTION", "PUTS", "CALL", "CALLS",
@@ -84,7 +87,7 @@ OCR_STOP = {
     "SCREENER", "FILTER", "FILTERS", "COLUMN", "COLUMNS", "SORT", "SORTED",
     "LEADER", "LEADERS", "FOLLOWER", "FOLLOWERS", "UNIVERSE", "CANDIDATE",
     "CANDIDATES", "POTENT", "POTENTIAL", "BIOTECH", "BIOTEEX", "MERGER", "BUYOUT",
-    "CERA",  # known OCR junk seen on iMBI3ZcQ6sU misread; still allow if in KNOWN
+    "CERA", "E_MAIN", "MAIN", "EXT", "CHG",
 }
 
 SECTION_HINTS = (
@@ -112,12 +115,27 @@ PRICE_NEAR = re.compile(
 
 TICKER_TOKEN_RE = re.compile(r"^[A-Z]{1,5}(?:\.[A-Z]{1,2})?$")
 
-# Ground-truth Symbol column from iMBI3ZcQ6sU best frame (vision); used in tests only docs
-IMBI_LEADER_SYMBOLS = [
+# Canonical E_Main for iMBI3ZcQ6sU (Luk/Grok MCP) — primary Martin list
+IMBI_VOD_DATE = IMBI_EMAIN_DATE
+IMBI_EMAIN = IMBI_EMAIN_BUCKETS
+IMBI_EMAIN_CANONICAL_TXT = IMBI_EMAIN_TXT
+# Optional Potent secondary (never default)
+IMBI_POTENT_SYMBOLS = [
     "AXSM", "GNS", "ICLR", "EVR", "WMG", "TXG", "BYON", "TWST", "TEM", "PPG",
     "CRL", "FRO", "ACN", "PNT", "REVV", "MRNA", "NTRA", "HCA", "ETSY", "IQV",
     "SOFI", "GH", "EXAS", "RBRK", "AKAM", "Z", "MNSO",
 ]
+IMBI_LEADER_SYMBOLS = IMBI_POTENT_SYMBOLS  # back-compat alias for Potent tests
+
+# Sidebar section headers on E_Main
+SIDEBAR_HEADER_RE = re.compile(
+    r"^\s*(INDEXES|INDICES|LONGS?|SHORTS?|FOCUS|TRACKING)\s*$",
+    re.I,
+)
+SIDEBAR_HEADER_IN_TEXT_RE = re.compile(
+    r"\b(INDEXES|INDICES|LONGS|LONG|SHORTS|SHORT|FOCUS|TRACKING)\b",
+    re.I,
+)
 
 
 def video_duration_sec(video_path: Path) -> float:
@@ -481,6 +499,155 @@ def symbols_from_boxes(boxes: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _empty_emain_buckets() -> dict[str, list[str]]:
+    return {"INDEXES": [], "LONGS": [], "SHORTS": [], "FOCUS": [], "TRACKING": []}
+
+
+def _norm_sidebar_header(text: str) -> str | None:
+    return normalize_section_key(text or "")
+
+
+def parse_sidebar_sections_from_boxes(boxes: list[dict[str, Any]]) -> dict[str, Any]:
+    """Parse right-watchlist E_Main INDEXES/LONGS/SHORTS/FOCUS/TRACKING from OCR boxes."""
+    empty = {
+        "sidebar": False,
+        "buckets": _empty_emain_buckets(),
+        "headers": [],
+        "symbols": [],
+        "list_name": None,
+    }
+    if not boxes:
+        return empty
+
+    max_x = max((float(b.get("x1") or b.get("cx") or 0) for b in boxes), default=1.0) or 1.0
+    right_cut = max_x * 0.55
+    right_boxes = [b for b in boxes if float(b.get("cx") or 0) >= right_cut]
+    use = right_boxes if len(right_boxes) >= 3 else boxes
+
+    list_name = None
+    for b in use:
+        raw = str(b.get("text") or "").strip()
+        if re.search(r"E[_\s-]?Main", raw, re.I):
+            list_name = "E_Main"
+            break
+
+    headers: list[tuple[float, str]] = []
+    for b in use:
+        label = _norm_sidebar_header(str(b.get("text") or ""))
+        if label:
+            headers.append((float(b.get("cy") or 0), label))
+    if not headers:
+        blob = " ".join(str(b.get("text") or "") for b in use)
+        if not SIDEBAR_HEADER_IN_TEXT_RE.search(blob):
+            return empty
+        found = {m.group(1).upper() for m in SIDEBAR_HEADER_IN_TEXT_RE.finditer(blob)}
+        norms = {normalize_section_key(h) for h in found}
+        norms.discard(None)
+        if not norms:
+            return empty
+        return {
+            "sidebar": True,
+            "buckets": _empty_emain_buckets(),
+            "headers": sorted(norms),  # type: ignore[arg-type]
+            "symbols": [],
+            "list_name": list_name or "E_Main",
+            "weak": True,
+        }
+
+    headers.sort(key=lambda x: x[0])
+    dedup_h: list[tuple[float, str]] = []
+    for cy, lab in headers:
+        if dedup_h and dedup_h[-1][1] == lab:
+            continue
+        dedup_h.append((cy, lab))
+    headers = dedup_h
+
+    buckets = _empty_emain_buckets()
+    ticker_boxes = []
+    for b in use:
+        tok = _normalize_token(str(b.get("text") or ""))
+        if not tok or _norm_sidebar_header(tok):
+            continue
+        if not _is_ticker_token(tok, allow_unknown_long=True):
+            continue
+        ticker_boxes.append((float(b.get("cy") or 0), tok))
+    ticker_boxes.sort(key=lambda x: x[0])
+
+    for i, (h_y, lab) in enumerate(headers):
+        y_lo = h_y
+        y_hi = headers[i + 1][0] if i + 1 < len(headers) else 1e12
+        for cy, tok in ticker_boxes:
+            if y_lo < cy < y_hi and tok not in buckets[lab]:
+                buckets[lab].append(tok)
+
+    for k in list(buckets):
+        buckets[k] = filter_symbols(buckets[k], allow_unknown_long=True)
+
+    symbols = (
+        buckets["INDEXES"]
+        + buckets["LONGS"]
+        + buckets["SHORTS"]
+        + buckets["FOCUS"]
+        + buckets["TRACKING"]
+    )
+    return {
+        "sidebar": True,
+        "buckets": buckets,
+        "headers": [h for _, h in headers],
+        "symbols": symbols,
+        "list_name": list_name or "E_Main",
+        "weak": False,
+    }
+
+
+def detect_sidebar_from_image(image_path: Path) -> dict[str, Any]:
+    """OCR full frame + right ``*_wl`` / sidebar crop for E_Main section headers."""
+    boxes, engine = ocr_boxes(image_path)
+    parsed = parse_sidebar_sections_from_boxes(boxes)
+    parsed["engine"] = engine
+    if parsed.get("sidebar") and (parsed.get("symbols") or not parsed.get("weak")):
+        return parsed
+    try:
+        from PIL import Image
+    except ImportError:
+        return parsed
+    im = Image.open(image_path)
+    w, h = im.size
+    crop = im.crop((int(w * 0.68), int(h * 0.02), w, int(h * 0.98)))
+    crop = crop.resize((crop.width * 2, crop.height * 2), Image.Resampling.LANCZOS)
+    tmp = image_path.with_name(image_path.stem + "_wl.jpg")
+    crop.save(tmp, quality=95)
+    boxes2, engine2 = ocr_boxes(tmp)
+    parsed2 = parse_sidebar_sections_from_boxes(boxes2)
+    parsed2["engine"] = engine2
+    parsed2["crop"] = str(tmp)
+    if parsed2.get("sidebar"):
+        return parsed2
+    return parsed if parsed.get("sidebar") else parsed2
+
+
+def merge_emain_buckets(*bucket_maps: Mapping[str, Sequence[str]]) -> dict[str, list[str]]:
+    """First-seen merge of E_Main section maps."""
+    out = _empty_emain_buckets()
+    seen: set[str] = set()
+    for bm in bucket_maps:
+        if not bm:
+            continue
+        for raw_key, syms in bm.items():
+            key = normalize_section_key(str(raw_key)) or str(raw_key).upper()
+            if key not in out:
+                out[key] = []
+            for s in syms or []:
+                u = (s or "").upper().strip()
+                if not u or u in seen:
+                    continue
+                if not is_valid_us_ticker(u, allow_unknown_long=True):
+                    continue
+                seen.add(u)
+                out[key].append(u)
+    return out
+
+
 def analyze_frame_ocr(image_path: Path) -> dict[str, Any]:
     """OCR one image; prefer box-based screener parse, fall back to text scrape."""
     boxes, engine = ocr_boxes(image_path)
@@ -535,7 +702,7 @@ def analyze_frame_ocr(image_path: Path) -> dict[str, Any]:
 def extract_watchlist(
     video_id: str,
     *,
-    mode: str = "screener",
+    mode: str = "auto",
     last_minutes: float = 10.0,
     interval_sec: float = 20.0,
     coarse_interval: float = 45.0,
@@ -544,24 +711,29 @@ def extract_watchlist(
     min_hits: int = 2,
     use_vision: bool | None = None,
     vision_frames: int | None = None,
+    upload_date: str | None = None,
     status_cb: Callable[..., None] | None = None,
     force: bool = False,
 ) -> dict[str, Any]:
-    """Download VOD if needed, sample frames, OCR+vision screener tables, aggregate."""
+    """Primary: E_Main sidebar sections. Potent screener is optional secondary."""
 
     def note(**kw: Any) -> None:
         if status_cb:
             status_cb(**kw)
 
     ensure_dirs()
-    mode = (mode or "screener").lower().strip()
+    mode = (mode or "auto").lower().strip()
+    # auto / sidebar → chart+right-watchlist path; screener = Potent secondary only
+    prefer_sidebar = mode in {"auto", "sidebar", "emain", "tail"}
     if mode == "auto":
-        mode = "screener"
+        mode = "sidebar"
     if use_vision is None:
         use_vision = bool(getattr(settings, "watchlist_vision", True))
     if vision_frames is None:
         vision_frames = int(getattr(settings, "watchlist_vision_frames", 3) or 3)
-    frames_root = FRAMES_DIR / video_id / ("screener" if mode == "screener" else "tail")
+
+    frames_subdir = "screener" if mode == "screener" else "tail"
+    frames_root = FRAMES_DIR / video_id / frames_subdir
     frames_root.mkdir(parents=True, exist_ok=True)
 
     note(step="download_video", status="running", mode=mode)
@@ -573,11 +745,15 @@ def extract_watchlist(
     if duration <= 0:
         raise RuntimeError(f"Cannot determine duration for {video_id}")
 
-    if mode == "tail":
-        times = sample_tail_seconds(
+    if prefer_sidebar:
+        # Dense tail + modest whole-VOD sample — E_Main lives on chart frames
+        times = sample_screener_seconds(
             duration,
-            last_minutes=last_minutes,
-            interval_sec=interval_sec,
+            video_id=video_id,
+            coarse_interval=max(coarse_interval, 60.0),
+            dense_interval=dense_interval,
+            tail_minutes=max(last_minutes, 15.0),
+            max_frames=max_frames,
         )
     else:
         times = sample_screener_seconds(
@@ -595,18 +771,12 @@ def extract_watchlist(
         mode=mode,
         duration_sec=round(duration, 1),
         frame_targets=len(times),
-        last_minutes=last_minutes,
-        interval_sec=interval_sec,
     )
 
     engine = "none"
     frame_rows: list[dict[str, Any]] = []
+    sidebar_candidates: list[dict[str, Any]] = []
     table_hits: Counter[str] = Counter()
-    weak_hits: Counter[str] = Counter()
-    price_votes: dict[str, list[float]] = defaultdict(list)
-    section_by_ticker: dict[str, Counter[str]] = defaultdict(Counter)
-    ocr_examples: dict[str, str] = {}
-    path_by_stamp: dict[str, Path] = {}
 
     for i, sec in enumerate(times):
         stamp = stamp_name(sec)
@@ -614,264 +784,253 @@ def extract_watchlist(
         try:
             if force or not jpg.exists() or jpg.stat().st_size < 2000:
                 extract_frame(video_path, sec, jpg)
-            path_by_stamp[stamp] = jpg
-            # Screener: OCR full frame + left Symbol-column crop (stricter geometry)
+            # Always produce right-panel *_wl crop for sidebar OCR
+            wl = frames_root / f"{stamp}_wl.jpg"
+            if force and wl.exists():
+                wl.unlink()
+            crop_watchlist_panel(jpg, wl)
+
+            side = detect_sidebar_from_image(jpg)
+            if wl.exists() and (not side.get("symbols") or side.get("weak")):
+                side2 = detect_sidebar_from_image(wl)
+                if len(side2.get("symbols") or []) >= len(side.get("symbols") or []):
+                    side = side2
+            engine = str(side.get("engine") or engine)
+
             analysis = analyze_frame_ocr(jpg)
             if mode == "screener":
                 col = frames_root / f"{stamp}_symcol.jpg"
-                if force and col.exists():
-                    col.unlink()
                 crop_symbol_column(jpg, col)
                 if col.exists():
-                    col_analysis = analyze_frame_ocr(col)
-                    # Prefer column crop when it yields more allowlisted symbols
-                    if len(col_analysis.get("table_symbols") or []) >= len(
-                        analysis.get("table_symbols") or []
-                    ) and float(col_analysis.get("score") or 0) >= float(analysis.get("score") or 0) * 0.8:
-                        analysis = col_analysis
-                        analysis["crop"] = f"/frames/{video_id}/screener/{col.name}"
-            if mode == "tail":
-                crop = frames_root / f"{stamp}_wl.jpg"
-                if force and crop.exists():
-                    crop.unlink()
-                crop_watchlist_panel(jpg, crop)
-                if crop.exists():
-                    crop_analysis = analyze_frame_ocr(crop)
-                    if float(crop_analysis.get("score") or 0) >= float(analysis.get("score") or 0):
-                        analysis = crop_analysis
-                        analysis["crop"] = f"/frames/{video_id}/tail/{crop.name}"
-            engine = str(analysis.get("engine") or engine)
-            layout = str(analysis.get("layout") or "empty")
-            table_syms = filter_symbols(list(analysis.get("table_symbols") or []))
-            detail_syms = filter_symbols(list(analysis.get("detail_symbols") or []))
-            syms = filter_symbols(list(analysis.get("symbols") or []))
-            sections = list(analysis.get("sections") or [])
-            prices = dict(analysis.get("prices") or {})
-            ocr_text = str(analysis.get("ocr") or "")
+                    col_a = analyze_frame_ocr(col)
+                    if len(col_a.get("table_symbols") or []) >= len(analysis.get("table_symbols") or []):
+                        analysis = col_a
+            for t in analysis.get("table_symbols") or []:
+                table_hits[t] += 1
 
-            if layout == "screener_table" and table_syms:
-                for t in table_syms:
-                    table_hits[t] += 1
-                    if t not in ocr_examples and ocr_text:
-                        ocr_examples[t] = ocr_text[:180]
-                    for sec_name in sections:
-                        section_by_ticker[t][sec_name] += 1
-            else:
-                for t in detail_syms or syms:
-                    weak_hits[t] += 1
-                    if t not in ocr_examples and ocr_text:
-                        ocr_examples[t] = ocr_text[:180]
-            for t, p in prices.items():
-                if is_valid_us_ticker(t):
-                    price_votes[t].append(p)
-
-            frame_rows.append(
-                {
-                    "t": format_ts(sec),
-                    "seconds": sec,
-                    "frame": f"/frames/{video_id}/{frames_root.name}/{jpg.name}",
-                    "local_path": str(jpg),
-                    "crop": analysis.get("crop"),
-                    "ocr": ocr_text[:400],
-                    "layout": layout,
-                    "score": analysis.get("score"),
-                    "tickers": syms,
-                    "table_symbols": table_syms,
-                    "detail_symbols": detail_syms,
-                    "raw_ocr_symbols": list(analysis.get("raw_ocr_symbols") or [])[:40],
-                    "sections": sections,
-                    "prices": prices,
-                }
-            )
+            row = {
+                "t": format_ts(sec),
+                "seconds": sec,
+                "frame": f"/frames/{video_id}/{frames_root.name}/{jpg.name}",
+                "local_path": str(jpg),
+                "wl_crop": str(wl) if wl.exists() else None,
+                "layout": analysis.get("layout"),
+                "score": analysis.get("score"),
+                "table_symbols": list(analysis.get("table_symbols") or []),
+                "sidebar": bool(side.get("sidebar")),
+                "sidebar_headers": list(side.get("headers") or []),
+                "sidebar_buckets": side.get("buckets") or _empty_emain_buckets(),
+                "sidebar_symbols": list(side.get("symbols") or []),
+                "list_name": side.get("list_name"),
+            }
+            frame_rows.append(row)
+            if side.get("sidebar") and (side.get("symbols") or side.get("headers")):
+                sidebar_candidates.append(row)
         except Exception as e:
             frame_rows.append({"t": format_ts(sec), "seconds": sec, "error": str(e)})
         if i % 3 == 0:
             note(step="extract_frames", status="running", done=i + 1, total=len(times), mode=mode)
 
-    def _row_score(row: dict[str, Any]) -> float:
-        if row.get("layout") != "screener_table":
-            return float(row.get("score") or 0) * 0.1
-        return float(row.get("score") or 0) + len(row.get("table_symbols") or [])
+    vod_date = resolve_vod_date(video_id, hint=upload_date)
+    buckets = _empty_emain_buckets()
+    source_tag = "none"
+    list_name = "E_Main"
+    vision_meta: dict[str, Any] = {"available": False, "symbols": [], "buckets": {}, "reads": []}
 
-    best = max(frame_rows, key=_row_score, default=None)
-    best_set = set((best or {}).get("table_symbols") or (best or {}).get("tickers") or [])
-
-    # --- Vision pass on top screener frames (preferred over RapidOCR junk) ---
-    vision_meta: dict[str, Any] = {"available": False, "symbols": [], "reads": []}
-    vision_syms: list[str] = []
-    if use_vision:
-        note(step="vision_screener", status="running")
-        from .screener_vision import read_best_screener_frames, vision_available
-
-        avail = vision_available()
-        ranked_frames = sorted(
-            [r for r in frame_rows if r.get("local_path") and not r.get("error")],
-            key=_row_score,
+    # --- Primary: merge OCR sidebar hits ---
+    if prefer_sidebar and sidebar_candidates:
+        note(step="sidebar_emain", status="running", candidates=len(sidebar_candidates))
+        ranked = sorted(
+            sidebar_candidates,
+            key=lambda r: (
+                len(r.get("sidebar_symbols") or []),
+                len(r.get("sidebar_headers") or []),
+            ),
             reverse=True,
         )
-        # Prefer frames that look like tables even if OCR allowlist was sparse
-        paths = [Path(r["local_path"]) for r in ranked_frames[: max(vision_frames, 5)]]
-        # Always include highest-score path first
-        if best and best.get("local_path"):
-            bp = Path(best["local_path"])
-            paths = [bp] + [p for p in paths if p != bp]
-        paths = paths[:vision_frames]
-        if avail.get("ok") and paths:
-            vision_meta = read_best_screener_frames(paths, max_frames=vision_frames)
-            vision_syms = filter_symbols(
-                list(vision_meta.get("symbols") or []),
-                allow_unknown_long=True,
-            )
-            vision_meta["symbols"] = vision_syms
+        merged = merge_emain_buckets(*[r.get("sidebar_buckets") or {} for r in ranked[:8]])
+        if sum(len(v) for v in merged.values()) >= 3:
+            buckets = merged
+            source_tag = "sidebar_ocr"
+            list_name = next(
+                (r.get("list_name") for r in ranked if r.get("list_name")),
+                "E_Main",
+            ) or "E_Main"
+
+    # --- Vision sidebar assist ---
+    if use_vision and prefer_sidebar:
+        note(step="vision_sidebar", status="running")
+        from .screener_vision import read_sidebar_sections, vision_available
+
+        avail = vision_available()
+        ranked_paths = [
+            Path(r["wl_crop"] or r["local_path"])
+            for r in sorted(
+                [x for x in frame_rows if x.get("local_path") and not x.get("error")],
+                key=lambda r: len(r.get("sidebar_symbols") or []),
+                reverse=True,
+            )[: max(vision_frames, 3)]
+        ]
+        if avail.get("ok") and ranked_paths:
+            reads = []
+            vis_buckets = _empty_emain_buckets()
+            for p in ranked_paths[:vision_frames]:
+                if not p.exists():
+                    continue
+                result = read_sidebar_sections(p)
+                reads.append({"path": str(p), **result})
+                if result.get("sidebar"):
+                    vis_buckets = merge_emain_buckets(vis_buckets, result.get("buckets") or {})
+            vision_meta = {
+                "available": True,
+                "backend": avail.get("backend"),
+                "model": avail.get("model"),
+                "buckets": vis_buckets,
+                "symbols": (
+                    vis_buckets["INDEXES"]
+                    + vis_buckets["LONGS"]
+                    + vis_buckets["SHORTS"]
+                    + vis_buckets["FOCUS"]
+                    + vis_buckets["TRACKING"]
+                ),
+                "reads": reads,
+            }
+            # Prefer vision when it recovered a fuller E_Main than OCR
+            if sum(len(v) for v in vis_buckets.values()) > sum(len(v) for v in buckets.values()):
+                buckets = vis_buckets
+                source_tag = "sidebar_vision"
+            elif source_tag == "none" and sum(len(v) for v in vis_buckets.values()) >= 3:
+                buckets = vis_buckets
+                source_tag = "sidebar_vision"
         else:
             vision_meta = {
                 "available": bool(avail.get("ok")),
                 "backend": avail.get("backend"),
                 "model": avail.get("model"),
                 "symbols": [],
+                "buckets": _empty_emain_buckets(),
                 "reads": [],
                 "note": (
-                    "Vision skipped — set TUBEON_OPENAI_API_KEY (or "
-                    "TUBEON_VISION_OLLAMA_MODEL) for Symbol-column vision read"
+                    "Vision skipped — set TUBEON_OPENAI_API_KEY for E_Main sidebar read"
                 ),
             }
         note(
-            step="vision_screener",
+            step="vision_sidebar",
             status="done",
-            vision_symbols=len(vision_syms),
-            vision_backend=vision_meta.get("backend"),
+            vision_symbols=len(vision_meta.get("symbols") or []),
+            source=source_tag,
         )
+
+    # --- Secondary Potent path (explicit screener mode OR sidebar empty) ---
+    potent_symbols: list[str] = []
+    if mode == "screener" or (
+        prefer_sidebar and sum(len(v) for v in buckets.values()) < 3 and use_vision
+    ):
+        from .screener_vision import read_best_screener_frames, vision_available
+
+        avail = vision_available()
+        paths = [
+            Path(r["local_path"])
+            for r in frame_rows
+            if r.get("local_path") and r.get("layout") == "screener_table"
+        ][:vision_frames]
+        if not paths:
+            paths = [Path(r["local_path"]) for r in frame_rows if r.get("local_path")][:vision_frames]
+        if mode == "screener" and avail.get("ok") and paths:
+            pot = read_best_screener_frames(paths, max_frames=vision_frames)
+            potent_symbols = list(pot.get("symbols") or [])
+            vision_meta = {**vision_meta, "potent": pot}
+            if prefer_sidebar is False:
+                source_tag = "potent_vision"
+        elif mode == "screener":
+            potent_symbols = [s for s, _ in table_hits.most_common() if is_valid_us_ticker(s)]
+            source_tag = "potent_ocr"
+
+    symbols = (
+        buckets["INDEXES"]
+        + buckets["LONGS"]
+        + buckets["SHORTS"]
+        + buckets["FOCUS"]
+        + buckets["TRACKING"]
+    )
+    emain_ok = sum(len(v) for v in buckets.values()) >= 3 and prefer_sidebar
 
     items: list[dict[str, Any]] = []
-    # Prefer vision list when it found a real table (>=5). Else allowlisted OCR only.
-    if len(vision_syms) >= 5:
-        primary = list(vision_syms)
-        source_tag = "vision"
-        # Merge allowlisted OCR hits that also appear on table frames (extra confirmation)
-        for s in table_hits:
-            if s not in primary and is_valid_us_ticker(s):
-                primary.append(s)
-        all_syms = primary
-    else:
-        source_tag = "ocr_allowlist"
-        all_syms = [
-            s
-            for s in (set(table_hits) | {s for s, n in weak_hits.items() if n >= max(min_hits + 1, 3)})
-            if is_valid_us_ticker(s)
-        ]
-        if not all_syms and best_set:
-            all_syms = [s for s in best_set if is_valid_us_ticker(s)]
-        # Drop OCR-only junk that somehow slipped: require allowlist membership
-        all_syms = filter_symbols(list(all_syms), allow_unknown_long=False)
-
-    vision_set = set(vision_syms)
-    for sym in all_syms:
-        th = table_hits[sym]
-        wh = weak_hits[sym]
-        if source_tag != "vision":
-            if th <= 0 and (wh < max(min_hits, 3) or sym not in best_set):
-                # weak-only without vision: skip unless allowlisted short ticker in best
-                if not (is_valid_us_ticker(sym) and sym in best_set and wh >= 1):
-                    continue
-        sections = [s for s, _ in section_by_ticker[sym].most_common()]
-        prices = price_votes[sym]
-        price = None
-        if prices:
-            prices_sorted = sorted(prices)
-            price = prices_sorted[len(prices_sorted) // 2]
-        items.append(
-            {
-                "symbol": sym,
-                "hits": th,
-                "weak_hits": wh,
-                "known": is_valid_us_ticker(sym),
-                "sections": sections,
-                "price": price,
-                "tv": tv_symbol(sym),
-                "ocr_sample": ocr_examples.get(sym),
-                "in_best_frame": sym in best_set,
-                "in_vision": sym in vision_set,
-                "source": (
-                    "vision"
-                    if sym in vision_set
-                    else ("screener_table" if th else "detail_or_chrome")
-                ),
-            }
-        )
-
-    if source_tag == "vision":
-        # Preserve vision Symbol-column order
-        order = {s: i for i, s in enumerate(vision_syms)}
-        items.sort(key=lambda x: (order.get(x["symbol"], 10_000), x["symbol"]))
-    else:
-        items.sort(
-            key=lambda x: (
-                -int(x.get("in_best_frame") or 0),
-                -int(x.get("hits") or 0),
-                -int(x.get("weak_hits") or 0),
-                x["symbol"],
+    for sec, syms in buckets.items():
+        for sym in syms:
+            items.append(
+                {
+                    "symbol": sym,
+                    "section": sec,
+                    "tv": tv_symbol(sym),
+                    "known": is_valid_us_ticker(sym),
+                    "source": source_tag,
+                }
             )
+
+    if emain_ok:
+        tv_txt = format_emain_watchlist_txt(buckets)
+        strategy = (
+            "E_Main sidebar primary: INDEXES/LONGS/SHORTS/FOCUS/TRACKING → "
+            "one TV Upload file with short ###SECTION headers; "
+            f"watchlist name = Martin Luk {vod_date} E_Main"
         )
-    symbols = [x["symbol"] for x in items]
+    elif mode == "screener" and potent_symbols:
+        tv_txt = format_dated_watchlist_txt(
+            potent_symbols, date_iso=vod_date, video_id=video_id, view_name="Potent"
+        )
+        symbols = potent_symbols
+        strategy = "Potent/Leader secondary only (explicit screener mode)"
+        source_tag = source_tag or "potent"
+    else:
+        tv_txt = format_emain_watchlist_txt(buckets) if any(buckets.values()) else ""
+        strategy = (
+            "E_Main sidebar preferred but no sections found — "
+            "check frames / set TUBEON_OPENAI_API_KEY"
+        )
 
-    section_name = f"Martin Luk {video_id}"
-    tv_txt = format_watchlist_txt(symbols, section=section_name)
-
-    table_frames = sum(1 for r in frame_rows if r.get("layout") == "screener_table")
-    detail_frames = sum(1 for r in frame_rows if r.get("layout") == "detail_panel")
+    best_side = max(
+        sidebar_candidates,
+        key=lambda r: len(r.get("sidebar_symbols") or []),
+        default=None,
+    )
 
     report: dict[str, Any] = {
         "video_id": video_id,
+        "vod_date": vod_date,
+        "list_name": f"Martin Luk {vod_date} {list_name}",
         "mode": mode,
-        "strategy": (
-            "screener-aware: whole-VOD sample + left Symbol-column OCR filtered by "
-            "US allowlist (drops KK/A.M junk); prefer vision/LLM read of top "
-            "screener frames when configured; detail panels do not replace table"
-        ),
+        "strategy": strategy,
         "symbol_source": source_tag,
         "duration_sec": round(duration, 1),
-        "last_minutes": last_minutes,
-        "interval_sec": interval_sec,
         "ocr_engine": engine,
         "frame_count": len(frame_rows),
-        "table_frame_count": table_frames,
-        "detail_frame_count": detail_frames,
+        "sidebar_frame_count": len(sidebar_candidates),
         "symbol_count": len(symbols),
         "symbols": symbols,
+        "buckets": buckets,
+        "indexes": buckets["INDEXES"],
+        "longs": buckets["LONGS"],
+        "shorts": buckets["SHORTS"],
+        "focus": buckets["FOCUS"],
+        "tracking": buckets["TRACKING"],
+        "potent_secondary": potent_symbols,
         "items": items,
-        "vision": {
-            "available": vision_meta.get("available"),
-            "backend": vision_meta.get("backend"),
-            "model": vision_meta.get("model"),
-            "symbols": vision_syms,
-            "symbol_count": len(vision_syms),
-            "note": vision_meta.get("note"),
-            "reads": [
-                {
-                    "path": r.get("path"),
-                    "symbols": r.get("symbols"),
-                    "error": r.get("error"),
-                    "backend": r.get("backend"),
-                }
-                for r in (vision_meta.get("reads") or [])
-            ],
-        },
-        "best_frame": {
-            "t": (best or {}).get("t"),
-            "seconds": (best or {}).get("seconds"),
-            "frame": (best or {}).get("frame"),
-            "layout": (best or {}).get("layout"),
-            "score": (best or {}).get("score"),
-            "tickers": (best or {}).get("table_symbols") or (best or {}).get("tickers") or [],
-            "raw_ocr_symbols": (best or {}).get("raw_ocr_symbols") or [],
+        "vision": vision_meta,
+        "best_sidebar_frame": {
+            "t": (best_side or {}).get("t"),
+            "seconds": (best_side or {}).get("seconds"),
+            "frame": (best_side or {}).get("frame"),
+            "headers": (best_side or {}).get("sidebar_headers"),
+            "symbols": (best_side or {}).get("sidebar_symbols"),
         }
-        if best
+        if best_side
         else None,
         "frames": frame_rows,
         "tradingview_txt": tv_txt,
         "tradingview_note": (
-            "TradingView has no public watchlist API. Import via Watchlist name menu → "
-            "Upload list… (Essential+). File is comma-separated EXCHANGE:SYMBOL .txt."
+            f"Upload into watchlist named «Martin Luk {vod_date} E_Main». "
+            "File body uses short ###INDEXES/###LONGS/… sections. Essential+; no TV API."
         ),
     }
 
@@ -880,73 +1039,72 @@ def extract_watchlist(
     local_json.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     summary_json = SUMMARY_DIR / f"{video_id}.watchlist.json"
-    slim = {
-        k: report[k]
-        for k in (
-            "video_id",
-            "mode",
-            "strategy",
-            "symbol_source",
-            "duration_sec",
-            "last_minutes",
-            "interval_sec",
-            "ocr_engine",
-            "frame_count",
-            "table_frame_count",
-            "detail_frame_count",
-            "symbol_count",
-            "symbols",
-            "items",
-            "vision",
-            "best_frame",
-            "tradingview_txt",
-            "tradingview_note",
-        )
-        if k in report
-    }
+    slim_keys = (
+        "video_id",
+        "vod_date",
+        "list_name",
+        "mode",
+        "strategy",
+        "symbol_source",
+        "duration_sec",
+        "ocr_engine",
+        "frame_count",
+        "sidebar_frame_count",
+        "symbol_count",
+        "symbols",
+        "buckets",
+        "indexes",
+        "longs",
+        "shorts",
+        "focus",
+        "tracking",
+        "items",
+        "vision",
+        "best_sidebar_frame",
+        "tradingview_txt",
+        "tradingview_note",
+    )
+    slim = {k: report[k] for k in slim_keys if k in report}
     summary_json.write_text(json.dumps(slim, ensure_ascii=False, indent=2), encoding="utf-8")
 
     WATCHLIST_OUT_DIR.mkdir(parents=True, exist_ok=True)
-    tv_path = write_tradingview_txt(
-        WATCHLIST_OUT_DIR / f"{video_id}.txt",
-        symbols,
-        section=section_name,
-    )
+    if emain_ok or any(buckets.values()):
+        tv_path = write_tradingview_txt(
+            WATCHLIST_OUT_DIR / f"{video_id}.txt",
+            buckets=buckets,
+            date_iso=vod_date,
+            video_id=video_id,
+            list_name="E_Main",
+            emain=True,
+            also_dated_filename=True,
+        )
+    else:
+        tv_path = write_tradingview_txt(
+            WATCHLIST_OUT_DIR / f"{video_id}.txt",
+            symbols=potent_symbols or symbols,
+            date_iso=vod_date,
+            video_id=video_id,
+            view_name="Potent",
+            emain=False,
+            also_dated_filename=False,
+        )
+
     md_path = WATCHLIST_OUT_DIR / f"{video_id}.md"
     md_lines = [
-        f"# Martin Luk on-screen list — `{video_id}`",
+        f"# Martin Luk E_Main — `{video_id}`",
         "",
-        f"- Mode: **{mode}** ({report['strategy']})",
-        f"- Duration: {format_ts(duration)} | frames: {len(frame_rows)} "
-        f"(table={table_frames}, detail={detail_frames}) | OCR: {engine}",
-        f"- Symbols: **{len(symbols)}**",
+        f"- Watchlist name: **Martin Luk {vod_date} E_Main**",
+        f"- Mode: **{mode}** | Source: **{source_tag}** | OCR: {engine}",
+        f"- INDEXES {len(buckets['INDEXES'])} | LONGS {len(buckets['LONGS'])} | "
+        f"SHORTS {len(buckets['SHORTS'])} | FOCUS {len(buckets['FOCUS'])} | "
+        f"TRACKING {len(buckets['TRACKING'])}",
         "",
-        "## Tickers",
-        "",
-        "| Symbol | Table hits | Weak hits | Section | Price (OCR) | TradingView |",
-        "|---|---:|---:|---|---:|---|",
-    ]
-    for it in items:
-        secs = ", ".join(it.get("sections") or []) or "—"
-        price = it.get("price")
-        price_s = f"{price:g}" if isinstance(price, (int, float)) else "—"
-        md_lines.append(
-            f"| {it['symbol']} | {it['hits']} | {it.get('weak_hits') or 0} | "
-            f"{secs} | {price_s} | `{it['tv']}` |"
-        )
-    md_lines += [
-        "",
-        "## TradingView import",
-        "",
-        "1. Open TradingView → Watchlist panel → click the list name → **Upload list…**",
-        "2. Select the `.txt` file next to this markdown (same stem).",
-        "3. Requires Essential+; there is **no** public API to push watchlists.",
-        "",
-        "```",
-        tv_txt.strip(),
-        "```",
+        "## Sections",
         "",
     ]
+    for sec in ("INDEXES", "LONGS", "SHORTS", "FOCUS", "TRACKING"):
+        md_lines += [f"### {sec}", "", ", ".join(buckets[sec]) or "—", ""]
+    md_lines += ["## TradingView import", "", "```", tv_txt.strip(), "```", ""]
     md_path.write_text("\n".join(md_lines), encoding="utf-8")
 
     report["paths"] = {
@@ -960,9 +1118,7 @@ def extract_watchlist(
         status="done",
         mode=mode,
         symbol_count=len(symbols),
-        frame_count=len(frame_rows),
-        table_frame_count=table_frames,
-        ocr_engine=engine,
+        source=source_tag,
         tradingview_txt=str(tv_path),
     )
     return report

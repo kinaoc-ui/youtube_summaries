@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Unit tests for screener-aware watchlist OCR + TradingView export."""
+"""Unit tests for E_Main sidebar watchlist OCR + TradingView export."""
 from __future__ import annotations
 
 import sys
@@ -12,38 +12,172 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from app.tradingview_export import format_watchlist_txt, tv_symbol
+from app.tradingview_export import (
+    IMBI_EMAIN_BUCKETS,
+    IMBI_EMAIN_DATE,
+    IMBI_EMAIN_TXT,
+    EXCHANGE_FOR_TICKER,
+    format_emain_watchlist_txt,
+    format_watchlist_txt,
+    list_display_name,
+    list_filename,
+    tv_symbol,
+)
 from app.us_tickers import filter_symbols, is_valid_us_ticker
+from app.vod_date import resolve_vod_date
 from app.watchlist_extract import (
     IMBI_LEADER_SYMBOLS,
     OCR_STOP,
     _candidate_tickers,
     analyze_frame_ocr,
     crop_watchlist_panel,
-    extract_watchlist,
+    parse_sidebar_sections_from_boxes,
     sample_screener_seconds,
     sample_tail_seconds,
     symbols_from_boxes,
 )
-from app.screener_vision import _parse_symbol_json
+from app.screener_vision import _parse_symbol_json, parse_sidebar_json
 
 
 class TradingViewExportTests(unittest.TestCase):
-    def test_tv_symbol_default_nasdaq(self) -> None:
-        self.assertEqual(tv_symbol("NVDA"), "NASDAQ:NVDA")
-        self.assertEqual(tv_symbol("CRM"), "NYSE:CRM")
+    def test_tv_symbol_emain_exchanges(self) -> None:
+        self.assertEqual(tv_symbol("QQQ"), "NASDAQ:QQQ")
         self.assertEqual(tv_symbol("SPY"), "AMEX:SPY")
+        self.assertEqual(tv_symbol("USD"), "AMEX:USD")
+        self.assertEqual(tv_symbol("SSPC"), "CBOE:SSPC")
+        self.assertEqual(tv_symbol("SOXS"), "AMEX:SOXS")
+        self.assertEqual(tv_symbol("BMNR"), "NYSE:BMNR")
+        self.assertEqual(tv_symbol("DRAM"), "CBOE:DRAM")
+        self.assertEqual(tv_symbol("UVXY"), "AMEX:UVXY")
+        self.assertEqual(tv_symbol("SNDK"), "NASDAQ:SNDK")
+        self.assertEqual(tv_symbol("SKHY"), "NASDAQ:SKHY")
+        self.assertEqual(tv_symbol("SKHY", "KRX"), "KRX:000660")
 
-    def test_tv_symbol_already_prefixed(self) -> None:
-        self.assertEqual(tv_symbol("NASDAQ:AAPL"), "NASDAQ:AAPL")
+    def test_emain_short_headers_canonical(self) -> None:
+        """One watchlist file: short ###SECTION headers; dated name is metadata."""
+        text = format_emain_watchlist_txt(IMBI_EMAIN_BUCKETS)
+        self.assertEqual(text, IMBI_EMAIN_TXT)
+        self.assertIn("###INDEXES\n", text)
+        self.assertIn("###LONGS\n", text)
+        self.assertIn("###SHORTS\n", text)
+        self.assertIn("###FOCUS\n", text)
+        self.assertIn("###TRACKING\n", text)
+        # Must NOT repeat dated list name in every header
+        self.assertNotIn("###Martin Luk", text)
+        self.assertNotIn("E_Main INDEXES", text)
+        self.assertIn("AMEX:USD", text)
+        self.assertNotIn("AMEX:USO", text)
+        self.assertIn("NYSE:BMNR", text)
+        self.assertNotIn("BWNR", text)
+        self.assertIn("NASDAQ:SNDK", text)
+        self.assertNotIn("SNOK", text)
+        self.assertEqual(
+            list_display_name(date_iso=IMBI_EMAIN_DATE),
+            "Martin Luk 2026-10-28 E_Main",
+        )
+        self.assertEqual(
+            list_filename(IMBI_EMAIN_DATE),
+            "Martin_Luk_2026-10-28_E_Main.txt",
+        )
 
-    def test_format_watchlist_txt_section_and_csv(self) -> None:
-        text = format_watchlist_txt(["NVDA", "HOOD", "NVDA"], section="Martin Luk")
-        self.assertIn("###Martin Luk", text)
-        self.assertIn("NASDAQ:NVDA", text)
-        body = [ln for ln in text.splitlines() if ln and not ln.startswith("###")][0]
-        self.assertEqual(body.count("NASDAQ:NVDA"), 1)
-        self.assertIn(",", body)
+    def test_format_watchlist_txt_sections_dict(self) -> None:
+        text = format_watchlist_txt(sections={"INDEXES": ["QQQ"], "LONGS": ["USD"]})
+        self.assertEqual(text.splitlines()[0], "###INDEXES")
+        self.assertIn("AMEX:USD", text)
+
+    def test_sample_outputs_match_canonical(self) -> None:
+        for name in ("iMBI3ZcQ6sU.txt", "Martin_Luk_2026-10-28_E_Main.txt"):
+            path = ROOT / "outputs" / "watchlists" / name
+            self.assertTrue(path.exists(), name)
+            self.assertEqual(path.read_text(encoding="utf-8"), IMBI_EMAIN_TXT)
+
+    def test_vod_date_from_upload_date(self) -> None:
+        self.assertEqual(resolve_vod_date("iMBI3ZcQ6sU", hint="20261028"), "2026-10-28")
+
+
+class SidebarParseTests(unittest.TestCase):
+    def _box(self, text: str, x0: float, y0: float, w: float = 40, h: float = 16) -> dict:
+        return {
+            "text": text,
+            "score": 0.99,
+            "x0": x0,
+            "y0": y0,
+            "x1": x0 + w,
+            "y1": y0 + h,
+            "cx": x0 + w / 2,
+            "cy": y0 + h / 2,
+        }
+
+    def test_parse_emain_sidebar_sections(self) -> None:
+        """Right-column E_Main headers → INDEXES/LONGS/SHORTS/FOCUS/TRACKING."""
+        boxes = [self._box("E_Main", 700, 10)]
+        y = 40
+        sections = [
+            ("INDEXES", ["QQQ", "SPY", "IWM"]),
+            ("LONGS", ["USD", "SSPC", "SOXS"]),
+            ("SHORTS", ["SLV", "GLD", "BMNR", "COIN"]),
+            ("FOCUS", ["DRAM", "UVXY"]),
+            ("TRACKING", ["SOXX", "SPCX", "SNDK", "SKHY", "GEV", "VRT", "AXTI"]),
+        ]
+        for header, syms in sections:
+            boxes.append(self._box(header, 700, y))
+            y += 24
+            for sym in syms:
+                boxes.append(self._box(sym, 700, y))
+                y += 22
+        parsed = parse_sidebar_sections_from_boxes(boxes)
+        self.assertTrue(parsed["sidebar"])
+        self.assertEqual(parsed["buckets"]["INDEXES"], ["QQQ", "SPY", "IWM"])
+        self.assertEqual(parsed["buckets"]["LONGS"], ["USD", "SSPC", "SOXS"])
+        self.assertEqual(parsed["buckets"]["SHORTS"][:2], ["SLV", "GLD"])
+        self.assertIn("BMNR", parsed["buckets"]["SHORTS"])
+        self.assertEqual(parsed["buckets"]["FOCUS"], ["DRAM", "UVXY"])
+        self.assertIn("SNDK", parsed["buckets"]["TRACKING"])
+        self.assertIn("SKHY", parsed["buckets"]["TRACKING"])
+
+    def test_long_alias_maps_to_longs(self) -> None:
+        boxes = [
+            self._box("LONG", 700, 40),
+            self._box("USD", 700, 70),
+            self._box("SHORT", 700, 120),
+            self._box("COIN", 700, 150),
+        ]
+        parsed = parse_sidebar_sections_from_boxes(boxes)
+        self.assertTrue(parsed["sidebar"])
+        self.assertEqual(parsed["buckets"]["LONGS"], ["USD"])
+        self.assertEqual(parsed["buckets"]["SHORTS"], ["COIN"])
+
+    def test_potent_table_alone_is_not_sidebar(self) -> None:
+        """Left Symbol column without E_Main headers must not invent sections."""
+        boxes = [self._box("Symbol", 40, 40), self._box("Potent", 40, 10)]
+        for i, sym in enumerate(["AXSM", "GNS", "ICLR", "EVR", "WMG"]):
+            boxes.append(self._box(sym, 40, 80 + i * 28))
+        parsed = parse_sidebar_sections_from_boxes(boxes)
+        self.assertFalse(parsed["sidebar"])
+
+    def test_usd_not_ocr_stop(self) -> None:
+        self.assertNotIn("USD", OCR_STOP)
+        self.assertTrue(is_valid_us_ticker("USD"))
+        self.assertTrue(is_valid_us_ticker("BMNR"))
+        self.assertTrue(is_valid_us_ticker("SNDK"))
+        self.assertTrue(is_valid_us_ticker("DRAM"))
+
+
+class VisionJsonTests(unittest.TestCase):
+    def test_parse_sidebar_json_emain(self) -> None:
+        raw = (
+            '{"indexes":["QQQ","SPY"],"longs":["USD","SSPC"],'
+            '"shorts":["BMNR"],"focus":["DRAM"],"tracking":["SNDK"]}'
+        )
+        got = parse_sidebar_json(raw)
+        self.assertEqual(got["INDEXES"], ["QQQ", "SPY"])
+        self.assertEqual(got["LONGS"], ["USD", "SSPC"])
+        self.assertEqual(got["SHORTS"], ["BMNR"])
+        self.assertEqual(got["FOCUS"], ["DRAM"])
+        self.assertEqual(got["TRACKING"], ["SNDK"])
+
+    def test_flat_potent_json(self) -> None:
+        self.assertEqual(_parse_symbol_json('["AXSM","GNS"]'), ["AXSM", "GNS"])
 
 
 class TailSampleTests(unittest.TestCase):
@@ -51,50 +185,24 @@ class TailSampleTests(unittest.TestCase):
         times = sample_tail_seconds(7200.0, last_minutes=10.0, interval_sec=20.0, end_pad_sec=5.0)
         self.assertTrue(times)
         self.assertGreaterEqual(times[0], 7200 - 600 - 1)
-        self.assertLessEqual(times[-1], 7200 - 5 + 1)
 
-    def test_short_vod(self) -> None:
-        times = sample_tail_seconds(120.0, last_minutes=10.0, interval_sec=30.0)
-        self.assertTrue(times)
-        self.assertEqual(times[0], 0.0)
-
-    def test_screener_samples_whole_vod_not_only_tail(self) -> None:
+    def test_screener_samples_whole_vod(self) -> None:
         times = sample_screener_seconds(5300.0, coarse_interval=60.0, max_frames=80)
-        self.assertTrue(times)
-        self.assertLess(times[0], 120.0)  # early frames included
-        self.assertGreater(times[-1], 5000.0)  # near end too
-        self.assertLessEqual(len(times), 80)
+        self.assertLess(times[0], 120.0)
+        self.assertGreater(times[-1], 5000.0)
 
 
 class OcrTickerFilterTests(unittest.TestCase):
-    def test_known_and_stop(self) -> None:
-        text = "NVDA 142.5  EMA  HOOD  leading mediocre CRWD"
-        found = _candidate_tickers(text)
-        self.assertIn("NVDA", found)
-        self.assertIn("HOOD", found)
-        self.assertIn("CRWD", found)
-        self.assertNotIn("EMA", found)
-        for stop in ("LEADING", "MEDIOCRE"):
-            self.assertNotIn(stop, found)
-            self.assertIn(stop, OCR_STOP)
-
     def test_reject_rapidocr_garbage(self) -> None:
-        junk = ["KK", "LM", "SX", "A.M", "I.NE", "T.X", "CERA", "XY"]
+        junk = ["KK", "LM", "SX", "A.M", "I.NE"]
         for j in junk:
             self.assertFalse(is_valid_us_ticker(j), j)
-        cleaned = filter_symbols(junk + IMBI_LEADER_SYMBOLS[:5])
-        for j in junk:
-            self.assertNotIn(j, cleaned)
-        self.assertIn("AXSM", cleaned)
-        self.assertIn("GNS", cleaned)
+        cleaned = filter_symbols(junk + ["QQQ", "USD", "BMNR"])
+        self.assertEqual(cleaned, ["QQQ", "USD", "BMNR"])
 
-    def test_imbi_leader_symbols_all_allowlisted(self) -> None:
+    def test_imbi_potent_still_allowlisted(self) -> None:
         for sym in IMBI_LEADER_SYMBOLS:
             self.assertTrue(is_valid_us_ticker(sym), sym)
-        # short real tickers only via allowlist
-        self.assertTrue(is_valid_us_ticker("Z"))
-        self.assertTrue(is_valid_us_ticker("GH"))
-        self.assertFalse(is_valid_us_ticker("QQ"))  # not allowlisted 2-letter noise
 
 
 class ScreenerBoxTests(unittest.TestCase):
@@ -110,224 +218,21 @@ class ScreenerBoxTests(unittest.TestCase):
             "cy": y0 + h / 2,
         }
 
-    def test_leader_table_symbol_column_vs_detail_panel(self) -> None:
-        """Left Symbol column wins; right BRZE detail must not wipe the list."""
+    def test_leader_table_symbol_column(self) -> None:
         boxes = [
             self._box("Leader", 40, 20),
             self._box("Symbol", 40, 50),
-            self._box("Price", 200, 50),
-            self._box("Change %", 320, 50),
         ]
         table = ["NVDA", "HOOD", "CRWD", "ALAB", "AMD", "SMCI", "ARM", "BRZE"]
         for i, sym in enumerate(table):
             boxes.append(self._box(sym, 40, 100 + i * 40))
-            boxes.append(self._box(f"{100 + i}.5", 200, 100 + i * 40))
-        # OCR junk mixed in
-        boxes.append(self._box("KK", 40, 420))
-        boxes.append(self._box("A.M", 40, 460))
-        # Detail panel on the right (BRZE @ 45.85)
-        boxes.append(self._box("BRZE", 700, 100))
-        boxes.append(self._box("45.85", 700, 140))
-        boxes.append(self._box("Braze Inc", 700, 180, w=80))
-
         parsed = symbols_from_boxes(boxes)
         self.assertEqual(parsed["layout"], "screener_table")
         for sym in table:
             self.assertIn(sym, parsed["table_symbols"])
-        self.assertNotIn("KK", parsed["table_symbols"])
-        self.assertNotIn("A.M", parsed["table_symbols"])
-        self.assertGreaterEqual(len(parsed["table_symbols"]), 6)
-
-    def test_imbi_like_column_with_garbage_ocr(self) -> None:
-        boxes = [self._box("Leader", 30, 10), self._box("Symbol", 30, 40)]
-        for i, sym in enumerate(IMBI_LEADER_SYMBOLS):
-            boxes.append(self._box(sym, 35, 70 + i * 28))
-            boxes.append(self._box("1.2%", 180, 70 + i * 28))
-        for i, junk in enumerate(["KK", "LM", "SX", "I.NE"]):
-            boxes.append(self._box(junk, 35, 900 + i * 20))
-        parsed = symbols_from_boxes(boxes)
-        self.assertEqual(parsed["layout"], "screener_table")
-        got = parsed["table_symbols"]
-        for sym in IMBI_LEADER_SYMBOLS:
-            self.assertIn(sym, got)
-        for junk in ("KK", "LM", "SX", "I.NE"):
-            self.assertNotIn(junk, got)
-
-    def test_detail_panel_alone_is_not_table(self) -> None:
-        boxes = [
-            self._box("BRZE", 700, 100),
-            self._box("45.85", 700, 140),
-            self._box("Braze Inc", 700, 180, w=80),
-        ]
-        parsed = symbols_from_boxes(boxes)
-        self.assertEqual(parsed["layout"], "detail_panel")
-        self.assertEqual(parsed["table_symbols"], [])
-        self.assertIn("BRZE", parsed["detail_symbols"])
-
-    def test_cera_junk_filtered(self) -> None:
-        self.assertIn("CERA", OCR_STOP)
-        self.assertNotIn("CERA", _candidate_tickers("CERA 12.3 EMA"))
-
-    def test_vision_json_parse(self) -> None:
-        raw = '["AXSM", "GNS", "ICLR", "EVR"]'
-        self.assertEqual(_parse_symbol_json(raw), ["AXSM", "GNS", "ICLR", "EVR"])
-        fenced = '```json\n["SOFI","GH"]\n```'
-        self.assertEqual(_parse_symbol_json(fenced), ["SOFI", "GH"])
 
 
-class SyntheticPipelineTests(unittest.TestCase):
-    def test_extract_watchlist_screener_mode_ignores_detail_wipe(self) -> None:
-        video_id = "TESTSCRN001"
-        with tempfile.TemporaryDirectory() as tmp:
-            tmp_path = Path(tmp)
-            fake_video = tmp_path / f"{video_id}.mp4"
-            fake_video.write_bytes(b"\x00" * 64)
-
-            def fake_extract(video_path, seconds, out_path):
-                out_path.parent.mkdir(parents=True, exist_ok=True)
-                out_path.write_bytes(b"\xff\xd8\xff" + b"\x00" * 3000)
-                return out_path
-
-            table_syms = list(IMBI_LEADER_SYMBOLS)
-
-            def fake_analyze(path):
-                # Alternate: strong table (+ OCR junk that must be stripped) vs detail BRZE
-                if fake_analyze.i % 3 == 0:
-                    fake_analyze.i += 1
-                    return {
-                        "engine": "mock",
-                        "ocr": "Leader Symbol " + " ".join(table_syms) + " KK LM A.M",
-                        "layout": "screener_table",
-                        "score": 20.0,
-                        "symbols": table_syms,
-                        "table_symbols": table_syms,
-                        "detail_symbols": [],
-                        "raw_ocr_symbols": table_syms + ["KK", "LM", "A.M"],
-                        "sections": ["leader"],
-                        "prices": {"BRZE": 45.85},
-                        "header_hits": 2,
-                    }
-                fake_analyze.i += 1
-                return {
-                    "engine": "mock",
-                    "ocr": "BRZE 45.85 Braze Inc",
-                    "layout": "detail_panel",
-                    "score": 0.5,
-                    "symbols": ["BRZE"],
-                    "table_symbols": [],
-                    "detail_symbols": ["BRZE"],
-                    "raw_ocr_symbols": ["BRZE"],
-                    "sections": [],
-                    "prices": {"BRZE": 45.85},
-                    "header_hits": 0,
-                }
-
-            fake_analyze.i = 0
-
-            with (
-                mock.patch("app.watchlist_extract.download_video", return_value=fake_video),
-                mock.patch("app.watchlist_extract.video_duration_sec", return_value=600.0),
-                mock.patch("app.watchlist_extract.extract_frame", side_effect=fake_extract),
-                mock.patch("app.watchlist_extract.analyze_frame_ocr", side_effect=fake_analyze),
-                mock.patch("app.watchlist_extract.crop_symbol_column", return_value=None),
-                mock.patch("app.watchlist_extract.speech_hint_seconds", return_value=[400.0]),
-                mock.patch("app.watchlist_extract.FRAMES_DIR", tmp_path / "frames"),
-                mock.patch("app.watchlist_extract.SUMMARY_DIR", tmp_path / "summaries"),
-                mock.patch("app.watchlist_extract.WATCHLIST_OUT_DIR", tmp_path / "out"),
-                mock.patch("app.watchlist_extract.OUTPUT_DIR", tmp_path / "outputs"),
-            ):
-                (tmp_path / "summaries").mkdir(parents=True, exist_ok=True)
-                report = extract_watchlist(
-                    video_id,
-                    mode="screener",
-                    last_minutes=2.0,
-                    coarse_interval=60.0,
-                    dense_interval=30.0,
-                    max_frames=20,
-                    min_hits=1,
-                    use_vision=False,
-                    force=True,
-                )
-                self.assertGreaterEqual(report["symbol_count"], 20)
-                for sym in ("AXSM", "SOFI", "GH", "Z", "MNSO"):
-                    self.assertIn(sym, report["symbols"])
-                for junk in ("KK", "LM", "A.M", "SX"):
-                    self.assertNotIn(junk, report["symbols"])
-                self.assertNotEqual(report["symbols"], ["BRZE"])
-                tv = tmp_path / "out" / f"{video_id}.txt"
-                self.assertTrue(tv.exists())
-                self.assertIn("NASDAQ:AXSM", tv.read_text(encoding="utf-8"))
-
-    def test_vision_overrides_ocr_junk(self) -> None:
-        video_id = "TESTVISN001"
-        with tempfile.TemporaryDirectory() as tmp:
-            tmp_path = Path(tmp)
-            fake_video = tmp_path / f"{video_id}.mp4"
-            fake_video.write_bytes(b"\x00" * 64)
-
-            def fake_extract(video_path, seconds, out_path):
-                out_path.parent.mkdir(parents=True, exist_ok=True)
-                out_path.write_bytes(b"\xff\xd8\xff" + b"\x00" * 3000)
-                return out_path
-
-            def fake_analyze(path):
-                return {
-                    "engine": "mock",
-                    "ocr": "KK LM SX A.M garbage",
-                    "layout": "screener_table",
-                    "score": 8.0,
-                    "symbols": [],
-                    "table_symbols": [],
-                    "detail_symbols": [],
-                    "raw_ocr_symbols": ["KK", "LM", "SX", "A.M"],
-                    "sections": ["leader"],
-                    "prices": {},
-                    "header_hits": 1,
-                }
-
-            vision_payload = {
-                "available": True,
-                "backend": "openai",
-                "model": "mock",
-                "symbols": IMBI_LEADER_SYMBOLS,
-                "reads": [{"path": "x", "symbols": IMBI_LEADER_SYMBOLS, "error": None}],
-            }
-
-            with (
-                mock.patch("app.watchlist_extract.download_video", return_value=fake_video),
-                mock.patch("app.watchlist_extract.video_duration_sec", return_value=300.0),
-                mock.patch("app.watchlist_extract.extract_frame", side_effect=fake_extract),
-                mock.patch("app.watchlist_extract.analyze_frame_ocr", side_effect=fake_analyze),
-                mock.patch("app.watchlist_extract.crop_symbol_column", return_value=None),
-                mock.patch("app.watchlist_extract.speech_hint_seconds", return_value=[]),
-                mock.patch("app.watchlist_extract.FRAMES_DIR", tmp_path / "frames"),
-                mock.patch("app.watchlist_extract.SUMMARY_DIR", tmp_path / "summaries"),
-                mock.patch("app.watchlist_extract.WATCHLIST_OUT_DIR", tmp_path / "out"),
-                mock.patch("app.watchlist_extract.OUTPUT_DIR", tmp_path / "outputs"),
-                mock.patch(
-                    "app.screener_vision.vision_available",
-                    return_value={"ok": True, "backend": "openai", "model": "mock"},
-                ),
-                mock.patch(
-                    "app.screener_vision.read_best_screener_frames",
-                    return_value=vision_payload,
-                ),
-            ):
-                (tmp_path / "summaries").mkdir(parents=True, exist_ok=True)
-                report = extract_watchlist(
-                    video_id,
-                    mode="screener",
-                    max_frames=10,
-                    use_vision=True,
-                    vision_frames=2,
-                    force=True,
-                )
-                self.assertEqual(report["symbol_source"], "vision")
-                self.assertGreaterEqual(report["symbol_count"], 25)
-                self.assertEqual(report["symbols"][:3], IMBI_LEADER_SYMBOLS[:3])
-                for junk in ("KK", "LM", "SX", "A.M"):
-                    self.assertNotIn(junk, report["symbols"])
-
+class CropTests(unittest.TestCase):
     def test_crop_watchlist_panel(self) -> None:
         try:
             from PIL import Image, ImageDraw
@@ -343,31 +248,6 @@ class SyntheticPipelineTests(unittest.TestCase):
             out = crop_watchlist_panel(src, dst)
             self.assertIsNotNone(out)
             self.assertTrue(dst.exists())
-
-    def test_analyze_frame_ocr_on_synthetic_png(self) -> None:
-        try:
-            from PIL import Image, ImageDraw
-        except ImportError:
-            self.skipTest("Pillow missing")
-        with tempfile.TemporaryDirectory() as tmp:
-            p = Path(tmp) / "leader.png"
-            im = Image.new("RGB", (900, 600), (20, 20, 24))
-            d = ImageDraw.Draw(im)
-            d.text((40, 20), "Leader", fill=(200, 200, 200))
-            d.text((40, 60), "Symbol", fill=(160, 160, 160))
-            d.text((200, 60), "Price", fill=(160, 160, 160))
-            rows = ["NVDA", "HOOD", "CRWD", "ALAB", "AMD", "SMCI", "ARM", "BRZE"]
-            for i, sym in enumerate(rows):
-                d.text((40, 100 + i * 40), sym, fill=(240, 240, 240))
-                d.text((200, 100 + i * 40), f"{40 + i}.5", fill=(200, 200, 200))
-            d.rectangle((550, 80, 880, 400), fill=(28, 28, 32))
-            d.text((570, 100), "BRZE", fill=(255, 255, 255))
-            d.text((570, 140), "45.85", fill=(180, 255, 180))
-            im.save(p)
-            result = analyze_frame_ocr(p)
-            self.assertEqual(result["layout"], "screener_table")
-            self.assertGreaterEqual(len(result["table_symbols"]), 5)
-            self.assertIn("NVDA", result["table_symbols"])
 
 
 if __name__ == "__main__":

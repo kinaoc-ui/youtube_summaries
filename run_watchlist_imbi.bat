@@ -15,18 +15,20 @@ if not defined PYTHON_EXE (
   exit /b 1
 )
 
-echo [%date% %time%] watchlist screener OCR+vision: iMBI3ZcQ6sU
-echo Tip: set TUBEON_OPENAI_API_KEY for vision Symbol-column read (beats RapidOCR junk)
-"%PYTHON_EXE%" "%~dp0scripts\watchlist_job.py" iMBI3ZcQ6sU --mode screener --force --vision %*
+echo [%date% %time%] E_Main sidebar OCR+vision: iMBI3ZcQ6sU
+echo Tip: set TUBEON_OPENAI_API_KEY for vision E_Main sidebar read
+echo Watchlist name: Martin Luk 2026-10-28 E_Main
+"%PYTHON_EXE%" "%~dp0scripts\watchlist_job.py" iMBI3ZcQ6sU --mode auto --force --vision --upload-date 20261028 %*
 set "RC=%ERRORLEVEL%"
 if %RC% NEQ 0 (
-  echo Falling back to cached-frames reparse...
-  "%PYTHON_EXE%" "%~dp0scripts\watchlist_from_frames.py" iMBI3ZcQ6sU --vision
+  echo Falling back to cached-frames / screenshot reparse...
+  "%PYTHON_EXE%" "%~dp0scripts\watchlist_from_frames.py" iMBI3ZcQ6sU --frame watchlist-frames\e_main_sidebar.png --vision --upload-date 20261028
   set "RC=%ERRORLEVEL%"
 )
 echo.
 echo Outputs:
 echo   outputs\watchlists\iMBI3ZcQ6sU.txt
+echo   outputs\watchlists\Martin_Luk_2026-10-28_E_Main.txt
 echo   outputs\watchlists\iMBI3ZcQ6sU.md
 echo   data\summaries\iMBI3ZcQ6sU.watchlist.json
 echo [%date% %time%] exit %RC%
