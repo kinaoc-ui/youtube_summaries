@@ -15,6 +15,7 @@ data/asr_compare/
 data/asr_compare_jobs/
 data/whisper_jobs/
 data/vision_jobs/
+data/watchlist_jobs/
 data/pending/
 data/whisper_jobs/
 

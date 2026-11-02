@@ -19,6 +19,13 @@ class Settings(BaseSettings):
     openai_base_url: str = "https://api.openai.com/v1"
     openai_api_key: str = ""
     openai_model: str = "gpt-4o-mini"
+    # Vision model for screener Symbol-column reads (OpenAI-compatible)
+    vision_model: str = "gpt-4o-mini"
+    # Optional Ollama vision model e.g. llava / qwen2.5vl — empty = disabled
+    vision_ollama_model: str = ""
+    # Prefer vision on top screener frames when a backend is configured
+    watchlist_vision: bool = True
+    watchlist_vision_frames: int = 3
     chunk_seconds: int = 90
     host: str = "127.0.0.1"
     port: int = 8765
@@ -34,6 +41,15 @@ class Settings(BaseSettings):
     deepgram_api_key: str = ""
     deepgram_model: str = "nova-3"
     video_max_height: int = 360
+    # Netscape cookies.txt for yt-dlp when YouTube bot-checks cloud IPs
+    yt_cookies: str = ""
+    # Post-extract TradingView Desktop CDP upload (Windows local / NineEdge)
+    # set TUBEON_TV_UPLOAD=1 — calls screening/scripts/tv_upload_watchlist.js
+    tv_upload: bool = False
+    tv_screening_root: str = r"C:\Users\kinao\OneDrive\桌面\stock\screening"
+    tv_cdp_port: int = 9222
+    tv_node: str = ""
+    tv_auto_launch: bool = False
 
 
 settings = Settings()

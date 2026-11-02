@@ -34,6 +34,10 @@ STREAMS_URL = "https://www.youtube.com/@martinlukkt/streams"
 STATE_PATH = DATA_DIR / "martin_state.json"
 WHISPER_JOB_DIR = DATA_DIR / "whisper_jobs"
 COMPARE_JOB_DIR = DATA_DIR / "asr_compare_jobs"
+WATCHLIST_JOB_DIR = DATA_DIR / "watchlist_jobs"
+
+# Set False via --skip-watchlist so analyze_video / pending finish skip OCR jobs.
+_WATCHLIST_ENABLED = True
 
 
 def _log(msg: str) -> None:
@@ -102,21 +106,35 @@ def _win_job_flags() -> int:
     )
 
 
-def _start_job(script_name: str, video_id: str, status_dir: Path) -> None:
+def _start_job(
+    script_name: str,
+    video_id: str,
+    status_dir: Path,
+    *,
+    extra_args: list[str] | None = None,
+    meta: dict[str, Any] | None = None,
+) -> None:
     status_dir.mkdir(parents=True, exist_ok=True)
     status_path = status_dir / f"{video_id}.json"
+    payload = {
+        "video_id": video_id,
+        "status": "starting",
+        "step": "spawn",
+        "source": "martin_daily",
+    }
+    if meta:
+        payload.update(meta)
     status_path.write_text(
-        json.dumps(
-            {"video_id": video_id, "status": "starting", "step": "spawn", "source": "martin_daily"},
-            ensure_ascii=False,
-            indent=2,
-        ),
+        json.dumps(payload, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
     log_path = status_dir / f"{video_id}.log"
     log_f = open(log_path, "a", encoding="utf-8")  # noqa: SIM115
+    cmd = [sys.executable, str(ROOT / "scripts" / script_name), video_id]
+    if extra_args:
+        cmd.extend(extra_args)
     subprocess.Popen(
-        [sys.executable, str(ROOT / "scripts" / script_name), video_id],
+        cmd,
         cwd=str(ROOT),
         stdout=log_f,
         stderr=subprocess.STDOUT,
@@ -177,8 +195,58 @@ def _kick_asr_compare(video_id: str) -> None:
     _start_job("asr_compare_job.py", video_id, COMPARE_JOB_DIR)
 
 
-def analyze_video(video_id: str, title: str | None = None) -> str:
-    """Build speech summary; kick dual-ASR verify. Returns status tag."""
+def _kick_watchlist(
+    video_id: str,
+    *,
+    force: bool = False,
+    upload_date: str | None = None,
+) -> None:
+    """OCR/vision E_Main sidebar → TradingView Upload .txt (dated list name)."""
+    if not _WATCHLIST_ENABLED and not force:
+        return
+    st_path = WATCHLIST_JOB_DIR / f"{video_id}.json"
+    if not force and st_path.exists():
+        try:
+            st = json.loads(st_path.read_text(encoding="utf-8"))
+            if st.get("status") in {"running", "starting", "done"}:
+                _log(f"  watchlist already {st.get('status')}: {video_id}")
+                return
+        except json.JSONDecodeError:
+            pass
+    slim = SUMMARY_DIR / f"{video_id}.watchlist.json"
+    if not force and slim.exists():
+        _log(f"  watchlist summary exists: {video_id}")
+        return
+    # Primary: E_Main sidebar (auto). Potent screener is secondary-only.
+    extra: list[str] = ["--mode", "auto"]
+    from app.config import settings as _settings
+
+    if getattr(_settings, "watchlist_vision", True) and (
+        (_settings.openai_api_key or "").strip()
+        or (getattr(_settings, "vision_ollama_model", "") or "").strip()
+    ):
+        extra.append("--vision")
+    if upload_date:
+        extra.extend(["--upload-date", str(upload_date)])
+    if force:
+        extra.append("--force")
+    _log(f"  kick watchlist: {video_id} {' '.join(extra)}")
+    _start_job(
+        "watchlist_job.py",
+        video_id,
+        WATCHLIST_JOB_DIR,
+        extra_args=extra,
+        meta={"upload_date": upload_date} if upload_date else None,
+    )
+
+
+def analyze_video(
+    video_id: str,
+    title: str | None = None,
+    *,
+    upload_date: str | None = None,
+) -> str:
+    """Build speech summary; kick dual-ASR verify + classified watchlist. Returns status tag."""
     meta = fetch_video_meta(video_id)
     title = (title or meta.get("title") or video_id).strip()
     _log(f"Analyze {video_id} — {title}")
@@ -220,6 +288,7 @@ def analyze_video(video_id: str, title: str | None = None) -> str:
     )
     _log(f"  summary written → data/summaries/{video_id}.md")
     _kick_asr_compare(video_id)
+    _kick_watchlist(video_id, upload_date=upload_date)
     return "summarized"
 
 
@@ -245,8 +314,9 @@ def finish_pending_whisper(state: dict[str, Any]) -> None:
             still.append(video_id)
             continue
         if _summary_exists(video_id):
-            _log(f"pending {video_id}: summary already exists — kick compare if needed")
+            _log(f"pending {video_id}: summary already exists — kick compare/watchlist if needed")
             _kick_asr_compare(video_id)
+            _kick_watchlist(video_id)
             continue
         meta = fetch_video_meta(video_id)
         tag = analyze_video(video_id, title=str(meta.get("title") or video_id))
@@ -269,7 +339,20 @@ def main() -> int:
         default=[],
         help="Force-analyze this video id (can repeat)",
     )
+    p.add_argument(
+        "--watchlist-id",
+        action="append",
+        default=[],
+        help="Force-run on-screen watchlist OCR for this video id (can repeat)",
+    )
+    p.add_argument(
+        "--skip-watchlist",
+        action="store_true",
+        help="Do not spawn watchlist_job after analyze",
+    )
     args = p.parse_args()
+    global _WATCHLIST_ENABLED
+    _WATCHLIST_ENABLED = not bool(args.skip_watchlist)
     ensure_dirs()
     SUMMARY_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -295,9 +378,15 @@ def main() -> int:
             known.add(it["id"])
         state["known_ids"] = sorted(known)
         _save_state(state)
-        if args.bootstrap or not args.force_id:
+        if args.bootstrap or not (args.force_id or args.watchlist_id):
             _log("done (bootstrap)")
             return 0
+
+    for wid in args.watchlist_id:
+        try:
+            _kick_watchlist(wid, force=True)
+        except Exception as e:
+            _log(f"watchlist {wid} failed: {e}")
 
     finish_pending_whisper(state)
 
@@ -322,11 +411,16 @@ def main() -> int:
             vid = it["id"]
             try:
                 if _summary_exists(vid):
-                    _log(f"  {vid}: summary exists — mark known + kick compare")
+                    _log(f"  {vid}: summary exists — mark known + kick compare/watchlist")
                     _kick_asr_compare(vid)
+                    _kick_watchlist(vid, upload_date=it.get("upload_date") or None)
                     known.add(vid)
                     continue
-                tag = analyze_video(vid, title=it.get("title"))
+                tag = analyze_video(
+                    vid,
+                    title=it.get("title"),
+                    upload_date=it.get("upload_date") or None,
+                )
                 known.add(vid)
                 if tag == "whisper_started":
                     pw = set(state.get("pending_whisper") or [])

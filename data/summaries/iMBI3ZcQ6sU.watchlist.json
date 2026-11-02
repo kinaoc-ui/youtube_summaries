@@ -1,0 +1,42 @@
+{
+  "video_id": "iMBI3ZcQ6sU",
+  "title": "SOXX short | 28 Oct 2026",
+  "mode": "vision_verified_best_frame",
+  "symbol_source": "vision",
+  "best_frame": "data/frames/iMBI3ZcQ6sU/screener/1-18-32.jpg",
+  "symbol_count": 27,
+  "symbols": [
+    "AXSM",
+    "GNS",
+    "ICLR",
+    "EVR",
+    "WMG",
+    "TXG",
+    "BYON",
+    "TWST",
+    "TEM",
+    "PPG",
+    "CRL",
+    "FRO",
+    "ACN",
+    "PNT",
+    "REVV",
+    "MRNA",
+    "NTRA",
+    "HCA",
+    "ETSY",
+    "IQV",
+    "SOFI",
+    "GH",
+    "EXAS",
+    "RBRK",
+    "AKAM",
+    "Z",
+    "MNSO"
+  ],
+  "detail_panel": [
+    "BRZE"
+  ],
+  "tradingview_txt": "###Martin Luk iMBI3ZcQ6sU Leader\nNASDAQ:AXSM,NYSE:GNS,NASDAQ:ICLR,NYSE:EVR,NASDAQ:WMG,NASDAQ:TXG,NYSE:BYON,NASDAQ:TWST,NASDAQ:TEM,NYSE:PPG,NYSE:CRL,NYSE:FRO,NYSE:ACN,NASDAQ:PNT,NASDAQ:REVV,NASDAQ:MRNA,NASDAQ:NTRA,NYSE:HCA,NASDAQ:ETSY,NYSE:IQV,NASDAQ:SOFI,NASDAQ:GH,NASDAQ:EXAS,NYSE:RBRK,NASDAQ:AKAM,NASDAQ:Z,NYSE:MNSO\n",
+  "note": "Symbol column from vision read of Leader screener; RapidOCR junk discarded. Pipeline now prefer vision + US allowlist."
+}

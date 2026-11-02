@@ -30,6 +30,71 @@ python -m app.cli "https://www.youtube.com/watch?v=ufN4u_ncWZg" --provider offli
 python -m app.cli "URL" --provider ollama --title "Martin Luk"
 ```
 
+## Martin on-screen watchlist → TradingView
+
+Martin 嘅 **主清單** 係 chart 右欄 **E_Main**（`INDEXES` / `LONGS` / `SHORTS` / `FOCUS` / `TRACKING`），唔係 Potent/Leader screener 表。Potent 只係 optional secondary（`--mode screener`）。
+
+**策略（default `--mode auto`）：**
+1. 截 chart frames + 右欄 `*_wl.jpg` crop
+2. OCR/vision 讀 E_Main section headers → 分桶
+3. 一個 Upload `.txt`：短 `###INDEXES` / `###LONGS` / …（dated 名喺 filename / TV list name，唔重複寫入每個 header）
+4. Watchlist 名：`Martin Luk YYYY-MM-DD E_Main`（用 VOD `upload_date`，唔用 run date）
+5. 需要 vision 時設 `TUBEON_OPENAI_API_KEY`（或 `TUBEON_VISION_OLLAMA_MODEL`）
+
+```bash
+set TUBEON_OPENAI_API_KEY=sk-...
+python scripts/watchlist_job.py <videoId> --mode auto --force --vision --upload-date 20261028
+
+# iMBI3ZcQ6sU sample
+cd /d "C:\Users\kinao\OneDrive\桌面\stock\youtube"
+run_watchlist_imbi.bat
+python scripts\watchlist_from_frames.py iMBI3ZcQ6sU --frame watchlist-frames\e_main_sidebar.png --vision
+
+# Potent secondary only
+python scripts/watchlist_job.py <videoId> --mode screener
+
+# Martin daily 自動 kick E_Main
+python scripts/martin_daily.py
+python scripts/martin_daily.py --watchlist-id <videoId>
+```
+
+若 YouTube 報 bot check，設 Netscape cookies：
+
+```bat
+set TUBEON_YT_COOKIES=C:\path\to\cookies.txt
+```
+
+輸出：
+
+| Path | 用途 |
+|---|---|
+| `data/summaries/<id>.watchlist.json` | 符號清單（可 push / 電話 UI） |
+| `outputs/watchlists/<id>.txt` | TradingView **Upload list…** |
+| `outputs/watchlists/Martin_Luk_<date>_E_Main.txt` | 同內容、dated 檔名 |
+| `outputs/watchlists/<id>.md` | 可讀表 |
+| `data/frames/<id>/tail/*_wl.jpg` | 右欄 crop（gitignore） |
+
+**Import 去 TV：** 開／揀清單名 `Martin Luk YYYY-MM-DD E_Main` → **Upload list…** → 揀 `.txt`。**無公開 TradingView API**；Essential+ 先有 Upload。
+
+### Windows CDP auto-upload (optional)
+
+After extract, `watchlist_job` can push the dated file via NineEdge CDP (keeps `###` sections). Does **not** use flat MCP `watchlist_add`.
+
+```bat
+set TUBEON_TV_UPLOAD=1
+set TUBEON_TV_SCREENING_ROOT=C:\Users\kinao\OneDrive\桌面\stock\screening
+set TUBEON_TV_CDP_PORT=9222
+:: either launch first:
+C:\Users\kinao\OneDrive\桌面\stock\screening\launch_tv_debug.bat
+:: or auto-spawn:
+set TUBEON_TV_AUTO_LAUNCH=1
+
+python scripts\watchlist_job.py iMBI3ZcQ6sU --mode auto --vision --upload-date 20261028
+:: → node scripts\tv_upload_watchlist.js C:\...\outputs\watchlists\Martin_Luk_2026-10-28_E_Main.txt
+```
+
+`martin_daily` / `run_martin_daily.bat` needs no separate upload step — it kicks `watchlist_job`, which hooks CDP when `TUBEON_TV_UPLOAD=1`. Status JSON fields: `tv_upload_ok`, `tv_upload`, `listStem`.
+
 ## Summarizer modes
 
 | Provider | Env / setting | Notes |

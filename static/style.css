@@ -267,6 +267,37 @@ a.tk-jump:hover { filter: brightness(1.15); outline: 1px solid var(--accent); }
   border-color: var(--ok, #3a8);
 }
 .compare-box b { color: var(--text, #eee); }
+
+.watchlist-box {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border, #333);
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+  background: transparent;
+  max-height: 220px;
+  overflow: auto;
+}
+.watchlist-box.ok { border-color: var(--ok, #3a8); }
+.watchlist-box.warn { border-color: var(--warn, #c9a227); }
+.watchlist-box b { color: var(--text, #eee); }
+.watchlist-box .syms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  margin-top: 6px;
+}
+.watchlist-box .sym {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px;
+  padding: 1px 6px;
+  border: 1px solid var(--line, #333);
+  border-radius: 4px;
+  color: var(--text, #ddd);
+}
+.watchlist-box a { color: var(--accent, #7eb8ff); }
 .compare-box ul { margin: 6px 0 0; padding-left: 18px; }
 .compare-box li code { font-size: 11px; }
 .compare-box.hang { border-color: var(--danger); }
