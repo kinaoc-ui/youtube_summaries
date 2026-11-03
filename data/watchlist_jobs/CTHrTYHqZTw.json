@@ -1,0 +1,60 @@
+{
+  "video_id": "CTHrTYHqZTw",
+  "status": "done",
+  "step": "done",
+  "source": "sidebar_ocr",
+  "upload_date": "NA",
+  "mode": "auto",
+  "last_minutes": 10.0,
+  "interval_sec": 20.0,
+  "duration_sec": 8618.0,
+  "frame_targets": 90,
+  "done": 88,
+  "total": 90,
+  "candidates": 2,
+  "vision_symbols": [],
+  "symbol_count": 6,
+  "tradingview_txt": "C:\\Users\\kinao\\OneDrive\\桌面\\stock\\youtube\\outputs\\watchlists\\Martin_Luk_2026-11-02_E_Main.txt",
+  "vod_date": "2026-11-02",
+  "list_name": "Martin Luk 2026-11-02 E_Main",
+  "symbol_source": "sidebar_ocr",
+  "frame_count": 90,
+  "sidebar_frame_count": 2,
+  "indexes": 0,
+  "longs": 6,
+  "shorts": 0,
+  "focus": 0,
+  "tracking": 0,
+  "ocr_engine": "rapidocr",
+  "symbols": [
+    "LAAA",
+    "SJES",
+    "A",
+    "LAL",
+    "LAA",
+    "D"
+  ],
+  "buckets": {
+    "INDEXES": [],
+    "LONGS": [
+      "LAAA",
+      "SJES",
+      "A",
+      "LAL",
+      "LAA",
+      "D"
+    ],
+    "SHORTS": [],
+    "FOCUS": [],
+    "TRACKING": []
+  },
+  "tv_upload_ok": false,
+  "tv_upload": {
+    "ok": false,
+    "skipped": true,
+    "reason": "TUBEON_TV_UPLOAD not enabled",
+    "txt": "C:\\Users\\kinao\\OneDrive\\桌面\\stock\\youtube\\outputs\\watchlists\\Martin_Luk_2026-11-02_E_Main.txt",
+    "listStem": "Martin_Luk_2026-11-02_E_Main"
+  },
+  "listStem": "Martin_Luk_2026-11-02_E_Main"
+}
