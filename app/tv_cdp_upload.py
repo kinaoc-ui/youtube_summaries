@@ -43,7 +43,11 @@ LAUNCH_BAT = "launch_tv_debug.bat"
 
 def tv_upload_enabled() -> bool:
     """True when TUBEON_TV_UPLOAD is truthy (1/true/yes/on)."""
-    raw = (getattr(settings, "tv_upload", None) or os.environ.get("TUBEON_TV_UPLOAD") or "").strip()
+    raw = (
+        getattr(settings, "tv_upload", None)
+        or os.environ.get("TUBEON_TV_UPLOAD")
+        or ""
+    )
     if isinstance(raw, bool):
         return raw
     return str(raw).strip().lower() in {"1", "true", "yes", "on"}
