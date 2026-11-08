@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from app.auto_summary import build_and_save_summary  # noqa: E402
-from app.config import DATA_DIR, SUMMARY_DIR, ensure_dirs, settings  # noqa: E402
+from app.config import DATA_DIR, SUMMARY_DIR, OUTPUT_DIR, ensure_dirs, settings  # noqa: E402
 from app.meta import fetch_video_meta  # noqa: E402
 from app.transcript import (  # noqa: E402
     CaptionsDisabledError,
@@ -208,11 +208,28 @@ def _kick_watchlist(
     if not force and st_path.exists():
         try:
             st = json.loads(st_path.read_text(encoding="utf-8"))
-            if st.get("status") in {"running", "starting", "done"}:
-                _log(f"  watchlist already {st.get('status')}: {video_id}")
+            status = st.get("status")
+            # Stale running/starting (crash / interrupted) — allow retry after 20 min
+            if status in {"running", "starting"}:
+                age = time.time() - st_path.stat().st_mtime
+                if age < 20 * 60:
+                    _log(f"  watchlist already {status}: {video_id}")
+                    return
+                _log(f"  watchlist stale {status} ({int(age)}s) — retry: {video_id}")
+            elif status == "done":
+                _log(f"  watchlist already done: {video_id}")
                 return
         except json.JSONDecodeError:
             pass
+    # If dated E_Main already on disk, skip (unless force)
+    wl_dir = OUTPUT_DIR / "watchlists"
+    if not force and wl_dir.is_dir():
+        has_emain = (wl_dir / f"{video_id}.E_Main.txt").exists() or any(
+            wl_dir.glob(f"*{video_id}*E_Main*.txt")
+        )
+        if has_emain:
+            _log(f"  E_Main txt exists: {video_id}")
+            return
     slim = SUMMARY_DIR / f"{video_id}.watchlist.json"
     if not force and slim.exists():
         _log(f"  watchlist summary exists: {video_id}")
@@ -407,6 +424,37 @@ def main() -> int:
         _log("no new streams")
     else:
         _log(f"{len(new_items)} new stream(s)")
+
+    # Local auto-backfill: playlist recent + has digest but no E_Main → OCR/TV without bot
+    for it in items[:8]:
+        vid = it["id"]
+        wl_dir = OUTPUT_DIR / "watchlists"
+        has = False
+        if wl_dir.is_dir():
+            has = (wl_dir / f"{vid}.E_Main.txt").exists() or any(
+                wl_dir.glob(f"*{vid}*E_Main*.txt")
+            )
+            ud = (it.get("upload_date") or "").strip()
+            if len(ud) == 8 and ud.isdigit():
+                dated = wl_dir / f"Martin_Luk_{ud[:4]}-{ud[4:6]}-{ud[6:8]}_E_Main.txt"
+                if dated.exists():
+                    has = True
+        jobp = WATCHLIST_JOB_DIR / f"{vid}.json"
+        job_done = False
+        if jobp.exists():
+            try:
+                job_done = json.loads(jobp.read_text(encoding="utf-8")).get("status") == "done"
+            except json.JSONDecodeError:
+                pass
+        if has or job_done:
+            continue
+        if not _summary_exists(vid):
+            continue
+        _log(f"backfill E_Main (local auto): {vid}")
+        try:
+            _kick_watchlist(vid, upload_date=it.get("upload_date") or None)
+        except Exception as e:
+            _log(f"backfill {vid} failed: {e}")
         for it in new_items:
             vid = it["id"]
             try:

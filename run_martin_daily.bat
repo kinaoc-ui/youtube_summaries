@@ -30,4 +30,6 @@ echo [%date% %time%] Martin Luk daily check...
 "%PYTHON_EXE%" "%~dp0scripts\martin_daily.py" %*
 set "RC=%ERRORLEVEL%"
 echo [%date% %time%] exit %RC%
-exit /b %RC%
+exit /b %RC%
+
+if not defined MARTIN_DAILY_NOPAUSE pause
