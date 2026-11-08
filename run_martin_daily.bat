@@ -2,6 +2,12 @@
 setlocal EnableExtensions
 cd /d "%~dp0"
 
+REM Ensure TV auto-upload even if .env has BOM / missing keys
+if not defined TUBEON_TV_UPLOAD set "TUBEON_TV_UPLOAD=1"
+if not defined TUBEON_TV_SCREENING_ROOT set "TUBEON_TV_SCREENING_ROOT=%~dp0..\screening"
+if not defined TUBEON_TV_CDP_PORT set "TUBEON_TV_CDP_PORT=9222"
+if not defined TUBEON_TV_AUTO_LAUNCH set "TUBEON_TV_AUTO_LAUNCH=1"
+
 set "PYTHON_EXE="
 where py >nul 2>&1 && set "PYTHON_EXE=py"
 if not defined PYTHON_EXE (
