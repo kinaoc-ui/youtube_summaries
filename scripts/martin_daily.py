@@ -96,12 +96,14 @@ def _summary_exists(video_id: str) -> bool:
 
 
 def _win_job_flags() -> int:
-    """Survive Task Scheduler killing children when the parent .bat exits."""
+    """Background jobs: no flashing cmd windows; survive Task Scheduler parent exit."""
     if sys.platform != "win32":
         return 0
+    # CREATE_NO_WINDOW hides console; keep process group + breakaway for scheduler
+    CREATE_NO_WINDOW = 0x08000000
     return (
         getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)
-        | getattr(subprocess, "DETACHED_PROCESS", 0)
+        | CREATE_NO_WINDOW
         | getattr(subprocess, "CREATE_BREAKAWAY_FROM_JOB", 0x01000000)
     )
 
