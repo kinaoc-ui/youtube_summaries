@@ -426,6 +426,7 @@ def main() -> int:
         _log(f"{len(new_items)} new stream(s)")
 
     # Local auto-backfill: playlist recent + has digest but no E_Main → OCR/TV without bot
+    missing_budget = 2  # local: only newest few without E_Main per run
     for it in items[:8]:
         vid = it["id"]
         wl_dir = OUTPUT_DIR / "watchlists"
@@ -450,6 +451,9 @@ def main() -> int:
             continue
         if not _summary_exists(vid):
             continue
+        if missing_budget <= 0:
+            break
+        missing_budget -= 1
         _log(f"backfill E_Main (local auto): {vid}")
         try:
             _kick_watchlist(vid, upload_date=it.get("upload_date") or None)
