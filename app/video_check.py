@@ -63,7 +63,11 @@ def ffmpeg_bin() -> str:
 
 
 def download_video(video_id: str, max_height: int | None = None) -> Path:
-    """Download a small video (default 360p) for frame grabs — not just audio."""
+    """Download a small video (default 360p) for frame grabs — not just audio.
+
+    Optional: set env ``TUBEON_YT_COOKIES`` to a Netscape cookies.txt path when
+    YouTube returns "Sign in to confirm you’re not a bot" (common on cloud IPs).
+    """
     ensure_dirs()
     VIDEO_DIR.mkdir(parents=True, exist_ok=True)
     dest = VIDEO_DIR / f"{video_id}.mp4"
@@ -76,7 +80,9 @@ def download_video(video_id: str, max_height: int | None = None) -> Path:
     except ImportError as e:
         raise RuntimeError("yt-dlp not installed") from e
 
-    opts = {
+    import os
+
+    opts: dict[str, Any] = {
         "format": (
             f"bestvideo[height<={max_height}][ext=mp4]"
             f"/bestvideo[height<={max_height}]"
@@ -90,6 +96,9 @@ def download_video(video_id: str, max_height: int | None = None) -> Path:
         "noprogress": False,
         "overwrites": False,
     }
+    cookies = (os.environ.get("TUBEON_YT_COOKIES") or getattr(settings, "yt_cookies", "") or "").strip()
+    if cookies:
+        opts["cookiefile"] = cookies
     with YoutubeDL(opts) as ydl:
         ydl.download([url])
     if dest.exists():
@@ -158,6 +167,42 @@ def _ocr_rapidocr(image_path: Path) -> str:
     return " ".join(str(row[1]) for row in result if len(row) > 1)
 
 
+def _ocr_rapidocr_boxes(image_path: Path) -> list[dict[str, Any]]:
+    """Return RapidOCR rows as {text,score,x0,y0,x1,y1,cx,cy}."""
+    from rapidocr_onnxruntime import RapidOCR
+
+    engine = RapidOCR()
+    result, _ = engine(str(image_path))
+    out: list[dict[str, Any]] = []
+    for row in result or []:
+        if len(row) < 2:
+            continue
+        box, text = row[0], str(row[1] or "").strip()
+        if not text:
+            continue
+        score = float(row[2]) if len(row) > 2 else 0.0
+        try:
+            xs = [float(pt[0]) for pt in box]
+            ys = [float(pt[1]) for pt in box]
+        except (TypeError, ValueError, IndexError):
+            continue
+        x0, x1 = min(xs), max(xs)
+        y0, y1 = min(ys), max(ys)
+        out.append(
+            {
+                "text": text,
+                "score": score,
+                "x0": x0,
+                "y0": y0,
+                "x1": x1,
+                "y1": y1,
+                "cx": (x0 + x1) / 2.0,
+                "cy": (y0 + y1) / 2.0,
+            }
+        )
+    return out
+
+
 def _ocr_tesseract(image_path: Path) -> str:
     import pytesseract
     from PIL import Image
@@ -177,6 +222,34 @@ def ocr_image(image_path: Path) -> tuple[str, str]:
     except Exception:
         pass
     return "", "none"
+
+
+def ocr_boxes(image_path: Path) -> tuple[list[dict[str, Any]], str]:
+    """Return (boxes, engine_name). Empty boxes if engine has no geometry."""
+    try:
+        boxes = _ocr_rapidocr_boxes(image_path)
+        return boxes, "rapidocr"
+    except Exception:
+        pass
+    text, engine = ocr_image(image_path)
+    if not text:
+        return [], engine
+    # Fallback: no geometry — treat whole line as one synthetic box
+    return (
+        [
+            {
+                "text": text,
+                "score": 0.0,
+                "x0": 0.0,
+                "y0": 0.0,
+                "x1": 1.0,
+                "y1": 1.0,
+                "cx": 0.5,
+                "cy": 0.5,
+            }
+        ],
+        engine,
+    )
 
 
 def tickers_from_text(text: str) -> list[str]:

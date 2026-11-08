@@ -1,0 +1,22 @@
+iMBI3ZcQ6sU — E_Main (Martin primary list)
+==========================================
+
+Canonical right-sidebar E_Main (Luk), VOD date 2026-10-28:
+
+  INDEXES:  QQQ SPY IWM
+  LONGS:    USD SSPC SOXS          (USD = Ultra Semis / AMEX)
+  SHORTS:   SLV GLD BMNR COIN
+  FOCUS:    DRAM UVXY
+  TRACKING: SOXX SPCX SNDK SKHY GEV VRT AXTI
+
+TV watchlist name:  Martin Luk 2026-10-28 E_Main
+File body: short ###INDEXES / ###LONGS / … sections (one file)
+
+Outputs:
+  outputs\watchlists\iMBI3ZcQ6sU.txt
+  outputs\watchlists\Martin_Luk_2026-10-28_E_Main.txt
+
+Daily / job (prefers E_Main sidebar, not Potent):
+  set TUBEON_OPENAI_API_KEY=sk-...
+  run_martin_daily.bat
+  python scripts\watchlist_job.py iMBI3ZcQ6sU --mode auto --vision --upload-date 20261028

@@ -36,6 +36,8 @@ VISION_JOB_DIR = DATA_DIR / "vision_jobs"
 VISION_JOB_DIR.mkdir(parents=True, exist_ok=True)
 COMPARE_JOB_DIR = DATA_DIR / "asr_compare_jobs"
 COMPARE_JOB_DIR.mkdir(parents=True, exist_ok=True)
+WATCHLIST_JOB_DIR = DATA_DIR / "watchlist_jobs"
+WATCHLIST_JOB_DIR.mkdir(parents=True, exist_ok=True)
 FRAMES_DIR = DATA_DIR / "frames"
 FRAMES_DIR.mkdir(parents=True, exist_ok=True)
 STATIC = ROOT / "static"
@@ -512,6 +514,114 @@ def api_vision_status(video_id: str) -> dict[str, Any]:
         "by_t": by_t,
         "items": items,
     }
+
+
+def _watchlist_status(video_id: str) -> dict[str, Any] | None:
+    path = WATCHLIST_JOB_DIR / f"{video_id}.json"
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def _start_watchlist_job(
+    video_id: str,
+    *,
+    force: bool = False,
+    mode: str = "screener",
+) -> dict[str, Any]:
+    st = _watchlist_status(video_id)
+    if not force and st and st.get("status") in {"running", "starting"}:
+        return st
+    job_script = ROOT / "scripts" / "watchlist_job.py"
+    WATCHLIST_JOB_DIR.mkdir(parents=True, exist_ok=True)
+    status_path = WATCHLIST_JOB_DIR / f"{video_id}.json"
+    status_path.write_text(
+        json.dumps(
+            {
+                "video_id": video_id,
+                "status": "starting",
+                "step": "spawn",
+                "mode": mode,
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+    )
+    log_path = WATCHLIST_JOB_DIR / f"{video_id}.log"
+    log_f = open(log_path, "a", encoding="utf-8")  # noqa: SIM115
+    cmd = [sys.executable, str(job_script), video_id, "--mode", mode or "screener"]
+    if force:
+        cmd.append("--force")
+    subprocess.Popen(
+        cmd,
+        cwd=str(ROOT),
+        stdout=log_f,
+        stderr=subprocess.STDOUT,
+        creationflags=getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0),
+    )
+    return {"status": "starting", "video_id": video_id, "mode": mode}
+
+
+@app.post("/api/watchlist/{video_id}")
+def api_watchlist_start(
+    video_id: str,
+    force: bool = False,
+    mode: str = "screener",
+) -> dict[str, Any]:
+    """OCR Leader/screener tables on the VOD for Martin's on-screen ticker list."""
+    if mode not in {"screener", "tail", "auto"}:
+        raise HTTPException(400, "mode must be screener|tail|auto")
+    job = _start_watchlist_job(video_id, force=force, mode=mode)
+    return {"video_id": video_id, "job": job}
+
+
+@app.get("/api/watchlist/{video_id}")
+def api_watchlist_status(video_id: str) -> dict[str, Any]:
+    from .watchlist_extract import load_watchlist
+
+    st = _watchlist_status(video_id) or {}
+    report = load_watchlist(video_id)
+    job_st = st.get("status") or ""
+    ready = bool(report) and job_st not in {"running", "starting"}
+    return {
+        "video_id": video_id,
+        "job": st,
+        "ready": ready or (job_st == "done" and bool(report)),
+        "symbols": (report or {}).get("symbols") or st.get("symbols") or [],
+        "symbol_count": (report or {}).get("symbol_count")
+        or st.get("symbol_count")
+        or len((report or {}).get("symbols") or []),
+        "items": (report or {}).get("items") or [],
+        "best_frame": (report or {}).get("best_frame"),
+        "tradingview_txt": (report or {}).get("tradingview_txt"),
+        "tradingview_note": (report or {}).get("tradingview_note"),
+        "ocr_engine": (report or {}).get("ocr_engine") or st.get("ocr_engine"),
+        "frame_count": (report or {}).get("frame_count") or st.get("frame_count"),
+    }
+
+
+@app.get("/api/watchlist/{video_id}/tradingview.txt")
+def api_watchlist_tv_file(video_id: str) -> FileResponse:
+    """Download TradingView Upload-list .txt (EXCHANGE:SYMBOL, comma-separated)."""
+    from .watchlist_extract import WATCHLIST_OUT_DIR, load_watchlist
+
+    path = WATCHLIST_OUT_DIR / f"{video_id}.txt"
+    if not path.exists():
+        report = load_watchlist(video_id)
+        txt = (report or {}).get("tradingview_txt")
+        if not txt:
+            raise HTTPException(404, f"No watchlist export for {video_id} yet")
+        WATCHLIST_OUT_DIR.mkdir(parents=True, exist_ok=True)
+        path.write_text(txt, encoding="utf-8")
+    return FileResponse(
+        path,
+        media_type="text/plain; charset=utf-8",
+        filename=f"{video_id}_tradingview.txt",
+    )
 
 
 @app.get("/api/compare/{video_id}")

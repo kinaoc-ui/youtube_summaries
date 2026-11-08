@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -413,6 +414,30 @@ def main() -> None:
         st.link_button("開 YouTube", s.youtube, use_container_width=True)
     with top_r:
         st.caption("先英文原文，再中文")
+
+    wl_path = ROOT / "data" / "summaries" / f"{s.video_id}.watchlist.json"
+    tv_path = ROOT / "outputs" / "watchlists" / f"{s.video_id}.txt"
+    if wl_path.exists() or tv_path.exists():
+        wl: dict = {}
+        if wl_path.exists():
+            try:
+                wl = json.loads(wl_path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                wl = {}
+        syms = wl.get("symbols") or []
+        st.markdown('<div class="sec-h">尾段畫面清單 → TradingView</div>', unsafe_allow_html=True)
+        if syms:
+            st.caption("、".join(syms[:40]) + ("…" if len(syms) > 40 else ""))
+        if tv_path.exists():
+            st.download_button(
+                "下載 TradingView watchlist .txt",
+                data=tv_path.read_text(encoding="utf-8"),
+                file_name=f"{s.video_id}_tradingview.txt",
+                mime="text/plain",
+                use_container_width=True,
+                key=f"tv-{s.video_id}",
+            )
+            st.caption("TV：Watchlist 名稱選單 → Upload list…（Essential+；無公開 API）")
 
     overview = next((it for it in s.digest_items if it.key == "overview"), None)
     st.markdown('<div class="sec-h">真正摘要</div>', unsafe_allow_html=True)
