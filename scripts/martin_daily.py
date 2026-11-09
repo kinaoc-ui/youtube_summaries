@@ -236,20 +236,31 @@ def _kick_watchlist(
     if not force and slim.exists():
         _log(f"  watchlist summary exists: {video_id}")
         return
-    # Primary: E_Main sidebar (auto). Potent screener is secondary-only.
-    extra: list[str] = ["--mode", "auto"]
-    from app.config import settings as _settings
-
-    if getattr(_settings, "watchlist_vision", True) and (
-        (_settings.openai_api_key or "").strip()
-        or (getattr(_settings, "vision_ollama_model", "") or "").strip()
-    ):
-        extra.append("--vision")
+    # Primary: YouTube end screenshot → E_Main (no full-VOD download).
+    # Needs --date YYYY-MM-DD for list name; fall back to watchlist_job only if no date.
     if upload_date:
-        extra.extend(["--upload-date", str(upload_date)])
+        ud = str(upload_date).strip()
+        if len(ud) == 8 and ud.isdigit():
+            dated = f"{ud[:4]}-{ud[4:6]}-{ud[6:8]}"
+        else:
+            dated = ud[:10]
+        extra = ["--date", dated, "--upload"]
+        if force:
+            # browser path has no --force; still re-run by clearing done status above
+            pass
+        _log(f"  kick yt_browser_cap_emain: {video_id} {' '.join(extra)}")
+        _start_job(
+            "yt_browser_cap_emain.py",
+            video_id,
+            WATCHLIST_JOB_DIR,
+            extra_args=extra,
+            meta={"upload_date": upload_date, "mode": "yt_browser"},
+        )
+        return
+    extra = ["--mode", "auto", "--max-frames", "3", "--no-vision"]
     if force:
         extra.append("--force")
-    _log(f"  kick watchlist: {video_id} {' '.join(extra)}")
+    _log(f"  kick watchlist (no date fallback): {video_id} {' '.join(extra)}")
     _start_job(
         "watchlist_job.py",
         video_id,

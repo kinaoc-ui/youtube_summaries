@@ -7,6 +7,8 @@ if not defined TUBEON_TV_UPLOAD set "TUBEON_TV_UPLOAD=1"
 if not defined TUBEON_TV_SCREENING_ROOT set "TUBEON_TV_SCREENING_ROOT=%~dp0..\screening"
 if not defined TUBEON_TV_CDP_PORT set "TUBEON_TV_CDP_PORT=9222"
 if not defined TUBEON_TV_AUTO_LAUNCH set "TUBEON_TV_AUTO_LAUNCH=1"
+REM Default: no pause popup. Set MARTIN_DAILY_PAUSE=1 only if you want to read the window.
+set "MARTIN_DAILY_NOPAUSE=1"
 
 set "PYTHON_EXE="
 where py >nul 2>&1 && set "PYTHON_EXE=py"
@@ -30,6 +32,5 @@ echo [%date% %time%] Martin Luk daily check...
 "%PYTHON_EXE%" "%~dp0scripts\martin_daily.py" %*
 set "RC=%ERRORLEVEL%"
 echo [%date% %time%] exit %RC%
-exit /b %RC%
-
-if not defined MARTIN_DAILY_NOPAUSE pause
+if defined MARTIN_DAILY_PAUSE pause
+exit /b %RC%

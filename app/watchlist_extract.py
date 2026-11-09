@@ -259,6 +259,29 @@ def speech_hint_seconds(video_id: str) -> list[float]:
     return _dedupe_times(hits)
 
 
+def sample_sidebar_seconds(
+    duration: float,
+    *,
+    video_id: str | None = None,
+    last_minutes: float = 8.0,
+    interval_sec: float = 45.0,
+    max_frames: int = 12,
+) -> list[float]:
+    """Only last second of VOD, then -10s steps. No whole-stream scan."""
+    if duration <= 0:
+        return []
+    # last frame ~1s before end (avoid black), then walk back 10s
+    end = max(0.0, duration - 1.0)
+    times = [end]
+    t = end - 10.0
+    # keep a few backups only (default still tiny)
+    n = max(1, int(max_frames))
+    while t >= 0 and len(times) < n:
+        times.append(t)
+        t -= 10.0
+    return times
+
+
 def sample_screener_seconds(
     duration: float,
     *,
@@ -704,11 +727,11 @@ def extract_watchlist(
     video_id: str,
     *,
     mode: str = "auto",
-    last_minutes: float = 10.0,
-    interval_sec: float = 20.0,
+    last_minutes: float = 8.0,
+    interval_sec: float = 45.0,
     coarse_interval: float = 45.0,
     dense_interval: float = 12.0,
-    max_frames: int = 90,
+    max_frames: int = 12,
     min_hits: int = 2,
     use_vision: bool | None = None,
     vision_frames: int | None = None,
@@ -737,7 +760,16 @@ def extract_watchlist(
     frames_root = FRAMES_DIR / video_id / frames_subdir
     frames_root.mkdir(parents=True, exist_ok=True)
 
-    note(step="download_video", status="running", mode=mode)
+    from .video_check import VIDEO_DIR
+
+    cached = VIDEO_DIR / f"{video_id}.mp4"
+    reuse = cached.exists() and cached.stat().st_size > 1_000_000
+    note(
+        step="reuse_video" if reuse else "download_video",
+        status="running",
+        mode=mode,
+        reuse=reuse,
+    )
     video_path = download_video(video_id)
 
     duration = video_duration_sec(video_path)
@@ -747,13 +779,12 @@ def extract_watchlist(
         raise RuntimeError(f"Cannot determine duration for {video_id}")
 
     if prefer_sidebar:
-        # Dense tail + modest whole-VOD sample — E_Main lives on chart frames
-        times = sample_screener_seconds(
+        # Cap a few end/speech frames — do NOT scan whole VOD for E_Main list
+        times = sample_sidebar_seconds(
             duration,
             video_id=video_id,
-            coarse_interval=max(coarse_interval, 60.0),
-            dense_interval=dense_interval,
-            tail_minutes=max(last_minutes, 15.0),
+            last_minutes=max(last_minutes, 6.0),
+            interval_sec=max(interval_sec, 30.0),
             max_frames=max_frames,
         )
     else:
@@ -827,6 +858,20 @@ def extract_watchlist(
             frame_rows.append(row)
             if side.get("sidebar") and (side.get("symbols") or side.get("headers")):
                 sidebar_candidates.append(row)
+                # Good enough list capture — stop; no need to watch the whole VOD
+                n_sym = len(side.get("symbols") or [])
+                n_hdr = len(side.get("headers") or [])
+                if prefer_sidebar and n_sym >= 3:
+                    note(
+                        step="extract_frames",
+                        status="early_stop",
+                        done=i + 1,
+                        total=len(times),
+                        mode=mode,
+                        symbols=n_sym,
+                        headers=n_hdr,
+                    )
+                    break
         except Exception as e:
             frame_rows.append({"t": format_ts(sec), "seconds": sec, "error": str(e)})
         if i % 3 == 0:

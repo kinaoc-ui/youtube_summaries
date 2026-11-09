@@ -58,11 +58,11 @@ def run(
     video_id: str,
     *,
     mode: str = "auto",
-    last_minutes: float = 10.0,
-    interval_sec: float = 20.0,
+    last_minutes: float = 8.0,
+    interval_sec: float = 45.0,
     coarse_interval: float = 45.0,
     dense_interval: float = 12.0,
-    max_frames: int = 90,
+    max_frames: int = 3,
     min_hits: int = 2,
     use_vision: bool | None = None,
     vision_frames: int = 3,
@@ -106,7 +106,9 @@ def run(
             or paths.get("tradingview_txt")
         )
         tv_upload: dict = {"skipped": True, "reason": "not attempted"}
-        if tv_txt_path and (report.get("symbols") or report.get("buckets")):
+        _syms = [s for s in (report.get("symbols") or []) if str(s).strip()]
+        _bn = sum(len(v or []) for v in (report.get("buckets") or {}).values())
+        if tv_txt_path and (_syms or _bn >= 3):
             if tv_upload_enabled():
                 write_status(video_id, step="tv_cdp_upload", status="running")
                 print(f"TV CDP upload → {tv_txt_path}")
@@ -195,11 +197,11 @@ if __name__ == "__main__":
         default="auto",
         help="auto/sidebar=E_Main right watchlist (default); screener=Potent secondary only",
     )
-    p.add_argument("--last-minutes", type=float, default=10.0, help="Tail densify window")
-    p.add_argument("--interval", type=float, default=20.0, help="Tail-mode interval seconds")
+    p.add_argument("--last-minutes", type=float, default=8.0, help="Tail window for E_Main snaps")
+    p.add_argument("--interval", type=float, default=45.0, help="Seconds between tail snaps")
     p.add_argument("--coarse-interval", type=float, default=45.0, help="Screener coarse grid")
     p.add_argument("--dense-interval", type=float, default=12.0, help="Screener densify step")
-    p.add_argument("--max-frames", type=int, default=90)
+    p.add_argument("--max-frames", type=int, default=3)
     p.add_argument("--min-hits", type=int, default=2, help="Min table hits for unknown tickers")
     p.add_argument(
         "--vision",

@@ -1,0 +1,36 @@
+{
+  "video_id": "enPWrvGoE60",
+  "vod_date": "2026-11-03",
+  "list_name": "Martin Luk 2026-11-03 E_Main",
+  "mode": "sidebar",
+  "strategy": "E_Main sidebar preferred but no sections found — check frames / set TUBEON_OPENAI_API_KEY",
+  "symbol_source": "none",
+  "duration_sec": 9348.0,
+  "ocr_engine": "rapidocr",
+  "frame_count": 3,
+  "sidebar_frame_count": 0,
+  "symbol_count": 0,
+  "symbols": [],
+  "buckets": {
+    "INDEXES": [],
+    "LONGS": [],
+    "SHORTS": [],
+    "FOCUS": [],
+    "TRACKING": []
+  },
+  "indexes": [],
+  "longs": [],
+  "shorts": [],
+  "focus": [],
+  "tracking": [],
+  "items": [],
+  "vision": {
+    "available": false,
+    "symbols": [],
+    "buckets": {},
+    "reads": []
+  },
+  "best_sidebar_frame": null,
+  "tradingview_txt": "",
+  "tradingview_note": "Upload into watchlist named «Martin Luk 2026-11-03 E_Main». File body uses short ###INDEXES/###LONGS/… sections. Essential+; no TV API."
+}
