@@ -16,6 +16,8 @@ from pathlib import Path
 from typing import Any
 
 REQUIRED_SECTIONS = ("INDEXES", "LONGS", "SHORTS", "FOCUS")
+# FOCUS may be empty on a real stream (header still required).
+NONEMPTY_SECTIONS = ("INDEXES", "LONGS", "SHORTS")
 
 _DATED_STEM = re.compile(
     r"^Martin_Luk_(?P<y>\d{4})-(?P<m>\d{2})-(?P<d>\d{2})_E_Main$"
@@ -52,6 +54,30 @@ def canonical_list_date(raw: str | None) -> str | None:
         return None
     try:
         return date(int(m.group(1)), int(m.group(2)), int(m.group(3))).isoformat()
+    except ValueError:
+        return None
+
+
+
+_TITLE_DATE = re.compile(
+    r"(?P<d>\d{1,2})\s+(?P<mon>Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+(?P<y>20\d{2})\b",
+    re.I,
+)
+_MON = {
+    "JAN": 1, "FEB": 2, "MAR": 3, "APR": 4, "MAY": 5, "JUN": 6,
+    "JUL": 7, "AUG": 8, "SEP": 9, "OCT": 10, "NOV": 11, "DEC": 12,
+}
+
+
+def date_from_stream_title(title: str | None) -> str | None:
+    """Parse ``Flipped long | 4 Nov 2026`` / ``EWZ crash | 26 Oct 2026``."""
+    if not title:
+        return None
+    m = _TITLE_DATE.search(str(title))
+    if not m:
+        return None
+    try:
+        return date(int(m.group("y")), _MON[m.group("mon")[:3].upper()], int(m.group("d"))).isoformat()
     except ValueError:
         return None
 
@@ -135,7 +161,7 @@ def eligibility_problems(path: Path | str, *, text: str | None = None) -> list[s
             return problems
     bodies = section_symbols(text)
     missing = [sec for sec in REQUIRED_SECTIONS if sec not in bodies]
-    empty = [sec for sec in REQUIRED_SECTIONS if sec in bodies and not bodies[sec]]
+    empty = [sec for sec in NONEMPTY_SECTIONS if sec in bodies and not bodies[sec]]
     if missing:
         present = ", ".join(f"###{s}" for s in bodies) or "none"
         problems.append(

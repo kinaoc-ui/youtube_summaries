@@ -99,7 +99,7 @@ class DateAndSectionTests(unittest.TestCase):
             path.write_text(COMPLETE_DATED, encoding="utf-8")
             self.assertEqual(eligibility_problems(path), [])
 
-    def test_empty_required_section_is_ineligible(self) -> None:
+    def test_empty_focus_is_eligible(self) -> None:
         text = (
             "###INDEXES\nNASDAQ:QQQ\n"
             "###LONGS\nAMEX:SOXS\n"
@@ -108,11 +108,29 @@ class DateAndSectionTests(unittest.TestCase):
             "###TRACKING\nNASDAQ:SOXX\n"
         )
         with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "Martin_Luk_2026-10-26_E_Main.txt"
+            path.write_text(text, encoding="utf-8")
+            self.assertEqual(eligibility_problems(path), [])
+
+    def test_empty_longs_is_ineligible(self) -> None:
+        text = (
+            "###INDEXES\nNASDAQ:QQQ\n"
+            "###LONGS\n"
+            "###SHORTS\nAMEX:SLV\n"
+            "###FOCUS\nAMEX:UVXY\n"
+        )
+        with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "Martin_Luk_2026-11-08_E_Main.txt"
             path.write_text(text, encoding="utf-8")
             blob = " ".join(eligibility_problems(path))
         self.assertIn("empty required sections", blob)
-        self.assertIn("###FOCUS", blob)
+        self.assertIn("###LONGS", blob)
+
+    def test_date_from_stream_title(self) -> None:
+        from app.emain_eligibility import date_from_stream_title
+        self.assertEqual(date_from_stream_title("Flipped long | 4 Nov 2026"), "2026-11-04")
+        self.assertEqual(date_from_stream_title("EWZ crash | 26 Oct 2026"), "2026-10-26")
+        self.assertIsNone(date_from_stream_title("My first stream"))
 
     def test_video_id_file_is_ineligible_even_when_complete(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

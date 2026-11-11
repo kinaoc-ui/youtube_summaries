@@ -9,6 +9,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import subprocess
 import sys
@@ -21,7 +22,14 @@ sys.path.insert(0, str(ROOT))
 
 from app.auto_summary import build_and_save_summary  # noqa: E402
 from app.config import DATA_DIR, SUMMARY_DIR, OUTPUT_DIR, ensure_dirs, settings  # noqa: E402
-from app.emain_eligibility import browser_cap_args  # noqa: E402
+from app.emain_eligibility import (
+    browser_cap_args,
+    canonical_list_date,
+    date_from_stream_title,
+    section_symbols,
+    REQUIRED_SECTIONS,
+    NONEMPTY_SECTIONS,
+)  # noqa: E402
 from app.meta import fetch_video_meta  # noqa: E402
 from app.transcript import (  # noqa: E402
     CaptionsDisabledError,
@@ -60,10 +68,29 @@ def _save_state(state: dict[str, Any]) -> None:
     STATE_PATH.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
+
+def _yt_dlp_runtime_args() -> list[str]:
+    """Use Node so yt-dlp can resolve upload_date instead of returning NA."""
+    import shutil
+    node = Path(os.environ.get("TUBEON_NODE", r"C:\\Program Files\\nodejs\\node.exe"))
+    if not node.exists():
+        found = shutil.which("node")
+        if found:
+            node = Path(found)
+    if node.exists():
+        return ["--js-runtimes", f"node:{node}"]
+    return []
+
+
+def resolve_upload_date(upload_date: str | None, title: str | None = None) -> str | None:
+    return canonical_list_date(upload_date) or date_from_stream_title(title)
+
+
 def list_recent_streams(playlist_end: int = 10) -> list[dict[str, str]]:
     """Return newest Martin Luk livestream VODs via yt-dlp."""
     cmd = [
         "yt-dlp",
+        *_yt_dlp_runtime_args(),
         "--flat-playlist",
         "--playlist-end",
         str(playlist_end),
@@ -82,11 +109,12 @@ def list_recent_streams(playlist_end: int = 10) -> list[dict[str, str]]:
         vid, title = parts[0].strip(), parts[1].strip()
         if not vid or len(vid) != 11:
             continue
+        raw_date = parts[2].strip() if len(parts) > 2 else ""
         out.append(
             {
                 "id": vid,
                 "title": title,
-                "upload_date": parts[2].strip() if len(parts) > 2 else "",
+                "upload_date": resolve_upload_date(raw_date, title) or raw_date,
             }
         )
     return out
@@ -224,15 +252,23 @@ def _kick_watchlist(
                 return
         except json.JSONDecodeError:
             pass
-    # If dated E_Main already on disk, skip (unless force)
+    # Skip only when this video already has a complete list body.
+    # A chat-OCR / incomplete {video_id}.E_Main.txt must be retried.
     wl_dir = OUTPUT_DIR / "watchlists"
     if not force and wl_dir.is_dir():
-        has_emain = (wl_dir / f"{video_id}.E_Main.txt").exists() or any(
-            wl_dir.glob(f"*{video_id}*E_Main*.txt")
-        )
-        if has_emain:
-            _log(f"  E_Main txt exists: {video_id}")
-            return
+        vid_copy = wl_dir / f"{video_id}.E_Main.txt"
+        if vid_copy.is_file():
+            try:
+                bodies = section_symbols(vid_copy.read_text(encoding="utf-8"))
+                complete = all(sec in bodies for sec in REQUIRED_SECTIONS) and all(
+                    bodies.get(sec) for sec in NONEMPTY_SECTIONS
+                )
+            except OSError:
+                complete = False
+            if complete:
+                _log(f"  E_Main txt exists: {video_id}")
+                return
+            _log(f"  incomplete E_Main on disk — retry cap: {video_id}")
     slim = SUMMARY_DIR / f"{video_id}.watchlist.json"
     if not force and slim.exists():
         _log(f"  watchlist summary exists: {video_id}")
@@ -240,8 +276,9 @@ def _kick_watchlist(
     # Primary: YouTube end screenshot → E_Main (no full-VOD download).
     # --upload only when the date is a real YYYY-MM-DD. "NA" from a flat
     # playlist still captures the sidebar, but must not become Active.
-    if upload_date and str(upload_date).strip():
-        extra, date_skip = browser_cap_args(str(upload_date))
+    resolved = resolve_upload_date(upload_date)
+    if resolved or (upload_date and str(upload_date).strip()):
+        extra, date_skip = browser_cap_args(resolved or str(upload_date))
         if date_skip:
             _log(
                 f"  watchlist {date_skip} — screenshot only, "
