@@ -34,6 +34,7 @@ from typing import Any
 import httpx
 
 from .config import settings
+from .emain_eligibility import eligibility_problems, log_refuse
 
 DEFAULT_SCREENING_ROOT = r"C:\Users\kinao\OneDrive\桌面\stock\screening"
 DEFAULT_CDP_PORT = 9222
@@ -213,6 +214,20 @@ def upload_watchlist_txt(
             "txt": str(path),
             "listStem": list_stem,
             "error": "expected .txt path",
+        }
+
+    # Hard gate: never hand an undated, NA, video-id, or incomplete list to
+    # tv_upload_watchlist.js. That script makes the uploaded list Active.
+    problems = eligibility_problems(path)
+    if problems:
+        reason = log_refuse(path, problems)
+        return {
+            "ok": False,
+            "skipped": True,
+            "txt": str(path),
+            "listStem": list_stem,
+            "reason": reason,
+            "error": reason,
         }
 
     root = root or screening_root()

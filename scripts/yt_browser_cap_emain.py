@@ -23,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from app.config import DATA_DIR, ensure_dirs  # noqa: E402
+from app.emain_eligibility import log_refuse, prepare_emain_outputs  # noqa: E402
 from app.tradingview_export import format_emain_watchlist_txt  # noqa: E402
 from app.tv_cdp_upload import maybe_upload_after_extract  # noqa: E402
 from app.watchlist_extract import is_valid_us_ticker, ocr_image, tv_symbol  # noqa: E402
@@ -165,18 +166,22 @@ def run(video_id: str, *, vod_date: str, upload: bool, reuse_png: Path | None = 
     print("OCR buckets:", {k: buckets[k] for k in SECTION_ORDER})
     if n < 3:
         raise SystemExit("E_Main not readable from screenshot OCR — check end_sidebar.jpg")
-    stem = f"Martin_Luk_{vod_date}_E_Main"
-    out = ROOT / "outputs" / "watchlists" / f"{stem}.txt"
     body = format_emain_watchlist_txt(buckets)
-    out.write_text(body if isinstance(body, str) else str(body), encoding="utf-8")
-    (ROOT / "outputs" / "watchlists" / f"{video_id}.E_Main.txt").write_text(
-        out.read_text(encoding="utf-8"), encoding="utf-8"
+    info = prepare_emain_outputs(
+        ROOT / "outputs" / "watchlists",
+        video_id=video_id,
+        vod_date=vod_date,
+        body=body if isinstance(body, str) else str(body),
     )
+    out = info["dated_path"] or info["debug_path"]
     print("WROTE", out)
-    print(out.read_text(encoding="utf-8"))
+    print(Path(out).read_text(encoding="utf-8"))
     if upload:
-        print(maybe_upload_after_extract(out))
-    return out
+        if info["upload_path"] is None:
+            log_refuse(out, info["problems"])
+        else:
+            print(maybe_upload_after_extract(info["upload_path"]))
+    return Path(out)
 
 
 def main() -> None:

@@ -51,7 +51,13 @@ class UploadWatchlistTxtTests(unittest.TestCase):
             script.parent.mkdir(parents=True)
             script.write_text("// stub\n", encoding="utf-8")
             txt = root / "Martin_Luk_2026-10-28_E_Main.txt"
-            txt.write_text("###INDEXES\nNASDAQ:QQQ\n", encoding="utf-8")
+            txt.write_text(
+                "###INDEXES\nNASDAQ:QQQ\n"
+                "###LONGS\nAMEX:SOXS\n"
+                "###SHORTS\nAMEX:SLV\n"
+                "###FOCUS\nAMEX:UVXY\n",
+                encoding="utf-8",
+            )
 
             payload = {
                 "ok": True,
@@ -98,7 +104,13 @@ class UploadWatchlistTxtTests(unittest.TestCase):
             script.parent.mkdir(parents=True)
             script.write_text("// stub\n", encoding="utf-8")
             txt = root / "Martin_Luk_2026-10-28_E_Main.txt"
-            txt.write_text("###INDEXES\nNASDAQ:QQQ\n", encoding="utf-8")
+            txt.write_text(
+                "###INDEXES\nNASDAQ:QQQ\n"
+                "###LONGS\nAMEX:SOXS\n"
+                "###SHORTS\nAMEX:SLV\n"
+                "###FOCUS\nAMEX:UVXY\n",
+                encoding="utf-8",
+            )
             completed = mock.MagicMock()
             completed.returncode = 0
             completed.stdout = "not json"

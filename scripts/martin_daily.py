@@ -21,6 +21,7 @@ sys.path.insert(0, str(ROOT))
 
 from app.auto_summary import build_and_save_summary  # noqa: E402
 from app.config import DATA_DIR, SUMMARY_DIR, OUTPUT_DIR, ensure_dirs, settings  # noqa: E402
+from app.emain_eligibility import browser_cap_args  # noqa: E402
 from app.meta import fetch_video_meta  # noqa: E402
 from app.transcript import (  # noqa: E402
     CaptionsDisabledError,
@@ -237,14 +238,15 @@ def _kick_watchlist(
         _log(f"  watchlist summary exists: {video_id}")
         return
     # Primary: YouTube end screenshot → E_Main (no full-VOD download).
-    # Needs --date YYYY-MM-DD for list name; fall back to watchlist_job only if no date.
-    if upload_date:
-        ud = str(upload_date).strip()
-        if len(ud) == 8 and ud.isdigit():
-            dated = f"{ud[:4]}-{ud[4:6]}-{ud[6:8]}"
-        else:
-            dated = ud[:10]
-        extra = ["--date", dated, "--upload"]
+    # --upload only when the date is a real YYYY-MM-DD. "NA" from a flat
+    # playlist still captures the sidebar, but must not become Active.
+    if upload_date and str(upload_date).strip():
+        extra, date_skip = browser_cap_args(str(upload_date))
+        if date_skip:
+            _log(
+                f"  watchlist {date_skip} — screenshot only, "
+                f"will not upload or set Active: {video_id}"
+            )
         if force:
             # browser path has no --force; still re-run by clearing done status above
             pass
@@ -472,29 +474,30 @@ def main() -> int:
             _kick_watchlist(vid, upload_date=it.get("upload_date") or None)
         except Exception as e:
             _log(f"backfill {vid} failed: {e}")
-        for it in new_items:
-            vid = it["id"]
-            try:
-                if _summary_exists(vid):
-                    _log(f"  {vid}: summary exists — mark known + kick compare/watchlist")
-                    _kick_asr_compare(vid)
-                    _kick_watchlist(vid, upload_date=it.get("upload_date") or None)
-                    known.add(vid)
-                    continue
-                tag = analyze_video(
-                    vid,
-                    title=it.get("title"),
-                    upload_date=it.get("upload_date") or None,
-                )
+
+    for it in new_items:
+        vid = it["id"]
+        try:
+            if _summary_exists(vid):
+                _log(f"  {vid}: summary exists — mark known + kick compare/watchlist")
+                _kick_asr_compare(vid)
+                _kick_watchlist(vid, upload_date=it.get("upload_date") or None)
                 known.add(vid)
-                if tag == "whisper_started":
-                    pw = set(state.get("pending_whisper") or [])
-                    pw.add(vid)
-                    state["pending_whisper"] = sorted(pw)
-            except Exception as e:
-                _log(f"  {vid} FAILED: {e}")
-                # keep unknown so next run retries
                 continue
+            tag = analyze_video(
+                vid,
+                title=it.get("title"),
+                upload_date=it.get("upload_date") or None,
+            )
+            known.add(vid)
+            if tag == "whisper_started":
+                pw = set(state.get("pending_whisper") or [])
+                pw.add(vid)
+                state["pending_whisper"] = sorted(pw)
+        except Exception as e:
+            _log(f"  {vid} FAILED: {e}")
+            # keep unknown so next run retries
+            continue
 
     # Also remember ids we saw (even skipped) so playlist churn doesn't re-queue
     for it in items:

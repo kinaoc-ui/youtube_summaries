@@ -93,7 +93,9 @@ python scripts\watchlist_job.py iMBI3ZcQ6sU --mode auto --vision --upload-date 2
 :: → node scripts\tv_upload_watchlist.js C:\...\outputs\watchlists\Martin_Luk_2026-10-28_E_Main.txt
 ```
 
-`martin_daily` / `run_martin_daily.bat` needs no separate upload step — it kicks `watchlist_job`, which hooks CDP when `TUBEON_TV_UPLOAD=1`. Status JSON fields: `tv_upload_ok`, `tv_upload`, `listStem`.
+`martin_daily` / `run_martin_daily.bat` needs no separate upload step — it kicks the end-of-VOD screenshot path, which hooks CDP when `TUBEON_TV_UPLOAD=1`. Status JSON fields: `tv_upload_ok`, `tv_upload`, `listStem`.
+
+Upload and `reassert_martin_tv.bat` only accept a complete dated list `Martin_Luk_YYYY-MM-DD_E_Main` that contains `###INDEXES`, `###LONGS`, `###SHORTS`, and `###FOCUS`. A missing date, `NA`, a video-id copy (`<id>.E_Main.txt`), or a TRACKING-only body is kept on disk and is not set Active. Reassert picks the latest date in the filename, not the newest mtime and not reverse alphabetical order (`Martin_Luk_NA_...` sorts after `Martin_Luk_2026-...`). After First Screen, that reassert still puts the chosen Martin list back on Active.
 
 ## Summarizer modes
 

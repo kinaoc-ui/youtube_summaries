@@ -28,6 +28,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 
+from .emain_eligibility import canonical_list_date
+
 EXCHANGE_FOR_TICKER: dict[str, str] = {
     "AAPL": "NASDAQ",
     "MSFT": "NASDAQ",
@@ -392,8 +394,11 @@ def write_tradingview_txt(
     path.write_text(text, encoding="utf-8")
 
     dated_path: Path | None = None
-    if also_dated_filename and emain and buckets and date_iso:
-        dated_path = path.parent / list_filename(date_iso, list_name=list_name)
+    # Only a real YYYY-MM-DD becomes Martin_Luk_<date>_E_Main.txt.
+    # NA / unknown-date must not land in the reassert candidate set.
+    iso = canonical_list_date(date_iso) if date_iso else None
+    if also_dated_filename and emain and buckets and iso:
+        dated_path = path.parent / list_filename(iso, list_name=list_name)
         if dated_path.resolve() != path.resolve():
             dated_path.write_text(text, encoding="utf-8")
         else:

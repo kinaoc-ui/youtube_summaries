@@ -25,6 +25,7 @@ from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
 from .config import DATA_DIR, OUTPUT_DIR, SUMMARY_DIR, ensure_dirs, settings
+from .emain_eligibility import canonical_list_date
 from .parse_md import parse_summary_markdown
 from .tradingview_export import (
     IMBI_EMAIN_BUCKETS,
@@ -1114,24 +1115,32 @@ def extract_watchlist(
     summary_json.write_text(json.dumps(slim, ensure_ascii=False, indent=2), encoding="utf-8")
 
     WATCHLIST_OUT_DIR.mkdir(parents=True, exist_ok=True)
-    dated_name = list_filename(vod_date, list_name="E_Main")
+    iso_date = canonical_list_date(vod_date)
     video_txt_path = WATCHLIST_OUT_DIR / f"{video_id}.txt"
     dated_txt_path: Path | None = None
     if emain_ok or any(buckets.values()):
         tv_path = write_tradingview_txt(
             video_txt_path,
             buckets=buckets,
-            date_iso=vod_date,
+            date_iso=iso_date,
             video_id=video_id,
             list_name="E_Main",
             emain=True,
-            also_dated_filename=True,
+            also_dated_filename=bool(iso_date),
         )
-        # CDP upload listStem = dated filename stem (Martin_Luk_YYYY-MM-DD_E_Main)
-        dated_txt_path = WATCHLIST_OUT_DIR / dated_name
-        if not dated_txt_path.exists():
-            dated_txt_path.write_text(tv_txt, encoding="utf-8")
-        tv_path = dated_txt_path
+        # CDP upload listStem = dated filename stem (Martin_Luk_YYYY-MM-DD_E_Main).
+        # NA / unknown-date stays on the video-id file only.
+        if iso_date:
+            dated_txt_path = WATCHLIST_OUT_DIR / list_filename(iso_date, list_name="E_Main")
+            if not dated_txt_path.exists():
+                dated_txt_path.write_text(tv_txt, encoding="utf-8")
+            tv_path = dated_txt_path
+        else:
+            print(
+                f"[martin-tv] vod date {vod_date!r} is not a real YYYY-MM-DD — "
+                f"wrote {video_txt_path.name} only; not eligible for TradingView Active",
+                flush=True,
+            )
     else:
         tv_path = write_tradingview_txt(
             video_txt_path,

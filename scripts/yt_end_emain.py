@@ -14,6 +14,7 @@ from app.watchlist_extract import (  # noqa: E402
     video_duration_sec,
 )
 from app.video_check import VIDEO_DIR, download_video, extract_frame, ffmpeg_bin  # noqa: E402
+from app.emain_eligibility import log_refuse, prepare_emain_outputs  # noqa: E402
 from app.tradingview_export import format_emain_watchlist_txt  # noqa: E402
 from app.tv_cdp_upload import maybe_upload_after_extract  # noqa: E402
 
@@ -74,18 +75,21 @@ def main() -> None:
         k: [tv_symbol(x) if isinstance(x, str) and ":" not in x else x for x in (buckets.get(k) or [])]
         for k in ("INDEXES", "LONGS", "SHORTS", "FOCUS", "TRACKING")
     }
-    stem = f"Martin_Luk_{args.date}_E_Main"
-    out = ROOT / "outputs" / "watchlists" / f"{stem}.txt"
-    out.parent.mkdir(parents=True, exist_ok=True)
     body = format_emain_watchlist_txt(mapped)
-    out.write_text(body if isinstance(body, str) else str(body), encoding="utf-8")
-    (ROOT / "outputs" / "watchlists" / f"{args.video_id}.E_Main.txt").write_text(
-        out.read_text(encoding="utf-8"), encoding="utf-8"
+    info = prepare_emain_outputs(
+        ROOT / "outputs" / "watchlists",
+        video_id=args.video_id,
+        vod_date=args.date,
+        body=body if isinstance(body, str) else str(body),
     )
+    out = info["dated_path"] or info["debug_path"]
     print("WROTE", out)
-    print(out.read_text(encoding="utf-8"))
+    print(Path(out).read_text(encoding="utf-8"))
     if args.upload:
-        print(maybe_upload_after_extract(out))
+        if info["upload_path"] is None:
+            log_refuse(out, info["problems"])
+        else:
+            print(maybe_upload_after_extract(info["upload_path"]))
 
 
 if __name__ == "__main__":

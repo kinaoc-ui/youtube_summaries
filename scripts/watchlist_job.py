@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from app.config import DATA_DIR, ensure_dirs  # noqa: E402
+from app.emain_eligibility import eligibility_problems, log_refuse  # noqa: E402
 from app.tv_cdp_upload import maybe_upload_after_extract, tv_upload_enabled  # noqa: E402
 from app.watchlist_extract import extract_watchlist  # noqa: E402
 
@@ -106,10 +107,20 @@ def run(
             or paths.get("tradingview_txt")
         )
         tv_upload: dict = {"skipped": True, "reason": "not attempted"}
-        _syms = [s for s in (report.get("symbols") or []) if str(s).strip()]
-        _bn = sum(len(v or []) for v in (report.get("buckets") or {}).values())
-        if tv_txt_path and (_syms or _bn >= 3):
-            if tv_upload_enabled():
+        # Symbol count is not enough: the 2026-11-11 NA list had nine TRACKING
+        # tickers and no INDEXES/LONGS/SHORTS/FOCUS. Refuse that before CDP.
+        if tv_txt_path:
+            problems = eligibility_problems(tv_txt_path)
+            if problems:
+                reason = log_refuse(tv_txt_path, problems)
+                tv_upload = {
+                    "ok": False,
+                    "skipped": True,
+                    "reason": reason,
+                    "txt": str(tv_txt_path),
+                    "listStem": Path(str(tv_txt_path)).stem,
+                }
+            elif tv_upload_enabled():
                 write_status(video_id, step="tv_cdp_upload", status="running")
                 print(f"TV CDP upload → {tv_txt_path}")
                 tv_upload = maybe_upload_after_extract(tv_txt_path)
