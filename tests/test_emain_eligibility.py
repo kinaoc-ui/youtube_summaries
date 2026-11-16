@@ -228,7 +228,7 @@ class LatestSelectionTests(unittest.TestCase):
         out = buf.getvalue()
         self.assertEqual(rc, 0)
         self.assertIn("select Martin_Luk_2026-11-08_E_Main.txt", out)
-        self.assertIn(f"dry-run: would upload {good}", out)
+        self.assertIn(f"dry-run: would restore Active to {good}", out)
         self.assertIn("skip Martin_Luk_NA_E_Main.txt", out)
 
 
@@ -312,7 +312,7 @@ class PublishAndUploadGateTests(unittest.TestCase):
             run.assert_not_called()
             cdp.assert_not_called()
 
-    def test_reassert_uploads_dated_winner_not_na(self) -> None:
+    def test_reassert_activates_existing_dated_winner_not_na(self) -> None:
         now = 1_700_000_000.0
         with tempfile.TemporaryDirectory() as tmp:
             directory = Path(tmp)
@@ -322,17 +322,50 @@ class PublishAndUploadGateTests(unittest.TestCase):
             good = directory / "Martin_Luk_2026-11-08_E_Main.txt"
             good.write_text(COMPLETE_DATED, encoding="utf-8")
             _touch(good, now - 50)
-            with mock.patch(
-                "app.tv_cdp_upload.upload_watchlist_txt",
-                return_value={"ok": True, "listStem": good.stem},
-            ) as upload:
+            with (
+                mock.patch(
+                    "app.tv_cdp_upload.activate_watchlist_by_name",
+                    return_value={"ok": True, "already_active": True, "listStem": good.stem},
+                ) as activate,
+                mock.patch(
+                    "app.tv_cdp_upload.upload_watchlist_txt",
+                    return_value={"ok": True, "listStem": good.stem},
+                ) as upload,
+            ):
+                buf = io.StringIO()
+                with redirect_stdout(buf):
+                    rc = main(["--watchlists", str(directory)])
+            self.assertEqual(rc, 0)
+            activate.assert_called_once()
+            self.assertEqual(activate.call_args.args[0], good.stem)
+            upload.assert_not_called()
+            self.assertIn("skip Martin_Luk_NA_E_Main.txt", buf.getvalue())
+            self.assertIn("not re-uploading", buf.getvalue())
+
+    def test_reassert_uploads_only_when_list_missing(self) -> None:
+        now = 1_700_000_000.0
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp)
+            good = directory / "Martin_Luk_2026-11-08_E_Main.txt"
+            good.write_text(COMPLETE_DATED, encoding="utf-8")
+            _touch(good, now)
+            with (
+                mock.patch(
+                    "app.tv_cdp_upload.activate_watchlist_by_name",
+                    return_value={"ok": False, "not_found": True, "listStem": good.stem},
+                ),
+                mock.patch(
+                    "app.tv_cdp_upload.upload_watchlist_txt",
+                    return_value={"ok": True, "listStem": good.stem},
+                ) as upload,
+            ):
                 buf = io.StringIO()
                 with redirect_stdout(buf):
                     rc = main(["--watchlists", str(directory)])
             self.assertEqual(rc, 0)
             upload.assert_called_once()
             self.assertEqual(Path(upload.call_args.args[0]).name, good.name)
-            self.assertIn("skip Martin_Luk_NA_E_Main.txt", buf.getvalue())
+            self.assertIn("uploading once", buf.getvalue())
 
 
 if __name__ == "__main__":

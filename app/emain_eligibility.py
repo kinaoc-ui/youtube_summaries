@@ -286,7 +286,7 @@ def prepare_emain_outputs(
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Select the latest complete dated list and optionally upload it as Active."""
+    """Restore the latest complete dated list as Active; upload only if missing."""
     root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(
         description=(
@@ -323,7 +323,11 @@ def main(argv: list[str] | None = None) -> int:
         )
         return 0
     if args.dry_run:
-        print(f"[martin-tv] dry-run: would upload {winner}", flush=True)
+        print(
+            f"[martin-tv] dry-run: would restore Active to {winner} "
+            f"(activate existing, upload only if missing)",
+            flush=True,
+        )
         return 0
 
     screening = args.screening_root
@@ -333,14 +337,41 @@ def main(argv: list[str] | None = None) -> int:
         if script.is_file():
             screening = sibling
 
-    from .tv_cdp_upload import upload_watchlist_txt
+    from .tv_cdp_upload import activate_watchlist_by_name, upload_watchlist_txt
 
+    # After First Screen, just switch Active back to the existing Martin list.
+    # Re-upload only when that named list is not already on TradingView.
+    activated = activate_watchlist_by_name(winner.stem, root=screening, ensure=True)
+    if activated.get("ok"):
+        if activated.get("already_active"):
+            print(
+                f"[martin-tv] Active already {winner.stem} — not re-uploading",
+                flush=True,
+            )
+        else:
+            print(
+                f"[martin-tv] switched Active to existing {winner.stem} — not re-uploading",
+                flush=True,
+            )
+        print(activated, flush=True)
+        return 0
+
+    if not activated.get("not_found"):
+        print(activated, flush=True)
+        err = str(activated.get("error") or "")
+        if "activate script missing" in err or "upload script missing" in err:
+            print("[martin-tv] WARN activate/upload script missing — Active unchanged", flush=True)
+            return 0
+        return 1
+
+    print(
+        f"[martin-tv] {winner.stem} not on TradingView — uploading once",
+        flush=True,
+    )
     result = upload_watchlist_txt(winner, root=screening, ensure=True)
     print(result, flush=True)
     if result.get("ok"):
         return 0
-    # Match the old bat: a machine without the NineEdge upload script is a
-    # warning, not a failed daily task. A real upload/CDP failure still fails.
     err = str(result.get("error") or "")
     if "upload script missing" in err:
         print("[martin-tv] WARN upload script missing — Active unchanged", flush=True)

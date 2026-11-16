@@ -328,6 +328,112 @@ def upload_watchlist_txt(
     return out
 
 
+
+SET_ACTIVE_SCRIPT_REL = Path("scripts") / "tv_set_active_watchlist.js"
+
+
+def set_active_script_path(root: Path | None = None) -> Path:
+    """Prefer the Martin repo script; fall back to a copy under screening/scripts."""
+    here = Path(__file__).resolve().parents[1] / SET_ACTIVE_SCRIPT_REL
+    if here.is_file():
+        return here
+    return (root or screening_root()) / SET_ACTIVE_SCRIPT_REL
+
+
+def activate_watchlist_by_name(
+    name: str,
+    *,
+    root: Path | None = None,
+    ensure: bool = True,
+    timeout_sec: float = 60.0,
+) -> dict[str, Any]:
+    """Switch TradingView Active to an existing list by name. Does not upload."""
+    list_stem = Path(str(name)).stem
+    if not list_stem:
+        return {"ok": False, "error": "missing watchlist name", "listStem": list_stem}
+
+    script = set_active_script_path(root)
+    if not script.exists():
+        return {
+            "ok": False,
+            "listStem": list_stem,
+            "error": f"activate script missing: {script}",
+        }
+
+    if ensure:
+        ready = ensure_cdp(port=cdp_port())
+        if not ready.get("ok"):
+            return {
+                "ok": False,
+                "listStem": list_stem,
+                "error": ready.get("error") or "CDP not ready",
+                "cdp": ready,
+            }
+
+    cmd = [node_bin(), str(script), list_stem]
+    try:
+        proc = subprocess.run(
+            cmd,
+            cwd=str(script.parent.parent),
+            env=_node_env(),
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout_sec,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as e:
+        return {
+            "ok": False,
+            "listStem": list_stem,
+            "error": f"timeout after {timeout_sec}s",
+            "cmd": cmd,
+            "stdout": (e.stdout or "")[:2000] if isinstance(e.stdout, str) else "",
+            "stderr": (e.stderr or "")[:2000] if isinstance(e.stderr, str) else "",
+        }
+    except OSError as e:
+        return {"ok": False, "listStem": list_stem, "error": str(e), "cmd": cmd}
+
+    stdout = (proc.stdout or "").strip()
+    stderr = (proc.stderr or "").strip()
+    parsed: dict[str, Any] | None = None
+    for blob in reversed([ln.strip() for ln in stdout.splitlines() if ln.strip()] or [stdout]):
+        try:
+            data = json.loads(blob)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(data, dict):
+            parsed = data
+            break
+    if parsed is None and stdout:
+        try:
+            data = json.loads(stdout)
+            if isinstance(data, dict):
+                parsed = data
+        except json.JSONDecodeError:
+            parsed = None
+    if parsed is None:
+        return {
+            "ok": False,
+            "listStem": list_stem,
+            "error": "non-JSON stdout from tv_set_active_watchlist.js",
+            "returncode": proc.returncode,
+            "stdout": stdout[:2000],
+            "stderr": stderr[:2000],
+            "cmd": cmd,
+        }
+    out = dict(parsed)
+    out.setdefault("listStem", list_stem)
+    out["returncode"] = proc.returncode
+    if stderr and "stderr" not in out:
+        out["stderr"] = stderr[:2000]
+    if proc.returncode != 0 and out.get("ok") is not False:
+        out["ok"] = False
+        out.setdefault("error", f"node exit {proc.returncode}")
+    return out
+
+
 def maybe_upload_after_extract(txt_path: Path | str | None) -> dict[str, Any]:
     """No-op unless TUBEON_TV_UPLOAD enabled. Safe to call from watchlist_job."""
     if not tv_upload_enabled():
